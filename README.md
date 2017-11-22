@@ -27,7 +27,7 @@ This is a command to put the following state.
 - Security & Privacy > Allow application download from: > Anywhere
 
 Then do the following.
-1. Security & Privacy > Click Allow button
+1. Open Security & Privacy > Click Allow button
 2. Reinstall application
 
 After installing, execute the following command to enable GateKeeper.
