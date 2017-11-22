@@ -32,15 +32,13 @@ config() {
 
 install() {
     depend "install" "brew"
-	sudo spctl --master-disable
     brew cask install "$SETUP_CURRENT_ROLE_NAME" >/dev/null 2>&1
     [[ "$?" -eq 0 ]] || log "WARN" "Open Security & Privacy > Click Allow button, brew cask install $SETUP_CURRENT_ROLE_NAME"
-	sudo spctl --master-enable
     config
 }
 
 upgrade() {
-    [[ -z $(brew cask outdated "$SETUP_CURRENT_ROLE_NAME") ]] || brew cask reinstall --force"$SETUP_CURRENT_ROLE_NAME"
+    [[ -z $(brew cask outdated "$SETUP_CURRENT_ROLE_NAME") ]] || brew cask reinstall --force "$SETUP_CURRENT_ROLE_NAME"
 }
 
 security_and_privacy() {
