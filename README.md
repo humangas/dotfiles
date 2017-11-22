@@ -1,5 +1,5 @@
 # dotfiles
-My macOS setup tool
+My macOS setup tool and dotfiles
 
 
 ## Installation
