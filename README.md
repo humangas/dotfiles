@@ -11,8 +11,6 @@ $ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/install | 
 If you make the following settings in advance, you will not be asked for sudo password.
 ```
 $ sudo sh -c "echo `whoami` ALL=\(ALL\) NOPASSWD:ALL > /private/etc/sudoers.d/`whoami`"
-$ cat /private/etc/sudoers.d/$(whoami)
-humangas ALL=(ALL) NOPASSWD:ALL
 ```
 
 Delete it if it is not necessary after the installation is completed.
@@ -20,7 +18,6 @@ Delete it if it is not necessary after the installation is completed.
 $ sudo rm -f /private/etc/sudoers.d/$(whoami)
 ```
 
-### NOTE
 If you install GateKeeper non-compatible application, execute the following command.
 ```
 $ sudo spctl --master-disable
@@ -28,6 +25,10 @@ $ sudo spctl --master-disable
 
 This is a command to put the following state.
 - Security & Privacy > Allow application download from: > Anywhere
+
+Then do the following.
+1. Security & Privacy > Click Allow button
+2. Reinstall application
 
 After installing, execute the following command to enable GateKeeper.
 ```
