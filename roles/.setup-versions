@@ -1,0 +1,66 @@
+role                 status   version
+ag                   disable  ag version 2.1.0
+alfred               disable  alfred: 3.5.1_883
+ansible              disable  ansible 2.4.1.0
+awscli               disable  aws-cli/1.11.180 Python/3.6.3 Darwin/17.2.0 botocore/1.7.38
+betterzipql          enable   betterzipql: latest
+brew                 disable  Homebrew 1.3.7
+buttercup            disable  buttercup: 0.24.1
+caffeine             enable   caffeine: 1.1.1
+calibre              disable  calibre: 3.12.0
+clipy                disable  clipy: 1.1.4
+ctags                disable  Exuberant Ctags 5.8_ Copyright (C) 1996-2009 Darren Hiebert
+direnv               disable  2.13.1
+docker               disable  docker: 17.09.0-ce-mac35_19611
+dotfiles             None
+dropbox              disable  dropbox: latest
+embulk               disable  embulk 0.8.30
+fzf                  disable  0.17.1 (brew)
+ghq                  enable   ghq version 0.8.0
+gibo                 disable  gibo 1.0.6 by Simon Whitaker <sw@netcetera.org>
+git                  disable  git version 2.15.0
+glide                disable  glide version 0.13.1
+go                   disable  go version go1.9.2 darwin/amd64
+goenv                disable  goenv 1.0.0
+google-chrome        disable  google-chrome: latest
+google-japanese-ime  disable  google-japanese-ime: latest
+graphviz             disable  dot - graphviz version 2.40.1 (20161225.0304)
+httpie               disable  0.9.9
+java                 disable  java: 9.0.1_11
+jenv                 disable  jenv 0.4.4
+licecap              disable  licecap: 1.25
+lua                  disable  Lua 5.2.4  Copyright (C) 1994-2015 Lua.org_ PUC-Rio
+macos-dock           disable  -
+macvim               disable  macvim: stable 8.0-142 (bottled)_ HEAD
+maczip4win           disable  maczip4win: 0.4.1
+marp                 disable  marp: 0.0.11
+nodenv               disable  nodenv 1.1.2
+osquery              disable  osqueryi version 2.10.0
+pyenv                disable  pyenv 1.1.5
+python3              disable  Python 3.6.1
+qlcolorcode          disable  qlcolorcode: 2.0.9
+qlimagesize          disable  qlimagesize: latest
+qlmarkdown           disable  qlmarkdown: 1.3.5
+qlprettypatch        disable  qlprettypatch: 1.0
+qlstephen            disable  qlstephen: 1.4.4
+qlvideo              disable  qlvideo: 1.90
+quicklook-csv        disable  quicklook-csv: 1.3
+quicklook-json       disable  quicklook-json: latest
+quicklookase         disable  quicklookase: 1.0
+rbenv                disable  rbenv 1.1.1
+skitch               disable  skitch: 2.8
+suspicious-package   disable  suspicious-package: 3.3
+table-tool           disable  table-tool: 1.2.1
+terminal             disable  -
+terraform            disable  Terraform v0.10.8
+the-unarchiver       disable  the-unarchiver: 3.11.3_115:1507740941
+tig                  disable  tig version 2.3.0
+tmux                 disable  tmux 2.6
+typora               None     typora: 0.9.9.10.9
+vagrant              disable  Vagrant 2.0.1
+vault                disable  Vault v0.9.0 ('bdac1854478538052ba5b7ec9a9ec688d35a3335')
+vim                  disable  VIM - Vi IMproved 8.0 (2016 Sep 12_ compiled Nov 12 2017 09:25:57)
+virtualbox           disable  virtualbox: 5.2.0-118431
+webpquicklook        disable  webpquicklook: 2.2
+yank                 disable  yank 0.8.3
+zsh                  disable  zsh 5.4.2 (x86_64-apple-darwin16.7.0)

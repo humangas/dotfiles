@@ -1,0 +1,86 @@
+#!/bin/bash
+
+readonly SETUP_REPOSITORY_NAME='github.com/humangas/dotfiles'
+
+display_logo() {
+    _logo="
+      ██╗  ██╗██╗   ██╗███╗   ███╗ █████╗ ███╗   ██╗ ██████╗  █████╗ ███████╗
+      ██║  ██║██║   ██║████╗ ████║██╔══██╗████╗  ██║██╔════╝ ██╔══██╗██╔════╝
+      ███████║██║   ██║██╔████╔██║███████║██╔██╗ ██║██║  ███╗███████║███████╗
+      ██╔══██║██║   ██║██║╚██╔╝██║██╔══██║██║╚██╗██║██║   ██║██╔══██║╚════██║
+      ██║  ██║╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║╚██████╔╝██║  ██║███████║
+      ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
+      ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗
+      ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝
+      ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗
+      ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║
+      ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
+      ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
+                                                                   
+      humangas's macOS setup tool
+      See also: https://$SETUP_REPOSITORY_NAME
+
+      Copyright (c) 2017 humangas
+      Licensed under the MIT license.
+    "
+    echo "$_logo"
+}
+
+# Examples: log "INFO" "info message"
+log() {
+    local type="${1:?Error: type is required}"
+    local msg="${2:?Error: msg is required}"
+
+    case "$type" in
+        INFO)   printf "\e[7;34m$msg\e[m\n" ;;
+        WARN)   printf "\e[35m$msg\e[m\n" ;;
+        ERROR)  printf "\e[31m$msg\e[m\n" ;;
+        *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
+                exit 1
+                ;;
+    esac
+}
+
+check_httpstatus() {
+    local httpstatus=`curl -LI https://${SETUP_REPOSITORY_NAME} -o /dev/null -w '%{http_code}\n' -s`
+    if [ "$httpstatus" -ne 200 ]; then
+        log "ERROR" "Error Could not connect: https://${SETUP_REPOSITORY_NAME} HTTP_STATUS: $httpstatus"
+        exit 1
+    fi
+}
+
+download_repository() {
+    log "INFO" "Download Setup Repository..."
+    curl -L https://${SETUP_REPOSITORY_NAME}/archive/master.tar.gz -# | tar xz -C ${SETUP_WORKTMPDIR} --strip=1
+}
+
+init() {
+    log "INFO" "Install dotfiles and some apps..."
+    bash "$SETUP_WORKTMPDIR/roles/setup.sh" install
+}
+
+finally() {
+    [[ "$SETUP_WORKTMPDIR" ]] && rm -rf "$SETUP_WORKTMPDIR"
+}
+
+exception() {
+    log "ERROR" "Error!!"
+    finally
+    exit 1
+}
+
+main() {
+    display_logo
+    log "INFO" "Install... $(date +'%Y-%m-%d %H:%M:%S')"
+    check_httpstatus
+    SETUP_WORKTMPDIR=`mktemp -d`
+    download_repository
+    init
+    log "INFO" "Please Reboot the OS"
+    log "INFO" "Finish!! $(date +'%Y-%m-%d %H:%M:%S')"
+}
+
+trap finally 0
+trap exception 1 2 3 15
+
+main

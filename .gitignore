@@ -1,0 +1,57 @@
+### https://raw.github.com/github/gitignore/fad779220742a6d54ccfc0c1a0e5b3d820253de6/humangas.gitignore
+
+## humangas gitignore
+
+# Temporary Files
+#---------------------------
+tmp/
+*.swp
+
+# Backup files
+#---------------------------
+*.bak
+_bak/
+*.bk
+*.orig
+*~
+*.old
+old/
+_old/
+
+# OS dependent files
+#---------------------------
+.DS_Store
+Thumbs.db
+
+# Key files
+#---------------------------
+*.pem
+id_rsa
+id_rsa.pub
+.envrc
+
+# No upload files
+#---------------------------
+*.xls*
+*.xlk
+*.doc*
+*.ppt*
+~$*
+
+# IDE files
+#---------------------------
+.project
+.settings/
+
+# HashiCorp
+#---------------------------
+*.tfstate
+*.backup
+.vagrant/
+
+# Binary files
+#---------------------------
+*.rpm
+*.zip
+
+
