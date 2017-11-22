@@ -26,6 +26,9 @@ install() {
 		(
 			cd ~/.cache/dein
 			curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+            # TODO: debug
+            pwd
+            ls -la
 			sh ./install.sh ~/.cache/dein
 		)
 	}
