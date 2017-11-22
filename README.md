@@ -20,6 +20,20 @@ Delete it if it is not necessary after the installation is completed.
 $ sudo rm -f /private/etc/sudoers.d/$(whoami)
 ```
 
+### NOTE
+If you install GateKeeper non-compatible application, execute the following command.
+```
+$ sudo spctl --master-disable
+```
+
+This is a command to put the following state.
+- Security & Privacy > Allow application download from: > Anywhere
+
+After installing, execute the following command to enable GateKeeper.
+```
+$ sudo spctl --master-enable
+```
+
 
 ## Setup of this tool itself
 Prepare the ssh secret key for github.com
