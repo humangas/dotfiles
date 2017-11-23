@@ -8,6 +8,7 @@ $ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/install | 
 ```
 
 ### NOTE
+#### sudo password
 If you make the following settings in advance, you will not be asked for sudo password.
 ```
 $ sudo sh -c "echo `whoami` ALL=\(ALL\) NOPASSWD:ALL > /private/etc/sudoers.d/`whoami`"
@@ -18,6 +19,7 @@ Delete it if it is not necessary after the installation is completed.
 $ sudo rm -f /private/etc/sudoers.d/$(whoami)
 ```
 
+#### GateKeeper
 If you install GateKeeper non-compatible application, execute the following command.
 ```
 $ sudo spctl --master-disable
