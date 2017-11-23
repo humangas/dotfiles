@@ -9,7 +9,11 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    pip show "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    if type pip > /dev/null 2>&1; then
+        pip show "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
+        return $?
+    fi
+    return 1
 }
 
 version() {
@@ -17,7 +21,8 @@ version() {
 }
 
 config() {
-    return
+    # depend "config" "note"
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/jupyter.alias.sh" "$HOME/note"
 }
 
 install() {
