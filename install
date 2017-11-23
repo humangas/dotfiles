@@ -77,7 +77,7 @@ main() {
     download_repository
     init
     log "INFO" "Please Reboot the OS"
-    log "INFO" "Finish!! $(date +'%Y-%m-%d %H:%M:%S')"
+    log "INFO" "Finish!! Install log: $PWD/install.log (date +'%Y-%m-%d %H:%M:%S')"
 }
 
 trap finally 0
