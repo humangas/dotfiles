@@ -102,7 +102,7 @@ execute() {
         source "$role_setup_path"
 
         if ! is_installed; then
-            [[ $is_depend -eq 1 ]] && log "INFO" "====> Install dependency: \"$SETUP_CURRENT_ROLE_NAME\"..."
+            [[ $is_depend -eq 1 ]] && log "INFO" "====> Install dependency: $SETUP_CURRENT_ROLE_NAME..."
             install
             [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"install\"" && exit 1
         fi
