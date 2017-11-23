@@ -21,6 +21,7 @@ version() {
 }
 
 config() {
+    # TODO: Comment out after "note" setting
     # depend "config" "note"
     cp "$SETUP_CURRENT_ROLE_DIR_PATH/jupyter.alias.sh" "$HOME/note"
 }

@@ -17,7 +17,9 @@ version() {
 }
 
 config() {
-    return
+    # TODO: Comment out after "note" setting
+    # depend "config" "note"
+    ln -sfnv "$HOME/note" "$HOME/Dropbox/note"
 }
 
 install() {
