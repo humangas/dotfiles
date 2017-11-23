@@ -12,9 +12,10 @@ Command:
     list     [roles...]   List roles (status: enable, disable, None=not installed, Error=not implemented or role not found)
     disable  [roles...]   Disable roles
     enable   [roles...]   Enable roles
-    dotfiles [roles...]   Output dofiles to the dotfiles directory (need to implement the "dotfiles" function)
-    create   <roles...>   Create the specified role (ok=implemented, -=not implemented)
-    check                 Check whether setup.sh for each role implements the required function
+#    dotfiles [roles...]   Output dofiles to the dotfiles directory (need to implement the "dotfiles" function)
+    create   <roles...>   Create the specified role
+    edit     <roles...>   Edit the specified role setup.sh (Open \$EDITOR: default vim)
+    check                 Check whether setup.sh for each role implements the required function (ok=implemented, -=not implemented)
 
 Option:
     --clear               Clear "setup.versions" file and reacquire the list (only "list" command)
@@ -244,6 +245,20 @@ create() {
     done
 }
 
+edit() {
+    SETUP_ROLES_PATH=$(abs_dirname $0)
+    local editor="${EDITOR:-vim}"
+    local setupsh="$SETUP_ROLES_PATH/$SETUP_ROLES/setup.sh"
+
+    if [[ -f "$setupsh" ]]; then
+        log "INFO" "Edit $setupsh..."
+        "$EDITOR" "$setupsh"
+    else
+        log "ERROR" "Error: \"$setupsh\" is not found"
+        exit 1
+    fi
+}
+
 toggle_ed() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
 
@@ -329,6 +344,7 @@ options() {
         dotfiles)   SETUP_FUNC_NAME="dotfile"  ;;
         list)       SETUP_FUNC_NAME="list"     ; shift; list_options "$@" ;;
         create)     SETUP_FUNC_NAME="create"   ; shift; create_options "$@" ;;
+        edit)       SETUP_FUNC_NAME="edit"     ; shift; SETUP_ROLES="$@" ;;
         *)          usage ;;
     esac
 }
@@ -344,6 +360,8 @@ main() {
     case "$SETUP_FUNC_NAME" in
         create)
             create "$SETUP_ROLES" ;;
+        edit)
+            edit "$SETUP_ROLES" ;;
         list) 
             SETUP_ROLES_PATH=$(abs_dirname $0)
             local versionfile="$SETUP_ROLES_PATH/.setup-versions"
@@ -366,8 +384,8 @@ main() {
             shift; toggle_ed "$@" ;;
         dotfile)
             _check
-            SETUP_ROLES_PATH=$(abs_dirname $0)
-            SETUP_DOTFILES_PATH="${SETUP_ROLES_PATH%/*}/dotfiles"
+            setup_roles_path=$(abs_dirname $0)
+            setup_dotfiles_path="${setup_roles_path%/*}/dotfiles"
             mkdir -p "$SETUP_DOTFILES_PATH"
             shift; execute "$@" ;;
         *)
