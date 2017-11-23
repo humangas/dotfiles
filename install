@@ -81,7 +81,7 @@ main() {
     [[ ! -z "$errorlog" ]] && (log "ERROR" "Following error occurred. please confirm the contents." && echo "$errorlog")
     [[ ! -z "$warnlog" ]] && (log "WARN" "Following warning occurred. please confirm the contents." && echo "$warnlog")
     [[ "$?" -eq 0 ]] && log "INFO" "Please Reboot the OS"
-    log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! Install log: $PWD/install.log "
+    log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! (Log: $PWD/install.log)"
 }
 
 trap finally 0
