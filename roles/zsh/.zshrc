@@ -61,7 +61,6 @@ eval "$(gdircolors ~/.config/solarized/dircolors.256dark)"
 eval "$(direnv hook zsh)"
 eval "$(pyenv init -)" 
 eval "$(pyenv virtualenv-init -)"
-eval "$(fasd --init auto)"
 
 # Editor
 export EDITOR=vim
