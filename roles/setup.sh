@@ -96,18 +96,27 @@ execute() {
     _execute() {
         local role_setup_path="${1:?Error \"role_setup_path\" is required}"
         local func="${2:?Error \"func\" is required}"
-        local _is_installed="is_installed"
-        case "$func" in
-            install) _is_installed="! is_installed" ;;
-            *) ;;
-        esac
+        local is_depend="${3:-0}"
 
         source "$role_setup_path"
-        if eval $_is_installed; then
-            "$func"
-            [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\"" && exit 1
+
+        if ! is_installed; then
+            [[ $is_depend -eq 1 ]] && log "INFO" "====> Install dependency: \"$SETUP_CURRENT_ROLE_NAME\"..."
+            install
+            [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"install\"" && exit 1
         fi
+
+        case "$func" in
+            install) # do nothing
+                ;;
+            *)  # [upgrade|config|version]
+                "$func" 
+                [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\"" && exit 1
+                ;;
+        esac
+
         unset -f is_installed
+        unset -f install
         unset -f "$func"
     }
 
@@ -121,14 +130,14 @@ execute() {
 
         SETUP_CURRENT_ROLE_NAME="$role"
         SETUP_CURRENT_ROLE_DIR_PATH="$SETUP_ROLES_PATH/$role"
-        _execute "$SETUP_CURRENT_ROLE_DIR_PATH/setup.sh" "$func"
+        _execute "$SETUP_CURRENT_ROLE_DIR_PATH/setup.sh" "$func" "1"
 
         SETUP_CURRENT_ROLE_DIR_PATH="${caller%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
         source "$caller"
     }
 
-    # [install|upgrade|config|version|dotfiles...] roles
+    # [install|upgrade|config|version]
     declare -a roles=()
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
