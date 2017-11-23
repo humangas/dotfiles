@@ -56,7 +56,7 @@ download_repository() {
 
 init() {
     log "INFO" "Install dotfiles and some apps..."
-    bash "$SETUP_WORKTMPDIR/roles/setup.sh" install
+    bash "$SETUP_WORKTMPDIR/roles/setup.sh" install 2>&1 | tee "$PWD/install.log"
 }
 
 finally() {
