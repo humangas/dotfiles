@@ -1,66 +1,96 @@
 role                 status   version
-ag                   disable  ag version 2.1.0
-alfred               disable  alfred: 3.5.1_883
-ansible              disable  ansible 2.4.1.0
-awscli               disable  aws-cli/1.11.180 Python/3.6.3 Darwin/17.2.0 botocore/1.7.38
+ag                   enable   ag version 2.1.0
+alfred               enable   alfred: 3.5.1_883
+ansible              enable   ansible 2.4.1.0
+awscli               enable   aws-cli/1.11.180 Python/3.6.3 Darwin/17.2.0 botocore/1.7.38
 betterzipql          enable   betterzipql: latest
-brew                 disable  Homebrew 1.3.7
-buttercup            disable  buttercup: 0.24.1
-caffeine             enable   caffeine: 1.1.1
-calibre              disable  calibre: 3.12.0
-clipy                disable  clipy: 1.1.4
-ctags                disable  Exuberant Ctags 5.8_ Copyright (C) 1996-2009 Darren Hiebert
-direnv               disable  2.13.1
-docker               disable  docker: 17.09.0-ce-mac35_19611
-dotfiles             None
-dropbox              disable  dropbox: latest
-embulk               disable  embulk 0.8.30
-fzf                  disable  0.17.1 (brew)
+binutils             enable   binutils: stable 2.29.1 (bottled)
+brew                 enable   Homebrew 1.3.8
+buttercup            enable   buttercup: 0.24.3
+caffeine             disable  caffeine: 1.1.1
+calibre              enable   calibre: 3.12.0
+clipy                enable   clipy: 1.1.4
+coreutils            enable   coreutils: stable 8.28 (bottled)_ HEAD
+ctags                enable   Exuberant Ctags 5.8_ Copyright (C) 1996-2009 Darren Hiebert
+diffutils            None     diffutils: stable 3.6 (bottled)
+direnv               enable
+docker               enable   docker: 17.09.0-ce-mac35_19611
+dropbox              enable   dropbox: latest
+ed                   None
+embulk               enable   embulk 0.8.30
+findutils            enable   findutils: stable 4.6.0 (bottled)
+flake8               enable   Version: 3.5.0
+fzf                  enable   0.17.1 (brew)
+gawk                 enable   GNU Awk 4.2.0_ API: 2.0 (GNU MPFR 3.1.6_ GNU MP 6.1.2)
 ghq                  enable   ghq version 0.8.0
-gibo                 disable  gibo 1.0.6 by Simon Whitaker <sw@netcetera.org>
-git                  disable  git version 2.15.0
-glide                disable  glide version 0.13.1
-go                   disable  go version go1.9.2 darwin/amd64
-goenv                disable  goenv 1.0.0
-google-chrome        disable  google-chrome: latest
-google-japanese-ime  disable  google-japanese-ime: latest
-graphviz             disable  dot - graphviz version 2.40.1 (20161225.0304)
-httpie               disable  0.9.9
-java                 disable  java: 9.0.1_11
-jenv                 disable  jenv 0.4.4
-licecap              disable  licecap: 1.25
-lua                  disable  Lua 5.2.4  Copyright (C) 1994-2015 Lua.org_ PUC-Rio
-macos-dock           disable  -
-macvim               disable  macvim: stable 8.0-142 (bottled)_ HEAD
-maczip4win           disable  maczip4win: 0.4.1
-marp                 disable  marp: 0.0.11
-nodenv               disable  nodenv 1.1.2
-osquery              disable  osqueryi version 2.10.0
-pyenv                disable  pyenv 1.1.5
-python3              disable  Python 3.6.1
-qlcolorcode          disable  qlcolorcode: 2.0.9
-qlimagesize          disable  qlimagesize: latest
-qlmarkdown           disable  qlmarkdown: 1.3.5
-qlprettypatch        disable  qlprettypatch: 1.0
-qlstephen            disable  qlstephen: 1.4.4
-qlvideo              disable  qlvideo: 1.90
-quicklook-csv        disable  quicklook-csv: 1.3
-quicklook-json       disable  quicklook-json: latest
-quicklookase         disable  quicklookase: 1.0
-rbenv                disable  rbenv 1.1.1
-skitch               disable  skitch: 2.8
-suspicious-package   disable  suspicious-package: 3.3
-table-tool           disable  table-tool: 1.2.1
-terminal             disable  -
-terraform            disable  Terraform v0.10.8
-the-unarchiver       disable  the-unarchiver: 3.11.3_115:1507740941
-tig                  disable  tig version 2.3.0
-tmux                 disable  tmux 2.6
+gibo                 enable   gibo 1.0.6 by Simon Whitaker <sw@netcetera.org>
+git                  enable   git version 2.15.0
+glide                enable   glide version 0.13.1
+gnu-getopt           None     gnu-getopt: stable 1.1.6 (bottled) [keg-only]
+gnu-indent           None     gnu-indent: stable 2.2.10 (bottled)
+gnu-sed              enable   gnu-sed: stable 4.4 (bottled)
+gnu-tar              enable   gnu-tar: stable 1.29 (bottled)
+gnu-which            None     gnu-which: stable 2.21 (bottled)
+go                   enable   go version go1.9.2 darwin/amd64
+goenv                enable   goenv 1.0.0
+google-chrome        enable   google-chrome: 62.0.3202.94
+google-japanese-ime  enable   google-japanese-ime: latest
+gpg                  None
+graphviz             enable   dot - graphviz version 2.40.1 (20161225.0304)
+grep                 enable   grep (BSD grep) 2.5.1-FreeBSD
+gzip                 None
+hammerspoon          enable   hammerspoon: 0.9.57
+htop                 None
+httpie               enable   0.9.9
+hub                  enable   git version 2.15.0
+java                 enable   java: 9.0.1_11
+jenv                 enable   jenv 0.4.4
+jupyter              enable   Version: 1.0.0
+licecap              enable   licecap: 1.25
+lua                  enable   Lua 5.2.4  Copyright (C) 1994-2015 Lua.org_ PUC-Rio
+macos-dock           enable   -
+macos-terminal       enable   -
+macvim               enable   macvim: stable 8.0-142 (bottled)_ HEAD
+maczip4win           enable   maczip4win: 0.4.1
+mailcatcher          enable
+marp                 enable   marp: 0.0.11
+nmap                 None
+nodenv               enable   nodenv 1.1.2
+osquery              enable   osqueryi version 2.10.0
+pyenv                enable   pyenv 1.1.5
+python               None     Python 3.6.1
+python3              enable   Python 3.6.1
+qlcolorcode          enable   qlcolorcode: 2.0.9
+qlimagesize          enable   qlimagesize: latest
+qlmarkdown           enable   qlmarkdown: 1.3.5
+qlprettypatch        enable   qlprettypatch: 1.0
+qlstephen            enable   qlstephen: 1.4.4
+qlvideo              enable   qlvideo: 1.90
+quicklook-csv        enable   quicklook-csv: 1.3
+quicklook-json       enable   quicklook-json: latest
+quicklookase         enable   quicklookase: 1.0
+rbenv                enable   rbenv 1.1.1
+ruby                 enable   ruby 2.4.2p198 (2017-09-14 revision 59899) [x86_64-darwin16]
+sass                 enable
+skitch               enable   skitch: 2.8
+suspicious-package   enable   suspicious-package: 3.3
+table-tool           enable   table-tool: 1.2.1
+terraform            enable   Terraform v0.10.8
+the-unarchiver       enable   the-unarchiver: 3.11.3_115:1507740941
+tig                  enable   tig version 2.3.0
+tmux                 enable   tmux 2.6
+travis               enable   travis (1.8.8)
+tree                 enable   tree v1.7.0 (c) 1996 - 2014 by Steve Baker_ Thomas Moore_ Francesc Rocher_ Florian Sesser_ Kyosuke Tokoro 
 typora               None     typora: 0.9.9.10.9
-vagrant              disable  Vagrant 2.0.1
-vault                disable  Vault v0.9.0 ('bdac1854478538052ba5b7ec9a9ec688d35a3335')
-vim                  disable  VIM - Vi IMproved 8.0 (2016 Sep 12_ compiled Nov 12 2017 09:25:57)
-virtualbox           disable  virtualbox: 5.2.0-118431
-webpquicklook        disable  webpquicklook: 2.2
-yank                 disable  yank 0.8.3
-zsh                  disable  zsh 5.4.2 (x86_64-apple-darwin16.7.0)
+vagrant              enable   vagrant: 2.0.1
+vault                enable   Vault v0.9.0 ('bdac1854478538052ba5b7ec9a9ec688d35a3335')
+vim                  enable   VIM - Vi IMproved 8.0 (2016 Sep 12_ compiled Nov 12 2017 09:25:57)
+vimgolf              enable   vimgolf (0.4.8)
+virtualbox           enable   virtualbox: 5.2.0-118431
+watch                enable   watch from procps-ng 3.3.12-dirty
+wdiff                None
+webpquicklook        enable   webpquicklook: 2.2
+wget                 enable   GNU Wget 1.19.1 built on darwin16.4.0.
+xz                   enable   xz (XZ Utils) 5.2.3
+yank                 enable
+zsh                  enable   zsh 5.4.2 (x86_64-apple-darwin16.7.0)
