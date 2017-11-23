@@ -79,36 +79,36 @@ setopt hist_ignore_all_dups                      # Duplicate commands delete the
 setopt hist_ignore_space                         # Beginning starts with a space, do not add it to history.
 setopt hist_no_store                             # Do not register the history command in the history.
 
-# Plugin zplug
-source ~/.zplug/init.zsh
-## Plugins...
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
-
-## Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-## Then, source plugins and add commands to $PATH
-zplug load --verbose
+# # Plugin zplug
+# source ~/.zplug/init.zsh
+# ## Plugins...
+# zplug "zsh-users/zsh-completions"
+# zplug "zsh-users/zsh-syntax-highlighting"
+#
+# ## Install plugins if there are plugins that have not been installed
+# if ! zplug check --verbose; then
+#     printf "Install? [y/N]: "
+#     if read -q; then
+#         echo; zplug install
+#     fi
+# fi
+# ## Then, source plugins and add commands to $PATH
+# zplug load --verbose
 
 # Alias
-alias ls='gls --color=auto'
-alias ll='ls -la'
-alias sed='/usr/local/bin/gsed'                                             # Dependencies: brew install gnu-sed
-alias grep='/usr/local/bin/ggrep'                                           # Dependencies: brew install grep
-alias vi='vim'
-alias mkdir='mkdirEnhance'
-alias cd='cdEnhance'
-alias fzf='fzf-tmux'                                                        # fzf: /usr/local/Cellar/fzf/0.15.8/bin/fzf
-alias soz='source ~/.zshrc'
-alias mdf='openMdfindFilterFzf'
-alias tmr='tmuxResizePane'
-alias jnb='jupyter notebook --notebook-dir ~/src/work/jupyter'              # Required: $ pip insall jupyter
-alias rmzcompdump='rm -f ~/.zcompdump; rm -f ~/.zplug/zcompdump'            # If tab completion error occurs, delete it. Then reload the zsh.
+# alias ls='gls --color=auto'
+# alias ll='ls -la'
+# alias sed='/usr/local/bin/gsed'                                             # Dependencies: brew install gnu-sed
+# alias grep='/usr/local/bin/ggrep'                                           # Dependencies: brew install grep
+# alias vi='vim'
+# alias mkdir='mkdirEnhance'
+# alias cd='cdEnhance'
+# alias fzf='fzf-tmux'                                                        # fzf: /usr/local/Cellar/fzf/0.15.8/bin/fzf
+# alias soz='source ~/.zshrc'
+# alias mdf='openMdfindFilterFzf'
+# alias tmr='tmuxResizePane'
+# alias jnb='jupyter notebook --notebook-dir ~/src/work/jupyter'              # Required: $ pip insall jupyter
+# alias rmzcompdump='rm -f ~/.zcompdump; rm -f ~/.zplug/zcompdump'            # If tab completion error occurs, delete it. Then reload the zsh.
 
 
 # Functions
