@@ -19,6 +19,7 @@ version() {
 config() {
     mkdir -p "$HOME/.zsh.d"
     cp "$SETUP_CURRENT_ROLE_DIR_PATH/.zshrc" "$HOME/"
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/zsh.alias.sh" ~/.zsh.d/
 }
 
 install() {
