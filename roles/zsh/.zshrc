@@ -26,11 +26,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 export PATH=$(brew --prefix findutils)/libexec/gnubin:$PATH
 
-# cheat settings: See also: https://github.com/chrisallenlane/cheat
-export CHEAT_EDITOR=vim
-export CHEATPATH="$GOPATH/src/github.com/humangas/cheat/cheatsheets"
-export CHEATCOLORS=true
-
 # Bindkey
 bindkey -v                                             # vi keybind 
 bindkey "^[[Z" reverse-menu-complete                   # shift-tab reverse
@@ -121,11 +116,6 @@ alias tmr='tmuxResizePane'
 alias jnb='jupyter notebook --notebook-dir ~/src/work/jupyter'              # Required: $ pip insall jupyter
 alias rmzcompdump='rm -f ~/.zcompdump; rm -f ~/.zplug/zcompdump'            # If tab completion error occurs, delete it. Then reload the zsh.
 
-
-function cheat() {
-    MM_POST_DIR=~/.config/gist/files/584121d31acaa814755b657cae844f6c
-    mm g
-}
 
 # Functions
 function mkdirEnhance() {
