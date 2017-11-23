@@ -22,6 +22,18 @@ config() {
 }
 
 install() {
+    _colorscheme() {
+        local _filename="dircolors.256dark"
+        local filename="Solarized_$filename"
+        local colorscheme_path="$HOME/.config/colorscheme"
+
+        log "INFO" "Setting color scheme for zsh..."
+        curl -sLO "https://raw.githubusercontent.com/seebi/dircolors-solarized/master/$_filename"
+        mv "$_filename" "$filename" 
+        mkdir -p "$colorscheme_path"
+        mv "$filename" "$colorscheme_path/$filename"
+    }
+
     depend "install" "brew"
     # --without-etcdir: Disable the reading of Zsh rc files in /etc
     brew install "$SETUP_CURRENT_ROLE_NAME" --without-etcdir
@@ -31,6 +43,8 @@ install() {
     #     sudo sh -c "echo /usr/local/bin/zsh >> /etc/shells"
     # fi
     [[ "$login_shell" != "$SHELL" ]] && sudo chsh -s "$login_shell"
+
+    _colorscheme
     config
 }
 

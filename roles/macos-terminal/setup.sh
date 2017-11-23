@@ -31,7 +31,7 @@ install() {
         local colorscheme_path="$HOME/.config/colorscheme"
 
         if [ "${current_profile}" != "${profile}" ]; then
-            log "INFO" "Setting color scheme terminal..."
+            log "INFO" "Setting color scheme for Terminal..."
             curl -sLO "https://raw.githubusercontent.com/tomislav/osx-terminal.app-colors-solarized/master/$filename"
             mv "$filename" "$profile.terminal"
             mkdir -p "$colorscheme_path"

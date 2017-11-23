@@ -55,7 +55,7 @@ precmd () { vcs_info }
 PROMPT=$PROMPT'${vcs_info_msg_0_}$ '
 
 # Color
-eval "$(gdircolors ~/.config/solarized/dircolors.256dark)"
+eval "$(gdircolors ~/.config/colorscheme/Solarized_dircolors.256dark)"
 
 # Editor
 export EDITOR=vim
