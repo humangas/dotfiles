@@ -9,11 +9,15 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    [[ $(type $SETUP_CURRENT_ROLE_NAME) == "python is /usr/local/opt/python/libexec/bin/python" ]]; return $?
+    if type brew > /dev/null 2>&1; then
+        brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
+        return $?
+    fi
+    return 1
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
+    /usr/local/opt/python/libexec/bin/python --version
 }
 
 config() {
