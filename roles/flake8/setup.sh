@@ -26,8 +26,10 @@ config() {
 
 install() {
     depend "install" "python"
-    # TODO: testing code
-    pip install "$SETUP_CURRENT_ROLE_NAME"
+    (
+        source ~/.zsh.d/python.sh
+        pip install "$SETUP_CURRENT_ROLE_NAME"
+    )
     config
 }
 
