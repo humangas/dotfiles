@@ -22,6 +22,10 @@ config() {
 
 install() {
     depend "install" "brew"
+    if type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; then
+        brew cask reinstall --force "$SETUP_CURRENT_ROLE_NAME"
+        return $?
+    fi
     brew cask install "$SETUP_CURRENT_ROLE_NAME" >/dev/null 2>&1
     [[ "$?" -eq 0 ]] || caveats "WARN" "- $SETUP_CURRENT_ROLE_NAME: Open Security & Privacy > Click Allow button, brew cask install $SETUP_CURRENT_ROLE_NAME"
     config
