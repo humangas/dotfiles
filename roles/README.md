@@ -24,14 +24,39 @@
 
 
 ## GNU commands
-- xz
 - binutils
+  - Include: as, ld, gprof, nm, size, strings, strip ...
+  - See also: [GNU Binutils](https://en.wikipedia.org/wiki/GNU_Binutils)
 - coreutils 
-- findutils 
+  - Dependencies Xz
+  - Include: ls, mv, cat, paste, join, head, tail, tr, cut, sort, uniq, wc, echo ...
+  - See also: [List of GNU Core Utilities commands](https://en.wikipedia.org/wiki/List_of_GNU_Core_Utilities_commands)
+- diffutils
+  - Include: diff, cmp, diff3, sdiff
+- ed --with-defaults-names
+- findutils --with-defaults-names
+  - Include: find, locate, updatedb, xargs
+  - See also: [GNU Findutils](http://www.gnu.org/software/findutils/)
+- htop
+- nmap
+- gawk
+- gnu-getopt 
+- gnu-indent --with-defaults-names
+- gnu-sed --with-defaults-names
+- gnu-tar --with-defaults-names
+- gnu-which --with-defaults-names
+<!--
+- gnutls
+- gnupg
+- gnupg2
+-->
+- grep --with-defaults-names
+- gzip
 - tree
+- watch
+- wdiff --with-gettext
 - wget
-- gnu-sed
-- homebrew/dupes/grep
+- xz
 
 
 ## Quicklook

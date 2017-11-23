@@ -9,11 +9,15 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    if type brew > /dev/null 2>&1; then
+        brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
+        return $?
+    fi
+    return 1
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
+    brew info "$SETUP_CURRENT_ROLE_NAME"
 }
 
 config() {
@@ -22,6 +26,7 @@ config() {
 
 install() {
     depend "install" "brew"
+    depend "install" "xz"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     config
 }

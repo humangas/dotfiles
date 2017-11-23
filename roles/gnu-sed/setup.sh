@@ -17,7 +17,7 @@ is_installed() {
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
+    brew info "$SETUP_CURRENT_ROLE_NAME"
 }
 
 config() {
@@ -25,8 +25,8 @@ config() {
 }
 
 install() {
-    depend "install" "brew"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
+    depend "install" "brew" --version
+    brew install "$SETUP_CURRENT_ROLE_NAME" --with-default-names
     config
 }
 
