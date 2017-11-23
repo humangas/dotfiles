@@ -9,11 +9,14 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    if type pip > /dev/null 2>&1; then
-        pip show "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
-        return $?
-    fi
-    return 1
+    (
+        export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+        if type pip > /dev/null 2>&1; then
+            pip show "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
+            return $?
+        fi
+        return 1
+    )
 }
 
 version() {
@@ -29,7 +32,7 @@ config() {
 install() {
     depend "install" "python"
     (
-        source ~/.zsh.d/python.sh
+        export PATH="/usr/local/opt/python/libexec/bin:$PATH"
         pip install "$SETUP_CURRENT_ROLE_NAME"
     )
     config
