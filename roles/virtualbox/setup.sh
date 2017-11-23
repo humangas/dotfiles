@@ -9,7 +9,14 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    if type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; then
+        return 0 
+    fi
+    if type brew > /dev/null 2>&1; then
+        brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
+        return $?
+    fi
+    return 1
 }
 
 version() {
@@ -22,13 +29,11 @@ config() {
 
 install() {
     depend "install" "brew"
-    if type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; then
-        brew cask reinstall --force "$SETUP_CURRENT_ROLE_NAME"
-        return $?
-    fi
     brew cask install "$SETUP_CURRENT_ROLE_NAME" >/dev/null 2>&1
-    [[ "$?" -eq 0 ]] || caveats "WARN" "- $SETUP_CURRENT_ROLE_NAME: Open Security & Privacy > Click Allow button, brew cask install $SETUP_CURRENT_ROLE_NAME"
+    local retval="$?"
     config
+    local warnmsg="- $SETUP_CURRENT_ROLE_NAME: Manual Operation => Open Security & Privacy > Click Allow button, brew cask install $SETUP_CURRENT_ROLE_NAME"
+    [[ "$retval" -eq 0 ]] || caveats "WARN" "$warnmsg"
 }
 
 upgrade() {
