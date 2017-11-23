@@ -78,6 +78,26 @@
 - dropbox
 
 
+## pip
+- flake8 
+- jupyter
+
+
+## gem
+- sass
+- mailcatcher
+- travis
+- vimgolf 
+
+
+## npm
+- yarn
+- gulp
+- gitbook-cli
+- browser-sync
+- minifyjs
+
+
 ## macOS
 - dock
 - finder
