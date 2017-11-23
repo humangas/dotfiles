@@ -64,7 +64,7 @@ log() {
     case "$type" in
         INFO)   printf "\e[34m$msg\e[m\n" ;;
         WARN)   printf "\e[35m$msg\e[m\n" ;;
-        ERROR)  printf "\e[32m$msg\e[m\n" ;;
+        ERROR)  printf "\e[31m$msg\e[m\n" ;;
         *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
                 exit 1
                 ;;
@@ -79,7 +79,7 @@ caveats() {
     local caveats=""
 
     case "$type" in
-        INFO)   caveats="\e[7;34m$msg\e[m\n" ;;
+        INFO)   caveats="\e[34m$msg\e[m\n" ;;
         WARN)   caveats="\e[35m$msg\e[m\n" ;;
         ERROR)  caveats="\e[31m$msg\e[m\n" ;;
         *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
