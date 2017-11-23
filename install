@@ -32,7 +32,7 @@ log() {
     local msg="${2:?Error: msg is required}"
 
     case "$type" in
-        INFO)   printf "\e[7;34m$msg\e[m\n" ;;
+        INFO)   printf "\e[34m$msg\e[m\n" ;;
         WARN)   printf "\e[35m$msg\e[m\n" ;;
         ERROR)  printf "\e[31m$msg\e[m\n" ;;
         *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
