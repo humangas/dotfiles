@@ -26,9 +26,10 @@ install() {
     # --without-etcdir: Disable the reading of Zsh rc files in /etc
     brew install "$SETUP_CURRENT_ROLE_NAME" --without-etcdir
     local login_shell='/usr/local/bin/zsh'
-    if ! grep "$login_shell" /etc/shells; then
-        sudo sh -c "echo /usr/local/bin/zsh >> /etc/shells"
-    fi
+    sudo dscl . -create /Users/$USER UserShell "$login_shell"
+    # if ! grep "$login_shell" /etc/shells; then
+    #     sudo sh -c "echo /usr/local/bin/zsh >> /etc/shells"
+    # fi
     [[ "$login_shell" != "$SHELL" ]] && sudo chsh -s "$login_shell"
     config
 }
