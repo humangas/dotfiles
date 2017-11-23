@@ -12,6 +12,10 @@ is_installed() {
     type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
+_is_installed_node-build() {
+    type node-build > /dev/null 2>&1; return $?
+}
+
 version() {
     "$SETUP_CURRENT_ROLE_NAME" --version
 }
@@ -24,11 +28,11 @@ config() {
 install() {
     depend "install" "brew"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    brew install node-build
+    _is_installed_node-build || brew install node-build
     config
 }
 
 upgrade() {
     brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    brew outdated node-build || brew upgrade node-build 
+    _is_installed_node-build && (brew outdated node-build || brew upgrade node-build)
 }

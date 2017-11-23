@@ -37,5 +37,5 @@ install() {
 
 upgrade() {
     brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    _is_installed_reattach-to-user-namespace && brew outdated reattach-to-user-namespace || brew upgrade reattach-to-user-namespace
+    _is_installed_reattach-to-user-namespace && (brew outdated reattach-to-user-namespace || brew upgrade reattach-to-user-namespace)
 }
