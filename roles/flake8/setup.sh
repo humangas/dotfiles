@@ -9,7 +9,11 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    pip show "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    if type pip > /dev/null 2>&1; then
+        pip show "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
+        return $?
+    fi
+    return 1
 }
 
 version() {
@@ -22,10 +26,8 @@ config() {
 
 install() {
     depend "install" "python"
-    (
-        source ~/.zsh.d/python.sh
-        pip install "$SETUP_CURRENT_ROLE_NAME"
-    )
+    # TODO: testing code
+    pip install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
 
