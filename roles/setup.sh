@@ -76,6 +76,7 @@ caveats() {
     # It will be displayed at the end after installation
     local type="${1:?Error: type is required}"
     local msg="${2:?Error: msg is required}"
+    local caveats=""
 
     case "$type" in
         INFO)   caveats="\e[7;34m$msg\e[m\n" ;;
@@ -86,7 +87,7 @@ caveats() {
                 ;;
     esac
 
-    SETUP_CAVEATS_MSGS=("${SETUP_CAVEATS_MSGS[@]}" caveats)
+    SETUP_CAVEATS_MSGS=("${SETUP_CAVEATS_MSGS[@]}" "$caveats")
 }
 
 execute() {
