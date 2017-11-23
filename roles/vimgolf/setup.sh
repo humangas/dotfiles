@@ -22,10 +22,7 @@ config() {
 
 install() {
     depend "install" "ruby"
-    (
-        export PATH="/usr/local/bin:$PATH"
-        gem install "$SETUP_CURRENT_ROLE_NAME"
-    )
+    gem install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
 

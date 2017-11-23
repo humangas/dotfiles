@@ -21,11 +21,11 @@ config() {
 }
 
 install() {
-    depend "install" "brew"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
+    depend "install" "ruby"
+    gem install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    install
 }
