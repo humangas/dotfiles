@@ -21,7 +21,8 @@ version() {
 }
 
 config() {
-    return
+    depend "config" "zsh"
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/findutils.sh" ~/.zsh.d/
 }
 
 install() {
