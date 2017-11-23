@@ -23,8 +23,8 @@ export PATH=$PATH:$GOPATH/bin
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME
 
 # Env GNU commands
-export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
-export PATH=$(brew --prefix findutils)/libexec/gnubin:$PATH
+#export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+#export PATH=$(brew --prefix findutils)/libexec/gnubin:$PATH
 
 # Bindkey
 bindkey -v                                             # vi keybind 
