@@ -71,6 +71,24 @@ log() {
     esac
 }
 
+caveats() {
+    # Examples: caveats "INFO" "info message"
+    # It will be displayed at the end after installation
+    local type="${1:?Error: type is required}"
+    local msg="${2:?Error: msg is required}"
+
+    case "$type" in
+        INFO)   caveats="\e[7;34m$msg\e[m\n" ;;
+        WARN)   caveats="\e[35m$msg\e[m\n" ;;
+        ERROR)  caveats="\e[31m$msg\e[m\n" ;;
+        *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
+                exit 1
+                ;;
+    esac
+
+    SETUP_CAVEATS_MSGS=("${SETUP_CAVEATS_MSGS[@]}" caveats)
+}
+
 execute() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
     SETUP_SHELL_NAME="${SHELL##*/}"
@@ -388,10 +406,15 @@ main() {
             setup_dotfiles_path="${setup_roles_path%/*}/dotfiles"
             mkdir -p "$SETUP_DOTFILES_PATH"
             shift; execute "$@" ;;
-        *)
+        *) # [install|upgrade|config|version]
+            declare -a SETUP_CAVEATS_MSGS=()
             _check
 #            sudov
-            shift; execute "$@" ;;
+            shift; execute "$@"
+            for ((i = 0; i < ${#SETUP_CAVEATS_MSGS[@]}; i++)) {
+                printf "${SETUP_CAVEATS_MSGS[i]}"
+            }
+            ;;
     esac
 }
 
