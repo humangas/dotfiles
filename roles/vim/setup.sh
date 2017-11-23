@@ -32,6 +32,8 @@ install() {
 
     depend "install" "brew"
     depend "install" "python3"
+    depend "install" "ctags" # For Plugin: szw/vim-tags
+    depend "install" "sass"  # For plugin: AtsushiM/sass-compile.vim
     brew install "$SETUP_CURRENT_ROLE_NAME" --with-python3 --with-override-system-vi
     _install_deinvim
     config
