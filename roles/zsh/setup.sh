@@ -42,7 +42,7 @@ install() {
     # if ! grep "$login_shell" /etc/shells; then
     #     sudo sh -c "echo /usr/local/bin/zsh >> /etc/shells"
     # fi
-    [[ "$login_shell" != "$SHELL" ]] && sudo chsh -s "$login_shell"
+#    [[ "$login_shell" != "$SHELL" ]] && sudo chsh -s "$login_shell"
 
     _colorscheme
     config
