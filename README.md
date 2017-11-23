@@ -38,7 +38,7 @@ $ sudo spctl --master-enable
 
 ## For local
 ```
-$ git clone git@github.com:humangas/dotfiles.git
+$ git clone https://github.com/humangas/dotfiles.git
 $ cd dotfiles
 $ make install
 ```
