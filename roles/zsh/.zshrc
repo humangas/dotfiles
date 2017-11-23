@@ -8,6 +8,9 @@
 # $ man zshoptions   :List of options that can be set with setopt  
 # $ man zshbuiltins  :List of built-in commands 
 ################################################################################################
+# Not duplicate registration
+typeset -U path cdpath fpath manpath
+
 # Env /usr/local/bin
 export PATH="/usr/local/bin:$PATH"
 
