@@ -24,7 +24,7 @@ config() {
 install() {
     _colorscheme() {
         local _filename="dircolors.256dark"
-        local filename="Solarized_$filename"
+        local filename="Solarized_$_filename"
         local colorscheme_path="$HOME/.config/colorscheme"
 
         log "INFO" "Setting color scheme for zsh..."
