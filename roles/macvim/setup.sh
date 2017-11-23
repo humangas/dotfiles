@@ -23,7 +23,8 @@ config() {
 install() {
     depend "install" "brew"
     depend "install" "vim"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
+    depend "install" "python3"
+    brew install "$SETUP_CURRENT_ROLE_NAME" --with-python3 --with-override-system-vim
     config
 }
 
