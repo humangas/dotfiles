@@ -76,6 +76,16 @@ main() {
     SETUP_WORKTMPDIR=`mktemp -d`
     download_repository
     init
+    local errorlog="$(grep -i 'error' "$PWD/install.log")"
+    local warnlog="$(grep -i 'warning' "$PWD/install.log")"
+    if [[ $(echo "$errorlog" | wc -l) -gt 0 ]]; then
+        log "ERROR" "Following error occurred. please confirm the contents."
+        echo "$errorlog"
+    fi
+    if [[ $(echo "$warnlog" | wc -l) -gt 0 ]]; then
+        log "WARN" "Following warning occurred. please confirm the contents."
+        echo "$warnlog"
+    fi
     [[ "$?" -eq 0 ]] && log "INFO" "Please Reboot the OS"
     log "INFO" "Finish!! Install log: $PWD/install.log $(date +'%Y-%m-%d %H:%M:%S')"
 }
