@@ -36,28 +36,13 @@ $ sudo spctl --master-enable
 ```
 
 
-## Setup of this tool itself
-Prepare the ssh secret key for github.com
-
+## For local
 ```
-$ ssh-add ~/.ssh/github.pem
-```
-
-Git clone this repository
-```
-$ git clone git@github.com:humangas/dotfiles.git ~/src/github.com/humangas/dotfiles
-```
-OR
-```
-$ git config --global ghq.root ~/src
-$ ghq get git@github.com:humangas/dotfiles.git
-```
-
-Install setup tool
-```
-$ cd ~/src/github.com/humangas/dotfiles
+$ git clone git@github.com:humangas/dotfiles.git
+$ cd dotfiles
 $ make install
 ```
+
 
 ### Usage
 ```
