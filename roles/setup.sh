@@ -2,20 +2,19 @@
 
 usage() {
 cat << EOS 
-Usage: $(basename $0) <command> [option] [<roles...>]
+Usage: $(basename $0) <command> [option] [<role>...]
 
 Command:
-    install  [roles...]   Install roles
-    upgrade  [roles...]   Upgrade roles
-    config   [roles...]   Configure roles
-    version  [roles...]   Display version of roles
-    list     [roles...]   List roles (status: enable, disable, None=not installed, Error=not implemented or role not found)
-    disable  [roles...]   Disable roles
-    enable   [roles...]   Enable roles
-#    dotfiles [roles...]   Output dofiles to the dotfiles directory (need to implement the "dotfiles" function)
-    create   <roles...>   Create the specified role
-    edit     <roles...>   Edit the specified role setup.sh (Open \$EDITOR: default vim)
-    check                 Check whether setup.sh for each role implements the required function (ok=implemented, -=not implemented)
+    install  [role...]    Install roles
+    upgrade  [role...]    Upgrade roles
+    config   [role...]    Configure roles
+    version  [role...]    Display version of roles
+    list     [role...]    List roles (status: enable, disable, None=not installed, Error=not implemented or role not found)
+    disable  [role...]    Disable roles
+    enable   [role...]    Enable roles
+    create   <role...>    Create the specified role
+    edit     <role>       Edit the specified role setup.sh (Open \$EDITOR: default vim)
+#    dotfiles [role...]   Output dofiles to the dotfiles directory (need to implement the "dotfiles" function)
 
 Option:
     --clear               Clear "setup.versions" file and reacquire the list (only "list" command)
@@ -138,7 +137,7 @@ execute() {
         source "$caller"
     }
 
-    # [install|upgrade|config|version]
+    # [install|upgrade|config]
     declare -a roles=()
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
@@ -160,7 +159,7 @@ execute() {
     done
 }
 
-list() {
+version() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
 
     # Print header
@@ -196,7 +195,7 @@ list() {
     done
 }
 
-check() {
+list() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
 
     # Print header
@@ -238,17 +237,17 @@ _check() {
 
     # TODO: 遅いので方式変更する 
     # is_installed
-    for r in $(check | awk -F, 'NR > 1 && $2~/enable/ && $3!~/ok/{print $1}'); do _errmsg "is_installed" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $3!~/ok/{print $1}'); do _errmsg "is_installed" "$r"; done
     # config
-    for r in $(check | awk -F, 'NR > 1 && $2~/enable/ && $4!~/ok/{print $1}'); do _errmsg "config" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $4!~/ok/{print $1}'); do _errmsg "config" "$r"; done
     # version
-    for r in $(check | awk -F, 'NR > 1 && $2~/enable/ && $5!~/ok/{print $1}'); do _errmsg "version" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $5!~/ok/{print $1}'); do _errmsg "version" "$r"; done
     # install
-    for r in $(check | awk -F, 'NR > 1 && $2~/enable/ && $6!~/ok/{print $1}'); do _errmsg "install" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $6!~/ok/{print $1}'); do _errmsg "install" "$r"; done
     # upgrade
-    for r in $(check | awk -F, 'NR > 1 && $2~/enable/ && $7!~/ok/{print $1}'); do _errmsg "upgrade" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $7!~/ok/{print $1}'); do _errmsg "upgrade" "$r"; done
     # dotfile
-    # for r in $(check | awk -F, 'NR > 1 && $2~/enable/ && $8!~/ok/{print $1}'); do _errmsg "dotfile" "$r"; done
+    # for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $8!~/ok/{print $1}'); do _errmsg "dotfile" "$r"; done
 
     # [[ $(check | awk -F, 'NR > 1 && $2~/enable/{print $0}' | grep '-' | wc -l) -gt 0 ]] && exit 1
     [[ $is_err -eq 0 ]] || exit 1
@@ -346,7 +345,7 @@ options() {
         [[ -z "$SETUP_ROLES" ]] && usage
     }
 
-    list_options() {
+    version_options() {
         while getopts ":-:" opt; do
             case "$opt" in
                 -)  # long option
@@ -364,15 +363,14 @@ options() {
     case "$1" in
         install)    SETUP_FUNC_NAME="install"  ;;
         config)     SETUP_FUNC_NAME="config"   ;;
-        version)    SETUP_FUNC_NAME="version"  ;;
+        version)    SETUP_FUNC_NAME="version"  ; shift; version_options "$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ;;
-        check)      SETUP_FUNC_NAME="check"    ;;
         enable)     SETUP_FUNC_NAME="enable"   ;;
         disable)    SETUP_FUNC_NAME="disable"  ;;
-        dotfiles)   SETUP_FUNC_NAME="dotfile"  ;;
-        list)       SETUP_FUNC_NAME="list"     ; shift; list_options "$@" ;;
+        list)       SETUP_FUNC_NAME="list"     ;;
         create)     SETUP_FUNC_NAME="create"   ; shift; create_options "$@" ;;
         edit)       SETUP_FUNC_NAME="edit"     ; shift; SETUP_ROLES="$@" ;;
+        dotfiles)   SETUP_FUNC_NAME="dotfile"  ;;
         *)          usage ;;
     esac
 }
@@ -390,7 +388,7 @@ main() {
             create "$SETUP_ROLES" ;;
         edit)
             edit "$SETUP_ROLES" ;;
-        list) 
+        version) 
             SETUP_ROLES_PATH=$(abs_dirname $0)
             local versionfile="$SETUP_ROLES_PATH/.setup-versions"
             shift 
@@ -400,14 +398,14 @@ main() {
                     cat "$versionfile" 
                 else
                     _check
-                    { list "$@" | column -ts, > "$versionfile"; } && cat "$versionfile"
+                    { version "$@" | column -ts, > "$versionfile"; } && cat "$versionfile"
                 fi
             else
-                list "$@" | column -ts,
+                version "$@" | column -ts,
             fi
             ;;
-        check)
-            shift; check | column -ts, ;;
+        list)
+            shift; list | column -ts, ;;
         enable|disable)
             shift; toggle_ed "$@" ;;
         dotfile)
@@ -416,7 +414,7 @@ main() {
             setup_dotfiles_path="${setup_roles_path%/*}/dotfiles"
             mkdir -p "$SETUP_DOTFILES_PATH"
             shift; execute "$@" ;;
-        *) # [install|upgrade|config|version]
+        *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
             _check
 #            sudov
