@@ -198,7 +198,6 @@ list() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
 
     # Print header
-    # printf "role,status,is_installed,config,version,install,upgrade,dotfile\n"
     printf "role,status,is_installed,config,version,install,upgrade\n"
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
@@ -210,10 +209,8 @@ list() {
         [[ $(type -t version) == "function" ]] && _version="y" || _version="n"
         [[ $(type -t install) == "function" ]] && _install="y" || _install="n"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="y" || _upgrade="n"
-       # [[ $(type -t dotfile) == "function" ]] && _dotfile="y" || _dotfile="n"
         local _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
 
-        # printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_is_installed,$_config,$_version,$_install,$_upgrade,$_dotfile\n"
         printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_is_installed,$_config,$_version,$_install,$_upgrade\n"
 
         unset -f is_installed
@@ -221,7 +218,6 @@ list() {
         unset -f version
         unset -f install
         unset -f upgrade
-        # unset -f dotfile
     done
 }
 
@@ -234,7 +230,6 @@ _check() {
         is_err=1
     }
 
-    # TODO: 遅いので方式変更する 
     # is_installed
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $3!~/y/{print $1}'); do _errmsg "is_installed" "$r"; done
     # config
@@ -245,10 +240,7 @@ _check() {
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $6!~/y/{print $1}'); do _errmsg "install" "$r"; done
     # upgrade
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $7!~/y/{print $1}'); do _errmsg "upgrade" "$r"; done
-    # dotfile
-    # for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $8!~/y/{print $1}'); do _errmsg "dotfile" "$r"; done
 
-    # [[ $(check | awk -F, 'NR > 1 && $2~/enable/{print $0}' | grep '-' | wc -l) -gt 0 ]] && exit 1
     [[ $is_err -eq 0 ]] || exit 1
 }
 
