@@ -9,7 +9,10 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    if type gem > /dev/null 2>&1; then
+        [[ -z $(gem list --local "$SETUP_CURRENT_ROLE_NAME" | tail -n 1) ]] && return 1 || return 0
+    fi
+    return 1
 }
 
 version() {
