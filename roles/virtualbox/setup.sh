@@ -32,7 +32,7 @@ install() {
     brew cask install "$SETUP_CURRENT_ROLE_NAME" >/dev/null 2>&1
     local retval="$?"
     config
-    local warnmsg="- $SETUP_CURRENT_ROLE_NAME: Manual Operation => Open Security & Privacy > Click Allow button, brew cask install $SETUP_CURRENT_ROLE_NAME"
+    local warnmsg="- $SETUP_CURRENT_ROLE_NAME: Manual Operation -> Open Security & Privacy > Click Allow button, brew cask install $SETUP_CURRENT_ROLE_NAME"
     [[ "$retval" -eq 0 ]] || caveats "WARN" "$warnmsg"
 }
 

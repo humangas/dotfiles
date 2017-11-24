@@ -30,7 +30,7 @@ install() {
     depend "install" "brew"
     brew cask install "$SETUP_CURRENT_ROLE_NAME"
     config
-    caveats "WARN" "- $SETUP_CURRENT_ROLE_NAME: Launch Hammerspoon > Enable Accessibility"
+    caveats "WARN" "- $SETUP_CURRENT_ROLE_NAME: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
 }
 
 upgrade() {
