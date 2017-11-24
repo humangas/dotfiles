@@ -13,7 +13,7 @@ is_installed() {
 }
 
 version() {
-    gem list --local "$SETUP_CURRENT_ROLE_NAME" | tail -n 1
+    gem list --local "$SETUP_CURRENT_ROLE_NAME" | head -n 1
 }
 
 config() {

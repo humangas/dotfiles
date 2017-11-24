@@ -17,7 +17,7 @@ is_installed() {
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
+    "$SETUP_CURRENT_ROLE_NAME" --version | head -n2 | tail -n1
 }
 
 config() {
