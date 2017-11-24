@@ -23,8 +23,8 @@ Option:
 Examples:
     $(basename $0) install
     $(basename $0) install brew go direnv
-    $(basename $0) create --type brew direnv
-    $(basename $0) check
+    $(basename $0) create --type brewcask vagrant clipy skitch
+    $(basename $0) edit ansible
 
 EOS
 exit 1
