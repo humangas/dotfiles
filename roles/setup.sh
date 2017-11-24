@@ -5,11 +5,11 @@ cat << EOS
 Usage: $(basename $0) <command> [option] [<role>...]
 
 Command:
+    list     [role...]    List roles (status:[enable|disable], implemented:[y(yes)|n(no)])
     install  [role...]    Install roles
     upgrade  [role...]    Upgrade roles
     config   [role...]    Configure roles
     version  [role...]    Display version of roles
-    list     [role...]    List roles (status: enable, disable, None=not installed, Error=not implemented or role not found)
     disable  [role...]    Disable roles
     enable   [role...]    Enable roles
     create   <role...>    Create the specified role
@@ -206,12 +206,12 @@ list() {
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
 
         source "$SETUP_CURRENT_ROLE_FILE_PATH"
-        [[ $(type -t is_installed) == "function" ]] && _is_installed="ok" || _is_installed="-"
-        [[ $(type -t config) == "function" ]] && _config="ok" || _config="-"
-        [[ $(type -t version) == "function" ]] && _version="ok" || _version="-"
-        [[ $(type -t install) == "function" ]] && _install="ok" || _install="-"
-        [[ $(type -t upgrade) == "function" ]] && _upgrade="ok" || _upgrade="-"
-       # [[ $(type -t dotfile) == "function" ]] && _dotfile="ok" || _dotfile="-"
+        [[ $(type -t is_installed) == "function" ]] && _is_installed="y" || _is_installed="n"
+        [[ $(type -t config) == "function" ]] && _config="y" || _config="n"
+        [[ $(type -t version) == "function" ]] && _version="y" || _version="n"
+        [[ $(type -t install) == "function" ]] && _install="y" || _install="n"
+        [[ $(type -t upgrade) == "function" ]] && _upgrade="y" || _upgrade="n"
+       # [[ $(type -t dotfile) == "function" ]] && _dotfile="y" || _dotfile="n"
         local _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
 
         # printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_is_installed,$_config,$_version,$_install,$_upgrade,$_dotfile\n"
