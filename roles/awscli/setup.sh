@@ -22,6 +22,7 @@ config() {
 
 install() {
     depend "install" "brew"
+    depend "install" "python3"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
