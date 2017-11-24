@@ -56,9 +56,10 @@ mailcatcher          enable
 marp                 enable   marp: 0.0.11
 nmap                 None
 nodenv               enable   nodenv 1.1.2
+npm                  enable   4.1.2
 osquery              enable   osqueryi version 2.10.0
 pyenv                enable   pyenv 1.1.5
-python               None     Python 3.6.1
+python               enable
 python3              enable   Python 3.6.1
 qlcolorcode          enable   qlcolorcode: 2.0.9
 qlimagesize          enable   qlimagesize: latest
