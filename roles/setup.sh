@@ -306,7 +306,7 @@ toggle_ed() {
     done
 }
 
-options() {
+_options() {
     create_options() {
         while getopts ":t:-:" opt; do
             case "$opt" in
@@ -338,15 +338,15 @@ options() {
 
     [[ $# -eq 0 ]] && usage
     case "$1" in
-        install)    SETUP_FUNC_NAME="install"  ;;
-        config)     SETUP_FUNC_NAME="config"   ;;
-        version)    SETUP_FUNC_NAME="version"  ;;
-        upgrade)    SETUP_FUNC_NAME="upgrade"  ;;
-        enable)     SETUP_FUNC_NAME="enable"   ;;
-        disable)    SETUP_FUNC_NAME="disable"  ;;
-        list)       SETUP_FUNC_NAME="list"     ;;
         create)     SETUP_FUNC_NAME="create"   ; shift; create_options "$@" ;;
         edit)       SETUP_FUNC_NAME="edit"     ; shift; SETUP_ROLES="$@" ;;
+        version)    SETUP_FUNC_NAME="version"  ; shift; SETUP_ROLES="$@" ;;
+        list)       SETUP_FUNC_NAME="list"     ; shift; SETUP_ROLES="$@" ;;
+        enable)     SETUP_FUNC_NAME="enable"   ; shift; SETUP_ROLES="$@" ;;
+        disable)    SETUP_FUNC_NAME="disable"  ; shift; SETUP_ROLES="$@" ;;
+        install)    SETUP_FUNC_NAME="install"  ; shift; SETUP_ROLES="$@" ;;
+        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; SETUP_ROLES="$@" ;;
+        config)     SETUP_FUNC_NAME="config"   ; shift; SETUP_ROLES="$@" ;;
         dotfiles)   SETUP_FUNC_NAME="dotfile"  ;;
         *)          usage ;;
     esac
@@ -359,20 +359,19 @@ sudov() {
 }
 
 main() {
-    options "$@"
+    _options "$@"
     case "$SETUP_FUNC_NAME" in
         create)
-            create "$SETUP_ROLES" ;;
+            create $SETUP_ROLES ;;
         edit)
-            edit "$SETUP_ROLES" ;;
+            edit $SETUP_ROLES ;;
         version) 
             [[ $# -eq 0 ]] && _check
-            shift; version "$@" | column -ts,
-            ;;
+            version $SETUP_ROLES | column -ts, ;;
         list)
-            shift; list | column -ts, ;;
+            list | column -ts, ;;
         enable|disable)
-            shift; toggle_ed "$@" ;;
+            toggle_ed $SETUP_ROLES ;;
         dotfile)
             _check
             setup_roles_path=$(abs_dirname $0)
@@ -383,7 +382,7 @@ main() {
             declare -a SETUP_CAVEATS_MSGS=()
             _check
 #            sudov
-            shift; execute "$@"
+            execute $SETUP_ROLES
             [[ ${#SETUP_CAVEATS_MSGS[@]} -gt 0 ]] && log "WARN" "\nCaveats:"
             for ((i = 0; i < ${#SETUP_CAVEATS_MSGS[@]}; i++)) {
                 printf "${SETUP_CAVEATS_MSGS[i]}"
