@@ -20,10 +20,13 @@ config() {
     mkdir -p ~/.hammerspoon/Spoons
     defaults write -app Terminal AppleLanguages "(en, ja)"
     cp "$SETUP_CURRENT_ROLE_DIR_PATH/init.lua" ~/.hammerspoon/
-    log "INFO" "Install Hammerspoon/Calendar plugin..."
-    curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Calendar.spoon.zip -# | tar xz -C ~/.hammerspoon/Spoons/
-    log "INFO" "Install Hammerspoon/Caffeine plugin..."
-    curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Caffeine.spoon.zip -# | tar xz -C ~/.hammerspoon/Spoons/
+    (
+        alias tar='/usr/bin/tar'
+        log "INFO" "Install Hammerspoon plugin: Calendar..."
+        curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Calendar.spoon.zip -# | tar xz -C ~/.hammerspoon/Spoons/
+        log "INFO" "Install Hammerspoon plugin: Caffeine..."
+        curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Caffeine.spoon.zip -# | tar xz -C ~/.hammerspoon/Spoons/
+    )
 }
 
 install() {
