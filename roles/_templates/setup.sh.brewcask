@@ -17,7 +17,7 @@ is_installed() {
 }
 
 version() {
-    brew cask info "$SETUP_CURRENT_ROLE_NAME"
+    is_installed && brew cask info "$SETUP_CURRENT_ROLE_NAME"
 }
 
 config() {
