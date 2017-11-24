@@ -419,7 +419,7 @@ main() {
             _check
 #            sudov
             shift; execute "$@"
-            [[ ${#SETUP_CAVEATS_MSGS[@]} -gt 0 ]] && log "WARN" "Caveats:"
+            [[ ${#SETUP_CAVEATS_MSGS[@]} -gt 0 ]] && log "WARN" "\nCaveats:"
             for ((i = 0; i < ${#SETUP_CAVEATS_MSGS[@]}; i++)) {
                 printf "${SETUP_CAVEATS_MSGS[i]}"
             }
