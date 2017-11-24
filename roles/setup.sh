@@ -5,16 +5,15 @@ cat << EOS
 Usage: $(basename $0) <command> [option] [<role>...]
 
 Command:
-    list     [role...]    List roles (status:[enable|disable], implemented:[y(yes)|n(no)])
-    install  [role...]    Install roles
-    upgrade  [role...]    Upgrade roles
-    config   [role...]    Configure roles
-    version  [role...]    Display version of roles
-    disable  [role...]    Disable roles
-    enable   [role...]    Enable roles
-    create   <role...>    Create the specified role
-    edit     <role>       Edit the specified role setup.sh (Open \$EDITOR: default vim)
-#    dotfiles [role...]   Output dofiles to the dotfiles directory (need to implement the "dotfiles" function)
+    list                  List roles (status:[enable|disable], implemented:[y(yes)|n(no)])
+    install  [role...]    Install [role...]
+    upgrade  [role...]    Upgrade [role...]
+    config   [role...]    Configure [role...]
+    version  [role...]    Display version of [role...] NOTE: Execute with no [role...] takes time
+    disable  [role...]    Disable [role...]
+    enable   [role...]    Enable [role...]
+    create   <role>...    Create <role>...
+    edit     <role>       Edit "setup.sh" of <role> with \$EDITOR (default: vim)
 
 Option:
     --type, -t <type>     "<type>" specifies "setup.sh.<type>" under _templates directory (only "create" command)
@@ -347,7 +346,6 @@ _options() {
         install)    SETUP_FUNC_NAME="install"  ; shift; SETUP_ROLES="$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; SETUP_ROLES="$@" ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; SETUP_ROLES="$@" ;;
-        dotfiles)   SETUP_FUNC_NAME="dotfile"  ;;
         *)          usage ;;
     esac
 }
@@ -372,12 +370,6 @@ main() {
             list | column -ts, ;;
         enable|disable)
             toggle_ed $SETUP_ROLES ;;
-        dotfile)
-            _check
-            setup_roles_path=$(abs_dirname $0)
-            setup_dotfiles_path="${setup_roles_path%/*}/dotfiles"
-            mkdir -p "$SETUP_DOTFILES_PATH"
-            shift; execute "$@" ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
             _check
