@@ -17,7 +17,6 @@ Command:
 #    dotfiles [role...]   Output dofiles to the dotfiles directory (need to implement the "dotfiles" function)
 
 Option:
-    --clear               Clear "setup.versions" file and reacquire the list (only "list" command)
     --type, -t <type>     "<type>" specifies "setup.sh.<type>" under _templates directory (only "create" command)
                           not specify an option, "setup.sh.default" is selected
 
@@ -109,7 +108,7 @@ execute() {
         case "$func" in
             install) # do nothing
                 ;;
-            *)  # [upgrade|config|version]
+            *)  # [upgrade|config]
                 "$func" 
                 [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\"" && exit 1
                 ;;
@@ -345,25 +344,11 @@ options() {
         [[ -z "$SETUP_ROLES" ]] && usage
     }
 
-    version_options() {
-        while getopts ":-:" opt; do
-            case "$opt" in
-                -)  # long option
-                    case "${OPTARG}" in
-                        clear) SETUP_CLEAR_OPTIONS=1 ;;
-                        *) usage ;;
-                    esac
-                    ;;
-                *) usage ;;
-            esac
-        done
-    }
-
     [[ $# -eq 0 ]] && usage
     case "$1" in
         install)    SETUP_FUNC_NAME="install"  ;;
         config)     SETUP_FUNC_NAME="config"   ;;
-        version)    SETUP_FUNC_NAME="version"  ; shift; version_options "$@" ;;
+        version)    SETUP_FUNC_NAME="version"  ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ;;
         enable)     SETUP_FUNC_NAME="enable"   ;;
         disable)    SETUP_FUNC_NAME="disable"  ;;
@@ -389,20 +374,8 @@ main() {
         edit)
             edit "$SETUP_ROLES" ;;
         version) 
-            SETUP_ROLES_PATH=$(abs_dirname $0)
-            local versionfile="$SETUP_ROLES_PATH/.setup-versions"
-            shift 
-            [[ "$SETUP_CLEAR_OPTIONS" -eq 1 ]] && shift && rm -f "$versionfile"
-            if [[ $# -eq 0 ]]; then
-                if [[ -s "$versionfile" ]]; then
-                    cat "$versionfile" 
-                else
-                    _check
-                    { version "$@" | column -ts, > "$versionfile"; } && cat "$versionfile"
-                fi
-            else
-                version "$@" | column -ts,
-            fi
+            [[ $# -eq 0 ]] && _check
+            shift; version "$@" | column -ts,
             ;;
         list)
             shift; list | column -ts, ;;
