@@ -78,13 +78,16 @@ main() {
     init
     local retval="$?"
     local dependlog="$(grep -ni --color=auto 'Installing .* dependency' "$PWD/install.log")"
-    local errorlog="$(grep -ni --color=auto 'error' "$PWD/install.log")"
-    local warnlog="$(grep -ni --color=auto 'warning' "$PWD/install.log")"
-    [[ ! -z "$dependlog" ]] && (log "INFO" "\nTo define dependencies on your own, please refer to the following." && echo -e "$dependlog\n")
-    [[ ! -z "$errorlog" ]] && (log "ERROR" "\nFollowing error occurred. please confirm the contents." && echo -e "$errorlog\n")
-    [[ ! -z "$warnlog" ]] && (log "WARN" "\nFollowing warning occurred. please confirm the contents." && echo -e "$warnlog\n")
-    [[ "$retval" -eq 0 ]] && log "INFO" "Please Reboot the OS"
-    log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! (Log: ./install.log)"
+    local errorlog="$(grep -n --color=auto 'Error' "$PWD/install.log")"
+    local warnlog="$(grep -n --color=auto 'Warning' "$PWD/install.log")"
+    [[ ! -z "$dependlog" ]] && (log "INFO" "To define dependencies on your own, please refer to the following:" && echo -e "$dependlog\n")
+    [[ ! -z "$errorlog" ]] && (log "ERROR" "Following error occurred. please confirm the contents:" && echo -e "$errorlog\n")
+    [[ ! -z "$warnlog" ]] && (log "WARN" "Following warning occurred. please confirm the contents:" && echo -e "$warnlog\n")
+    if [[ "$retval" -eq 0 ]]; then
+        log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! Please Reboot the OS (Log: ./install.log)"
+    else
+        log "ERROR" "[$(date +'%Y-%m-%d %H:%M:%S')] Error!! Processing was interrupted (Log: ./install.log)"
+    fi
 }
 
 trap finally 0
