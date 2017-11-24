@@ -27,8 +27,8 @@ config() {
 
 install() {
     depend "install" "brew"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
     _is_installed_node-build || brew install node-build
+    brew install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
 
