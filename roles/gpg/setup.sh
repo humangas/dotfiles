@@ -26,6 +26,7 @@ config() {
 
 install() {
     depend "install" "brew"
+    depend "install" "curl"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
