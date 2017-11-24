@@ -77,8 +77,10 @@ main() {
     download_repository
     init
     local retval="$?"
+    local dependlog="$(grep -ni --color=auto 'Installing .* dependency' "$PWD/install.log")"
     local errorlog="$(grep -ni --color=auto 'error' "$PWD/install.log")"
     local warnlog="$(grep -ni --color=auto 'warning' "$PWD/install.log")"
+    [[ ! -z "$dependlog" ]] && (log "INFO" "\nTo define dependencies on your own, please refer to the following." && echo -e "$dependlog\n")
     [[ ! -z "$errorlog" ]] && (log "ERROR" "\nFollowing error occurred. please confirm the contents." && echo -e "$errorlog\n")
     [[ ! -z "$warnlog" ]] && (log "WARN" "\nFollowing warning occurred. please confirm the contents." && echo -e "$warnlog\n")
     [[ "$retval" -eq 0 ]] && log "INFO" "Please Reboot the OS"
