@@ -17,7 +17,7 @@ is_installed() {
 }
 
 version() {
-    is_installed && "$SETUP_CURRENT_ROLE_NAME" --version
+    basename "$(readlink $(brew --prefix $SETUP_CURRENT_ROLE_NAME 2>/dev/null))"
 }
 
 config() {
