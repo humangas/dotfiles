@@ -178,8 +178,6 @@ execute() {
 }
 
 version() {
-    SETUP_ROLES_PATH=$(abs_dirname $0)
-
     # Print header
     printf "role,status,version\n"
     declare -a roles=()
@@ -214,8 +212,6 @@ version() {
 }
 
 list() {
-    SETUP_ROLES_PATH=$(abs_dirname $0)
-
     # Print header
     printf "role,status,is_installed,config,version,install,upgrade\n"
 
@@ -270,8 +266,6 @@ _check() {
 }
 
 create() {
-    SETUP_ROLES_PATH=$(abs_dirname $0)
-
     if [[ ! -f "$SETUP_ROLES_PATH/_templates/$SETUP_CREATE_TYPE" ]]; then
         log "ERROR" "Error: \"$SETUP_CREATE_TYPE\" is not found under _templates directory"
         exit 1
@@ -289,7 +283,6 @@ create() {
 }
 
 edit() {
-    SETUP_ROLES_PATH=$(abs_dirname $0)
     local editor="${EDITOR:-vim}"
     local setupsh="$SETUP_ROLES_PATH/$SETUP_ROLES/setup.sh"
 
@@ -303,8 +296,6 @@ edit() {
 }
 
 toggle_ed() {
-    SETUP_ROLES_PATH=$(abs_dirname $0)
-
     case $SETUP_FUNC_NAME in
         enable)  local toggle_ed_action="rm -f disable" ;;
         disable) local toggle_ed_action="touch disable" ;;
