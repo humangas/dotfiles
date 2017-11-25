@@ -42,6 +42,7 @@ exit 1
 
 # Settings
 SETUP_TAGS_PREFIX="tag."
+SETUP_TYPE_DEFAULT="setup.sh.brew"
 
 abs_dirname() {
     local cwd="$(pwd)"
@@ -395,7 +396,6 @@ _options() {
         _parse "$@"
         [[ -z "$SETUP_CREATE_TYPE" ]] && SETUP_CREATE_TYPE="$SETUP_TYPE_DEFAULT"
         [[ -z "$SETUP_ROLES" ]] && usage
-        exit 1
     }
 
     [[ $# -eq 0 ]] && usage
