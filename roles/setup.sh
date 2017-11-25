@@ -328,10 +328,12 @@ toggle_ed() {
 tags() {
     # Print header
     printf "tag roles\n"
+    _tags "$@"
+}
 
+_tags() {
     declare -a roles=()
-    local tag
-    local role
+    local tag role
     # find all
     if [[ $# -eq 0 && ${#SETUP_TAGS[@]} -eq 0 ]]; then
         roles=$(find $SETUP_ROLES_PATH/ -type f -name "$SETUP_TAGS_PREFIX*")
@@ -342,6 +344,7 @@ tags() {
     done
     # find role...
     for role in $@; do
+        [[ -d $SETUP_ROLES_PATH/$role ]] || continue
         roles=(${roles[@]} $(find $SETUP_ROLES_PATH/$role/ -type f -iname "$SETUP_TAGS_PREFIX*"))
     done
 
@@ -431,14 +434,14 @@ main() {
     _options "$@"
     case "$SETUP_FUNC_NAME" in
         tags)
-            tags $SETUP_ROLES | column -t ;;
+            tags ${SETUP_ROLES[@]} | column -t ;;
         create)
             create $SETUP_ROLES ;;
         edit)
             edit $SETUP_ROLES ;;
         version) 
             [[ $# -eq 0 ]] && _check
-            version $SETUP_ROLES | column -ts, ;;
+            version ${SETUP_ROLES[@]} | column -ts, ;;
         list)
             list $SETUP_ROLES | column -ts, ;;
         enable|disable)
