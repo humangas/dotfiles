@@ -418,13 +418,13 @@ _options() {
         create)     SETUP_FUNC_NAME="create"   ; shift; _parse_create "$@";;
         edit)       SETUP_FUNC_NAME="edit"     ; shift; _parse "$@" ;;
         version)    SETUP_FUNC_NAME="version"  ; shift; _parse "$@"; _update_setup_roles ;;
-        list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
+        list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@"; _update_setup_roles ;;
         tags)       SETUP_FUNC_NAME="tags"     ; shift; _parse "$@" ;;
-        enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@" ;;
-        disable)    SETUP_FUNC_NAME="disable"  ; shift; _parse "$@" ;;
-        install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
-        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
-        config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
+        enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@"; _update_setup_roles ;;
+        disable)    SETUP_FUNC_NAME="disable"  ; shift; _parse "$@"; _update_setup_roles ;;
+        install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@"; _update_setup_roles ;;
+        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@"; _update_setup_roles ;;
+        config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@"; _update_setup_roles ;;
         *)          usage ;;
     esac
 }
@@ -449,14 +449,14 @@ main() {
             [[ $# -eq 0 ]] && _check
             version ${SETUP_ROLES[@]} | column -ts, ;;
         list)
-            list $SETUP_ROLES | column -ts, ;;
+            list ${SETUP_ROLES[@]} | column -ts, ;;
         enable|disable)
-            toggle_ed $SETUP_ROLES ;;
+            toggle_ed ${SETUP_ROLES[@]} ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
             _check
 #            sudov
-            execute $SETUP_ROLES
+            execute ${SETUP_ROLES[@]}
             [[ ${#SETUP_CAVEATS_MSGS[@]} -gt 0 ]] && log "WARN" "\nCaveats:"
             for ((i = 0; i < ${#SETUP_CAVEATS_MSGS[@]}; i++)) {
                 printf "${SETUP_CAVEATS_MSGS[i]}"
