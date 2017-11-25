@@ -213,9 +213,9 @@ version() {
 
 list() {
     # Print header
-    printf "role,status,is_installed,config,version,install,upgrade\n"
+    printf "role,status,is_installed,config,version,install,upgrade,tags\n"
 
-    local role _is_installed _config _version _install _upgrade _status
+    local role _is_installed _config _version _install _upgrade _status _tags
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
@@ -231,8 +231,11 @@ list() {
         [[ $(type -t install) == "function" ]] && _install="y" || _install="n"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="y" || _upgrade="n"
         _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
+        _tags=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f -name "$SETUP_TAGS_PREFIX*" \
+            | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
+            | paste -s -d '|' -)
 
-        printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_is_installed,$_config,$_version,$_install,$_upgrade\n"
+        printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_is_installed,$_config,$_version,$_install,$_upgrade,$_tags\n"
 
         unset -f is_installed
         unset -f config
@@ -342,7 +345,7 @@ _tags() {
     # find role...
     for role in $@; do
         [[ -d $SETUP_ROLES_PATH/$role ]] || continue
-        roles=(${roles[@]} $(find $SETUP_ROLES_PATH/$role/ -type f -iname "$SETUP_TAGS_PREFIX*"))
+        roles=(${roles[@]} $(find $SETUP_ROLES_PATH/$role/ -type f -name "$SETUP_TAGS_PREFIX*"))
     done
 
     declare -a tags_keys=()
@@ -446,7 +449,7 @@ main() {
             [[ $# -eq 0 ]] && _check
             version ${SETUP_ROLES[@]} | column -ts, ;;
         list)
-            list ${SETUP_ROLES[@]} | column -ts, ;;
+            list ${SETUP_ROLES[@]} | column -ts, | sed "s/|/,/g" ;;
         enable|disable)
             toggle_ed ${SETUP_ROLES[@]} ;;
         *) # [install|upgrade|config]
