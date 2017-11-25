@@ -6,6 +6,7 @@ Usage: $(basename $0) <command> [option] [<role>...]
 
 Command:
     list                  List roles (status:[enable|disable], implemented:[y(yes)|n(no)])
+    tags     [role...]    List tags and the roles associated with them
     install  [role...]    Install [role...]
     upgrade  [role...]    Upgrade [role...]
     config   [role...]    Configure [role...]
@@ -13,21 +14,33 @@ Command:
     disable  [role...]    Disable [role...]
     enable   [role...]    Enable [role...]
     create   <role>...    Create <role>...
-    edit     <role>       Edit "setup.sh" of <role> with \$EDITOR (default: vim)
+    edit     [role]       Edit "setup.sh" of <role> with \$EDITOR (Default: roles/setup.sh)
 
 Option:
-    --type, -t <type>     "<type>" specifies "setup.sh.<type>" under _templates directory (only "create" command)
-                          not specify an option, "setup.sh.default" is selected
+    --tags   <tag>...     Only process roles containing "\$SETUP_TAGS_PREFIX<tag>"
+                          Multiple tags can be specified by separating them with a comma(,).
+    --type   <type>       Only "create" command option
+                          "<type>" specifies "setup.sh.<type>" under _templates directory
+                          Default: "\$SETUP_TYPE_DEFAULT"
+
+Settings:
+    export EDITOR="vim"
+    export SETUP_TAGS_PREFIX="tag."
+    export SETUP_TYPE_DEFAULT="setup.sh.brew"
 
 Examples:
     $(basename $0) install
     $(basename $0) install brew go direnv
     $(basename $0) create --type brewcask vagrant clipy skitch
     $(basename $0) edit ansible
+    $(basename $0) disable --tags GNU_commands,Quicklook
 
 EOS
 exit 1
 }
+
+# Settings
+SETUP_TAGS_PREFIX="tag."
 
 abs_dirname() {
     local cwd="$(pwd)"
