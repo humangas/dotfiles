@@ -407,11 +407,17 @@ _options() {
         [[ -z "$SETUP_ROLES" ]] && usage
     }
 
+    _update_setup_roles() {
+        [[ ${#SETUP_TAGS[@]} -eq 0 ]] && return
+        local tags_roles="$(_tags | cut -d' ' -f2 | tr ',' '\n')"
+        SETUP_ROLES=($(echo $tags_roles ${SETUP_ROLES[@]} | tr ' ' '\n' | sort | uniq))
+    }
+
     [[ $# -eq 0 ]] && usage
     case "$1" in
         create)     SETUP_FUNC_NAME="create"   ; shift; _parse_create "$@";;
         edit)       SETUP_FUNC_NAME="edit"     ; shift; _parse "$@" ;;
-        version)    SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
+        version)    SETUP_FUNC_NAME="version"  ; shift; _parse "$@"; _update_setup_roles ;;
         list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
         tags)       SETUP_FUNC_NAME="tags"     ; shift; _parse "$@" ;;
         enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@" ;;
