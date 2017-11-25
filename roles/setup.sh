@@ -101,8 +101,14 @@ caveats() {
     SETUP_CAVEATS_MSGS=("${SETUP_CAVEATS_MSGS[@]}" "$caveats")
 }
 
+_print_caveats() {
+    [[ ${#SETUP_CAVEATS_MSGS[@]} -gt 0 ]] && log "WARN" "\nCaveats:"
+    for ((i = 0; i < ${#SETUP_CAVEATS_MSGS[@]}; i++)) {
+        printf "${SETUP_CAVEATS_MSGS[i]}"
+    }
+}
+
 execute() {
-    SETUP_ROLES_PATH=$(abs_dirname $0)
     SETUP_SHELL_NAME="${SHELL##*/}"
 
     _execute() {
@@ -457,10 +463,7 @@ main() {
             _check
 #            sudov
             execute ${SETUP_ROLES[@]}
-            [[ ${#SETUP_CAVEATS_MSGS[@]} -gt 0 ]] && log "WARN" "\nCaveats:"
-            for ((i = 0; i < ${#SETUP_CAVEATS_MSGS[@]}; i++)) {
-                printf "${SETUP_CAVEATS_MSGS[i]}"
-            }
+            _print_caveats
             ;;
     esac
 }
