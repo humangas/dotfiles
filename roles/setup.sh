@@ -34,6 +34,7 @@ Examples:
     $(basename $0) create --type brewcask vagrant clipy skitch
     $(basename $0) edit ansible
     $(basename $0) disable --tags GNU_commands,Quicklook
+    $(basename $0) tags --tags GNU_commands,Quicklook ag
 
 EOS
 exit 1
@@ -296,7 +297,6 @@ toggle_ed() {
         disable) local toggle_ed_action="touch disable" ;;
     esac
 
-#    [[ $# -eq 0 ]] && return 0
     declare -a roles=()
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
@@ -318,47 +318,98 @@ toggle_ed() {
     done
 }
 
+tags() {
+    # Print header
+    printf "tag roles\n"
+
+    declare -a roles=()
+    local tag
+    local role
+    # find all
+    if [[ $# -eq 0 && ${#SETUP_TAGS[@]} -eq 0 ]]; then
+        roles=$(find $SETUP_ROLES_PATH/ -type f -name "$SETUP_TAGS_PREFIX*")
+    fi
+    # find --tags
+    for tag in ${SETUP_TAGS[@]}; do
+        roles=(${roles[@]} $(find $SETUP_ROLES_PATH/ -type f -iname "$SETUP_TAGS_PREFIX$tag"))
+    done
+    # find role...
+    for role in $@; do
+        roles=(${roles[@]} $(find $SETUP_ROLES_PATH/$role/ -type f -iname "$SETUP_TAGS_PREFIX*"))
+    done
+
+    declare -a tags_keys=()
+    declare -a tags_dict=()
+    for role in ${roles[@]}; do
+        tag=$(echo ${role##*/} | sed s/$SETUP_TAGS_PREFIX//)
+        role=$(basename ${role%/*})
+        if ! in_elements "$tag:$role" "${tags_dict[@]}"; then
+            tags_dict=("${tags_dict[@]}" "$tag:$role")
+        fi
+        if ! in_elements "$tag" "${tags_keys[@]}"; then
+            tags_keys=(${tags_keys[@]} $tag)
+        fi
+    done
+
+    local k v _roles
+    for tag in ${tags_keys[@]}; do
+        for dict in ${tags_dict[@]}; do
+            k="${dict%%:*}"
+            v="${dict#*:}"
+            if [[ "$tag" == "$k" ]]; then
+                _roles="$_roles,$v"
+            fi
+        done
+        printf "$tag $(echo $_roles | cut -c 2-)\n"
+        unset _roles
+    done
+}
+
 _options() {
-    create_options() {
-        while getopts ":t:-:" opt; do
+    _parse() {
+        local is_parsed=0
+        while getopts ":-:" opt; do
             case "$opt" in
                 -)  # long option
-                    case "${OPTARG}" in
-                        type) 
-                            shift $((OPTIND -1))
-                            SETUP_CREATE_TYPE="setup.sh.$1"
-                            shift
-                            SETUP_ROLES="$@"
-                            ;;
-                        *) usage ;;
-                    esac
-                    ;;
-                t)  SETUP_CREATE_TYPE="setup.sh.$OPTARG"
-                    shift $((OPTIND -1))
-                    SETUP_ROLES="$@"
-                    ;;
+                case "${OPTARG}" in
+                    type) 
+                        is_parsed=1
+                        shift $((OPTIND -1))
+                        SETUP_CREATE_TYPE="setup.sh.$1"
+                        ;;
+                    tags)
+                        is_parsed=1
+                        shift $((OPTIND -1))
+                        SETUP_TAGS=($(echo "$1" | tr -s ',', ' '))
+                        ;;
+                    *) usage ;;
+                esac
+                ;;
                 *) usage ;;
             esac
         done
+        [[ "$is_parsed" -eq 0 ]] && SETUP_ROLES="$@" || shift; SETUP_ROLES="$@"
+    }
 
-        if [[ -z "$SETUP_CREATE_TYPE" ]]; then
-            SETUP_CREATE_TYPE="setup.sh.default"
-            SETUP_ROLES="$@"
-        fi
+    _parse_create() {
+        _parse "$@"
+        [[ -z "$SETUP_CREATE_TYPE" ]] && SETUP_CREATE_TYPE="$SETUP_TYPE_DEFAULT"
         [[ -z "$SETUP_ROLES" ]] && usage
+        exit 1
     }
 
     [[ $# -eq 0 ]] && usage
     case "$1" in
-        create)     SETUP_FUNC_NAME="create"   ; shift; create_options "$@" ;;
-        edit)       SETUP_FUNC_NAME="edit"     ; shift; SETUP_ROLES="$@" ;;
-        version)    SETUP_FUNC_NAME="version"  ; shift; SETUP_ROLES="$@" ;;
-        list)       SETUP_FUNC_NAME="list"     ; shift; SETUP_ROLES="$@" ;;
-        enable)     SETUP_FUNC_NAME="enable"   ; shift; SETUP_ROLES="$@" ;;
-        disable)    SETUP_FUNC_NAME="disable"  ; shift; SETUP_ROLES="$@" ;;
-        install)    SETUP_FUNC_NAME="install"  ; shift; SETUP_ROLES="$@" ;;
-        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; SETUP_ROLES="$@" ;;
-        config)     SETUP_FUNC_NAME="config"   ; shift; SETUP_ROLES="$@" ;;
+        create)     SETUP_FUNC_NAME="create"   ; shift; _parse_create "$@";;
+        edit)       SETUP_FUNC_NAME="edit"     ; shift; _parse "$@" ;;
+        version)    SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
+        list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
+        tags)       SETUP_FUNC_NAME="tags"     ; shift; _parse "$@" ;;
+        enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@" ;;
+        disable)    SETUP_FUNC_NAME="disable"  ; shift; _parse "$@" ;;
+        install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
+        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
+        config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
         *)          usage ;;
     esac
 }
@@ -370,8 +421,11 @@ sudov() {
 }
 
 main() {
+    SETUP_ROLES_PATH=$(abs_dirname $0)
     _options "$@"
     case "$SETUP_FUNC_NAME" in
+        tags)
+            tags $SETUP_ROLES | column -t ;;
         create)
             create $SETUP_ROLES ;;
         edit)
