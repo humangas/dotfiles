@@ -5,7 +5,7 @@ cat << EOS
 Usage: $(basename $0) <command> [option] [<role>...]
 
 Command:
-    list                  List roles (status:[enable|disable], implemented:[y(yes)|n(no)])
+    list     [role...]    List roles (status:[enable|disable], implemented:[y(yes)|n(no)])
     tags     [role...]    List tags and the roles associated with them
     install  [role...]    Install [role...]
     upgrade  [role...]    Upgrade [role...]
@@ -212,9 +212,15 @@ list() {
 
     # Print header
     printf "role,status,is_installed,config,version,install,upgrade\n"
+
+    local role _is_installed _config _version _install _upgrade _status
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
+
+        if [[ $# -gt 0 ]] && ! in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
+            continue
+        fi
 
         source "$SETUP_CURRENT_ROLE_FILE_PATH"
         [[ $(type -t is_installed) == "function" ]] && _is_installed="y" || _is_installed="n"
@@ -222,7 +228,7 @@ list() {
         [[ $(type -t version) == "function" ]] && _version="y" || _version="n"
         [[ $(type -t install) == "function" ]] && _install="y" || _install="n"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="y" || _upgrade="n"
-        local _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
+        _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
 
         printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_is_installed,$_config,$_version,$_install,$_upgrade\n"
 
@@ -434,7 +440,7 @@ main() {
             [[ $# -eq 0 ]] && _check
             version $SETUP_ROLES | column -ts, ;;
         list)
-            list | column -ts, ;;
+            list $SETUP_ROLES | column -ts, ;;
         enable|disable)
             toggle_ed $SETUP_ROLES ;;
         *) # [install|upgrade|config]
