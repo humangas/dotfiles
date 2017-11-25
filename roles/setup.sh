@@ -68,12 +68,13 @@ log() {
     esac
 }
 
+declare -a SETUP_CAVEATS_MSGS=()
 caveats() {
     # Examples: caveats "INFO" "info message"
     # It will be displayed at the end after installation
     local type="${1:?Error: type is required}"
     local msg="${2:?Error: msg is required}"
-    local caveats=""
+    local caveats
 
     case "$type" in
         INFO)   caveats="\e[34m$msg\e[m\n" ;;
@@ -371,7 +372,6 @@ main() {
         enable|disable)
             toggle_ed $SETUP_ROLES ;;
         *) # [install|upgrade|config]
-            declare -a SETUP_CAVEATS_MSGS=()
             _check
 #            sudov
             execute $SETUP_ROLES
