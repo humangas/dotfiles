@@ -80,7 +80,6 @@ log() {
     esac
 }
 
-declare -a SETUP_CAVEATS_MSGS=()
 caveats() {
     # Examples: caveats "INFO" "info message"
     # It will be displayed at the end after installation
@@ -385,6 +384,7 @@ main() {
         enable|disable)
             toggle_ed $SETUP_ROLES ;;
         *) # [install|upgrade|config]
+            declare -a SETUP_CAVEATS_MSGS=()
             _check
 #            sudov
             execute $SETUP_ROLES
