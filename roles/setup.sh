@@ -61,7 +61,6 @@ abs_dirname() {
 in_elements () {
     local e match="$1"
     shift
-    [[ $# -eq 0 ]] && return 0
     for e; do [[ "$e" == "$match" ]] && return 0; done
     return 1
 }
@@ -156,7 +155,7 @@ execute() {
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
         [[ -e "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && continue
         roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
+        if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
             log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
             _execute "$SETUP_CURRENT_ROLE_FILE_PATH" "$SETUP_FUNC_NAME"
         fi
@@ -181,7 +180,7 @@ version() {
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
         roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
+        if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
             source "$SETUP_CURRENT_ROLE_FILE_PATH"
 
             if is_installed; then
@@ -298,12 +297,13 @@ toggle_ed() {
         disable) local toggle_ed_action="touch disable" ;;
     esac
 
+#    [[ $# -eq 0 ]] && return 0
     declare -a roles=()
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
         roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
+        if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
             log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
             (cd $SETUP_CURRENT_ROLE_DIR_PATH && eval "${toggle_ed_action}")
         fi
