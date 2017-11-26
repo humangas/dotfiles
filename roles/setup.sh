@@ -259,17 +259,11 @@ _check() {
         is_err=1
     }
 
-    # is_installed
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $3!~/y/{print $1}'); do _errmsg "is_installed" "$r"; done
-    # config
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $4!~/y/{print $1}'); do _errmsg "config" "$r"; done
-    # version
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $5!~/y/{print $1}'); do _errmsg "version" "$r"; done
-    # install
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $6!~/y/{print $1}'); do _errmsg "install" "$r"; done
-    # upgrade
     for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $7!~/y/{print $1}'); do _errmsg "upgrade" "$r"; done
-
     [[ $is_err -eq 0 ]] || exit 1
 }
 
