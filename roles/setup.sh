@@ -299,9 +299,11 @@ edit() {
 }
 
 toggle_ed() {
+    local cmd
     case $SETUP_FUNC_NAME in
-        enable)  local toggle_ed_action="rm -f disable" ;;
-        disable) local toggle_ed_action="touch disable" ;;
+        enable)  cmd="rm -f disable" ;;
+        disable) cmd="touch disable" ;;
+        *) log "ERROR" "Fatal: \"$SETUP_FUNC_NAME\" is an undefined function"; exit 1 ;;
     esac
 
     declare -a roles=()
@@ -311,7 +313,7 @@ toggle_ed() {
         roles+=( $SETUP_CURRENT_ROLE_NAME )
         if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
             log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
-            (cd $SETUP_CURRENT_ROLE_DIR_PATH && eval "${toggle_ed_action}")
+            (cd $SETUP_CURRENT_ROLE_DIR_PATH && eval "${cmd}")
         fi
     done
 
