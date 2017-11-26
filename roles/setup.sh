@@ -279,7 +279,7 @@ create() {
         exit 1
     fi
 
-    for r in $SETUP_ROLES; do
+    for r in $@; do
         if [[ ! -e "$SETUP_ROLES_PATH/$r" ]]; then
             mkdir -p "$SETUP_ROLES_PATH/$r"
             cp "$SETUP_ROLES_PATH/_templates/$SETUP_CREATE_TYPE" "$SETUP_ROLES_PATH/${r}/${SETUP_CREATE_TYPE%.*}"
@@ -511,7 +511,7 @@ main() {
         tags)
             tags ${SETUP_ROLES[@]} | column -t ;;
         create)
-            create $SETUP_ROLES ;;
+            create ${SETUP_ROLES[@]} ;;
         edit)
             edit $SETUP_ROLES ;;
         version) 
