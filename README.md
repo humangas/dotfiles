@@ -48,29 +48,43 @@ $ make install
 
 ### Usage
 ```
-Usage: setup <command> [option] [<roles...>]
+Usage: setup <command> [option] [<args>]...
 
 Command:
-    install  [roles...]   Install roles
-    upgrade  [roles...]   Upgrade roles
-    config   [roles...]   Configure roles
-    version  [roles...]   Display version of roles
-    list     [roles...]   List roles (status: enable, disable, None=not installed, Error=not implemented or role not found)
-    disable  [roles...]   Disable roles
-    enable   [roles...]   Enable roles
-    dotfiles [roles...]   Output dofiles to the dotfiles directory (need to implement the "dotfiles" function)
-    create   <roles...>   Create the specified role (ok=implemented, -=not implemented)
-    check                 Check whether setup.sh for each role implements the required function
+    list      [role]...         List [role]... (status:[enable|disable], implemented:[y(yes)|n(no)])
+    tags      [role]...         List tags and the roles associated with them
+    versions  [role]...         Display version of [role]... NOTE: Execute with no [role]... takes time
+    install   [role]...         Install [role]...
+    upgrade   [role]...         Upgrade [role]...
+    config    [role]...         Configure [role]...
+    enable    [role]...         Enable [role]...
+    disable   [role]...         Disable [role]...
+    create    <role>...         Create <role>...
+    edit      [role]            Edit "setup.sh" of <role> with $EDITOR (Default: roles/setup.sh)
+    tag-add   <tag> [role]...   Add <tag> to [role]... (Default: to all roles)
+    tag-del   <tag> [role]...   Delete <tag> to [role]... (Default: to all roles)
+    tag-ren   <old> <new>       Rename <old-tag> to <new-tag>
 
 Option:
-    --clear               Clear "setup.versions" file and reacquire the list (only "list" command)
-    --type, -t <type>     "<type>" specifies "setup.sh.<type>" under _templates directory (only "create" command)
-                          not specify an option, "setup.sh.default" is selected
+    --tags    <tag>...          Only process roles containing "$SETUP_TAGS_PREFIX<tag>"
+                                Multiple tags can be specified by separating them with a comma(,).
+                                Only "[list|tags|versions|install|upgrade|config|enable|disable]" command option
+    --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
+                                Default: "$SETUP_TYPE_DEFAULT"
+                                Only "create" command option
+
+Settings:
+    export EDITOR="vim"
+    export SETUP_TAGS_PREFIX="tag."
+    export SETUP_TYPE_DEFAULT="setup.sh.brew"
 
 Examples:
     setup install
     setup install brew go direnv
-    setup create --type brew direnv
-    setup check
+    setup create --type brewcask vagrant clipy skitch
+    setup edit ansible
+    setup disable --tags GNU_commands,Quicklook
+    setup tags --tags GNU_commands,Quicklook ag
+    setup tag-add GNU_commands grep coreutils
 
 ```
