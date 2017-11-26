@@ -2,27 +2,27 @@
 
 usage() {
 cat << EOS 
-Usage: $(basename $0) <command> [option] [<args>...]
+Usage: $(basename $0) <command> [option] [<args>]...
 
 Command:
-    list      [role...]         List [role...] (status:[enable|disable], implemented:[y(yes)|n(no)])
-    tags      [role...]         List tags and the roles associated with them
-    versions  [role...]         Display version of [role...] NOTE: Execute with no [role...] takes time
-    install   [role...]         Install [role...]
-    upgrade   [role...]         Upgrade [role...]
-    config    [role...]         Configure [role...]
-    enable    [role...]         Enable [role...]
-    disable   [role...]         Disable [role...]
+    list      [role]...         List [role]... (status:[enable|disable], implemented:[y(yes)|n(no)])
+    tags      [role]...         List tags and the roles associated with them
+    versions  [role]...         Display version of [role]... NOTE: Execute with no [role]... takes time
+    install   [role]...         Install [role]...
+    upgrade   [role]...         Upgrade [role]...
+    config    [role]...         Configure [role]...
+    enable    [role]...         Enable [role]...
+    disable   [role]...         Disable [role]...
     create    <role>...         Create <role>...
     edit      [role]            Edit "setup.sh" of <role> with \$EDITOR (Default: roles/setup.sh)
-    tag-add   <tag> [role...]   Add <tag> to [role...] (Default: to all roles)
-    tag-del   <tag> [role...]   Delete <tag> to [role...] (Default: to all roles)
+    tag-add   <tag> [role]...   Add <tag> to [role]... (Default: to all roles)
+    tag-del   <tag> [role]...   Delete <tag> to [role]... (Default: to all roles)
     tag-ren   <old> <new>       Rename <old-tag> to <new-tag>
 
 Option:
     --tags    <tag>...          Only process roles containing "\$SETUP_TAGS_PREFIX<tag>"
                                 Multiple tags can be specified by separating them with a comma(,).
-                                Only "[list|tags|versions|install|upgrade|config|enable|disable|create]" command option
+                                Only "[list|tags|versions|install|upgrade|config|enable|disable]" command option
     --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
                                 Default: "\$SETUP_TYPE_DEFAULT"
                                 Only "create" command option
