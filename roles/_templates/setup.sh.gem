@@ -16,7 +16,7 @@ is_installed() {
 }
 
 version() {
-    gem list --local "$SETUP_CURRENT_ROLE_NAME" | head -n 1
+    gem list --local "$SETUP_CURRENT_ROLE_NAME" | head -n 1 | sed "s/$SETUP_CURRENT_ROLE_NAME //" | sed -e "s/[()]//g"
 }
 
 config() {
