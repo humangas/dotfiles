@@ -13,7 +13,7 @@ is_installed() {
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
+    "$SETUP_CURRENT_ROLE_NAME" --version | sed "s/Homebrew //"
 }
 
 config() {
