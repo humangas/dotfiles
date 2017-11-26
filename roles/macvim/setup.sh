@@ -13,7 +13,7 @@ is_installed() {
 }
 
 version() {
-    brew info "$SETUP_CURRENT_ROLE_NAME"
+    echo "$(brew cask list $SETUP_CURRENT_ROLE_NAME --versions 2>/dev/null)" | cut -d' ' -f2
 }
 
 config() {

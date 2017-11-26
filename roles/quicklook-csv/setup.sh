@@ -9,12 +9,12 @@ is_installed() {
     brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    return
+version() {
+    echo "$(brew cask list $SETUP_CURRENT_ROLE_NAME --versions 2>/dev/null)" | cut -d' ' -f2
 }
 
-version() {
-    brew cask info "$SETUP_CURRENT_ROLE_NAME"
+config() {
+    return
 }
 
 install() {

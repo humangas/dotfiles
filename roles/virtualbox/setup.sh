@@ -9,18 +9,11 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    if type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; then
-        return 0 
-    fi
-    if type brew > /dev/null 2>&1; then
-        brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1
-        return $?
-    fi
-    return 1
+    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
 version() {
-    brew cask info "$SETUP_CURRENT_ROLE_NAME"
+    echo "$(brew cask list $SETUP_CURRENT_ROLE_NAME --versions 2>/dev/null)" | cut -d' ' -f2
 }
 
 config() {
