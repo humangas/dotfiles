@@ -10,7 +10,7 @@ is_installed() {
 }
 
 version() {
-    echo "$(brew cask list $SETUP_CURRENT_ROLE_NAME --versions 2>/dev/null)" | cut -d' ' -f2
+    ls "/usr/local/Caskroom/$SETUP_CURRENT_ROLE_NAME" 2>/dev/null
 }
 
 config() {
