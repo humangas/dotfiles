@@ -184,7 +184,7 @@ execute() {
 
 versions() {
     # Print header
-    printf "role,status,version\n"
+    printf "role,version\n"
     declare -a roles=()
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
@@ -192,17 +192,8 @@ versions() {
         roles+=( $SETUP_CURRENT_ROLE_NAME )
         if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
             source "$SETUP_CURRENT_ROLE_FILE_PATH"
-
-            if is_installed; then
-                local _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
-            else
-                local _status="None"
-            fi
             local _version=$(version 2>/dev/null | head -n1 | sed -e s/,/_/g)
-
-            printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_version\n"
-
-            unset -f is_installed
+            printf "$SETUP_CURRENT_ROLE_NAME,$_version\n"
             unset -f version
         fi
     done
