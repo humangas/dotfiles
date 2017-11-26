@@ -9,11 +9,11 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    type dot > /dev/null 2>&1; return $?
+    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
 version() {
-    dot -V 2>&1
+    basename "$(readlink /usr/local/opt/$SETUP_CURRENT_ROLE_NAME)"
 }
 
 config() {
