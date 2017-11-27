@@ -11,6 +11,7 @@ display_logo() {
       ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║
       ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
                                                                    
+                                                                   
       humangas's macOS setup tool and dotfiles
       See also: https://$SETUP_REPOSITORY_NAME
 
