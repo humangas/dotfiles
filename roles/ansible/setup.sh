@@ -23,6 +23,7 @@ config() {
 install() {
     depend "install" "brew"
     depend "install" "sqlite"
+    depend "install" "python"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
