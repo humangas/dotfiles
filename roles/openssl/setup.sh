@@ -13,18 +13,17 @@ is_installed() {
 }
 
 version() {
+    # basename "$(readlink $(brew --prefix $SETUP_CURRENT_ROLE_NAME 2>/dev/null))"
     basename "$(readlink /usr/local/opt/$SETUP_CURRENT_ROLE_NAME)"
 }
 
 config() {
-    return
+    depend "config" "zsh"
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/openssl.env.sh" ~/.zsh.d/
 }
 
 install() {
     depend "install" "brew"
-    depend "install" "sqlite"
-    depend "install" "openssl"
-    depend "install" "python"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
