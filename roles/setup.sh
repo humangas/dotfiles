@@ -209,7 +209,7 @@ versions() {
 
 list() {
     # Print header
-    printf "role,status,is_installed,config,version,install,upgrade,tags\n"
+    printf "role,status,README,is_installed,config,version,install,upgrade,tags,files\n"
 
     local role _is_installed _config _version _install _upgrade _status _tags
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
@@ -226,12 +226,17 @@ list() {
         [[ $(type -t version) == "function" ]] && _version="y" || _version="n"
         [[ $(type -t install) == "function" ]] && _install="y" || _install="n"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="y" || _upgrade="n"
+        _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "y" || echo "n")
         _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
         _tags=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f -name "$SETUP_TAGS_PREFIX*" \
-            | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
-            | paste -s -d '|' -)
+                    | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
+                    | paste -s -d '|' -)
+        _files=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f \
+                    | /usr/bin/egrep -v "_template|setup\.sh|README\.md|tag\..*" \
+                    | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/@@" \
+                    | paste -s -d '|' -)
 
-        printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_is_installed,$_config,$_version,$_install,$_upgrade,$_tags\n"
+        printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_readme,$_is_installed,$_config,$_version,$_install,$_upgrade,$_tags,$_files\n"
 
         unset -f is_installed
         unset -f config
