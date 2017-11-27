@@ -18,7 +18,7 @@ version() {
 
 config() {
     depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/coreutils.sh" ~/.zsh.d/
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/coreutils.env.sh" ~/.zsh.d/
 }
 
 install() {

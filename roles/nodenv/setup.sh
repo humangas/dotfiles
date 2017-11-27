@@ -22,7 +22,7 @@ version() {
 
 config() {
     depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/nodenv.sh" ~/.zsh.d/
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/nodenv.env.sh" ~/.zsh.d/
 }
 
 install() {

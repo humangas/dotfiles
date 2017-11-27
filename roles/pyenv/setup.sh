@@ -18,7 +18,7 @@ version() {
 
 config() {
     depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/pyenv.sh" ~/.zsh.d/
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/pyenv.env.sh" ~/.zsh.d/
 }
 
 install() {

@@ -18,7 +18,7 @@ version() {
 
 config() {
     depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/direnv.sh" ~/.zsh.d/
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/direnv.env.sh" ~/.zsh.d/
 }
 
 install() {

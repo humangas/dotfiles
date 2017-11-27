@@ -21,7 +21,7 @@ config() {
     mkdir -p $HOME/src
     mkdir -p $HOME/bin
     mkdir -p $HOME/pkg
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/go.sh" ~/.zsh.d/
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/go.env.sh" ~/.zsh.d/
 }
 
 install() {
