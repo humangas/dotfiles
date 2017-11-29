@@ -17,8 +17,7 @@ version() {
 }
 
 config() {
-    depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/humangas.gitignore" ~/.gitignore-boilerplates/
+    cp "$SETUP_CURRENT_ROLE_DIR_PATH/.gitignore-boilerplates" "$HOME/"
 }
 
 install() {

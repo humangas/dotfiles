@@ -33,10 +33,17 @@ update:
 dotfiles:
 	@mkdir -p $(DOTFILESPATH);
 	@for f in $(DOTFILES); do \
-		if [ -e "./$(BASEPATH)/$$f" ]; then \
-			echo "Copy dotfiles: $$f..."; \
+		if [ -f "./$(BASEPATH)/$$f" ]; then \
+			echo "Copy dotfiles(file): $$f..."; \
 			_dir=`dirname $$f | grep '/' | cut -d/ -f2-`; \
 			mkdir -p "$(DOTFILESPATH)/$$_dir"; \
 			cp -f "./$(BASEPATH)/$$f" "$(DOTFILESPATH)/$$_dir"; \
+		fi \
+		; \
+		if [ -d "./$(BASEPATH)/$$f" ]; then \
+			echo "Copy dotfiles(directory): $$f..."; \
+			_dir=`dirname $$f | grep '/' | cut -d/ -f2-`; \
+			mkdir -p "$(DOTFILESPATH)/$$_dir"; \
+			cp -rf "./$(BASEPATH)/$$f" "$(DOTFILESPATH)/$$_dir"; \
 		fi \
 	done

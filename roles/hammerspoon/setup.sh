@@ -19,7 +19,7 @@ version() {
 config() {
     mkdir -p ~/.hammerspoon/Spoons
     defaults write -app Terminal AppleLanguages "(en, ja)"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/init.lua" ~/.hammerspoon/
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.hammerspoon" "$HOME/"
     log "INFO" "Install Hammerspoon plugin: Calendar..."
     curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Calendar.spoon.zip -# | /usr/bin/tar xz -C ~/.hammerspoon/Spoons/
     log "INFO" "Install Hammerspoon plugin: Caffeine..."

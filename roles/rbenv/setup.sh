@@ -21,8 +21,7 @@ version() {
 }
 
 config() {
-    depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/rbenv.env.sh" ~/.zsh.d/
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
 }
 
 install() {

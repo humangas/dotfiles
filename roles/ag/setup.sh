@@ -17,9 +17,8 @@ version() {
 }
 
 config() {
-    depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/ag.alias.sh" ~/.zsh.d/
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/.agignore" "$HOME/"
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
+    cp -f "$SETUP_CURRENT_ROLE_DIR_PATH/.agignore" "$HOME/"
 }
 
 install() {

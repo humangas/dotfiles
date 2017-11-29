@@ -1,0 +1,53 @@
+## humangas gitignore
+
+# Temporary Files
+#---------------------------
+tmp/
+*.swp
+
+# Backup files
+#---------------------------
+*.bak
+_bak/
+*.bk
+*.orig
+*~
+*.old
+old/
+_old/
+
+# OS dependent files
+#---------------------------
+.DS_Store
+Thumbs.db
+
+# Key files
+#---------------------------
+*.pem
+id_rsa
+id_rsa.pub
+.envrc
+
+# No upload files
+#---------------------------
+*.xls*
+*.xlk
+*.doc*
+*.ppt*
+~$*
+
+# IDE files
+#---------------------------
+.project
+.settings/
+
+# HashiCorp
+#---------------------------
+*.tfstate
+*.backup
+.vagrant/
+
+# Binary files
+#---------------------------
+*.rpm
+*.zip
