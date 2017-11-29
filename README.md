@@ -53,7 +53,7 @@ Usage: setup <command> [option] [<args>]...
 Command:
     list      [role]...         List [role]... (status:[enable|disable], implemented:[y(yes)|n(no)])
     tags      [role]...         List tags and the roles associated with them
-    versions  [role]...         Display version of [role]... NOTE: Execute with no [role]... takes time
+    versions  [role]...         List version of [role]... NOTE: Execute with no [role]... takes time
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
@@ -86,5 +86,9 @@ Examples:
     setup disable --tags GNU_commands,Quicklook
     setup tags --tags GNU_commands,Quicklook ag
     setup tag-add GNU_commands grep coreutils
+
+Convenient usage:
+    # List only roles that contain files
+    $ setup list | awk '$10!=NULL{print $1" "$10}' | column -t
 
 ```
