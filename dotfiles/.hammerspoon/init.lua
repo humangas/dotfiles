@@ -40,8 +40,8 @@ function toggle_application(_app)
         end
     end
 end
-hs.hotkey.bind(cmd_shift, "J", function() toggle_application("Terminal") end)
-hs.hotkey.bind(cmd_shift, "K", function() toggle_application("Google Chrome") end)
+hs.hotkey.bind(cmd_shift, ";", function() toggle_application("Terminal") end)
+hs.hotkey.bind(cmd_shift, ":", function() toggle_application("Google Chrome") end)
 
 -- Load Spoons
 -- See also: https://github.com/Hammerspoon/Spoons
