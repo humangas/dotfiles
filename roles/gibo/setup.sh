@@ -17,7 +17,7 @@ version() {
 }
 
 config() {
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/.gitignore-boilerplates" "$HOME/"
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.gitignore-boilerplates" "$HOME/"
 }
 
 install() {
