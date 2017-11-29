@@ -17,16 +17,14 @@ version() {
 }
 
 config() {
-    depend "config" "zsh"
     mkdir -p $HOME/src
     mkdir -p $HOME/bin
     mkdir -p $HOME/pkg
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/go.env.sh" ~/.zsh.d/
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
 }
 
 install() {
     depend "install" "brew"
-    depend "install" "zsh"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     config
 }
