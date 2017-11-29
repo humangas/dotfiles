@@ -29,7 +29,6 @@ config() {
 
 install() {
     depend "install" "brew" 
-    depend "install" "zsh"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     _is_installed_reattach-to-user-namespace || brew install reattach-to-user-namespace
     config
