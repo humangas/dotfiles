@@ -40,8 +40,11 @@ function toggle_application(_app)
         end
     end
 end
-hs.hotkey.bind(cmd_shift, ";", function() toggle_application("Terminal") end)
-hs.hotkey.bind(cmd_shift, ":", function() toggle_application("Google Chrome") end)
+-- keymap: Console > hs.inspect(hs.keycodes.map)
+-- semi colon = 41
+hs.hotkey.bind(cmd_shift, 41, function() toggle_application("Terminal") end)
+-- dot = 47 
+hs.hotkey.bind(cmd_shift, 47, function() toggle_application("Google Chrome") end)
 
 -- Load Spoons
 -- See also: https://github.com/Hammerspoon/Spoons
