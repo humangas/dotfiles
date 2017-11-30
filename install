@@ -71,15 +71,14 @@ main() {
     SETUP_WORKTMPDIR=`mktemp -d`
     download_repository
     init
-    local retval="$?"
     local dependlog="$(grep -ni --color=auto 'Installing .* dependency' "$PWD/install.log")"
-    local errorlog="$(grep -n --color=auto 'Error' "$PWD/install.log")"
     local warnlog="$(grep -n --color=auto 'Warning' "$PWD/install.log")"
+    local errorlog="$(grep -n --color=auto 'Error' "$PWD/install.log")"
     printf "\n"
     [[ ! -z "$dependlog" ]] && (log "INFO" "To define dependencies on your own, please refer to the following:" && echo -e "$dependlog\n")
-    [[ ! -z "$errorlog" ]] && (log "ERROR" "Following error occurred. please confirm the contents:" && echo -e "$errorlog\n")
     [[ ! -z "$warnlog" ]] && (log "WARN" "Following warning occurred. please confirm the contents:" && echo -e "$warnlog\n")
-    if [[ "$retval" -eq 0 ]]; then
+    [[ ! -z "$errorlog" ]] && (log "ERROR" "Following error occurred. please confirm the contents:" && echo -e "$errorlog\n")
+    if [[ -z "$errorlog" ]]; then
         log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! Please Reboot the OS (Log: ./install.log)"
     else
         log "ERROR" "[$(date +'%Y-%m-%d %H:%M:%S')] Error!! Processing was interrupted (Log: ./install.log)"
