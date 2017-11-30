@@ -24,7 +24,7 @@ version() {
 }
 
 config() {
-    mkdir -p "$HOME/note"
+    mkdir -p "$HOME/note/jupyter"
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
 }
 
