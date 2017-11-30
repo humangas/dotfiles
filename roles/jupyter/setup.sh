@@ -24,8 +24,7 @@ version() {
 }
 
 config() {
-    # TODO: Comment out after "note" setting
-    # depend "config" "note"
+    mkdir -p "$HOME/note"
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
 }
 
