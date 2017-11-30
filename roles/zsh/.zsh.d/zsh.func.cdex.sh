@@ -21,7 +21,7 @@ echo "Usage: cd [options] [dir]
 
 options:
   -s, --src           List \$GOPATH/src list
-  -w, --work          List \$GOPATH/src/work list
+  -w, --work          List \$GOPATH/src/work/*/ list
   -g, --git           Open git url
   --                  List history
   **                  Subsequently press tab, fzf mode will be set
