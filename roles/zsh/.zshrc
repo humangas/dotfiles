@@ -14,13 +14,6 @@ typeset -U path cdpath fpath manpath
 # Env /usr/local/bin
 export PATH="/usr/local/bin:$PATH"
 
-## Env oracle client settings
-#export ORACLE_HOME=/usr/local/oracle
-#export TNS_ADMIN=~/.config/oracle
-#export PATH=$ORACLE_HOME:$PATH
-#export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$ORACLE_HOME
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME
-
 # Bindkey
 bindkey -v                                             # vi keybind 
 bindkey "^[[Z" reverse-menu-complete                   # shift-tab reverse
@@ -74,64 +67,8 @@ setopt hist_ignore_all_dups                      # Duplicate commands delete the
 setopt hist_ignore_space                         # Beginning starts with a space, do not add it to history.
 setopt hist_no_store                             # Do not register the history command in the history.
 
-# # Plugin zplug
-# source ~/.zplug/init.zsh
-# ## Plugins...
-# zplug "zsh-users/zsh-completions"
-# zplug "zsh-users/zsh-syntax-highlighting"
-#
-# ## Install plugins if there are plugins that have not been installed
-# if ! zplug check --verbose; then
-#     printf "Install? [y/N]: "
-#     if read -q; then
-#         echo; zplug install
-#     fi
-# fi
-# ## Then, source plugins and add commands to $PATH
-# zplug load --verbose
-
-# Alias
-alias mkdir='mkdirEnhance'
-alias cd='cdEnhance'
-alias mdf='openMdfindFilterFzf'
-alias tmr='tmuxResizePane'
-# alias jnb='jupyter notebook --notebook-dir ~/src/work/jupyter'              # Required: $ pip insall jupyter
-# alias rmzcompdump='rm -f ~/.zcompdump; rm -f ~/.zplug/zcompdump'            # If tab completion error occurs, delete it. Then reload the zsh.
-
-
 # less option
 export LESS='-iMR'
-
-# Load fzf (see also: ~/.cache/dein/repos/github.com/junegunn/fzf/shell/key-bindings.zsh)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-_gen_fzf_default_opts() {
-    local base03="234"
-    local base02="235"
-    local base01="240"
-    local base00="241"
-    local base0="244"
-    local base1="245"
-    local base2="254"
-    local base3="230"
-    local yellow="136"
-    local orange="166"
-    local red="160"
-    local magenta="125"
-    local violet="61"
-    local blue="33"
-    local cyan="37"
-    local green="64"
-    
-    # Solarized Dark color scheme for fzf
-    # See also: https://github.com/junegunn/fzf/wiki/Color-schemes#alternate-solarized-lightdark-theme
-    local fzf_color="
-      --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
-      --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
-    "
-
-    export FZF_DEFAULT_OPTS="$fzf_color -0 --inline-info --cycle" 
-}
-_gen_fzf_default_opts
 
 # Source ~/.zsh.d/*.sh
 setopt nonomatch

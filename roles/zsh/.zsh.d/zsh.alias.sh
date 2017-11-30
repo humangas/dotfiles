@@ -1,3 +1,6 @@
 alias soz='source ~/.zshrc'
 alias ls='ls --color=auto'
 alias ll='ls -la'
+alias mkdir='mkdirex'
+alias cd='cdex'
+alias mdf='openMdfindFilterFzf'
