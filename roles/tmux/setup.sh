@@ -21,8 +21,9 @@ version() {
 }
 
 config() {
-    depend "config" "go"
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
     cp "$SETUP_CURRENT_ROLE_DIR_PATH/.tmux.conf" "$HOME/"
+    mkdir -p "$HOME/bin"
     chmod u+x "$SETUP_CURRENT_ROLE_DIR_PATH/bin/"*
     cp -p "$SETUP_CURRENT_ROLE_DIR_PATH/bin/"* "$HOME/bin/"
 }
