@@ -236,7 +236,7 @@ list() {
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
                     | paste -s -d '|' -)
         _files=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f \
-                    | /usr/bin/egrep -v "_template|disabled|setup\.sh|README\.md|tag\..*" \
+                    | /usr/bin/egrep -v "_template|disable|setup\.sh|README\.md|tag\..*" \
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/@@" \
                     | paste -s -d '|' -)
 
