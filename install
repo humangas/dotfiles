@@ -51,6 +51,7 @@ download_repository() {
 
 init() {
     log "INFO" "Install dotfiles and some apps..."
+    echo "$@"
     bash "$SETUP_WORKTMPDIR/roles/setup.sh" install "$@" 2>&1 | tee "$PWD/install.log"
 }
 
@@ -70,6 +71,7 @@ main() {
     check_httpstatus
     SETUP_WORKTMPDIR=`mktemp -d`
     download_repository
+    echo "$@"
     init "$@"
     local dependlog="$(grep -ni --color=auto 'Installing .* dependency' "$PWD/install.log")"
     local warnlog="$(grep -n --color=auto 'Warning' "$PWD/install.log")"
