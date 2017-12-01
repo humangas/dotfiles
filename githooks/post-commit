@@ -1,0 +1,23 @@
+#!/bin/bash
+
+abs_dirname() {
+    local cwd="$(pwd)"
+    local path="$1"
+
+    [[ $path == $(basename $path) ]] && pwd -P && return
+
+    while [ -n "$path" ]; do
+        cd "${path%/*}"
+        local name="${path##*/}"
+        path="$(readlink "$name" || true)"
+    done
+
+    pwd -P
+    cd "$cwd"
+}
+
+_dirpath="$(echo $(abs_dirname $0) | sed -e s@/.git/hooks@@)"
+(
+    cd _dirpath
+    make dotfiles
+)
