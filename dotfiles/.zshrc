@@ -70,11 +70,9 @@ setopt hist_no_store                             # Do not register the history c
 # less option
 export LESS='-iMR'
 
-# Source ~/.zsh.d/*.sh
-setopt nonomatch
-if ls ~/.zsh.d/*.sh > /dev/null 2>&1; then
-    for file in ~/.zsh.d/*.sh ; do
+# Source ~/.zsh.d/*.{sh,zsh}
+if ls ~/.zsh.d/*.{sh,zsh} > /dev/null 2>&1; then
+    for file in $(ls *.{sh,zsh}); do
         [[ -r $file ]] && source "$file"
     done
 fi
-setopt nomatch
