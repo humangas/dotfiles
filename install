@@ -67,7 +67,7 @@ init() {
             [[ $t =~ ^# ]] && continue
             tags+=("$t")
         done < <(cat $SETUP_TAGS_LIST) 
-        tags_option=$(echo ${tags[@]} | tr ' ' ',')
+        tags_option="--tags $(echo ${tags[@]} | tr ' ' ',')"
     fi
 
     bash "$SETUP_WORKTMPDIR/roles/setup.sh" install "$tags_option" "${roles[@]}" 2>&1 | tee "$PWD/install.log"
