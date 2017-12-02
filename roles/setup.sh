@@ -503,6 +503,7 @@ sudov() {
 }
 
 main() {
+    echo "$@"
     SETUP_ROLES_PATH=$(abs_dirname $0)
     _options "$@"
     case "$SETUP_FUNC_NAME" in
