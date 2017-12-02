@@ -31,6 +31,7 @@ Settings:
     export EDITOR="vim"
     export SETUP_TAGS_PREFIX="tag."
     export SETUP_TYPE_DEFAULT="setup.sh.brew"
+    export SETUP_LIST_FILES_DEPTH=3
 
 Examples:
     $(basename $0) install
@@ -50,8 +51,9 @@ exit 1
 }
 
 # Settings
-SETUP_TAGS_PREFIX="tag."
-SETUP_TYPE_DEFAULT="setup.sh.brew"
+SETUP_TAGS_PREFIX="${SETUP_TAGS_PREFIX:-tag.}"
+SETUP_TYPE_DEFAULT="${SETUP_TYPE_DEFAULT:-setup.sh.brew}"
+SETUP_LIST_FILES_DEPTH="${SETUP_LIST_FILES_DEPTH:-3}"
 
 abs_dirname() {
     local cwd="$(pwd)"
@@ -235,7 +237,7 @@ list() {
         _tags=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f -name "$SETUP_TAGS_PREFIX*" \
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
                     | paste -s -d '|' -)
-        _files=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f \
+        _files=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -maxdepth $SETUP_LIST_FILES_DEPTH -type f \
                     | /usr/bin/egrep -v "_template|disable|setup\.sh|README\.md|tag\..*" \
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/@@" \
                     | paste -s -d '|' -)
