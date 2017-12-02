@@ -73,9 +73,9 @@ $ make install
 Usage: setup <command> [option] [<args>]...
 
 Command:
-    list      [role]...         List [role]... (status:[enable|disable], implemented:[y(yes)|n(no)])
+    list      [role]...         List [role]... 
     tags      [role]...         List tags and the roles associated with them
-    versions  [role]...         List version of [role]... NOTE: Execute with no [role]... takes time
+    versions  [role]...         List version of [role]...
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
@@ -112,6 +112,6 @@ Examples:
 
 Convenient usage:
     # List only roles that contain files
-    $ setup list | awk '$10!=NULL{print $1" "$10}' | column -t
+    $ setup list | awk '$10!="-"{print $1" "$10}' | column -t
 
 ```
