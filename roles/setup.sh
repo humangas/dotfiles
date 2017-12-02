@@ -428,6 +428,8 @@ _options() {
     _parse() {
         local is_parsed=0
         while getopts ":-:" opt; do
+            # TODO
+            echo "--::$@"
             case "$opt" in
                 -)  # long option
                 case "${OPTARG}" in
