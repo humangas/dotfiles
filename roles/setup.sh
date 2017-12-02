@@ -445,6 +445,7 @@ _options() {
                         ;;
                     *)  # TODO
                         echo "%%%$@" 
+                        echo "${OPTARG}"
                         usage ;;
                 esac
                 ;;
