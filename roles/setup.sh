@@ -265,11 +265,29 @@ _check() {
         is_err=1
     }
 
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $4!~/✓/{print $1}'); do _errmsg "is_installed" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $5!~/✓/{print $1}'); do _errmsg "config" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $6!~/✓/{print $1}'); do _errmsg "version" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $7!~/✓/{print $1}'); do _errmsg "install" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $8!~/✓/{print $1}'); do _errmsg "upgrade" "$r"; done
+    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
+        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
+        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
+
+        [[ -e "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && continue
+        if [[ $# -gt 0 ]] && ! in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
+            continue
+        fi
+
+        source "$SETUP_CURRENT_ROLE_FILE_PATH"
+        [[ $(type -t is_installed) == "function" ]] || _errmsg "is_installed" "$SETUP_CURRENT_ROLE_NAME"
+        [[ $(type -t config) == "function" ]]  || _errmsg "config" "$SETUP_CURRENT_ROLE_NAME"
+        [[ $(type -t version) == "function" ]]  || _errmsg "version" "$SETUP_CURRENT_ROLE_NAME"
+        [[ $(type -t install) == "function" ]] || _errmsg "install" "$SETUP_CURRENT_ROLE_NAME"
+        [[ $(type -t upgrade) == "function" ]] || _errmsg "upgrade" "$SETUP_CURRENT_ROLE_NAME"
+
+        unset -f is_installed
+        unset -f config
+        unset -f version
+        unset -f install
+        unset -f upgrade
+    done
+    
     [[ $is_err -eq 0 ]] || exit 1
 }
 
@@ -515,7 +533,6 @@ main() {
         edit)
             edit $SETUP_ROLES ;;
         version) 
-            [[ $# -eq 0 ]] && _check
             versions ${SETUP_ROLES[@]} | column -ts, ;;
         list)
             list ${SETUP_ROLES[@]} | column -ts, | sed "s/|/,/g" ;;
@@ -527,7 +544,7 @@ main() {
             tag_ren "$SETUP_OLD_TAG" "$SETUP_NEW_TAG" ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
-            _check
+            _check ${SETUP_ROLES[@]}
 #            sudov
             execute ${SETUP_ROLES[@]}
             _print_caveats
