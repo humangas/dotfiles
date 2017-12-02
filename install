@@ -51,8 +51,16 @@ download_repository() {
 
 init() {
     log "INFO" "Install dotfiles and some apps..."
-    echo "$@"
-    bash "$SETUP_WORKTMPDIR/roles/setup.sh" install 2>&1 | tee "$PWD/install.log"
+    local roleslst=${SETUP_ROLES_LST:-roles.lst}
+    roles=()
+    if [[ -f $roleslst ]]; then
+        while read r; do
+            [[ $r =~ ^# ]] && continue
+            roles+=("$r")
+        done < <(cat $roleslst) 
+    fi
+    echo "${roles[@]}"
+    bash "$SETUP_WORKTMPDIR/roles/setup.sh" install "${roles[@]}" 2>&1 | tee "$PWD/install.log"
 }
 
 finally() {
