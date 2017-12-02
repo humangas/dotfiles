@@ -7,6 +7,28 @@ My macOS setup tool and dotfiles
 $ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/install | bash
 ```
 
+### Setting
+With the settings below you can specify the roles and tags to install (# is a comment).
+
+#### Roles
+```
+$ export SETUP_ROLES_LIST=roles.lst
+$ cat roles.lst
+zsh
+vim
+# curl
+tmux
+```
+
+#### Tags
+```
+$ export SETUP_TAGS_LIST=tags.lst
+$ cat tags.lst
+GNU_commands
+Git
+Python
+```
+
 ### NOTE
 ### sudo password
 If you make the following settings in advance, you will not be asked for sudo password.
@@ -77,6 +99,7 @@ Settings:
     export EDITOR="vim"
     export SETUP_TAGS_PREFIX="tag."
     export SETUP_TYPE_DEFAULT="setup.sh.brew"
+    export SETUP_LIST_FILES_DEPTH=3
 
 Examples:
     setup install
