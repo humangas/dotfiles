@@ -5,7 +5,7 @@ cat << EOS
 Usage: $(basename $0) <command> [option] [<args>]...
 
 Command:
-    list      [role]...         List [role]... (status:[enable|disable], implemented:[y(yes)|n(no)])
+    list      [role]...         List [role]... 
     tags      [role]...         List tags and the roles associated with them
     versions  [role]...         List version of [role]... NOTE: Execute with no [role]... takes time
     install   [role]...         Install [role]...
@@ -54,6 +54,8 @@ exit 1
 SETUP_TAGS_PREFIX="${SETUP_TAGS_PREFIX:-tag.}"
 SETUP_TYPE_DEFAULT="${SETUP_TYPE_DEFAULT:-setup.sh.brew}"
 SETUP_LIST_FILES_DEPTH="${SETUP_LIST_FILES_DEPTH:-3}"
+SETUP_TRUE_MARK="✓"
+SETUP_FALSE_MARK="✗"
 
 abs_dirname() {
     local cwd="$(pwd)"
@@ -227,12 +229,12 @@ list() {
         fi
 
         source "$SETUP_CURRENT_ROLE_FILE_PATH"
-        [[ $(type -t is_installed) == "function" ]] && _is_installed="y" || _is_installed="n"
-        [[ $(type -t config) == "function" ]] && _config="y" || _config="n"
-        [[ $(type -t version) == "function" ]] && _version="y" || _version="n"
-        [[ $(type -t install) == "function" ]] && _install="y" || _install="n"
-        [[ $(type -t upgrade) == "function" ]] && _upgrade="y" || _upgrade="n"
-        _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "y" || echo "n")
+        [[ $(type -t is_installed) == "function" ]] && _is_installed="$SETUP_TRUE_MARK" || _is_installed="$SETUP_FALSE_MARK"
+        [[ $(type -t config) == "function" ]] && _config="$SETUP_TRUE_MARK" || _config="$SETUP_FALSE_MARK"
+        [[ $(type -t version) == "function" ]] && _version="$SETUP_TRUE_MARK" || _version="$SETUP_FALSE_MARK"
+        [[ $(type -t install) == "function" ]] && _install="$SETUP_TRUE_MARK" || _install="$SETUP_FALSE_MARK"
+        [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
+        _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
         _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
         _tags=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f -name "$SETUP_TAGS_PREFIX*" \
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
@@ -263,11 +265,11 @@ _check() {
         is_err=1
     }
 
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $4!~/y/{print $1}'); do _errmsg "is_installed" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $5!~/y/{print $1}'); do _errmsg "config" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $6!~/y/{print $1}'); do _errmsg "version" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $7!~/y/{print $1}'); do _errmsg "install" "$r"; done
-    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $8!~/y/{print $1}'); do _errmsg "upgrade" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $4!~/✓/{print $1}'); do _errmsg "is_installed" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $5!~/✓/{print $1}'); do _errmsg "config" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $6!~/✓/{print $1}'); do _errmsg "version" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $7!~/✓/{print $1}'); do _errmsg "install" "$r"; done
+    for r in $(list | awk -F, 'NR > 1 && $2~/enable/ && $8!~/✓/{print $1}'); do _errmsg "upgrade" "$r"; done
     [[ $is_err -eq 0 ]] || exit 1
 }
 
