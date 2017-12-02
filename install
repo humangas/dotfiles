@@ -70,7 +70,6 @@ init() {
         tags_option="--tags $(echo ${tags[@]} | tr ' ' ',')"
     fi
 
-    echo "$tags_option"
     bash "$SETUP_WORKTMPDIR/roles/setup.sh" install "$tags_option" "${roles[@]}" 2>&1 | tee "$PWD/install.log"
 }
 
