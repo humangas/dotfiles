@@ -428,8 +428,6 @@ _options() {
     _parse() {
         local is_parsed=0
         while getopts ":-:" opt; do
-            # TODO
-            echo "%$@"
             case "$opt" in
                 -)  # long option
                 case "${OPTARG}" in
@@ -443,15 +441,10 @@ _options() {
                         shift $((OPTIND -1))
                         SETUP_TAGS=($(echo "$1" | tr -s ',', ' '))
                         ;;
-                    *)  # TODO
-                        echo "%%%$@" 
-                        echo "${OPTARG}"
-                        usage ;;
+                    *)  usage ;;
                 esac
                 ;;
-                *)  # TODO
-                    echo "%%$@" 
-                    usage ;;
+                *)  usage ;;
             esac
         done
         [[ "$is_parsed" -eq 0 ]] && SETUP_ROLES="$@" || shift; SETUP_ROLES="$@"
