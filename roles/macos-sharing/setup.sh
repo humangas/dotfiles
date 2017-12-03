@@ -18,9 +18,11 @@ version() {
 }
 
 config() {
-    # $ xxd -r -p <<< 68756d616e676173
+    # $ xxd -p <<< humangas
+    # 68756d616e6761730a
+    # $ xxd -r -p <<< 68756d616e6761730a
     # humangas
-    SETUP_COMPUTER_NAME="${SETUP_COMPUTER_NAME:-68756d616e676173}"
+    SETUP_COMPUTER_NAME="${SETUP_COMPUTER_NAME:-68756d616e6761730a}"
     sudo scutil --set ComputerName "$SETUP_COMPUTER_NAME"
     sudo scutil --set HostName "$SETUP_COMPUTER_NAME"
     sudo scutil --set LocalHostName "$SETUP_COMPUTER_NAME"
