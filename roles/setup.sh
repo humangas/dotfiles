@@ -300,7 +300,8 @@ create() {
     for r in $@; do
         if [[ ! -e "$SETUP_ROLES_PATH/$r" ]]; then
             mkdir -p "$SETUP_ROLES_PATH/$r"
-            cp "$SETUP_ROLES_PATH/_templates/$SETUP_CREATE_TYPE" "$SETUP_ROLES_PATH/${r}/${SETUP_CREATE_TYPE%.*}"
+            cp "$SETUP_ROLES_PATH/_templates/$SETUP_CREATE_TYPE" "$SETUP_ROLES_PATH/$r/${SETUP_CREATE_TYPE%.*}"
+            echo -e "# $r\nTODO: Please write the contents" > "$SETUP_ROLES_PATH/$r/README.md"
             log "INFO" "==> Created \"$r\" role"
         else
             log "ERROR" "Error: \"$r\" role is already exists"
