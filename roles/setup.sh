@@ -236,7 +236,7 @@ list() {
         [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
         _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
         _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
-        _tags=$(find $SETUP_CURRENT_ROLE_DIR_PATH/ -type f -name "$SETUP_TAGS_PREFIX*" \
+        _tags=$(find $SETUP_CURRENT_ROLE_DIR_PATH -type f -name "$SETUP_TAGS_PREFIX*" \
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
                     | paste -s -d '|' -)
         _tags=${_tags:-"-"}
