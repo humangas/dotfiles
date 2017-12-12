@@ -1,0 +1,7 @@
+site_name: humangas's dotfiles
+theme:
+  name: 'material'
+  language: 'ja'
+extra:
+  search:
+    language: 'jp'
