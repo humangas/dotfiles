@@ -9,7 +9,7 @@ BASEPATH := roles
 
 .DEFAULT_GOAL := help
 
-.PHONY: all help install update dotfiles
+.PHONY: all help install update dotfiles docs
 
 all:
 
@@ -20,6 +20,7 @@ help:
 	@echo " - install:    \"setup\" command becomes available"
 	@echo " - update:     Update dotfiles repository"
 	@echo " - dotfiles:   Place the files in \"dotfiles.lst\" in the \"dotfiles\" directory"
+	@echo " - docs:       Generate docs"
 	@echo ""
 
 install:
@@ -42,3 +43,6 @@ dotfiles:
 			cp -rf "./$(BASEPATH)/$$f" "$(DOTFILESPATH)/$$_dir"; \
 		fi \
 	done
+
+docs:
+	@bash scripts/docs.sh
