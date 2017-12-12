@@ -2,6 +2,8 @@ site_name: humangas's dotfiles
 theme:
   name: 'material'
   language: 'ja'
+docs_dir: '_docs'
+site_dir: 'docs'
 extra:
   search:
     language: 'jp'

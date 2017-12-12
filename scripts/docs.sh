@@ -1,6 +1,6 @@
 #!/bin/bash -u
 
-DOCS_PATH="docs"
+DOCS_PATH="_docs"
 ROLES_PATH="roles"
 SETUP_TAGS_PREFIX="${SETUP_TAGS_PREFIX:-tag.}"
 
@@ -65,6 +65,7 @@ main() {
     init
     readmemd
     indexmd
+	mkdocs build
 }
 
 main "$@"
