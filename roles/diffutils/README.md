@@ -1,2 +1,2 @@
 # diffutils
-TODO: Please write the contents
+Include: diff, cmp, diff3, sdiff

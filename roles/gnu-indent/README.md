@@ -1,2 +1,3 @@
 # gnu-indent
-TODO: Please write the contents
+
+gnu-indent --with-defaults-names

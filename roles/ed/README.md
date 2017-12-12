@@ -1,2 +1,3 @@
 # ed
-TODO: Please write the contents
+
+ed --with-defaults-names
