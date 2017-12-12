@@ -123,7 +123,8 @@ Convenient usage:
 Generate a document.
 
 ### Setup
-use: mkdocs-material
+use: [mkdocs-material](https://github.com/squidfunk/mkdocs-material)
+
 ```
 $ brew install pyenv pyenv-virtualenv
 $ pyenv install 3.6.3
