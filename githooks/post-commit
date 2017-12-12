@@ -20,4 +20,5 @@ _dirpath="$(echo $(abs_dirname $0) | sed -e s@/.git/hooks@@)"
 (
     cd _dirpath
     make dotfiles
+    make docs
 )
