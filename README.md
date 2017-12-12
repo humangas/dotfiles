@@ -120,7 +120,7 @@ Convenient usage:
 
 
 ## Docs
-Generate a document.
+Generate document site: https://humangas.github.io/dotfiles/
 
 ### Setup
 use: [mkdocs-material](https://github.com/squidfunk/mkdocs-material)
