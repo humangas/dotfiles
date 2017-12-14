@@ -3,7 +3,7 @@
 
     
     <url>
-     <loc>/</loc>
+     <loc>https://humangas.github.io/dotfiles//</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -11,7 +11,7 @@
 
     
     <url>
-     <loc>/ag/</loc>
+     <loc>https://humangas.github.io/dotfiles//ag/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -19,7 +19,7 @@
 
     
     <url>
-     <loc>/alfred/</loc>
+     <loc>https://humangas.github.io/dotfiles//alfred/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -27,7 +27,7 @@
 
     
     <url>
-     <loc>/ansible/</loc>
+     <loc>https://humangas.github.io/dotfiles//ansible/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -35,7 +35,7 @@
 
     
     <url>
-     <loc>/awscli/</loc>
+     <loc>https://humangas.github.io/dotfiles//awscli/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -43,7 +43,7 @@
 
     
     <url>
-     <loc>/bats/</loc>
+     <loc>https://humangas.github.io/dotfiles//bats/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -51,7 +51,7 @@
 
     
     <url>
-     <loc>/betterzipql/</loc>
+     <loc>https://humangas.github.io/dotfiles//betterzipql/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -59,7 +59,7 @@
 
     
     <url>
-     <loc>/binutils/</loc>
+     <loc>https://humangas.github.io/dotfiles//binutils/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -67,7 +67,7 @@
 
     
     <url>
-     <loc>/brew/</loc>
+     <loc>https://humangas.github.io/dotfiles//brew/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -75,7 +75,7 @@
 
     
     <url>
-     <loc>/buttercup/</loc>
+     <loc>https://humangas.github.io/dotfiles//buttercup/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -83,7 +83,7 @@
 
     
     <url>
-     <loc>/caffeine/</loc>
+     <loc>https://humangas.github.io/dotfiles//caffeine/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -91,7 +91,7 @@
 
     
     <url>
-     <loc>/calibre/</loc>
+     <loc>https://humangas.github.io/dotfiles//calibre/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -99,7 +99,7 @@
 
     
     <url>
-     <loc>/clipy/</loc>
+     <loc>https://humangas.github.io/dotfiles//clipy/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -107,7 +107,7 @@
 
     
     <url>
-     <loc>/coreutils/</loc>
+     <loc>https://humangas.github.io/dotfiles//coreutils/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -115,7 +115,7 @@
 
     
     <url>
-     <loc>/ctags/</loc>
+     <loc>https://humangas.github.io/dotfiles//ctags/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -123,7 +123,7 @@
 
     
     <url>
-     <loc>/curl/</loc>
+     <loc>https://humangas.github.io/dotfiles//curl/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -131,7 +131,7 @@
 
     
     <url>
-     <loc>/diffutils/</loc>
+     <loc>https://humangas.github.io/dotfiles//diffutils/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -139,7 +139,7 @@
 
     
     <url>
-     <loc>/direnv/</loc>
+     <loc>https://humangas.github.io/dotfiles//direnv/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -147,7 +147,7 @@
 
     
     <url>
-     <loc>/docker/</loc>
+     <loc>https://humangas.github.io/dotfiles//docker/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -155,7 +155,7 @@
 
     
     <url>
-     <loc>/dropbox/</loc>
+     <loc>https://humangas.github.io/dotfiles//dropbox/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -163,7 +163,7 @@
 
     
     <url>
-     <loc>/ed/</loc>
+     <loc>https://humangas.github.io/dotfiles//ed/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -171,7 +171,7 @@
 
     
     <url>
-     <loc>/embulk/</loc>
+     <loc>https://humangas.github.io/dotfiles//embulk/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -179,7 +179,7 @@
 
     
     <url>
-     <loc>/fasd/</loc>
+     <loc>https://humangas.github.io/dotfiles//fasd/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -187,7 +187,7 @@
 
     
     <url>
-     <loc>/figlet/</loc>
+     <loc>https://humangas.github.io/dotfiles//figlet/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -195,7 +195,7 @@
 
     
     <url>
-     <loc>/findutils/</loc>
+     <loc>https://humangas.github.io/dotfiles//findutils/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -203,7 +203,7 @@
 
     
     <url>
-     <loc>/flake8/</loc>
+     <loc>https://humangas.github.io/dotfiles//flake8/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -211,7 +211,7 @@
 
     
     <url>
-     <loc>/fzf/</loc>
+     <loc>https://humangas.github.io/dotfiles//fzf/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -219,7 +219,7 @@
 
     
     <url>
-     <loc>/gawk/</loc>
+     <loc>https://humangas.github.io/dotfiles//gawk/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -227,7 +227,7 @@
 
     
     <url>
-     <loc>/ghq/</loc>
+     <loc>https://humangas.github.io/dotfiles//ghq/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -235,7 +235,7 @@
 
     
     <url>
-     <loc>/gibo/</loc>
+     <loc>https://humangas.github.io/dotfiles//gibo/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -243,7 +243,7 @@
 
     
     <url>
-     <loc>/git/</loc>
+     <loc>https://humangas.github.io/dotfiles//git/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -251,7 +251,7 @@
 
     
     <url>
-     <loc>/glide/</loc>
+     <loc>https://humangas.github.io/dotfiles//glide/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -259,7 +259,7 @@
 
     
     <url>
-     <loc>/gnu-getopt/</loc>
+     <loc>https://humangas.github.io/dotfiles//gnu-getopt/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -267,7 +267,7 @@
 
     
     <url>
-     <loc>/gnu-indent/</loc>
+     <loc>https://humangas.github.io/dotfiles//gnu-indent/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -275,7 +275,7 @@
 
     
     <url>
-     <loc>/gnu-sed/</loc>
+     <loc>https://humangas.github.io/dotfiles//gnu-sed/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -283,7 +283,7 @@
 
     
     <url>
-     <loc>/gnu-tar/</loc>
+     <loc>https://humangas.github.io/dotfiles//gnu-tar/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -291,7 +291,7 @@
 
     
     <url>
-     <loc>/gnu-which/</loc>
+     <loc>https://humangas.github.io/dotfiles//gnu-which/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -299,7 +299,7 @@
 
     
     <url>
-     <loc>/go/</loc>
+     <loc>https://humangas.github.io/dotfiles//go/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -307,7 +307,7 @@
 
     
     <url>
-     <loc>/goenv/</loc>
+     <loc>https://humangas.github.io/dotfiles//goenv/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -315,7 +315,7 @@
 
     
     <url>
-     <loc>/google-chrome/</loc>
+     <loc>https://humangas.github.io/dotfiles//google-chrome/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -323,7 +323,7 @@
 
     
     <url>
-     <loc>/google-japanese-ime/</loc>
+     <loc>https://humangas.github.io/dotfiles//google-japanese-ime/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -331,7 +331,7 @@
 
     
     <url>
-     <loc>/gpg/</loc>
+     <loc>https://humangas.github.io/dotfiles//gpg/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -339,7 +339,7 @@
 
     
     <url>
-     <loc>/graphviz/</loc>
+     <loc>https://humangas.github.io/dotfiles//graphviz/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -347,7 +347,7 @@
 
     
     <url>
-     <loc>/grep/</loc>
+     <loc>https://humangas.github.io/dotfiles//grep/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -355,7 +355,7 @@
 
     
     <url>
-     <loc>/gzip/</loc>
+     <loc>https://humangas.github.io/dotfiles//gzip/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -363,7 +363,7 @@
 
     
     <url>
-     <loc>/hammerspoon/</loc>
+     <loc>https://humangas.github.io/dotfiles//hammerspoon/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -371,7 +371,7 @@
 
     
     <url>
-     <loc>/htop/</loc>
+     <loc>https://humangas.github.io/dotfiles//htop/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -379,7 +379,7 @@
 
     
     <url>
-     <loc>/httpie/</loc>
+     <loc>https://humangas.github.io/dotfiles//httpie/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -387,7 +387,7 @@
 
     
     <url>
-     <loc>/hub/</loc>
+     <loc>https://humangas.github.io/dotfiles//hub/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -395,7 +395,7 @@
 
     
     <url>
-     <loc>/java/</loc>
+     <loc>https://humangas.github.io/dotfiles//java/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -403,7 +403,7 @@
 
     
     <url>
-     <loc>/jenv/</loc>
+     <loc>https://humangas.github.io/dotfiles//jenv/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -411,7 +411,7 @@
 
     
     <url>
-     <loc>/jupyter/</loc>
+     <loc>https://humangas.github.io/dotfiles//jupyter/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -419,7 +419,7 @@
 
     
     <url>
-     <loc>/licecap/</loc>
+     <loc>https://humangas.github.io/dotfiles//licecap/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -427,7 +427,7 @@
 
     
     <url>
-     <loc>/lua/</loc>
+     <loc>https://humangas.github.io/dotfiles//lua/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -435,7 +435,7 @@
 
     
     <url>
-     <loc>/macos-dock/</loc>
+     <loc>https://humangas.github.io/dotfiles//macos-dock/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -443,7 +443,7 @@
 
     
     <url>
-     <loc>/macos-sharing/</loc>
+     <loc>https://humangas.github.io/dotfiles//macos-sharing/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -451,7 +451,7 @@
 
     
     <url>
-     <loc>/macos-terminal/</loc>
+     <loc>https://humangas.github.io/dotfiles//macos-terminal/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -459,7 +459,7 @@
 
     
     <url>
-     <loc>/macvim/</loc>
+     <loc>https://humangas.github.io/dotfiles//macvim/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -467,7 +467,7 @@
 
     
     <url>
-     <loc>/maczip4win/</loc>
+     <loc>https://humangas.github.io/dotfiles//maczip4win/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -475,7 +475,7 @@
 
     
     <url>
-     <loc>/mailcatcher/</loc>
+     <loc>https://humangas.github.io/dotfiles//mailcatcher/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -483,7 +483,7 @@
 
     
     <url>
-     <loc>/marp/</loc>
+     <loc>https://humangas.github.io/dotfiles//marp/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -491,7 +491,7 @@
 
     
     <url>
-     <loc>/nmap/</loc>
+     <loc>https://humangas.github.io/dotfiles//nmap/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -499,7 +499,7 @@
 
     
     <url>
-     <loc>/nodenv/</loc>
+     <loc>https://humangas.github.io/dotfiles//nodenv/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -507,7 +507,7 @@
 
     
     <url>
-     <loc>/npm/</loc>
+     <loc>https://humangas.github.io/dotfiles//npm/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -515,7 +515,7 @@
 
     
     <url>
-     <loc>/openssl/</loc>
+     <loc>https://humangas.github.io/dotfiles//openssl/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -523,7 +523,7 @@
 
     
     <url>
-     <loc>/osquery/</loc>
+     <loc>https://humangas.github.io/dotfiles//osquery/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -531,7 +531,7 @@
 
     
     <url>
-     <loc>/pyenv/</loc>
+     <loc>https://humangas.github.io/dotfiles//pyenv/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -539,7 +539,7 @@
 
     
     <url>
-     <loc>/python/</loc>
+     <loc>https://humangas.github.io/dotfiles//python/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -547,7 +547,7 @@
 
     
     <url>
-     <loc>/python3/</loc>
+     <loc>https://humangas.github.io/dotfiles//python3/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -555,7 +555,7 @@
 
     
     <url>
-     <loc>/qlcolorcode/</loc>
+     <loc>https://humangas.github.io/dotfiles//qlcolorcode/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -563,7 +563,7 @@
 
     
     <url>
-     <loc>/qlimagesize/</loc>
+     <loc>https://humangas.github.io/dotfiles//qlimagesize/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -571,7 +571,7 @@
 
     
     <url>
-     <loc>/qlmarkdown/</loc>
+     <loc>https://humangas.github.io/dotfiles//qlmarkdown/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -579,7 +579,7 @@
 
     
     <url>
-     <loc>/qlprettypatch/</loc>
+     <loc>https://humangas.github.io/dotfiles//qlprettypatch/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -587,7 +587,7 @@
 
     
     <url>
-     <loc>/qlstephen/</loc>
+     <loc>https://humangas.github.io/dotfiles//qlstephen/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -595,7 +595,7 @@
 
     
     <url>
-     <loc>/qlvideo/</loc>
+     <loc>https://humangas.github.io/dotfiles//qlvideo/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -603,7 +603,7 @@
 
     
     <url>
-     <loc>/quicklook-csv/</loc>
+     <loc>https://humangas.github.io/dotfiles//quicklook-csv/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -611,7 +611,7 @@
 
     
     <url>
-     <loc>/quicklook-json/</loc>
+     <loc>https://humangas.github.io/dotfiles//quicklook-json/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -619,7 +619,7 @@
 
     
     <url>
-     <loc>/quicklookase/</loc>
+     <loc>https://humangas.github.io/dotfiles//quicklookase/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -627,7 +627,7 @@
 
     
     <url>
-     <loc>/rbenv/</loc>
+     <loc>https://humangas.github.io/dotfiles//rbenv/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -635,7 +635,7 @@
 
     
     <url>
-     <loc>/ruby/</loc>
+     <loc>https://humangas.github.io/dotfiles//ruby/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -643,7 +643,7 @@
 
     
     <url>
-     <loc>/sass/</loc>
+     <loc>https://humangas.github.io/dotfiles//sass/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -651,7 +651,7 @@
 
     
     <url>
-     <loc>/skitch/</loc>
+     <loc>https://humangas.github.io/dotfiles//skitch/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -659,7 +659,7 @@
 
     
     <url>
-     <loc>/sqlite/</loc>
+     <loc>https://humangas.github.io/dotfiles//sqlite/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -667,7 +667,7 @@
 
     
     <url>
-     <loc>/suspicious-package/</loc>
+     <loc>https://humangas.github.io/dotfiles//suspicious-package/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -675,7 +675,7 @@
 
     
     <url>
-     <loc>/table-tool/</loc>
+     <loc>https://humangas.github.io/dotfiles//table-tool/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -683,7 +683,7 @@
 
     
     <url>
-     <loc>/terraform/</loc>
+     <loc>https://humangas.github.io/dotfiles//terraform/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -691,7 +691,7 @@
 
     
     <url>
-     <loc>/the-unarchiver/</loc>
+     <loc>https://humangas.github.io/dotfiles//the-unarchiver/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -699,7 +699,7 @@
 
     
     <url>
-     <loc>/tig/</loc>
+     <loc>https://humangas.github.io/dotfiles//tig/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -707,7 +707,7 @@
 
     
     <url>
-     <loc>/tmux/</loc>
+     <loc>https://humangas.github.io/dotfiles//tmux/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -715,7 +715,7 @@
 
     
     <url>
-     <loc>/travis/</loc>
+     <loc>https://humangas.github.io/dotfiles//travis/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -723,7 +723,7 @@
 
     
     <url>
-     <loc>/tree/</loc>
+     <loc>https://humangas.github.io/dotfiles//tree/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -731,7 +731,7 @@
 
     
     <url>
-     <loc>/typora/</loc>
+     <loc>https://humangas.github.io/dotfiles//typora/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -739,7 +739,7 @@
 
     
     <url>
-     <loc>/vagrant/</loc>
+     <loc>https://humangas.github.io/dotfiles//vagrant/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -747,7 +747,7 @@
 
     
     <url>
-     <loc>/vault/</loc>
+     <loc>https://humangas.github.io/dotfiles//vault/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -755,7 +755,7 @@
 
     
     <url>
-     <loc>/vim/</loc>
+     <loc>https://humangas.github.io/dotfiles//vim/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -763,7 +763,7 @@
 
     
     <url>
-     <loc>/vimgolf/</loc>
+     <loc>https://humangas.github.io/dotfiles//vimgolf/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -771,7 +771,7 @@
 
     
     <url>
-     <loc>/virtualbox/</loc>
+     <loc>https://humangas.github.io/dotfiles//virtualbox/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -779,7 +779,7 @@
 
     
     <url>
-     <loc>/watch/</loc>
+     <loc>https://humangas.github.io/dotfiles//watch/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -787,7 +787,7 @@
 
     
     <url>
-     <loc>/wdiff/</loc>
+     <loc>https://humangas.github.io/dotfiles//wdiff/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -795,7 +795,7 @@
 
     
     <url>
-     <loc>/webpquicklook/</loc>
+     <loc>https://humangas.github.io/dotfiles//webpquicklook/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -803,7 +803,7 @@
 
     
     <url>
-     <loc>/wget/</loc>
+     <loc>https://humangas.github.io/dotfiles//wget/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -811,7 +811,7 @@
 
     
     <url>
-     <loc>/xz/</loc>
+     <loc>https://humangas.github.io/dotfiles//xz/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -819,7 +819,7 @@
 
     
     <url>
-     <loc>/yank/</loc>
+     <loc>https://humangas.github.io/dotfiles//yank/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
@@ -827,7 +827,7 @@
 
     
     <url>
-     <loc>/zsh/</loc>
+     <loc>https://humangas.github.io/dotfiles//zsh/</loc>
      <lastmod>2017-12-14</lastmod>
      <changefreq>daily</changefreq>
     </url>
