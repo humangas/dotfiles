@@ -21,3 +21,6 @@ after_success:
     - git add -A
     - git commit -m "Updated docs by Travis CI (BUILD NUMBER:$TRAVIS_BUILD_NUMBER, ID:$TRAVIS_BUILD_ID)"
     - git push origin master
+notifications:
+  slack:
+    secure: dt/3IBAzajbFN2qFIX82ngDtLUz8BSfd/NhXHkb5Th8qxMljtsNaakddqhzoe3z7DmXh3UB5UhatQzmiV7XoqhZyeLQsRxmWOsX5a6l7TC0ijkrvaSl0KjrPFfj8vlnRQemXYnHjhcGOwFMVGIyJC859w7+k17w+RmpaDRAe4/laOTDYp1uriGTGoKaT4dJK8RD9tZEh6zdOfBZ1LJiP2peKiz1lzm6PuriQNmPQX/dQcw2mIPuj+Fi/HRveDhExtrzqdOieJay5UI8iEAVcV3eZMa1BCL2gpcqHKYFHvaKV2NGmVb/FsSpuzadRcuXFbB/KbKH4mpBsOFoYXyQkOTIBxkmT3r4y8uAzk7jq9xGPS7E1yB2osw5xp/KKzitUfdEKi0+mKOMRp5OBP1OUxak6BR0SbVY4JNMK+QR4oxXd06LiyFibPcyQn4a8Akz4kYM4XE1/jfCaUpx63kEioLRERCbfBvO+C9m72zA0RkLW2WyJGSnKwy/6/8DrZpBW+4yDTDoZmhUTcHQFJJBW1hR1F0qjC2H+j7KViIzS+tXaEu9DMXut/MGj4n/Gs/Klho6DhnGGgCxAPP9B1ykR5bnINyllBYjiIU23lRVuq6nESssoCwtFI6pA4YkCqO3HCd6fiTGOTQfzeWtudUN3T9yOniPegrr3RE4UkeFWIWA=
