@@ -12,8 +12,8 @@ after_success:
     - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
     - git config --global user.name "humangas"
     - git config --global user.email "humangas.net@gmail.com"
-    - git clone git@github.com:humangas/dotfiles.git
-    - cd dotfiles
+    - git clone git@github.com:humangas/dotfiles.git _dotfiles
+    - cd _dotfiles
     - make dotfiles
     - git add -A
     - git commit -m "Updated dotfiles by Travis CI (BUILD NUMBER:$TRAVIS_BUILD_NUMBER, ID:$TRAVIS_BUILD_ID)"
