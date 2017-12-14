@@ -1,7 +1,10 @@
 # dotfiles
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![OS macOS](https://img.shields.io/badge/OS-macOS-blue.svg)](OS)  
-My macOS setup tool and dotfiles
+[![OS macOS](https://img.shields.io/badge/OS-macOS-blue.svg)](OS)
+[![Build Status](https://travis-ci.org/humangas/dotfiles.svg?branch=master)](https://travis-ci.org/humangas/dotfiles)  
+
+My macOS setup tool and dotfiles  
+See also: https://humangas.github.io/dotfiles/
 
 
 ## Installation
