@@ -120,23 +120,3 @@ Convenient usage:
     $ setup list | awk '$10!="-"{print $1" "$10}' | column -t
 
 ```
-
-
-## Docs
-Generate document site: https://humangas.github.io/dotfiles/
-
-### Setup
-use: [mkdocs-material](https://github.com/squidfunk/mkdocs-material)
-
-```
-$ brew install pyenv pyenv-virtualenv
-$ pyenv install 3.6.3
-$ pyenv virtualenv 3.6.3 dotfiles
-$ pyenv shell dotfiles
-$ pip install mkdocs-material
-```
-
-### Usage
-```
-$ make docs
-```

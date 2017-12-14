@@ -1,5 +1,18 @@
 #!/bin/bash -u
-
+###########################################################################
+# Generate document site: https://humangas.github.io/dotfiles/
+# use: [mkdocs-material](https://github.com/squidfunk/mkdocs-material)
+# 
+# Setup:
+# $ brew install pyenv pyenv-virtualenv
+# $ pyenv install 3.6.3
+# $ pyenv virtualenv 3.6.3 dotfiles
+# $ pyenv shell dotfiles
+# $ pip install mkdocs-material
+# 
+# Usage:
+# $ make docs
+###########################################################################
 DOCS_PATH="_docs"
 ROLES_PATH="roles"
 SETUP_TAGS_PREFIX="${SETUP_TAGS_PREFIX:-tag.}"
@@ -43,7 +56,7 @@ index_tags() {
     # for t in $(find $ROLES_PATH -type f -name "$SETUP_TAGS_PREFIX*"); do
     #     echo $t
     # done
-	return
+    return
 }
 
 indexmd() {
@@ -65,7 +78,7 @@ main() {
     init
     readmemd
     indexmd
-	mkdocs build
+    mkdocs build
 }
 
 main "$@"
