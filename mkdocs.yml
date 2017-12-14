@@ -4,7 +4,7 @@ repo_url: https://github.com/humangas/dotfiles/
 repo_name: GitHub
 site_description: humangas's macOS setup tool and dotfiles
 site_author: humangas
-copyright: 2017 humangas
+copyright: Copyright (c) 2017 humangas
 google_analytics: ['UA-43176477-6', 'auto']
 theme:
   name: 'material'
