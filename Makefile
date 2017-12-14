@@ -27,13 +27,12 @@ install:
 	@chmod u+x $(PWD)/roles/setup.sh
 	@rm -f /usr/local/bin/setup
 	@ln -s $(PWD)/roles/setup.sh /usr/local/bin/setup
-	@cp -f githooks/post-commit .git/hooks/
-	@chmod +x .git/hooks/post-commit
 	
 update:
 	@git pull origin master
 
 dotfiles:
+	@rm -rf $(DOTFILESPATH);
 	@mkdir -p $(DOTFILESPATH);
 	@for f in $(DOTFILES); do \
 		if [ -e "./$(BASEPATH)/$$f" ]; then \
