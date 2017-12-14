@@ -1,26 +1,26 @@
 language: python
 python:
-    - 3.6
-install: 
-    - pip install -r requirements.txt
+  - 3.6
+install:
+  - pip install -r requirements.txt
 script:
-    - make dotfiles
-    - make docs
-after_success: 
-    - openssl aes-256-cbc -K $encrypted_f6f8630853eb_key -iv $encrypted_f6f8630853eb_iv -in travis.enc -out ~/.ssh/id_rsa -d
-    - chmod 600 ~/.ssh/id_rsa
-    - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-    - git config --global user.name "humangas"
-    - git config --global user.email "humangas.net@gmail.com"
-    - git clone git@github.com:humangas/dotfiles.git _dotfiles
-    - cd _dotfiles
-    - make dotfiles
-    - git add -A
-    - git commit -m "Updated dotfiles by Travis CI (BUILD NUMBER:$TRAVIS_BUILD_NUMBER, ID:$TRAVIS_BUILD_ID)"
-    - make docs
-    - git add -A
-    - git commit -m "Updated docs by Travis CI (BUILD NUMBER:$TRAVIS_BUILD_NUMBER, ID:$TRAVIS_BUILD_ID)"
-    - git push origin master
+  - make dotfiles
+  - make docs
+after_success:
+  - openssl aes-256-cbc -K $encrypted_f6f8630853eb_key -iv $encrypted_f6f8630853eb_iv -in travis.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - git config --global user.name "humangas"
+  - git config --global user.email "humangas.net@gmail.com"
+  - git clone git@github.com:humangas/dotfiles.git _dotfiles
+  - cd _dotfiles
+  - make dotfiles
+  - git add -A
+  - git commit -m "Updated dotfiles by Travis CI (BUILD NUMBER:$TRAVIS_BUILD_NUMBER, ID:$TRAVIS_BUILD_ID)"
+  - make docs
+  - git add -A
+  - git commit -m "Updated docs by Travis CI (BUILD NUMBER:$TRAVIS_BUILD_NUMBER, ID:$TRAVIS_BUILD_ID)"
+  - git push origin master
 notifications:
   slack:
-    secure: dt/3IBAzajbFN2qFIX82ngDtLUz8BSfd/NhXHkb5Th8qxMljtsNaakddqhzoe3z7DmXh3UB5UhatQzmiV7XoqhZyeLQsRxmWOsX5a6l7TC0ijkrvaSl0KjrPFfj8vlnRQemXYnHjhcGOwFMVGIyJC859w7+k17w+RmpaDRAe4/laOTDYp1uriGTGoKaT4dJK8RD9tZEh6zdOfBZ1LJiP2peKiz1lzm6PuriQNmPQX/dQcw2mIPuj+Fi/HRveDhExtrzqdOieJay5UI8iEAVcV3eZMa1BCL2gpcqHKYFHvaKV2NGmVb/FsSpuzadRcuXFbB/KbKH4mpBsOFoYXyQkOTIBxkmT3r4y8uAzk7jq9xGPS7E1yB2osw5xp/KKzitUfdEKi0+mKOMRp5OBP1OUxak6BR0SbVY4JNMK+QR4oxXd06LiyFibPcyQn4a8Akz4kYM4XE1/jfCaUpx63kEioLRERCbfBvO+C9m72zA0RkLW2WyJGSnKwy/6/8DrZpBW+4yDTDoZmhUTcHQFJJBW1hR1F0qjC2H+j7KViIzS+tXaEu9DMXut/MGj4n/Gs/Klho6DhnGGgCxAPP9B1ykR5bnINyllBYjiIU23lRVuq6nESssoCwtFI6pA4YkCqO3HCd6fiTGOTQfzeWtudUN3T9yOniPegrr3RE4UkeFWIWA=
+    secure: R+MwsM47I0neBiC6/j2PFi6BmZ7fhm71UaHpvF35EohpSZARAV6INh9HID6IHB6yLsonnw5fmd897woq1pDZZCeZE/WyOyp0xjOr1xyTaMF7cGf7krkSXh0J9pMZh3g115DEv+GQJpCeBUpmB12/ImFqb606hBH/KcJpNu88n0CXhUQt0ja51IWsfc80Ne1Gp6FUaoGsz17PYaKr7IJqjIuEE+pI9dHhBBtY2YZVYSBcmjVXqDGdFO2OeWzIvr3MonRpTjbtfc/+/WzQIDGjnwsX7WSCTSivIadQ6EjbqhPsQpqDPcYow0LkbeegUfeFSGd7KA8Xyz9G90itpfVtpEILNyUMZWZKEgZDvB2tgSs9Xd9kwmwGrLyKWxWaDjq1IHoBytP9rUsN8CiVV3kZdpTbtlSQyZgOU8i5G0lUcW/P0c6Ujjon7yEsdOBjXDKrLjjSCk6ZshlclDWFaIE2fuTtLR58GAEAJJQYWCKCVk2UcxJD1gOF1Hxx5gDnXM+LaEJJbMo8pMjBuBLjCr5/oIU+S35HnEEOa3bs56U9xdE0GLA6BQdAu4ershFZV5LfWKur/+UBMJQW3vhhOFG9rDWx7CYaOwvSp9tgSAy5uf+yxZ6DzSFrsFcv/NXmT0M8pjl+vmLqRgSNqQB5AGvIvTyj8EwweObdN7EHfk+Gxu4=
