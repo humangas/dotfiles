@@ -15,9 +15,9 @@ after_success:
   - git remote set-url origin git@github.com:humangas/dotfiles.git
   - git checkout master
   - git add dotfiles
-  - git commit -m "Updated dotfiles by Travis CI (BUILD $TRAVIS_BUILD_NUMBER:$TRAVIS_BUILD_ID)"
+  - git commit -m "Updated dotfiles by Travis CI (BUILD $TRAVIS_BUILD_NUMBER:$TRAVIS_BUILD_ID) [skip ci]"
   - git add docs
-  - git commit -m "Updated docs by Travis CI (BUILD $TRAVIS_BUILD_NUMBER:$TRAVIS_BUILD_ID)"
+  - git commit -m "Updated docs by Travis CI (BUILD $TRAVIS_BUILD_NUMBER:$TRAVIS_BUILD_ID) [skip ci]"
   - git push origin master
 notifications:
   slack:
