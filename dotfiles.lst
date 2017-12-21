@@ -4,6 +4,7 @@ coreutils/.zsh.d
 curl/.zsh.d
 direnv/.zsh.d
 findutils/.zsh.d
+flake8/.config
 fzf/.zsh.d
 gawk/.zsh.d
 gibo/.gitignore-boilerplates
