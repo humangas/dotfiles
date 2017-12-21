@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-[ -f ~/.zsh.d/.fzf.zsh ] && source ~/zsh.d/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 _fzf_default_opts() {
     local base03="234"

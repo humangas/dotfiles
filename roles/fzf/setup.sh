@@ -23,6 +23,7 @@ config() {
 install() {
     depend "install" "brew"
     brew install "$SETUP_CURRENT_ROLE_NAME"
+    /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
     config
 }
 
