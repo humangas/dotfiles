@@ -67,12 +67,43 @@ setopt hist_ignore_all_dups                      # Duplicate commands delete the
 setopt hist_ignore_space                         # Beginning starts with a space, do not add it to history.
 setopt hist_no_store                             # Do not register the history command in the history.
 
-# less option
+# Command options
 export LESS='-iMR'
 
-# Source ~/.zsh.d/*.{sh,zsh}
-setopt nonomatch
-for f in ~/.zsh.d/*.{sh,zsh} ; do
-    [[ -r $f ]] && source "$f"
-done
-setopt nomatch
+# Extensions
+build_extensions() {
+    echo "Build .{env,alias,function} files form under the .zsh.d directory"
+    [[ ! -e $HOME/.zsh.d ]] && return
+    rm -rf .{env,alias,function}
+    local sh type
+    for sh in $(find $HOME/.zsh.d -type f -name "*sh"); do
+        type=$(printf $(basename $sh) | cut -d. -f2)
+        case $type in
+            env|alias|function) 
+                echo "# $sh" >> $HOME/.$type
+                cat $sh >> $HOME/.$type
+                echo -e "\n" >> $HOME/.$type
+                ;;
+            *)
+                echo "[WARN] Undefined type: $type ($sh)"
+                ;;
+        esac
+    done
+    if [[ -e $HOME/.function ]]; then
+        sed -i -e "s@^#\!.*@@g" .function
+        sed -i -e '1s@^@#\!/user/bin/env zsh\n@' .function
+    fi
+}
+
+source_extensions() {
+    echo "Source .{env,alias,function} files"
+    setopt nonomatch
+    for f in ~/.{env,alias,function}; do
+        [[ -r $f ]] && source "$f"
+    done
+    setopt nomatch
+}
+
+alias soz='source ~/.zshrc'
+build_extensions && source_extensions
+
