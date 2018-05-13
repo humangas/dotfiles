@@ -403,6 +403,14 @@
 
     
     <url>
+     <loc>https://humangas.github.io/dotfiles//java8/</loc>
+     <lastmod>2018-05-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
      <loc>https://humangas.github.io/dotfiles//jenv/</loc>
      <lastmod>2018-05-13</lastmod>
      <changefreq>daily</changefreq>
