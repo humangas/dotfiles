@@ -9,11 +9,11 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
 version() {
-    basename "$(readlink /usr/local/opt/$SETUP_CURRENT_ROLE_NAME)"
+    ls "/usr/local/Caskroom/$SETUP_CURRENT_ROLE_NAME" 2>/dev/null
 }
 
 config() {
@@ -22,11 +22,10 @@ config() {
 
 install() {
     depend "install" "brew"
-    depend "install" "java8"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
+    brew cask install /caskroom/versions/"$SETUP_CURRENT_ROLE_NAME"
     config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    [[ -z $(brew cask outdated "$SETUP_CURRENT_ROLE_NAME") ]] || brew cask reinstall "$SETUP_CURRENT_ROLE_NAME"
 }
