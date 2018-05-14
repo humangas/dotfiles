@@ -74,7 +74,7 @@ export LESS='-iMR'
 build_extensions() {
     echo "Build .{env,alias,function} files form under the .zsh.d directory"
     [[ ! -e $HOME/.zsh.d ]] && return
-    rm -rf .{env,alias,function}
+    rm -rf $HOME/.{env,alias,function}
     local sh type
     for sh in $(find $HOME/.zsh.d -type f -name "*sh"); do
         type=$(printf $(basename $sh) | cut -d. -f2)
@@ -90,8 +90,8 @@ build_extensions() {
         esac
     done
     if [[ -e $HOME/.function ]]; then
-        sed -i -e "s@^#\!.*@@g" .function
-        sed -i -e '1s@^@#\!/user/bin/env zsh\n@' .function
+        sed -i -e "s@^#\!.*@@g" $HOME/.function
+        sed -i -e '1s@^@#\!/user/bin/env zsh\n@' $HOME/.function
     fi
 }
 
