@@ -30,7 +30,9 @@ options:
 
 function _cdGhqDir(){
     local ghqlist=`ghq list`
-    local worklist=$(ls -d $GOPATH/src/work/* | sed -e "s@$GOPATH/src/@@")
+    if [[ -e $GOPATH/src/work && $(ls $GOPATH/src/work | wc -l) -gt 0 ]]; then
+        local worklist=$(ls -d $GOPATH/src/work/* | sed -e "s@$GOPATH/src/@@")
+    fi
     local alllist="$ghqlist\n$worklist"
     local mvdir=$(echo -e "$alllist" | sort | uniq \
             | fzf -0 --inline-info --ansi --cycle --preview "ls -la $GOPATH/src/{}")
