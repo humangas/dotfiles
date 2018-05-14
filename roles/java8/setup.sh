@@ -22,7 +22,7 @@ config() {
 
 install() {
     depend "install" "brew"
-    brew cask install /caskroom/versions/"$SETUP_CURRENT_ROLE_NAME"
+    brew cask install caskroom/versions/"$SETUP_CURRENT_ROLE_NAME"
     config
 }
 
