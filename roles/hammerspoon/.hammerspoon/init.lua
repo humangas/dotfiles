@@ -45,6 +45,8 @@ end
 hs.hotkey.bind(cmd_shift, 41, function() toggle_application("Terminal") end)
 -- dot = 47 
 hs.hotkey.bind(cmd_shift, 47, function() toggle_application("Google Chrome") end)
+-- comma = 43 
+hs.hotkey.bind(cmd_shift, 43, function() toggle_application("Typora") end)
 
 -- Load Spoons
 -- See also: https://github.com/Hammerspoon/Spoons
