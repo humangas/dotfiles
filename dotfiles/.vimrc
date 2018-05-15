@@ -99,6 +99,7 @@ call dein#add('hail2u/vim-css3-syntax')                                     "CSS
 call dein#add('jelera/vim-javascript-syntax')                               "Enhanced javascript syntax file for Vim
 call dein#add('AtsushiM/sass-compile.vim')                                  "Add Sass compile & utility commands.
 call dein#add('glidenote/memolist.vim')                                     "simple memo plugin for Vim.
+call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
