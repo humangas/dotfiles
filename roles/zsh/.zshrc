@@ -12,7 +12,7 @@
 typeset -U path cdpath fpath manpath
 
 # Env /usr/local/bin
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:/sbin:$PATH"
 
 # Bindkey
 bindkey -v                                             # vi keybind 
