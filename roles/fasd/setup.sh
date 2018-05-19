@@ -13,12 +13,11 @@ is_installed() {
 }
 
 version() {
-    # basename "$(readlink $(brew --prefix $SETUP_CURRENT_ROLE_NAME 2>/dev/null))"
     basename "$(readlink /usr/local/opt/$SETUP_CURRENT_ROLE_NAME)"
 }
 
 config() {
-    return
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
 }
 
 install() {
