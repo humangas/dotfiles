@@ -3,6 +3,7 @@ ag/.zsh.d
 coreutils/.zsh.d
 curl/.zsh.d
 direnv/.zsh.d
+fasd/.zsh.d
 findutils/.zsh.d
 flake8/.config
 fzf/.zsh.d
