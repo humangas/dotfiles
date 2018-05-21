@@ -1,1 +1,1 @@
-alias jpnb="jupyter notebook --notebook-dir $HOME/note/jupyter"
+alias jpnb="jupyter notebook --notebook-dir $HOME/src/work/jupyter"
