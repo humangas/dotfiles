@@ -104,6 +104,15 @@ source_extensions() {
     setopt nomatch
 }
 
+ssh_add_keys() {
+    setopt nonomatch
+    if `ls ~/.ssh/*.pem >/dev/null 2>&1`; then
+        ssh-add ~/.ssh/*.pem
+    fi
+    setopt nomatch
+}
+
 alias soz='source ~/.zshrc'
 build_extensions && source_extensions
+ssh_add_keys
 
