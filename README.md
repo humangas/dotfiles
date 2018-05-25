@@ -12,7 +12,14 @@ See also: https://humangas.github.io/dotfiles/
 $ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/install | bash
 ```
 
-### Setting
+### Setting computer name
+You can set the your computer name by setting environment variables as follows.
+
+```
+$ export SETUP_COMPUTER_NAME="<your computer name>"
+```
+
+### Specify roles/tags to install 
 With the settings below you can specify the roles and tags to install (# is a comment).
 
 #### Roles
