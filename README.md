@@ -12,6 +12,11 @@ See also: https://humangas.github.io/dotfiles/
 $ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/install | bash
 ```
 
+
+## Demo
+![install demo](./install_demo.gif)
+
+
 ### Setting computer name
 You can set the your computer name by setting environment variables as follows.
 
