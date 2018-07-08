@@ -25,7 +25,7 @@ init() {
 index_roles() {
 	_header() {
 cat << EOS
-# humangas's dotfiles
+# INDEX
 humangas's macOS setup tool and dotfiles  
 See also: [github.com/humangas/dotfiles](https://github.com/humangas/dotfiles)
 
