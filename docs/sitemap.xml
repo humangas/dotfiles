@@ -66,6 +66,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://humangas.github.io/dotfiles/cheat/</loc>
+     <lastmod>2018-07-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://humangas.github.io/dotfiles/clipy/</loc>
      <lastmod>2018-07-08</lastmod>
      <changefreq>daily</changefreq>
