@@ -72,7 +72,7 @@ export LESS='-iMR'
 
 # Extensions
 build_extensions() {
-    echo "Build .{env,alias,function} files form under the .zsh.d directory"
+    # echo "Build .{env,alias,function} files form under the .zsh.d directory"
     [[ ! -e $HOME/.zsh.d ]] && return
     rm -rf $HOME/.{env,alias,function}
     local sh type
@@ -96,7 +96,7 @@ build_extensions() {
 }
 
 source_extensions() {
-    echo "Source .{env,alias,function} files"
+    # echo "Source .{env,alias,function} files"
     setopt nonomatch
     for f in ~/.{env,alias,function}; do
         [[ -r $f ]] && source "$f"
@@ -107,7 +107,7 @@ source_extensions() {
 ssh_add_keys() {
     setopt nonomatch
     if `ls ~/.ssh/*.pem >/dev/null 2>&1`; then
-        ssh-add ~/.ssh/*.pem
+        ssh-add ~/.ssh/*.pem >/dev/null 2>&1
     fi
     setopt nomatch
 }
