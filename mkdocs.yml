@@ -5,6 +5,8 @@ copyright: Copyright (c) 2018 humangas
 repo_name: GitHub
 site_url: https://humangas.github.io/dotfiles/
 repo_url: https://github.com/humangas/dotfiles/
+# TODO: make plugin? -> edit_uri: edit/master/roles/$role_name/README.md
+edit_uri: edit/master/roles/#/README.md
 google_analytics: ['UA-43176477-6', 'auto']
 theme:
   name: 'material'
