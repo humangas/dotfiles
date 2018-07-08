@@ -14,3 +14,6 @@ site_dir: 'docs'
 extra:
   search:
     language: 'jp'
+markdown_extensions:
+  - toc:
+      permalink: true
