@@ -1,10 +1,10 @@
 site_name: humangas's dotfiles
-site_url: https://humangas.github.io/dotfiles/
-repo_url: https://github.com/humangas/dotfiles/
-repo_name: GitHub
 site_description: humangas's macOS setup tool and dotfiles
 site_author: humangas
 copyright: Copyright (c) 2018 humangas
+repo_name: GitHub
+site_url: https://humangas.github.io/dotfiles/
+repo_url: https://github.com/humangas/dotfiles/
 google_analytics: ['UA-43176477-6', 'auto']
 theme:
   name: 'material'
