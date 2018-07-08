@@ -12,6 +12,8 @@ function cdex() {
             local dir
             dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
             ;;
+        ...) builtin cd '../..' ;;
+        ....) builtin cd '../../..' ;;
         *) builtin cd $@ ;;
     esac
 }
@@ -24,6 +26,8 @@ options:
   -w, --work          List \$GOPATH/src/work/*/ list
   -g, --git           Open git url
   --                  List history
+  ...                 = cd ../.. 
+  ....                = cd ../../..
   **                  Subsequently press tab, fzf mode will be set
 "
 }
