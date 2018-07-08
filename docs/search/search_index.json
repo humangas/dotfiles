@@ -2,13 +2,13 @@
     "docs": [
         {
             "location": "/",
-            "text": "humangas's dotfiles\n\n\nhumangas's macOS setup tool and dotfiles\n\nSee also: \ngithub.com/humangas/dotfiles\n\n\nroles\n\n\n\n\n\n\n\n\nrole\n\n\ndescription\n\n\n\n\n\n\n\n\n\n\nag\n\n\n\u9ad8\u901f grep\n\n\n\n\n\n\nalfred\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nansible\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nawscli\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbash\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbats-core\n\n\nbash\u306e\u30c6\u30b9\u30c8\u30d5\u30ec\u30fc\u30e0\u30ef\u30fc\u30af\n\n\n\n\n\n\nbetterzip\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbinutils\n\n\nInclude: as, ld, gprof, nm, size, strings, strip ...\n\n\n\n\n\n\nbrew\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbuttercup\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ncaffeine\n\n\nMac\u306e\u81ea\u52d5\u30b9\u30ea\u30fc\u30d7\u3092\u9632\u3050\u3053\u3068\u304c\u3067\u304d\u308b\u30c4\u30fc\u30eb\u3067\u3059\u3002\n\n\n\n\n\n\ncalibre\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nclipy\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ncoreutils\n\n\nInclude: ls, mv, cat, paste, join, head, tail, tr, cut, sort, uniq, wc, echo ...\n\n\n\n\n\n\nctags\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ncurl\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ndiffutils\n\n\nInclude: diff, cmp, diff3, sdiff\n\n\n\n\n\n\ndirenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ndocker\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ndropbox\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ned\n\n\n\n\n\n\n\n\nembulk\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfasd\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfgopen\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfiglet\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfindutils\n\n\nInclude: find, locate, updatedb, xargs\n\n\n\n\n\n\nflake8\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfzf\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngawk\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nghq\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngibo\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngist\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngit\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nglide\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-getopt\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-indent\n\n\n\n\n\n\n\n\ngnu-sed\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-tar\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-which\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngo\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngocloc\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngoenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngoogle-chrome\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngoogle-japanese-ime\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngpg\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngraphviz\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngrep\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngzip\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhammerspoon\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhtop\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhttpie\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhub\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njava\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njava8\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njupyter\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nlicecap\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nlua\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacos-dock\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacos-sharing\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacos-terminal\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacvim\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmaczip4win\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmailcatcher\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmarp\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnmap\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnodenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnote\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnpm\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nopenssl\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nosquery\n\n\nTODO: Please write the contents\n\n\n\n\n\n\npyenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\npython\n\n\nTODO: Please write the contents\n\n\n\n\n\n\npython3\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlcolorcode\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlimagesize\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlmarkdown\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlprettypatch\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlstephen\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlvideo\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nquicklook-csv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nquicklook-json\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nquicklookase\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nrbenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nruby\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nsass\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nskitch\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nsqlite\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nsuspicious-package\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntable-tool\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nterraform\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nthe-unarchiver\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntig\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntmux\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntravis\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntree\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntypora\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvagrant\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvault\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvim\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvimgolf\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvirtualbox\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwatch\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwdiff\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwebpquicklook\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwget\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nxz\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nyank\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nzsh\n\n\nTODO: Please write the contents",
-            "title": "humangas's dotfiles"
+            "text": "INDEX\n\u00b6\n\n\nhumangas's macOS setup tool and dotfiles\n\nSee also: \ngithub.com/humangas/dotfiles\n\n\nroles\n\u00b6\n\n\n\n\n\n\n\n\nrole\n\n\ndescription\n\n\n\n\n\n\n\n\n\n\nag\n\n\n\u9ad8\u901f grep\n\n\n\n\n\n\nalfred\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nansible\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nawscli\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbash\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbats-core\n\n\nbash\u306e\u30c6\u30b9\u30c8\u30d5\u30ec\u30fc\u30e0\u30ef\u30fc\u30af\n\n\n\n\n\n\nbetterzip\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbinutils\n\n\nInclude: as, ld, gprof, nm, size, strings, strip ...\n\n\n\n\n\n\nbrew\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nbuttercup\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ncaffeine\n\n\nMac\u306e\u81ea\u52d5\u30b9\u30ea\u30fc\u30d7\u3092\u9632\u3050\u3053\u3068\u304c\u3067\u304d\u308b\u30c4\u30fc\u30eb\u3067\u3059\u3002\n\n\n\n\n\n\ncalibre\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nclipy\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ncoreutils\n\n\nInclude: ls, mv, cat, paste, join, head, tail, tr, cut, sort, uniq, wc, echo ...\n\n\n\n\n\n\nctags\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ncurl\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ndiffutils\n\n\nInclude: diff, cmp, diff3, sdiff\n\n\n\n\n\n\ndirenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ndocker\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ndropbox\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ned\n\n\n\n\n\n\n\n\nembulk\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfasd\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfgopen\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfiglet\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfindutils\n\n\nInclude: find, locate, updatedb, xargs\n\n\n\n\n\n\nflake8\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nfzf\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngawk\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nghq\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngibo\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngist\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngit\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nglide\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-getopt\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-indent\n\n\n\n\n\n\n\n\ngnu-sed\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-tar\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngnu-which\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngo\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngocloc\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngoenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngoogle-chrome\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngoogle-japanese-ime\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngpg\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngraphviz\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngrep\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ngzip\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhammerspoon\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhtop\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhttpie\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nhub\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njava\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njava8\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\njupyter\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nlicecap\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nlua\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacos-dock\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacos-sharing\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacos-terminal\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmacvim\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmaczip4win\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmailcatcher\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nmarp\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnmap\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnodenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnote\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nnpm\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nopenssl\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nosquery\n\n\nTODO: Please write the contents\n\n\n\n\n\n\npyenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\npython\n\n\nTODO: Please write the contents\n\n\n\n\n\n\npython3\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlcolorcode\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlimagesize\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlmarkdown\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlprettypatch\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlstephen\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nqlvideo\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nquicklook-csv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nquicklook-json\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nquicklookase\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nrbenv\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nruby\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nsass\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nskitch\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nsqlite\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nsuspicious-package\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntable-tool\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nterraform\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nthe-unarchiver\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntig\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntmux\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntravis\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntree\n\n\nTODO: Please write the contents\n\n\n\n\n\n\ntypora\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvagrant\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvault\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvim\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvimgolf\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nvirtualbox\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwatch\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwdiff\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwebpquicklook\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nwget\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nxz\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nyank\n\n\nTODO: Please write the contents\n\n\n\n\n\n\nzsh\n\n\nTODO: Please write the contents",
+            "title": "INDEX"
         },
         {
-            "location": "/#humangass-dotfiles",
+            "location": "/#index",
             "text": "humangas's macOS setup tool and dotfiles \nSee also:  github.com/humangas/dotfiles",
-            "title": "humangas's dotfiles"
+            "title": "INDEX"
         },
         {
             "location": "/#roles",
@@ -17,7 +17,7 @@
         },
         {
             "location": "/ag/",
-            "text": "ag\n\n\n\u9ad8\u901f grep",
+            "text": "ag\n\u00b6\n\n\n\u9ad8\u901f grep",
             "title": "ag"
         },
         {
@@ -27,7 +27,7 @@
         },
         {
             "location": "/alfred/",
-            "text": "alfred\n\n\nTODO: Please write the contents",
+            "text": "alfred\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "alfred"
         },
         {
@@ -37,7 +37,7 @@
         },
         {
             "location": "/ansible/",
-            "text": "ansible\n\n\nTODO: Please write the contents",
+            "text": "ansible\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "ansible"
         },
         {
@@ -47,7 +47,7 @@
         },
         {
             "location": "/awscli/",
-            "text": "awscli\n\n\nTODO: Please write the contents",
+            "text": "awscli\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "awscli"
         },
         {
@@ -57,7 +57,7 @@
         },
         {
             "location": "/bash/",
-            "text": "bash\n\n\nTODO: Please write the contents",
+            "text": "bash\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "bash"
         },
         {
@@ -67,7 +67,7 @@
         },
         {
             "location": "/bats-core/",
-            "text": "bats\n\n\nbash\u306e\u30c6\u30b9\u30c8\u30d5\u30ec\u30fc\u30e0\u30ef\u30fc\u30af\n\n\nbats\n\u304c\u6709\u540d\u3067\u3059\u304c\u3001\u30e1\u30f3\u30c6\u3068\u304b\u306e\u554f\u984c\u304c\u3042\u308afork\u7248\nbats-core\n\u3092\u4f7f\u3044\u307e\u3059\u3002",
+            "text": "bats\n\u00b6\n\n\nbash\u306e\u30c6\u30b9\u30c8\u30d5\u30ec\u30fc\u30e0\u30ef\u30fc\u30af\n\n\nbats\n\u304c\u6709\u540d\u3067\u3059\u304c\u3001\u30e1\u30f3\u30c6\u3068\u304b\u306e\u554f\u984c\u304c\u3042\u308afork\u7248\nbats-core\n\u3092\u4f7f\u3044\u307e\u3059\u3002",
             "title": "bats"
         },
         {
@@ -77,7 +77,7 @@
         },
         {
             "location": "/betterzip/",
-            "text": "betterzipql\n\n\nTODO: Please write the contents",
+            "text": "betterzipql\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "betterzipql"
         },
         {
@@ -87,7 +87,7 @@
         },
         {
             "location": "/binutils/",
-            "text": "binutils\n\n\nInclude: as, ld, gprof, nm, size, strings, strip ...\n\n\n\n\nSee also: \nGNU Binutils",
+            "text": "binutils\n\u00b6\n\n\nInclude: as, ld, gprof, nm, size, strings, strip ...\n\n\n\n\nSee also: \nGNU Binutils",
             "title": "binutils"
         },
         {
@@ -97,7 +97,7 @@
         },
         {
             "location": "/brew/",
-            "text": "brew\n\n\nTODO: Please write the contents",
+            "text": "brew\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "brew"
         },
         {
@@ -107,7 +107,7 @@
         },
         {
             "location": "/buttercup/",
-            "text": "buttercup\n\n\nTODO: Please write the contents",
+            "text": "buttercup\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "buttercup"
         },
         {
@@ -117,7 +117,7 @@
         },
         {
             "location": "/caffeine/",
-            "text": "caffeine\n\n\nMac\u306e\u81ea\u52d5\u30b9\u30ea\u30fc\u30d7\u3092\u9632\u3050\u3053\u3068\u304c\u3067\u304d\u308b\u30c4\u30fc\u30eb\u3067\u3059\u3002\n\n\nhammerspoon > hs.loadSpoon(\"Caffeine\")\n \u306b\u7f6e\u304d\u63db\u3048\u307e\u3057\u305f\u3002",
+            "text": "caffeine\n\u00b6\n\n\nMac\u306e\u81ea\u52d5\u30b9\u30ea\u30fc\u30d7\u3092\u9632\u3050\u3053\u3068\u304c\u3067\u304d\u308b\u30c4\u30fc\u30eb\u3067\u3059\u3002\n\n\nhammerspoon > hs.loadSpoon(\"Caffeine\")\n \u306b\u7f6e\u304d\u63db\u3048\u307e\u3057\u305f\u3002",
             "title": "caffeine"
         },
         {
@@ -127,7 +127,7 @@
         },
         {
             "location": "/calibre/",
-            "text": "calibre\n\n\nTODO: Please write the contents",
+            "text": "calibre\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "calibre"
         },
         {
@@ -137,7 +137,7 @@
         },
         {
             "location": "/clipy/",
-            "text": "clipy\n\n\nTODO: Please write the contents",
+            "text": "clipy\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "clipy"
         },
         {
@@ -147,7 +147,7 @@
         },
         {
             "location": "/coreutils/",
-            "text": "coreutils\n\n\nInclude: ls, mv, cat, paste, join, head, tail, tr, cut, sort, uniq, wc, echo ...\n\n(Dependencies Xz)\n\n\n\n\nSee also: \nList of GNU Core Utilities commands",
+            "text": "coreutils\n\u00b6\n\n\nInclude: ls, mv, cat, paste, join, head, tail, tr, cut, sort, uniq, wc, echo ...\n\n(Dependencies Xz)\n\n\n\n\nSee also: \nList of GNU Core Utilities commands",
             "title": "coreutils"
         },
         {
@@ -157,7 +157,7 @@
         },
         {
             "location": "/ctags/",
-            "text": "ctags\n\n\nTODO: Please write the contents",
+            "text": "ctags\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "ctags"
         },
         {
@@ -167,7 +167,7 @@
         },
         {
             "location": "/curl/",
-            "text": "curl\n\n\nTODO: Please write the contents",
+            "text": "curl\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "curl"
         },
         {
@@ -177,7 +177,7 @@
         },
         {
             "location": "/diffutils/",
-            "text": "diffutils\n\n\nInclude: diff, cmp, diff3, sdiff",
+            "text": "diffutils\n\u00b6\n\n\nInclude: diff, cmp, diff3, sdiff",
             "title": "diffutils"
         },
         {
@@ -187,7 +187,7 @@
         },
         {
             "location": "/direnv/",
-            "text": "direnv\n\n\nTODO: Please write the contents",
+            "text": "direnv\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "direnv"
         },
         {
@@ -197,7 +197,7 @@
         },
         {
             "location": "/docker/",
-            "text": "docker\n\n\nTODO: Please write the contents",
+            "text": "docker\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "docker"
         },
         {
@@ -207,7 +207,7 @@
         },
         {
             "location": "/dropbox/",
-            "text": "dropbox\n\n\nTODO: Please write the contents",
+            "text": "dropbox\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "dropbox"
         },
         {
@@ -217,7 +217,7 @@
         },
         {
             "location": "/ed/",
-            "text": "ed\n\n\ned --with-defaults-names",
+            "text": "ed\n\u00b6\n\n\ned --with-defaults-names",
             "title": "ed"
         },
         {
@@ -227,7 +227,7 @@
         },
         {
             "location": "/embulk/",
-            "text": "embulk\n\n\nTODO: Please write the contents",
+            "text": "embulk\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "embulk"
         },
         {
@@ -237,7 +237,7 @@
         },
         {
             "location": "/fasd/",
-            "text": "fasd\n\n\nTODO: Please write the contents",
+            "text": "fasd\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "fasd"
         },
         {
@@ -247,7 +247,7 @@
         },
         {
             "location": "/fgopen/",
-            "text": "fgopen\n\n\nTODO: Please write the contents",
+            "text": "fgopen\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "fgopen"
         },
         {
@@ -257,7 +257,7 @@
         },
         {
             "location": "/figlet/",
-            "text": "figlet\n\n\nTODO: Please write the contents",
+            "text": "figlet\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "figlet"
         },
         {
@@ -267,7 +267,7 @@
         },
         {
             "location": "/findutils/",
-            "text": "findutils\n\n\nInclude: find, locate, updatedb, xargs\n- See also: \nGNU Findutils\n\n\nfindutils --with-defaults-names",
+            "text": "findutils\n\u00b6\n\n\nInclude: find, locate, updatedb, xargs\n- See also: \nGNU Findutils\n\n\nfindutils --with-defaults-names",
             "title": "findutils"
         },
         {
@@ -277,7 +277,7 @@
         },
         {
             "location": "/flake8/",
-            "text": "flake8\n\n\nTODO: Please write the contents",
+            "text": "flake8\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "flake8"
         },
         {
@@ -287,7 +287,7 @@
         },
         {
             "location": "/fzf/",
-            "text": "fzf\n\n\nTODO: Please write the contents",
+            "text": "fzf\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "fzf"
         },
         {
@@ -297,7 +297,7 @@
         },
         {
             "location": "/gawk/",
-            "text": "gawk\n\n\nTODO: Please write the contents",
+            "text": "gawk\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "gawk"
         },
         {
@@ -307,7 +307,7 @@
         },
         {
             "location": "/ghq/",
-            "text": "ghq\n\n\nTODO: Please write the contents",
+            "text": "ghq\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "ghq"
         },
         {
@@ -317,7 +317,7 @@
         },
         {
             "location": "/gibo/",
-            "text": "gibo\n\n\nTODO: Please write the contents",
+            "text": "gibo\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "gibo"
         },
         {
@@ -327,7 +327,7 @@
         },
         {
             "location": "/gist/",
-            "text": "gist\n\n\nTODO: Please write the contents",
+            "text": "gist\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "gist"
         },
         {
@@ -337,7 +337,7 @@
         },
         {
             "location": "/git/",
-            "text": "git\n\n\nTODO: Please write the contents",
+            "text": "git\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "git"
         },
         {
@@ -347,7 +347,7 @@
         },
         {
             "location": "/glide/",
-            "text": "glide\n\n\nTODO: Please write the contents",
+            "text": "glide\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "glide"
         },
         {
@@ -357,7 +357,7 @@
         },
         {
             "location": "/gnu-getopt/",
-            "text": "gnu-getopt\n\n\nTODO: Please write the contents",
+            "text": "gnu-getopt\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "gnu-getopt"
         },
         {
@@ -367,7 +367,7 @@
         },
         {
             "location": "/gnu-indent/",
-            "text": "gnu-indent\n\n\ngnu-indent --with-defaults-names",
+            "text": "gnu-indent\n\u00b6\n\n\ngnu-indent --with-defaults-names",
             "title": "gnu-indent"
         },
         {
@@ -377,7 +377,7 @@
         },
         {
             "location": "/gnu-sed/",
-            "text": "gnu-sed\n\n\nTODO: Please write the contents\n\n\ngnu-sed --with-defaults-names",
+            "text": "gnu-sed\n\u00b6\n\n\nTODO: Please write the contents\n\n\ngnu-sed --with-defaults-names",
             "title": "gnu-sed"
         },
         {
@@ -387,7 +387,7 @@
         },
         {
             "location": "/gnu-tar/",
-            "text": "gnu-tar\n\n\nTODO: Please write the contents\n\n\n\n\ngnu-tar --with-defaults-names",
+            "text": "gnu-tar\n\u00b6\n\n\nTODO: Please write the contents\n\n\n\n\ngnu-tar --with-defaults-names",
             "title": "gnu-tar"
         },
         {
@@ -397,7 +397,7 @@
         },
         {
             "location": "/gnu-which/",
-            "text": "gnu-which\n\n\nTODO: Please write the contents\n\n\n\n\ngnu-which --with-defaults-names",
+            "text": "gnu-which\n\u00b6\n\n\nTODO: Please write the contents\n\n\n\n\ngnu-which --with-defaults-names",
             "title": "gnu-which"
         },
         {
@@ -407,7 +407,7 @@
         },
         {
             "location": "/go/",
-            "text": "go\n\n\nTODO: Please write the contents",
+            "text": "go\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "go"
         },
         {
@@ -417,7 +417,7 @@
         },
         {
             "location": "/gocloc/",
-            "text": "gocloc\n\n\nTODO: Please write the contents",
+            "text": "gocloc\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "gocloc"
         },
         {
@@ -427,7 +427,7 @@
         },
         {
             "location": "/goenv/",
-            "text": "goenv\n\n\nTODO: Please write the contents",
+            "text": "goenv\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "goenv"
         },
         {
@@ -437,7 +437,7 @@
         },
         {
             "location": "/google-chrome/",
-            "text": "google-chrome\n\n\nTODO: Please write the contents",
+            "text": "google-chrome\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "google-chrome"
         },
         {
@@ -447,7 +447,7 @@
         },
         {
             "location": "/google-japanese-ime/",
-            "text": "google-japanese-ime\n\n\nTODO: Please write the contents",
+            "text": "google-japanese-ime\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "google-japanese-ime"
         },
         {
@@ -457,7 +457,7 @@
         },
         {
             "location": "/gpg/",
-            "text": "gpg\n\n\nTODO: Please write the contents",
+            "text": "gpg\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "gpg"
         },
         {
@@ -467,7 +467,7 @@
         },
         {
             "location": "/graphviz/",
-            "text": "graphviz\n\n\nTODO: Please write the contents",
+            "text": "graphviz\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "graphviz"
         },
         {
@@ -477,7 +477,7 @@
         },
         {
             "location": "/grep/",
-            "text": "grep\n\n\nTODO: Please write the contents\n\n\n\n\ngrep --with-defaults-names",
+            "text": "grep\n\u00b6\n\n\nTODO: Please write the contents\n\n\n\n\ngrep --with-defaults-names",
             "title": "grep"
         },
         {
@@ -487,7 +487,7 @@
         },
         {
             "location": "/gzip/",
-            "text": "gzip\n\n\nTODO: Please write the contents",
+            "text": "gzip\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "gzip"
         },
         {
@@ -497,7 +497,7 @@
         },
         {
             "location": "/hammerspoon/",
-            "text": "hammerspoon\n\n\nTODO: Please write the contents",
+            "text": "hammerspoon\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "hammerspoon"
         },
         {
@@ -507,7 +507,7 @@
         },
         {
             "location": "/htop/",
-            "text": "htop\n\n\nTODO: Please write the contents",
+            "text": "htop\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "htop"
         },
         {
@@ -517,7 +517,7 @@
         },
         {
             "location": "/httpie/",
-            "text": "httpie\n\n\nTODO: Please write the contents",
+            "text": "httpie\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "httpie"
         },
         {
@@ -527,7 +527,7 @@
         },
         {
             "location": "/hub/",
-            "text": "hub\n\n\nTODO: Please write the contents",
+            "text": "hub\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "hub"
         },
         {
@@ -537,7 +537,7 @@
         },
         {
             "location": "/java/",
-            "text": "java\n\n\nTODO: Please write the contents",
+            "text": "java\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "java"
         },
         {
@@ -547,7 +547,7 @@
         },
         {
             "location": "/java8/",
-            "text": "java8\n\n\nTODO: Please write the contents",
+            "text": "java8\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "java8"
         },
         {
@@ -557,7 +557,7 @@
         },
         {
             "location": "/jenv/",
-            "text": "jenv\n\n\nTODO: Please write the contents",
+            "text": "jenv\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "jenv"
         },
         {
@@ -567,7 +567,7 @@
         },
         {
             "location": "/jupyter/",
-            "text": "jupyter\n\n\nTODO: Please write the contents",
+            "text": "jupyter\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "jupyter"
         },
         {
@@ -577,7 +577,7 @@
         },
         {
             "location": "/licecap/",
-            "text": "licecap\n\n\nTODO: Please write the contents",
+            "text": "licecap\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "licecap"
         },
         {
@@ -587,7 +587,7 @@
         },
         {
             "location": "/lua/",
-            "text": "lua\n\n\nTODO: Please write the contents",
+            "text": "lua\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "lua"
         },
         {
@@ -597,7 +597,7 @@
         },
         {
             "location": "/macos-dock/",
-            "text": "macos-dock\n\n\nTODO: Please write the contents",
+            "text": "macos-dock\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "macos-dock"
         },
         {
@@ -607,7 +607,7 @@
         },
         {
             "location": "/macos-sharing/",
-            "text": "macos-sharing\n\n\nTODO: Please write the contents",
+            "text": "macos-sharing\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "macos-sharing"
         },
         {
@@ -617,7 +617,7 @@
         },
         {
             "location": "/macos-terminal/",
-            "text": "macos-terminal\n\n\nTODO: Please write the contents",
+            "text": "macos-terminal\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "macos-terminal"
         },
         {
@@ -627,7 +627,7 @@
         },
         {
             "location": "/macvim/",
-            "text": "macvim\n\n\nTODO: Please write the contents",
+            "text": "macvim\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "macvim"
         },
         {
@@ -637,7 +637,7 @@
         },
         {
             "location": "/maczip4win/",
-            "text": "maczip4win\n\n\nTODO: Please write the contents",
+            "text": "maczip4win\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "maczip4win"
         },
         {
@@ -647,7 +647,7 @@
         },
         {
             "location": "/mailcatcher/",
-            "text": "mailcatcher\n\n\nTODO: Please write the contents",
+            "text": "mailcatcher\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "mailcatcher"
         },
         {
@@ -657,7 +657,7 @@
         },
         {
             "location": "/marp/",
-            "text": "marp\n\n\nTODO: Please write the contents",
+            "text": "marp\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "marp"
         },
         {
@@ -667,7 +667,7 @@
         },
         {
             "location": "/nmap/",
-            "text": "nmap\n\n\nTODO: Please write the contents",
+            "text": "nmap\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "nmap"
         },
         {
@@ -677,7 +677,7 @@
         },
         {
             "location": "/nodenv/",
-            "text": "nodenv\n\n\nTODO: Please write the contents",
+            "text": "nodenv\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "nodenv"
         },
         {
@@ -687,7 +687,7 @@
         },
         {
             "location": "/note/",
-            "text": "note\n\n\nTODO: Please write the contents",
+            "text": "note\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "note"
         },
         {
@@ -697,7 +697,7 @@
         },
         {
             "location": "/npm/",
-            "text": "npm\n\n\nTODO: Please write the contents",
+            "text": "npm\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "npm"
         },
         {
@@ -707,7 +707,7 @@
         },
         {
             "location": "/openssl/",
-            "text": "openssl\n\n\nTODO: Please write the contents",
+            "text": "openssl\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "openssl"
         },
         {
@@ -717,7 +717,7 @@
         },
         {
             "location": "/osquery/",
-            "text": "osquery\n\n\nTODO: Please write the contents",
+            "text": "osquery\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "osquery"
         },
         {
@@ -727,7 +727,7 @@
         },
         {
             "location": "/pyenv/",
-            "text": "pyenv\n\n\nTODO: Please write the contents",
+            "text": "pyenv\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "pyenv"
         },
         {
@@ -737,7 +737,7 @@
         },
         {
             "location": "/python/",
-            "text": "python\n\n\nTODO: Please write the contents",
+            "text": "python\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "python"
         },
         {
@@ -747,7 +747,7 @@
         },
         {
             "location": "/python3/",
-            "text": "python3\n\n\nTODO: Please write the contents",
+            "text": "python3\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "python3"
         },
         {
@@ -757,7 +757,7 @@
         },
         {
             "location": "/qlcolorcode/",
-            "text": "qlcolorcode\n\n\nTODO: Please write the contents",
+            "text": "qlcolorcode\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "qlcolorcode"
         },
         {
@@ -767,7 +767,7 @@
         },
         {
             "location": "/qlimagesize/",
-            "text": "qlimagesize\n\n\nTODO: Please write the contents",
+            "text": "qlimagesize\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "qlimagesize"
         },
         {
@@ -777,7 +777,7 @@
         },
         {
             "location": "/qlmarkdown/",
-            "text": "qlmarkdown\n\n\nTODO: Please write the contents",
+            "text": "qlmarkdown\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "qlmarkdown"
         },
         {
@@ -787,7 +787,7 @@
         },
         {
             "location": "/qlprettypatch/",
-            "text": "qlprettypatch\n\n\nTODO: Please write the contents",
+            "text": "qlprettypatch\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "qlprettypatch"
         },
         {
@@ -797,7 +797,7 @@
         },
         {
             "location": "/qlstephen/",
-            "text": "qlstephen\n\n\nTODO: Please write the contents",
+            "text": "qlstephen\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "qlstephen"
         },
         {
@@ -807,7 +807,7 @@
         },
         {
             "location": "/qlvideo/",
-            "text": "qlvideo\n\n\nTODO: Please write the contents",
+            "text": "qlvideo\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "qlvideo"
         },
         {
@@ -817,7 +817,7 @@
         },
         {
             "location": "/quicklook-csv/",
-            "text": "quicklook-csv\n\n\nTODO: Please write the contents",
+            "text": "quicklook-csv\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "quicklook-csv"
         },
         {
@@ -827,7 +827,7 @@
         },
         {
             "location": "/quicklook-json/",
-            "text": "quicklook-json\n\n\nTODO: Please write the contents",
+            "text": "quicklook-json\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "quicklook-json"
         },
         {
@@ -837,7 +837,7 @@
         },
         {
             "location": "/quicklookase/",
-            "text": "quicklookase\n\n\nTODO: Please write the contents",
+            "text": "quicklookase\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "quicklookase"
         },
         {
@@ -847,7 +847,7 @@
         },
         {
             "location": "/rbenv/",
-            "text": "rbenv\n\n\nTODO: Please write the contents",
+            "text": "rbenv\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "rbenv"
         },
         {
@@ -857,7 +857,7 @@
         },
         {
             "location": "/ruby/",
-            "text": "ruby\n\n\nTODO: Please write the contents",
+            "text": "ruby\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "ruby"
         },
         {
@@ -867,7 +867,7 @@
         },
         {
             "location": "/sass/",
-            "text": "sass\n\n\nTODO: Please write the contents",
+            "text": "sass\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "sass"
         },
         {
@@ -877,7 +877,7 @@
         },
         {
             "location": "/skitch/",
-            "text": "skitch\n\n\nTODO: Please write the contents",
+            "text": "skitch\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "skitch"
         },
         {
@@ -887,7 +887,7 @@
         },
         {
             "location": "/sqlite/",
-            "text": "sqlite\n\n\nTODO: Please write the contents",
+            "text": "sqlite\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "sqlite"
         },
         {
@@ -897,7 +897,7 @@
         },
         {
             "location": "/suspicious-package/",
-            "text": "suspicious-package\n\n\nTODO: Please write the contents",
+            "text": "suspicious-package\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "suspicious-package"
         },
         {
@@ -907,7 +907,7 @@
         },
         {
             "location": "/table-tool/",
-            "text": "table-tool\n\n\nTODO: Please write the contents",
+            "text": "table-tool\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "table-tool"
         },
         {
@@ -917,7 +917,7 @@
         },
         {
             "location": "/terraform/",
-            "text": "terraform\n\n\nTODO: Please write the contents",
+            "text": "terraform\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "terraform"
         },
         {
@@ -927,7 +927,7 @@
         },
         {
             "location": "/the-unarchiver/",
-            "text": "the-unarchiver\n\n\nTODO: Please write the contents",
+            "text": "the-unarchiver\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "the-unarchiver"
         },
         {
@@ -937,7 +937,7 @@
         },
         {
             "location": "/tig/",
-            "text": "tig\n\n\nTODO: Please write the contents",
+            "text": "tig\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "tig"
         },
         {
@@ -947,7 +947,7 @@
         },
         {
             "location": "/tmux/",
-            "text": "tmux\n\n\nTODO: Please write the contents",
+            "text": "tmux\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "tmux"
         },
         {
@@ -957,7 +957,7 @@
         },
         {
             "location": "/travis/",
-            "text": "travis\n\n\nTODO: Please write the contents",
+            "text": "travis\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "travis"
         },
         {
@@ -967,7 +967,7 @@
         },
         {
             "location": "/tree/",
-            "text": "tree\n\n\nTODO: Please write the contents",
+            "text": "tree\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "tree"
         },
         {
@@ -977,7 +977,7 @@
         },
         {
             "location": "/typora/",
-            "text": "typora\n\n\nTODO: Please write the contents",
+            "text": "typora\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "typora"
         },
         {
@@ -987,7 +987,7 @@
         },
         {
             "location": "/vagrant/",
-            "text": "vagrant\n\n\nTODO: Please write the contents",
+            "text": "vagrant\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "vagrant"
         },
         {
@@ -997,7 +997,7 @@
         },
         {
             "location": "/vault/",
-            "text": "vault\n\n\nTODO: Please write the contents",
+            "text": "vault\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "vault"
         },
         {
@@ -1007,7 +1007,7 @@
         },
         {
             "location": "/vim/",
-            "text": "vim\n\n\nTODO: Please write the contents",
+            "text": "vim\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "vim"
         },
         {
@@ -1017,7 +1017,7 @@
         },
         {
             "location": "/vimgolf/",
-            "text": "vimgolf\n\n\nTODO: Please write the contents",
+            "text": "vimgolf\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "vimgolf"
         },
         {
@@ -1027,7 +1027,7 @@
         },
         {
             "location": "/virtualbox/",
-            "text": "virtualbox\n\n\nTODO: Please write the contents",
+            "text": "virtualbox\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "virtualbox"
         },
         {
@@ -1037,7 +1037,7 @@
         },
         {
             "location": "/watch/",
-            "text": "watch\n\n\nTODO: Please write the contents",
+            "text": "watch\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "watch"
         },
         {
@@ -1047,7 +1047,7 @@
         },
         {
             "location": "/wdiff/",
-            "text": "wdiff\n\n\nTODO: Please write the contents\n\n\n\n\nwdiff --with-gettext",
+            "text": "wdiff\n\u00b6\n\n\nTODO: Please write the contents\n\n\n\n\nwdiff --with-gettext",
             "title": "wdiff"
         },
         {
@@ -1057,7 +1057,7 @@
         },
         {
             "location": "/webpquicklook/",
-            "text": "webpquicklook\n\n\nTODO: Please write the contents",
+            "text": "webpquicklook\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "webpquicklook"
         },
         {
@@ -1067,7 +1067,7 @@
         },
         {
             "location": "/wget/",
-            "text": "wget\n\n\nTODO: Please write the contents",
+            "text": "wget\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "wget"
         },
         {
@@ -1077,7 +1077,7 @@
         },
         {
             "location": "/xz/",
-            "text": "xz\n\n\nTODO: Please write the contents",
+            "text": "xz\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "xz"
         },
         {
@@ -1087,7 +1087,7 @@
         },
         {
             "location": "/yank/",
-            "text": "yank\n\n\nTODO: Please write the contents",
+            "text": "yank\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "yank"
         },
         {
@@ -1097,7 +1097,7 @@
         },
         {
             "location": "/zsh/",
-            "text": "zsh\n\n\nTODO: Please write the contents",
+            "text": "zsh\n\u00b6\n\n\nTODO: Please write the contents",
             "title": "zsh"
         },
         {
