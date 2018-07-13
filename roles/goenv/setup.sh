@@ -17,7 +17,7 @@ version() {
 }
 
 config() {
-    return
+    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
 }
 
 install() {
