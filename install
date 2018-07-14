@@ -16,7 +16,6 @@ display_logo() {
       See also: https://$SETUP_REPOSITORY_NAME
 
       Copyright (c) 2017 humangas
-      Licensed under the MIT license.
     "
     echo "$_logo"
 }
