@@ -21,6 +21,7 @@ set switchbuf=useopen                               "If already in the buffer, o
 "Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
+nnoremap <C-c><C-c> :terminal<CR>
 
 " Tab
 set expandtab                                       "Convert tabs to spaces.
