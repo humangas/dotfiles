@@ -91,6 +91,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://humangas.github.io/dotfiles/dep/</loc>
+     <lastmod>2018-07-14</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://humangas.github.io/dotfiles/diffutils/</loc>
      <lastmod>2018-07-14</lastmod>
      <changefreq>daily</changefreq>
