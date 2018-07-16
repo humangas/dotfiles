@@ -19,6 +19,7 @@ version() {
 
 config() {
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
+    source "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d/note.env.sh"
     mkdir -p "$NOTE_POST_DIR/_archive"
 }
 
