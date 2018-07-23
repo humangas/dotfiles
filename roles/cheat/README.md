@@ -1,2 +1,2 @@
 # cheat
-TODO: Please write the contents
+My cheat sheet command

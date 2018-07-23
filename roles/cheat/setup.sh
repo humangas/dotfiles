@@ -9,11 +9,11 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 is_installed() {
-    type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
+    basename "$(readlink /usr/local/opt/$SETUP_CURRENT_ROLE_NAME)"
 }
 
 config() {
@@ -22,14 +22,11 @@ config() {
 
 install() {
     depend "install" "ghq"
-    ghq get git@github.com:humangas/cheat.git
-    (
-    cd $GOPATH/src/github.com/humangas/cheat
-    make install
-    )
+    ghq get git@github.com:humangas/$SETUP_CURRENT_ROLE_NAME.git
+    brew install --HEAD humangas/apps/"$SETUP_CURRENT_ROLE_NAME"
     config
 }
 
 upgrade() {
-    install
+    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
 }
