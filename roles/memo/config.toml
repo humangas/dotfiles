@@ -1,0 +1,9 @@
+memodir = "$HOME/memo"
+editor = "vim"
+column = 30
+selectcmd = "fzf"
+grepcmd = "ag ${PATTERN} ${DIR}"
+assetsdir = "."
+pluginsdir = "$HOME/.config/memo/plugins"
+templatedirfile = ""
+templatebodyfile = ""
