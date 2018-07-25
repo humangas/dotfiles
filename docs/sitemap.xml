@@ -341,6 +341,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://humangas.github.io/dotfiles/memo/</loc>
+     <lastmod>2018-07-25</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://humangas.github.io/dotfiles/nmap/</loc>
      <lastmod>2018-07-25</lastmod>
      <changefreq>daily</changefreq>
