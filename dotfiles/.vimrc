@@ -101,6 +101,7 @@ call dein#add('jelera/vim-javascript-syntax')                               "Enh
 call dein#add('AtsushiM/sass-compile.vim')                                  "Add Sass compile & utility commands.
 call dein#add('glidenote/memolist.vim')                                     "simple memo plugin for Vim.
 call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
+call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
