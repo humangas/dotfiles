@@ -74,7 +74,6 @@ call dein#add('Shougo/vimfiler')                                            "Pow
 call dein#add('Shougo/unite.vim')                                           "Search and display information from arbitrary sources like files, buffers, etc.
 call dein#add('Shougo/neomru.vim')                                          "MRU plugin includes unite.vim MRU sources
 call dein#add('Shougo/unite-outline')                                       "Vim's buffer with the outline view.
-call dein#add('Shougo/neoyank.vim')                                         "Saves yank history includes unite.vim history/yank source.
 call dein#add('thinca/vim-unite-history')                                   "A source of unite.vim for history of command/search.
 call dein#add('altercation/vim-colors-solarized')                           "Colorscheme: solarized
 call dein#add('itchyny/lightline.vim')                                      "A light and configurable statusline/tabline for Vim
@@ -154,9 +153,6 @@ nnoremap <silent> ffh :<C-u>Unite<Space>file_mru<CR>
 nnoremap ffx :<C-u>cd %:p:h<CR> :<C-u>Unite<Space>output/shellcmd:
 nnoremap <silent> fxx :<C-u>Unite<Space>output/shellcmd:<Up><CR>
 nnoremap <silent> ffy :<C-u>Unite<Space>history/command<CR>
-
-" Plugin Shougo/neoyank
-nnoremap <silent> <Space>y :<C-u>Unite<Space>history/yank<CR>
 
 " Plugin majutsushi/tagbar
 let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
