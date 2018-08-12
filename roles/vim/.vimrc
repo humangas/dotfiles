@@ -102,6 +102,7 @@ call dein#add('AtsushiM/sass-compile.vim')                                  "Add
 call dein#add('glidenote/memolist.vim')                                     "simple memo plugin for Vim.
 call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
 call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt
+call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -144,7 +145,6 @@ nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direct
 
 " Plugin Shougo/unite-outline
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> <Space>r :<C-u>Unite<Space>register<CR>
 nnoremap <silent> ffl :<C-u>Unite<Space>buffer<CR>
 nnoremap <silent> ffb :<C-u>Unite<Space>bookmark<CR>
 nnoremap <silent> fbb :<C-u>UniteBookmarkAdd<CR>
@@ -211,6 +211,18 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 " Plugin glidenote/memolist.vim
 let g:memolist_path = "$HOME/memo"
 let g:memolist_memo_suffix = "md"
+
+" Plugin LeafCage/yankround.vim
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_max_history = 50
+nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 
 " SuperTab like snippets behavior.
 imap <expr><TAB>
