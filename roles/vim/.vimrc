@@ -153,6 +153,7 @@ nnoremap <silent> ffh :<C-u>Unite<Space>file_mru<CR>
 nnoremap ffx :<C-u>cd %:p:h<CR> :<C-u>Unite<Space>output/shellcmd:
 nnoremap <silent> fxx :<C-u>Unite<Space>output/shellcmd:<Up><CR>
 nnoremap <silent> ffy :<C-u>Unite<Space>history/command<CR>
+nnoremap <silent> ,m :<C-u>Unite<Space>menu:mycmd<CR>
 
 " Plugin majutsushi/tagbar
 let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
@@ -234,6 +235,40 @@ nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 50
 nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
+
+" Plugin Shougo/unite.vim
+let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
+let g:unite_source_menu_menus.mycmd = {'description': 'my command list'}
+let g:unite_source_menu_menus.mycmd.command_candidates = {
+      \ '- Unite mapping source                          ': 'Unite mapping source',
+      \ '- VimFilerBufferDir current          <Space>e   ': 'VimFilerBufferDir',
+      \ '- VimFilerBufferDir rightbelow       <Space>E   ': 'VimFilerBufferDir -explorer -direction=rightbelow',
+      \ '- Unite outline                      <Space>o   ': 'Unite outline',
+      \ '- Unite yankround                    <Space>r   ': 'Unite yankround',
+      \ '- Unite buffer                       ffl        ': 'Unite buffer',
+      \ '- Unite bookmark                     ffb        ': 'Unite bookmark',
+      \ '- UniteBookmarkAdd                   fbb        ': 'UniteBookmarkAdd',
+      \ '- Unite tab:no-current               fft        ': 'Unite tab:no-current',
+      \ '- Unite file_mru                     ffh        ': 'Unite file_mru',
+      \ '- Unite output/shellcmd:             ffx        ': 'exe "cd %:p:h | Unite output/shellcmd"',
+      \ '- Unite output/shellcmd:<Up>         fxx        ': 'Unite output/shellcmd',
+      \ '- Unite history/command              ffy        ': 'Unite history/command',
+      \ '- TagbarToggle                       <Space>t   ': 'TagbarToggle',
+      \ '- FzfBLines                          fff        ': 'FzfBLines',
+      \ '- FzfAg                              ffg        ': 'exe "cd %:p:h | FzfAg"',
+      \ '- FzfFiles                           ffc        ': 'exe "cd %:p:h | FzfFiles"',
+      \ '- FzfFiles ~/src                     ffs        ': 'exe "FzfFiles ~/src"',
+      \ '- GitGutterToggle                    ,gg        ': 'GitGutterToggle',
+      \ '- GitGutterLineHighlightsToggle      ,gh        ': 'GitGutterLineHighlightsToggle',
+      \ '- [help] jedi#goto_command           gd         ': '',
+      \ '- [help] jedi#usages_command         <Leader>c  ': '',
+      \ '- [help] jedi#documentation_command  <Leader>d  ': '',
+      \ '- [help] jedi#rename_command         <Leader>r  ': '',
+      \ '- [help] go#go-referrers             <Leader>c  ': '',
+      \ '- [help] go#go-doc                   <Leader>d  ': '',
+      \ '- [help] go#go-doc-browser           <Leader>db ': '',
+      \ '- [help] go#go-doc-rename            <Leader>r  ': '',
+      \ }
 
 " SuperTab like snippets behavior.
 imap <expr><TAB>
