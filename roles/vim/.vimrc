@@ -103,6 +103,7 @@ call dein#add('glidenote/memolist.vim')                                     "sim
 call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
 call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt
 call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
+call dein#add('jszakmeister/markdown2ctags')                                "Generate ctags-compatible tags files for Markdown documents.
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -163,6 +164,20 @@ let g:tagbar_left = 1                                                       "tag
 let g:tagbar_autoshowtag = 1                                                "Show tag auto
 " autocmd FileType python,go,vim,zsh nested :TagbarOpen
 nnoremap <silent> <Space>t :<C-u>TagbarToggle<CR>
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : $HOME . '/.cache/dein/repos/github.com/jszakmeister/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
