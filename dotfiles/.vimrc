@@ -74,7 +74,6 @@ call dein#add('Shougo/vimfiler')                                            "Pow
 call dein#add('Shougo/unite.vim')                                           "Search and display information from arbitrary sources like files, buffers, etc.
 call dein#add('Shougo/neomru.vim')                                          "MRU plugin includes unite.vim MRU sources
 call dein#add('Shougo/unite-outline')                                       "Vim's buffer with the outline view.
-call dein#add('Shougo/neoyank.vim')                                         "Saves yank history includes unite.vim history/yank source.
 call dein#add('thinca/vim-unite-history')                                   "A source of unite.vim for history of command/search.
 call dein#add('altercation/vim-colors-solarized')                           "Colorscheme: solarized
 call dein#add('itchyny/lightline.vim')                                      "A light and configurable statusline/tabline for Vim
@@ -102,6 +101,8 @@ call dein#add('AtsushiM/sass-compile.vim')                                  "Add
 call dein#add('glidenote/memolist.vim')                                     "simple memo plugin for Vim.
 call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
 call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt
+call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
+call dein#add('jszakmeister/markdown2ctags')                                "Generate ctags-compatible tags files for Markdown documents.
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -144,7 +145,6 @@ nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direct
 
 " Plugin Shougo/unite-outline
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> <Space>r :<C-u>Unite<Space>register<CR>
 nnoremap <silent> ffl :<C-u>Unite<Space>buffer<CR>
 nnoremap <silent> ffb :<C-u>Unite<Space>bookmark<CR>
 nnoremap <silent> fbb :<C-u>UniteBookmarkAdd<CR>
@@ -153,9 +153,7 @@ nnoremap <silent> ffh :<C-u>Unite<Space>file_mru<CR>
 nnoremap ffx :<C-u>cd %:p:h<CR> :<C-u>Unite<Space>output/shellcmd:
 nnoremap <silent> fxx :<C-u>Unite<Space>output/shellcmd:<Up><CR>
 nnoremap <silent> ffy :<C-u>Unite<Space>history/command<CR>
-
-" Plugin Shougo/neoyank
-nnoremap <silent> <Space>y :<C-u>Unite<Space>history/yank<CR>
+nnoremap <silent> ,m :<C-u>Unite<Space>menu:mycmd<CR>
 
 " Plugin majutsushi/tagbar
 let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
@@ -163,6 +161,20 @@ let g:tagbar_left = 1                                                       "tag
 let g:tagbar_autoshowtag = 1                                                "Show tag auto
 " autocmd FileType python,go,vim,zsh nested :TagbarOpen
 nnoremap <silent> <Space>t :<C-u>TagbarToggle<CR>
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : $HOME . '/.cache/dein/repos/github.com/jszakmeister/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
@@ -212,6 +224,52 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 let g:memolist_path = "$HOME/memo"
 let g:memolist_memo_suffix = "md"
 
+" Plugin LeafCage/yankround.vim
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_max_history = 50
+nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
+
+" Plugin Shougo/unite.vim
+let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
+let g:unite_source_menu_menus.mycmd = {'description': 'my command list'}
+let g:unite_source_menu_menus.mycmd.command_candidates = {
+      \ '- Unite mapping source                          ': 'Unite mapping source',
+      \ '- VimFilerBufferDir current          <Space>e   ': 'VimFilerBufferDir',
+      \ '- VimFilerBufferDir rightbelow       <Space>E   ': 'VimFilerBufferDir -explorer -direction=rightbelow',
+      \ '- Unite outline                      <Space>o   ': 'Unite outline',
+      \ '- Unite yankround                    <Space>r   ': 'Unite yankround',
+      \ '- Unite buffer                       ffl        ': 'Unite buffer',
+      \ '- Unite bookmark                     ffb        ': 'Unite bookmark',
+      \ '- UniteBookmarkAdd                   fbb        ': 'UniteBookmarkAdd',
+      \ '- Unite tab:no-current               fft        ': 'Unite tab:no-current',
+      \ '- Unite file_mru                     ffh        ': 'Unite file_mru',
+      \ '- Unite output/shellcmd:             ffx        ': 'exe "cd %:p:h | Unite output/shellcmd"',
+      \ '- Unite output/shellcmd:<Up>         fxx        ': 'Unite output/shellcmd',
+      \ '- Unite history/command              ffy        ': 'Unite history/command',
+      \ '- TagbarToggle                       <Space>t   ': 'TagbarToggle',
+      \ '- FzfBLines                          fff        ': 'FzfBLines',
+      \ '- FzfAg                              ffg        ': 'exe "cd %:p:h | FzfAg"',
+      \ '- FzfFiles                           ffc        ': 'exe "cd %:p:h | FzfFiles"',
+      \ '- FzfFiles ~/src                     ffs        ': 'exe "FzfFiles ~/src"',
+      \ '- GitGutterToggle                    ,gg        ': 'GitGutterToggle',
+      \ '- GitGutterLineHighlightsToggle      ,gh        ': 'GitGutterLineHighlightsToggle',
+      \ '- [help] jedi#goto_command           gd         ': '',
+      \ '- [help] jedi#usages_command         <Leader>c  ': '',
+      \ '- [help] jedi#documentation_command  <Leader>d  ': '',
+      \ '- [help] jedi#rename_command         <Leader>r  ': '',
+      \ '- [help] go#go-referrers             <Leader>c  ': '',
+      \ '- [help] go#go-doc                   <Leader>d  ': '',
+      \ '- [help] go#go-doc-browser           <Leader>db ': '',
+      \ '- [help] go#go-doc-rename            <Leader>r  ': '',
+      \ }
+
 " SuperTab like snippets behavior.
 imap <expr><TAB>
  \ pumvisible() ? "\<C-n>" :
@@ -232,24 +290,6 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :%s/ \+$//ge
   \ | :set ft=javascript
   \ | :1
-
-"" Search wtth Dash
-function! s:dash(...)
-    if len(a:000) == 1 && len(a:1) == 0
-        echomsg 'No keyword'
-    else
-        let ft = &filetype
-        if &filetype == 'python'
-            let ft = ft.'2'
-        endif
-        let ft = ft.':'
-        let word = len(a:000) == 0 ? input('Keyword: ', ft.expand('<cword>')) : ft.join(a:000, ' ')
-        call system(printf("open dash://'%s'", word))
-    endif
-endfunction
-
-command! -nargs=* Dash call <SID>dash(<f-args>)
-nnoremap <Leader>D :call <SID>dash(expand('<cword>'))<CR>
 
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
