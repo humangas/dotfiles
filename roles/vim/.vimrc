@@ -237,6 +237,16 @@ let g:yankround_max_history = 50
 nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 
 " Plugin Shougo/unite.vim
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  "" Press esc twice to exit unite
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
+"" Upper case and lower case are not distinguished
+let g:unite_enable_ignore_case = 1  
+let g:unite_enable_smart_case = 1
+"" unite:menu
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.mycmd = {'description': 'my command list'}
 let g:unite_source_menu_menus.mycmd.command_candidates = {
