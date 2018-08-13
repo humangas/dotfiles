@@ -172,11 +172,10 @@ let g:tagbar_type_markdown = {
 
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
-nnoremap <silent> fff :<C-u>FzfBLines<CR>
-nnoremap <silent> ffg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
-nnoremap <silent> ffc :<C-u>cd %:p:h<CR> :<C-u>FzfFiles<CR>
-nnoremap <silent> ffs :<C-u>FzfFiles<Space>~/src<CR>
 let g:fzf_layout = { 'down': '~35%' }
+nnoremap <silent> <Space>g :<C-u>FzfBLines<CR>
+nnoremap <silent> <Space>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
+nnoremap <silent> <Space>c :<C-u>FzfBCommits<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
@@ -232,14 +231,8 @@ nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> ffl :<C-u>Unite<Space>buffer<CR>
-nnoremap <silent> ffb :<C-u>Unite<Space>bookmark<CR>
-nnoremap <silent> fbb :<C-u>UniteBookmarkAdd<CR>
-nnoremap <silent> fft :<C-u>Unite<Space>tab:no-current<CR>
-nnoremap <silent> ffh :<C-u>Unite<Space>file_mru<CR>
-nnoremap ffx :<C-u>cd %:p:h<CR> :<C-u>Unite<Space>output/shellcmd:
-nnoremap <silent> fxx :<C-u>Unite<Space>output/shellcmd:<Up><CR>
-nnoremap <silent> ffy :<C-u>Unite<Space>history/command<CR>
+nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
+nnoremap <silent> <Space>h :<C-u>Unite<Space>file_mru<CR>
 nnoremap <silent> ,m :<C-u>Unite<Space>menu:mycmd<CR>
 "" unite my settings
 autocmd FileType unite call s:unite_my_settings()
