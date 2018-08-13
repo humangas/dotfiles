@@ -151,7 +151,7 @@ function! s:vimfiler_my_settings()
 endfunction
 
 " Plugin majutsushi/tagbar
-let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
+let g:tagbar_autofocus = 1                                                  "Focus when open tagbar (= 1)
 let g:tagbar_left = 1                                                       "tagbar open left side
 let g:tagbar_autoshowtag = 1                                                "Show tag auto
 nnoremap <silent> <Space>t :<C-u>TagbarToggle<CR>
