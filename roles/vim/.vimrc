@@ -177,6 +177,7 @@ nnoremap <silent> fff :<C-u>FzfBLines<CR>
 nnoremap <silent> ffg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
 nnoremap <silent> ffc :<C-u>cd %:p:h<CR> :<C-u>FzfFiles<CR>
 nnoremap <silent> ffs :<C-u>FzfFiles<Space>~/src<CR>
+let g:fzf_layout = { 'down': '~35%' }
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
