@@ -143,18 +143,6 @@ let g:vimfiler_enable_auto_cd = 1                                           "vim
 nnoremap <silent> <Space>e :<C-u>VimFilerBufferDir<CR>
 nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
 
-" Plugin Shougo/unite-outline
-nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> ffl :<C-u>Unite<Space>buffer<CR>
-nnoremap <silent> ffb :<C-u>Unite<Space>bookmark<CR>
-nnoremap <silent> fbb :<C-u>UniteBookmarkAdd<CR>
-nnoremap <silent> fft :<C-u>Unite<Space>tab:no-current<CR>
-nnoremap <silent> ffh :<C-u>Unite<Space>file_mru<CR>
-nnoremap ffx :<C-u>cd %:p:h<CR> :<C-u>Unite<Space>output/shellcmd:
-nnoremap <silent> fxx :<C-u>Unite<Space>output/shellcmd:<Up><CR>
-nnoremap <silent> ffy :<C-u>Unite<Space>history/command<CR>
-nnoremap <silent> ,m :<C-u>Unite<Space>menu:mycmd<CR>
-
 " Plugin majutsushi/tagbar
 let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
 let g:tagbar_left = 1                                                       "tagbar open left side
@@ -237,6 +225,17 @@ let g:yankround_max_history = 50
 nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 
 " Plugin Shougo/unite.vim
+nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
+nnoremap <silent> ffl :<C-u>Unite<Space>buffer<CR>
+nnoremap <silent> ffb :<C-u>Unite<Space>bookmark<CR>
+nnoremap <silent> fbb :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> fft :<C-u>Unite<Space>tab:no-current<CR>
+nnoremap <silent> ffh :<C-u>Unite<Space>file_mru<CR>
+nnoremap ffx :<C-u>cd %:p:h<CR> :<C-u>Unite<Space>output/shellcmd:
+nnoremap <silent> fxx :<C-u>Unite<Space>output/shellcmd:<Up><CR>
+nnoremap <silent> ffy :<C-u>Unite<Space>history/command<CR>
+nnoremap <silent> ,m :<C-u>Unite<Space>menu:mycmd<CR>
+"" unite my settings
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
   "" Press esc twice to exit unite
