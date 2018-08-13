@@ -147,7 +147,6 @@ nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direct
 let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
 let g:tagbar_left = 1                                                       "tagbar open left side
 let g:tagbar_autoshowtag = 1                                                "Show tag auto
-" autocmd FileType python,go,vim,zsh nested :TagbarOpen
 nnoremap <silent> <Space>t :<C-u>TagbarToggle<CR>
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
