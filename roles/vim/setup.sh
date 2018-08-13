@@ -37,9 +37,12 @@ install() {
     depend "install" "lua"   # For plugin: Shougo/neocomplete.vim
     brew install "$SETUP_CURRENT_ROLE_NAME" --with-python3 --with-lua --with-override-system-vi
     _install_deinvim
+    depend "install" "go"               # For plugin: fatih/vim-hclfmt
+    go get -u github.com/fatih/hclfmt
     config
 }
 
 upgrade() {
     brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    go get -u github.com/fatih/hclfmt   # For plugin: fatih/vim-hclfmt
 }
