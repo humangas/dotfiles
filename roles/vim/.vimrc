@@ -142,6 +142,13 @@ let g:vimfiler_as_default_explorer = 1                                      "Rep
 let g:vimfiler_enable_auto_cd = 1                                           "vimfiler change Vim current directory
 nnoremap <silent> <Space>e :<C-u>VimFilerBufferDir<CR>
 nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
+"" vimfiler my settings
+autocmd FileType vimfiler call s:vimfiler_my_settings()
+function! s:vimfiler_my_settings()
+  "" Press esc twice to exit vimfiler
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
 
 " Plugin majutsushi/tagbar
 let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
