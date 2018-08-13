@@ -169,6 +169,13 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
+"" tagbar my settings
+autocmd FileType tagbar call s:tagbar_my_settings()
+function! s:tagbar_my_settings()
+  "" Press esc twice to exit tagbar
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
 
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
