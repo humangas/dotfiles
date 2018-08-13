@@ -253,36 +253,27 @@ let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 "" unite:menu
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
-let g:unite_source_menu_menus.mycmd = {'description': 'my command list'}
-let g:unite_source_menu_menus.mycmd.command_candidates = {
-      \ '- Unite mapping source                          ': 'Unite mapping source',
-      \ '- VimFilerBufferDir current          <Space>e   ': 'VimFilerBufferDir',
-      \ '- VimFilerBufferDir rightbelow       <Space>E   ': 'VimFilerBufferDir -explorer -direction=rightbelow',
-      \ '- Unite outline                      <Space>o   ': 'Unite outline',
-      \ '- Unite yankround                    <Space>r   ': 'Unite yankround',
-      \ '- Unite buffer                       ffl        ': 'Unite buffer',
-      \ '- Unite bookmark                     ffb        ': 'Unite bookmark',
-      \ '- UniteBookmarkAdd                   fbb        ': 'UniteBookmarkAdd',
-      \ '- Unite tab:no-current               fft        ': 'Unite tab:no-current',
-      \ '- Unite file_mru                     ffh        ': 'Unite file_mru',
-      \ '- Unite output/shellcmd:             ffx        ': 'exe "cd %:p:h | Unite output/shellcmd"',
-      \ '- Unite output/shellcmd:<Up>         fxx        ': 'Unite output/shellcmd',
-      \ '- Unite history/command              ffy        ': 'Unite history/command',
-      \ '- TagbarToggle                       <Space>t   ': 'TagbarToggle',
-      \ '- FzfBLines                          fff        ': 'FzfBLines',
-      \ '- FzfAg                              ffg        ': 'exe "cd %:p:h | FzfAg"',
-      \ '- FzfFiles                           ffc        ': 'exe "cd %:p:h | FzfFiles"',
-      \ '- FzfFiles ~/src                     ffs        ': 'exe "FzfFiles ~/src"',
-      \ '- GitGutterToggle                    ,gg        ': 'GitGutterToggle',
-      \ '- GitGutterLineHighlightsToggle      ,gh        ': 'GitGutterLineHighlightsToggle',
-      \ '- [help] jedi#goto_command           gd         ': '',
-      \ '- [help] jedi#usages_command         <Leader>c  ': '',
-      \ '- [help] jedi#documentation_command  <Leader>d  ': '',
-      \ '- [help] jedi#rename_command         <Leader>r  ': '',
-      \ '- [help] go#go-referrers             <Leader>c  ': '',
-      \ '- [help] go#go-doc                   <Leader>d  ': '',
-      \ '- [help] go#go-doc-browser           <Leader>db ': '',
-      \ '- [help] go#go-doc-rename            <Leader>r  ': '',
+let g:unite_source_menu_menus.myshortcut = {'description': 'my shortcut list'}
+let g:unite_source_menu_menus.myshortcut.command_candidates = {
+      \ '- [space] VimFilerBufferDir current      <Space>e   ': 'VimFilerBufferDir',
+      \ '- [space] VimFilerBufferDir rightbelow   <Space>E   ': 'VimFilerBufferDir -explorer -direction=rightbelow',
+      \ '- [space] Unite outline                  <Space>o   ': 'Unite outline',
+      \ '- [space] Unite yankround                <Space>r   ': 'Unite yankround',
+      \ '- [space] Unite tab:no-current           <Space>T   ': 'Unite tab:no-current',
+      \ '- [space] Unite file_mru                 <Space>h   ': 'Unite file_mru',
+      \ '- [space] TagbarToggle                   <Space>t   ': 'TagbarToggle',
+      \ '- [space] FzfBLines                      <Space>g   ': 'FzfBLines',
+      \ '- [space] FzfAg                          <Space>gg  ': 'exe "cd %:p:h | FzfAg"',
+      \ '- [,] GitGutterToggle                    ,gg        ': 'GitGutterToggle',
+      \ '- [,] GitGutterLineHighlightsToggle      ,gh        ': 'GitGutterLineHighlightsToggle',
+      \ '- [python] jedi#goto_command             gd         ': '',
+      \ '- [python] jedi#usages_command           <Leader>c  ': '',
+      \ '- [python] jedi#documentation_command    <Leader>d  ': '',
+      \ '- [python] jedi#rename_command           <Leader>r  ': '',
+      \ '- [go] go#go-referrers                   <Leader>c  ': '',
+      \ '- [go] go#go-doc                         <Leader>d  ': '',
+      \ '- [go] go#go-doc-browser                 <Leader>db ': '',
+      \ '- [go] go#go-doc-rename                  <Leader>r  ': '',
       \ }
 
 " SuperTab like snippets behavior.
