@@ -240,7 +240,7 @@ nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
 nnoremap <silent> <Space>h :<C-u>Unite<Space>file_mru<CR>
-nnoremap <silent> ,m :<C-u>Unite<Space>menu:mycmd<CR>
+nnoremap <silent> ,h :<C-u>Unite<Space>menu:myshortcut<CR>
 "" unite my settings
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
