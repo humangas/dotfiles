@@ -100,7 +100,7 @@ call dein#add('jelera/vim-javascript-syntax')                               "Enh
 call dein#add('AtsushiM/sass-compile.vim')                                  "Add Sass compile & utility commands.
 call dein#add('glidenote/memolist.vim')                                     "simple memo plugin for Vim.
 call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
-call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt
+call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt, If hclfmt is not already installed: go get github.com/fatih/hclfmt
 call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
 call dein#add('jszakmeister/markdown2ctags')                                "Generate ctags-compatible tags files for Markdown documents.
 
