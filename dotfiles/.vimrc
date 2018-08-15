@@ -100,7 +100,7 @@ call dein#add('jelera/vim-javascript-syntax')                               "Enh
 call dein#add('AtsushiM/sass-compile.vim')                                  "Add Sass compile & utility commands.
 call dein#add('glidenote/memolist.vim')                                     "simple memo plugin for Vim.
 call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
-call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt
+call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt, If hclfmt is not already installed: go get github.com/fatih/hclfmt
 call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
 call dein#add('jszakmeister/markdown2ctags')                                "Generate ctags-compatible tags files for Markdown documents.
 
@@ -142,24 +142,18 @@ let g:vimfiler_as_default_explorer = 1                                      "Rep
 let g:vimfiler_enable_auto_cd = 1                                           "vimfiler change Vim current directory
 nnoremap <silent> <Space>e :<C-u>VimFilerBufferDir<CR>
 nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
-
-" Plugin Shougo/unite-outline
-nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> ffl :<C-u>Unite<Space>buffer<CR>
-nnoremap <silent> ffb :<C-u>Unite<Space>bookmark<CR>
-nnoremap <silent> fbb :<C-u>UniteBookmarkAdd<CR>
-nnoremap <silent> fft :<C-u>Unite<Space>tab:no-current<CR>
-nnoremap <silent> ffh :<C-u>Unite<Space>file_mru<CR>
-nnoremap ffx :<C-u>cd %:p:h<CR> :<C-u>Unite<Space>output/shellcmd:
-nnoremap <silent> fxx :<C-u>Unite<Space>output/shellcmd:<Up><CR>
-nnoremap <silent> ffy :<C-u>Unite<Space>history/command<CR>
-nnoremap <silent> ,m :<C-u>Unite<Space>menu:mycmd<CR>
+"" vimfiler my settings
+autocmd FileType vimfiler call s:vimfiler_my_settings()
+function! s:vimfiler_my_settings()
+  "" Press esc twice to exit vimfiler
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
 
 " Plugin majutsushi/tagbar
-let g:tagbar_autofocus = 0                                                  "Focus when open tagbar (= 1)
+let g:tagbar_autofocus = 1                                                  "Focus when open tagbar (= 1)
 let g:tagbar_left = 1                                                       "tagbar open left side
 let g:tagbar_autoshowtag = 1                                                "Show tag auto
-" autocmd FileType python,go,vim,zsh nested :TagbarOpen
 nnoremap <silent> <Space>t :<C-u>TagbarToggle<CR>
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
@@ -175,14 +169,20 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
+"" tagbar my settings
+autocmd FileType tagbar call s:tagbar_my_settings()
+function! s:tagbar_my_settings()
+  "" Press esc twice to exit tagbar
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
 
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
-let g:fzf_layout = { 'down': '~30%' }
-nnoremap <silent> fff :<C-u>FzfBLines<CR>
-nnoremap <silent> ffg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
-nnoremap <silent> ffc :<C-u>cd %:p:h<CR> :<C-u>FzfFiles<CR>
-nnoremap <silent> ffs :<C-u>FzfFiles<Space>~/src<CR>
+let g:fzf_layout = { 'down': '~35%' }
+nnoremap <silent> <Space>g :<C-u>FzfBLines<CR>
+nnoremap <silent> <Space>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
+nnoremap <silent> <Space>c :<C-u>FzfBCommits<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
@@ -237,37 +237,43 @@ let g:yankround_max_history = 50
 nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 
 " Plugin Shougo/unite.vim
+nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
+nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
+nnoremap <silent> <Space>h :<C-u>Unite<Space>file_mru<CR>
+nnoremap <silent> ,h :<C-u>Unite<Space>menu:myshortcut<CR>
+"" unite my settings
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  "" Press esc twice to exit unite
+  nmap <silent><buffer> <ESC><ESC> q
+  imap <silent><buffer> <ESC><ESC> <ESC>q
+endfunction
+"" Upper case and lower case are not distinguished
+let g:unite_enable_ignore_case = 1  
+let g:unite_enable_smart_case = 1
+"" unite:menu
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
-let g:unite_source_menu_menus.mycmd = {'description': 'my command list'}
-let g:unite_source_menu_menus.mycmd.command_candidates = {
-      \ '- Unite mapping source                          ': 'Unite mapping source',
-      \ '- VimFilerBufferDir current          <Space>e   ': 'VimFilerBufferDir',
-      \ '- VimFilerBufferDir rightbelow       <Space>E   ': 'VimFilerBufferDir -explorer -direction=rightbelow',
-      \ '- Unite outline                      <Space>o   ': 'Unite outline',
-      \ '- Unite yankround                    <Space>r   ': 'Unite yankround',
-      \ '- Unite buffer                       ffl        ': 'Unite buffer',
-      \ '- Unite bookmark                     ffb        ': 'Unite bookmark',
-      \ '- UniteBookmarkAdd                   fbb        ': 'UniteBookmarkAdd',
-      \ '- Unite tab:no-current               fft        ': 'Unite tab:no-current',
-      \ '- Unite file_mru                     ffh        ': 'Unite file_mru',
-      \ '- Unite output/shellcmd:             ffx        ': 'exe "cd %:p:h | Unite output/shellcmd"',
-      \ '- Unite output/shellcmd:<Up>         fxx        ': 'Unite output/shellcmd',
-      \ '- Unite history/command              ffy        ': 'Unite history/command',
-      \ '- TagbarToggle                       <Space>t   ': 'TagbarToggle',
-      \ '- FzfBLines                          fff        ': 'FzfBLines',
-      \ '- FzfAg                              ffg        ': 'exe "cd %:p:h | FzfAg"',
-      \ '- FzfFiles                           ffc        ': 'exe "cd %:p:h | FzfFiles"',
-      \ '- FzfFiles ~/src                     ffs        ': 'exe "FzfFiles ~/src"',
-      \ '- GitGutterToggle                    ,gg        ': 'GitGutterToggle',
-      \ '- GitGutterLineHighlightsToggle      ,gh        ': 'GitGutterLineHighlightsToggle',
-      \ '- [help] jedi#goto_command           gd         ': '',
-      \ '- [help] jedi#usages_command         <Leader>c  ': '',
-      \ '- [help] jedi#documentation_command  <Leader>d  ': '',
-      \ '- [help] jedi#rename_command         <Leader>r  ': '',
-      \ '- [help] go#go-referrers             <Leader>c  ': '',
-      \ '- [help] go#go-doc                   <Leader>d  ': '',
-      \ '- [help] go#go-doc-browser           <Leader>db ': '',
-      \ '- [help] go#go-doc-rename            <Leader>r  ': '',
+let g:unite_source_menu_menus.myshortcut = {'description': 'my shortcut list'}
+let g:unite_source_menu_menus.myshortcut.command_candidates = {
+      \ '- [space] VimFilerBufferDir current      <Space>e   ': 'VimFilerBufferDir',
+      \ '- [space] VimFilerBufferDir rightbelow   <Space>E   ': 'VimFilerBufferDir -explorer -direction=rightbelow',
+      \ '- [space] Unite outline                  <Space>o   ': 'Unite outline',
+      \ '- [space] Unite yankround                <Space>r   ': 'Unite yankround',
+      \ '- [space] Unite tab:no-current           <Space>T   ': 'Unite tab:no-current',
+      \ '- [space] Unite file_mru                 <Space>h   ': 'Unite file_mru',
+      \ '- [space] TagbarToggle                   <Space>t   ': 'TagbarToggle',
+      \ '- [space] FzfBLines                      <Space>g   ': 'FzfBLines',
+      \ '- [space] FzfAg                          <Space>gg  ': 'exe "cd %:p:h | FzfAg"',
+      \ '- [,] GitGutterToggle                    ,gg        ': 'GitGutterToggle',
+      \ '- [,] GitGutterLineHighlightsToggle      ,gh        ': 'GitGutterLineHighlightsToggle',
+      \ '- [python] jedi#goto_command             gd         ': '',
+      \ '- [python] jedi#usages_command           <Leader>c  ': '',
+      \ '- [python] jedi#documentation_command    <Leader>d  ': '',
+      \ '- [python] jedi#rename_command           <Leader>r  ': '',
+      \ '- [go] go#go-referrers                   <Leader>c  ': '',
+      \ '- [go] go#go-doc                         <Leader>d  ': '',
+      \ '- [go] go#go-doc-browser                 <Leader>db ': '',
+      \ '- [go] go#go-doc-rename                  <Leader>r  ': '',
       \ }
 
 " SuperTab like snippets behavior.
