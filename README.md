@@ -12,10 +12,6 @@ $ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/install | 
 ```
 
 
-## Demo
-![install demo](./install_demo.gif)
-
-
 ### Setting computer name
 You can set the your computer name by setting environment variables as follows.
 
