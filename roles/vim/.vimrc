@@ -180,7 +180,7 @@ endfunction
 
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
-let g:fzf_layout = { 'down': '~35%' }
+let g:fzf_layout = { 'up': '~35%' }
 nnoremap <silent> <Space>g :<C-u>FzfBLines<CR>
 nnoremap <silent> <Space>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
 nnoremap <silent> <Space>c :<C-u>FzfBCommits<CR>
