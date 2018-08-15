@@ -184,6 +184,7 @@ let g:fzf_layout = { 'up': '~35%' }
 nnoremap <silent> <Space>g :<C-u>FzfBLines<CR>
 nnoremap <silent> <Space>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
 nnoremap <silent> <Space>c :<C-u>FzfBCommits<CR>
+nnoremap <silent> <Space>h :<C-u>FzfHistory<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
@@ -240,7 +241,6 @@ nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
-nnoremap <silent> <Space>h :<C-u>Unite<Space>file_mru<CR>
 nnoremap <silent> ,h :<C-u>Unite<Space>menu:myshortcut<CR>
 "" unite my settings
 autocmd FileType unite call s:unite_my_settings()
