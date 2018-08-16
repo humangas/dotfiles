@@ -298,6 +298,11 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :set ft=javascript
   \ | :1
 
+"" tig
+nnoremap <silent> ,gl :!tig log +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
+nnoremap <silent> ,gb :!tig blame +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
+nnoremap <silent> ,gs :!tig status<CR>:redraw!<CR>
+
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
