@@ -226,6 +226,7 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 " Plugin glidenote/memolist.vim
 let g:memolist_path = "$HOME/memo"
 let g:memolist_memo_suffix = "md"
+let g:memolist_template_dir_path = "~/.config/memo"
 
 " Plugin LeafCage/yankround.vim
 nmap p <Plug>(yankround-p)
