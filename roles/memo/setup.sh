@@ -17,8 +17,7 @@ version() {
 }
 
 config() {
-    mkdir -p "$HOME/.config/memo"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/config.toml" "$HOME/.config/memo/"
+    cp -r "$SETUP_CURRENT_ROLE_DIR_PATH/.config" "$HOME/"
 }
 
 install() {
