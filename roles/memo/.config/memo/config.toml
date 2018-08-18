@@ -1,6 +1,6 @@
 memodir = "$HOME/memo"
 editor = "vim"
-column = 30
+column = 35
 selectcmd = "fzf"
 grepcmd = "ag ${PATTERN} ${DIR}"
 assetsdir = "."
