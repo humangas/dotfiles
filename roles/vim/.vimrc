@@ -185,6 +185,7 @@ nnoremap <silent> <Space>g :<C-u>FzfBLines<CR>
 nnoremap <silent> <Space>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
 nnoremap <silent> <Space>c :<C-u>FzfBCommits<CR>
 nnoremap <silent> <Space>h :<C-u>FzfHistory<CR>
+nnoremap <C-T> :FZF<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
