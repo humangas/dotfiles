@@ -19,6 +19,8 @@ version() {
 config() {
     git config --global user.name "humangas"
     git config --global user.email "humangas.net@gmail.com"
+    curl -sL https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore > ~/.gitignore_global
+    git config --global core.excludesfile ~/.gitignore_global
 }
 
 install() {
