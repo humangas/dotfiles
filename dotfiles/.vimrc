@@ -140,6 +140,7 @@ let g:previm_open_cmd = 'open -a Safari'                                    "Ope
 " Plugin Shougo/vimfiler
 let g:vimfiler_as_default_explorer = 1                                      "Replace vim explorer to vimfiler
 let g:vimfiler_enable_auto_cd = 1                                           "vimfiler change Vim current directory
+let g:vimfiler_ignore_pattern = '^\%(.DS_Store\)$'                          "ignore pattern, default display dotfiles
 nnoremap <silent> <Space>e :<C-u>VimFilerBufferDir<CR>
 nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
 "" vimfiler my settings
@@ -179,16 +180,30 @@ endfunction
 
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
-let g:fzf_layout = { 'down': '~35%' }
+let g:fzf_layout = { 'up': '~35%' }
 nnoremap <silent> <Space>g :<C-u>FzfBLines<CR>
 nnoremap <silent> <Space>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
 nnoremap <silent> <Space>c :<C-u>FzfBCommits<CR>
+nnoremap <silent> <Space>h :<C-u>FzfHistory<CR>
+nnoremap <C-T> :FZF<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
 let g:jedi#usages_command = "<leader>c"                                     "List callers
 let g:jedi#documentation_command = "<leader>d"                              "Open document
 let g:jedi#rename_command = "<leader>r"                                     "Rename all references of selection section
+
+" Plugin lambdalisue/vim-pyenv > see also: https://github.com/lambdalisue/vim-pyenv#using-vim-pyenv-with-jedi-vim
+if jedi#init_python()
+  function! s:jedi_auto_force_py_version() abort
+    let g:jedi#force_py_version = pyenv#python#get_internal_major_version()
+  endfunction
+  augroup vim-pyenv-custom-augroup
+    autocmd! *
+    autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+    autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+  augroup END
+endif
 
 " Plugin fatih/vim-go -> see also: https://github.com/fatih/vim-go#example-mappings
 let g:go_highlight_functions = 1                                            "Highlight functions
@@ -223,6 +238,7 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 " Plugin glidenote/memolist.vim
 let g:memolist_path = "$HOME/memo"
 let g:memolist_memo_suffix = "md"
+let g:memolist_template_dir_path = "~/.config/memo"
 
 " Plugin LeafCage/yankround.vim
 nmap p <Plug>(yankround-p)
@@ -239,7 +255,6 @@ nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
-nnoremap <silent> <Space>h :<C-u>Unite<Space>file_mru<CR>
 nnoremap <silent> ,h :<C-u>Unite<Space>menu:myshortcut<CR>
 "" unite my settings
 autocmd FileType unite call s:unite_my_settings()
@@ -296,6 +311,11 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :%s/ \+$//ge
   \ | :set ft=javascript
   \ | :1
+
+"" tig
+nnoremap <silent> ,gl :!tig log +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
+nnoremap <silent> ,gb :!tig blame +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
+nnoremap <silent> ,gs :!tig status<CR>:redraw!<CR>
 
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
