@@ -273,6 +273,14 @@ nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 " Plugin 'lambdalisue/gina.vim'
 nnoremap <silent> ,gb :<C-u>Gina<Space>blame<CR>
 nnoremap <silent> ,gl :<C-u>Gina<Space>log<CR>
+"" gina my settings
+autocmd FileType gina-blame call s:gina_my_settings()
+autocmd FileType gina-log call s:gina_my_settings()
+function! s:gina_my_settings()
+  "" Press esc twice to exit unite
+  nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
+  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
+endfunction
 
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
