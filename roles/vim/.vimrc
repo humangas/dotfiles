@@ -126,8 +126,24 @@ set background=dark
 colorscheme solarized
 
 " Plugin itchyny/lightline.vim 
-let g:lightline = {}
-let g:lightline.colorscheme = 'solarized'                                   "Use ColorScheme: Solarized
+let g:lightline = {
+    \ 'colorscheme': 'solarized',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'gitbranch', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'gina#component#repo#branch',
+    \   'filename': 'LightlineFilename',
+    \ },
+\ }
+function! LightlineFilename()
+    let name = winwidth(0) > 105 ? expand('%:p') : expand('%:t') 
+    return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype ==# 'unite' ? unite#get_status_string() :
+        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+        \ expand('%:t') !=# '' ? name : '[No Name]'
+endfunction
 
 " Plugin altercation/vim-colors-solarized
 let g:solarized_termtrans=1                                                 "Terminal at the time of the transparent background, to enable transparent background of Solarized.
