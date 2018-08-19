@@ -103,6 +103,8 @@ call dein#add('wookayin/vim-typora')                                        "Ope
 call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt, If hclfmt is not already installed: go get github.com/fatih/hclfmt
 call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
 call dein#add('jszakmeister/markdown2ctags')                                "Generate ctags-compatible tags files for Markdown documents.
+call dein#add('lambdalisue/gina.vim')                                       "Asynchronously control git repositories in Neovim/Vim 8
+call dein#add('simeji/winresizer')                                          "very simple vim plugin for easy resizing of your vim windows
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -125,8 +127,24 @@ set background=dark
 colorscheme solarized
 
 " Plugin itchyny/lightline.vim 
-let g:lightline = {}
-let g:lightline.colorscheme = 'solarized'                                   "Use ColorScheme: Solarized
+let g:lightline = {
+    \ 'colorscheme': 'solarized',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'gitbranch', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'gina#component#repo#branch',
+    \   'filename': 'LightlineFilename',
+    \ },
+\ }
+function! LightlineFilename()
+    let name = winwidth(0) > 105 ? expand('%:p') : expand('%:t') 
+    return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype ==# 'unite' ? unite#get_status_string() :
+        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+        \ expand('%:t') !=# '' ? name : '[No Name]'
+endfunction
 
 " Plugin altercation/vim-colors-solarized
 let g:solarized_termtrans=1                                                 "Terminal at the time of the transparent background, to enable transparent background of Solarized.
@@ -252,6 +270,18 @@ nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 50
 nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 
+" Plugin 'lambdalisue/gina.vim'
+nnoremap <silent> ,gb :<C-u>Gina<Space>blame<CR>
+nnoremap <silent> ,gl :<C-u>Gina<Space>log<CR>
+"" gina my settings
+autocmd FileType gina-blame call s:gina_my_settings()
+autocmd FileType gina-log call s:gina_my_settings()
+function! s:gina_my_settings()
+  "" Press esc twice to exit unite
+  nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
+  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
+endfunction
+
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
@@ -313,8 +343,6 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :1
 
 "" tig
-nnoremap <silent> ,gl :!tig log +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
-nnoremap <silent> ,gb :!tig blame +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
 nnoremap <silent> ,gs :!tig status<CR>:redraw!<CR>
 
 if filereadable(expand('~/.vimrc.local'))
