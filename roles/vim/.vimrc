@@ -270,6 +270,10 @@ nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 50
 nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
 
+" Plugin 'lambdalisue/gina.vim'
+nnoremap <silent> ,gb :<C-u>Gina<Space>blame<CR>
+nnoremap <silent> ,gl :<C-u>Gina<Space>log<CR>
+
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
@@ -331,8 +335,6 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :1
 
 "" tig
-nnoremap <silent> ,gl :!tig log +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
-nnoremap <silent> ,gb :!tig blame +<C-r>=line('.')<CR> %<CR>:redraw!<CR>
 nnoremap <silent> ,gs :!tig status<CR>:redraw!<CR>
 
 if filereadable(expand('~/.vimrc.local'))
