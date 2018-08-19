@@ -103,6 +103,7 @@ call dein#add('wookayin/vim-typora')                                        "Ope
 call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt, If hclfmt is not already installed: go get github.com/fatih/hclfmt
 call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
 call dein#add('jszakmeister/markdown2ctags')                                "Generate ctags-compatible tags files for Markdown documents.
+call dein#add('lambdalisue/gina.vim')                                       "Asynchronously control git repositories in Neovim/Vim 8
 
 " You can specify revision/branch/tag.
 call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
