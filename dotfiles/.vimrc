@@ -50,76 +50,49 @@ set cursorcolumn                                    "Currently highlight the lin
 set showmatch                                       "Input parentheses, to highlight the corresponding brackets.
 set laststatus=2                                    "Display the status line in the second row from the end.
 
-" Plugin Shougo/dein.vim
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" Plugin see also: https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
 
-" Required:
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/vimfiler'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-outline'
+Plug 'thinca/vim-unite-history'
+Plug 'altercation/vim-colors-solarized'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': './install --all', 'merged': 0 } | Plug 'junegunn/fzf.vim'
+Plug 'kannokanno/previm'
+Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'Yggdroot/indentLine'
+Plug 'vim-syntastic/syntastic'
+Plug 'vim-scripts/dbext.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-surround'
+Plug 'tomtom/tcomment_vim'
+Plug 'othree/html5.vim'
+Plug 'hokaccha/vim-html5validator'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'AtsushiM/sass-compile.vim'
+Plug 'glidenote/memolist.vim'
+Plug 'wookayin/vim-typora'
+Plug 'fatih/vim-hclfmt'
+Plug 'LeafCage/yankround.vim'
+Plug 'jszakmeister/markdown2ctags'
+Plug 'lambdalisue/gina.vim'
+Plug 'simeji/winresizer'
+Plug 'Shougo/vimshell', { 'tag': '3787e5' }
 
-" Required:
-call dein#begin('~/.cache/dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
-
-" Add or remove your plugins here:
-call dein#add('Shougo/neosnippet.vim')                                      "Adds snippet support to Vim.
-call dein#add('Shougo/neosnippet-snippets')                                 "The standard snippets repository for 'neosnippet.vim'.
-call dein#add('Shougo/neocomplete.vim')                                     "Next generation completion framework after neocomplcache
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})                      "Great asynchronous execution library for Vim.
-call dein#add('Shougo/vimfiler')                                            "Powerful file explorer implemented by Vim script
-call dein#add('Shougo/unite.vim')                                           "Search and display information from arbitrary sources like files, buffers, etc.
-call dein#add('Shougo/neomru.vim')                                          "MRU plugin includes unite.vim MRU sources
-call dein#add('Shougo/unite-outline')                                       "Vim's buffer with the outline view.
-call dein#add('thinca/vim-unite-history')                                   "A source of unite.vim for history of command/search.
-call dein#add('altercation/vim-colors-solarized')                           "Colorscheme: solarized
-call dein#add('itchyny/lightline.vim')                                      "A light and configurable statusline/tabline for Vim
-call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})    "General-purpose command-line fuzzy finder.
-call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})                       "Vim plugin fzf
-call dein#add('kannokanno/previm')                                          "Realtime preview by Vim. (Markdown, reStructuredText, textile)
-call dein#add('davidhalter/jedi-vim', {'on_source': ['vim-pyenv']})         "VIM binding to the autocompletion library Jedi(for Python).
-call dein#add('lambdalisue/vim-pyenv', {'on_ft': ['python']})               "Allows you to activate and deactivate the pyenv Python correctly in a live Vim session.
-call dein#add('fatih/vim-go')                                               "Go development plugin for Vim
-call dein#add('szw/vim-tags')                                               "The Ctags generator for Vim
-call dein#add('majutsushi/tagbar')                                          "A class outline viewer for Vim
-call dein#add('ConradIrwin/vim-bracketed-paste')                            "Enables transparent pasting into vim. (i.e. no more :set paste!)
-call dein#add('Yggdroot/indentLine')                                        "Displaying thin vertical lines at each indentation level for code indented with spaces.
-call dein#add('vim-syntastic/syntastic')                                    "Syntax checking plugin for Vim. ('pip install flake8', brew install tidy-html5 is required separately.)
-call dein#add('vim-scripts/dbext.vim')                                      "functions/mappings/commands to enable Vim to access several databases.
-call dein#add('airblade/vim-gitgutter')                                     "Shows a git diff in the gutter (sign column) and stages/undoes hunks.
-call dein#add('mattn/emmet-vim')                                            "emmet for vim: http://emmet.io/ http://mattn.github.io/emmet-vim
-call dein#add('tpope/vim-surround')                                         "surround.vim: quoting/parenthesizing made simple
-call dein#add('tomtom/tcomment_vim')                                        "An extensible & universal comment vim-plugin that also handles embedded filetypes
-call dein#add('othree/html5.vim')                                           "HTML5 omnicomplete and syntax
-call dein#add('hokaccha/vim-html5validator')                                "html5 validator vim plugin using validator.nu API.
-call dein#add('hail2u/vim-css3-syntax')                                     "CSS3 syntax (and syntax defined in some foreign specifications) support for Vim's built-in syntax/css.vim
-call dein#add('jelera/vim-javascript-syntax')                               "Enhanced javascript syntax file for Vim
-call dein#add('AtsushiM/sass-compile.vim')                                  "Add Sass compile & utility commands.
-call dein#add('glidenote/memolist.vim')                                     "simple memo plugin for Vim.
-call dein#add('wookayin/vim-typora')                                        "Open Typora from vim.
-call dein#add('fatih/vim-hclfmt')                                           "Vim plugin for hclfmt, If hclfmt is not already installed: go get github.com/fatih/hclfmt
-call dein#add('LeafCage/yankround.vim')                                     "logging registers and reusing them.
-call dein#add('jszakmeister/markdown2ctags')                                "Generate ctags-compatible tags files for Markdown documents.
-call dein#add('lambdalisue/gina.vim')                                       "Asynchronously control git repositories in Neovim/Vim 8
-call dein#add('simeji/winresizer')                                          "very simple vim plugin for easy resizing of your vim windows
-
-" You can specify revision/branch/tag.
-call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-" Required:
-call dein#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+call plug#end()
 
 " Color scheme
 syntax enable
