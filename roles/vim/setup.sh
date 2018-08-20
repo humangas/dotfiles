@@ -21,13 +21,9 @@ config() {
 }
 
 install() {
-	_install_deinvim() {
-        mkdir -p ~/.cache/dein
-        (
-            cd ~/.cache/dein
-            curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-            sh ./installer.sh ~/.cache/dein
-        )
+	_install_vimplug() {
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	}
 
     depend "install" "brew"
@@ -36,7 +32,7 @@ install() {
     depend "install" "sass"  # For plugin: AtsushiM/sass-compile.vim
     depend "install" "lua"   # For plugin: Shougo/neocomplete.vim
     brew install "$SETUP_CURRENT_ROLE_NAME" --with-python3 --with-lua --with-override-system-vi
-    _install_deinvim
+    _install_vimplug
     depend "install" "go"               # For plugin: fatih/vim-hclfmt
     go get -u github.com/fatih/hclfmt
     config
