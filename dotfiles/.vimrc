@@ -53,43 +53,74 @@ set laststatus=2                                    "Display the status line in 
 " Plugin see also: https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
+"" Appearance
+Plug 'altercation/vim-colors-solarized'
+Plug 'itchyny/lightline.vim'
+
+"" Window
+Plug 'simeji/winresizer'
+
+"" File Operation
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/vimfiler'
 Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'thinca/vim-unite-history'
-Plug 'altercation/vim-colors-solarized'
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'do': './install --all', 'merged': 0 } | Plug 'junegunn/fzf.vim'
-Plug 'kannokanno/previm'
-Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
-Plug 'szw/vim-tags'
-Plug 'majutsushi/tagbar'
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'Yggdroot/indentLine'
-Plug 'vim-syntastic/syntastic'
-Plug 'vim-scripts/dbext.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'mattn/emmet-vim'
+Plug 'LeafCage/yankround.vim'
+
+"" File Selector
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+"" Text Edit
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'Yggdroot/indentLine'
+
+"" Tag
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
+
+"" Lint
+Plug 'vim-syntastic/syntastic'
+
+"" Python
+Plug 'davidhalter/jedi-vim'
+Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+
+"" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
+
+"" Frontend
+Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
 Plug 'hokaccha/vim-html5validator'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'AtsushiM/sass-compile.vim'
-Plug 'glidenote/memolist.vim'
-Plug 'wookayin/vim-typora'
-Plug 'fatih/vim-hclfmt'
-Plug 'LeafCage/yankround.vim'
+
+"" Markdown
 Plug 'jszakmeister/markdown2ctags'
+Plug 'kannokanno/previm'
+Plug 'wookayin/vim-typora'
+Plug 'glidenote/memolist.vim'
+
+"" HashiCorp
+Plug 'fatih/vim-hclfmt'
+
+"" Git
 Plug 'lambdalisue/gina.vim'
-Plug 'simeji/winresizer'
+Plug 'airblade/vim-gitgutter'
+
+"" Database
+Plug 'vim-scripts/dbext.vim'
+
+"" OS Utility
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell', { 'tag': '3787e5' }
 
 call plug#end()
