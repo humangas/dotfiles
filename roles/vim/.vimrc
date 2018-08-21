@@ -22,7 +22,6 @@ set autowrite                                       "Auto save file If there is 
 "Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
-nnoremap <C-c><C-c> :terminal<CR>
 
 " Tab
 set expandtab                                       "Convert tabs to spaces.
@@ -347,6 +346,8 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :set ft=javascript
   \ | :1
 
+"" Terminal
+nnoremap <C-c><C-c> :terminal<CR>
 "" tig
 nnoremap <silent> ,gs :!tig status<CR>:redraw!<CR>
 
