@@ -64,9 +64,11 @@ Plug 'Shougo/unite-outline'
 Plug 'thinca/vim-unite-history'
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'do': './install --all', 'merged': 0 } | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'kannokanno/previm'
-Plug 'davidhalter/jedi-vim' | Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim'
+Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
