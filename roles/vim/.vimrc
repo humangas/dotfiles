@@ -242,6 +242,7 @@ let g:go_highlight_structs = 1                                              "Hig
 let g:go_highlight_operators = 1                                            "Highlight operators
 let g:go_highlight_build_constraints = 1                                    "Highlight build constraints
 let g:go_fmt_command = "goimports"                                          "Do goimports when saving.
+let g:go_list_type = "quickfix"                                             "All quickfix window
 autocmd FileType go :highlight goErr cterm=bold ctermfg=197                 "Highlight err
 autocmd FileType go :match goErr /\<err\>/                                  "Highlight err
 autocmd FileType go nmap <LocalLeader>c <Plug>(go-referrers)
