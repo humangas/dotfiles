@@ -16,6 +16,7 @@ set backspace=indent,eol,start                      "Backspace key so as to oper
 set history=100                                     "The number of command history
 set completeopt=menuone,longest                     "Completion Style (* non preview)
 set switchbuf=useopen                               "If already in the buffer, open that file.
+set autowrite                                       "Auto save file If there is a change when file move or make command is executed.
 
 " Key
 "Replace j,k to gj, gk
