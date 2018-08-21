@@ -50,6 +50,10 @@ set cursorcolumn                                    "Currently highlight the lin
 set showmatch                                       "Input parentheses, to highlight the corresponding brackets.
 set laststatus=2                                    "Display the status line in the second row from the end.
 
+" Exchange tab, space
+autocmd BufEnter *.txt,*.py  setlocal expandtab
+autocmd FileType make  setlocal noexpandtab
+
 " Plugin see also: https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
