@@ -248,7 +248,7 @@ autocmd FileType go :match goErr /\<err\>/                                  "Hig
 autocmd FileType go nmap <LocalLeader>c <Plug>(go-referrers)
 autocmd FileType go nmap <LocalLeader>d <Plug>(go-doc)
 autocmd FileType go nmap <LocalLeader>db <Plug>(go-doc-browser)
-autocmd FileType go nmap <LocalLeader>n <Plug>(go-rename)
+autocmd FileType go nmap <LocalLeader>rn <Plug>(go-rename)
 autocmd FileType go nmap <LocalLeader>r <Plug>(go-run)
 autocmd FileType go nmap <LocalLeader>t <Plug>(go-test)
 "" Run :GoBuild or :GoTestCompile based on the go file
