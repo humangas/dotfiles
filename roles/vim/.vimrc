@@ -19,7 +19,7 @@ set switchbuf=useopen                               "If already in the buffer, o
 set autowrite                                       "Auto save file If there is a change when file move or make command is executed.
 
 " Key
-"Replace j,k to gj, gk
+"" Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
 
@@ -248,7 +248,6 @@ let g:syntastic_go_checkers = ['golint', 'gotype', 'govet', 'go']           "Go 
 let g:neocomplete#enable_at_startup = 1                                     "Enable at startup
 
 " Plugin Shougo/neosnippet
-" Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -345,15 +344,16 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :%s/ \+$//ge
   \ | :set ft=javascript
   \ | :1
-
 "" Terminal
 nnoremap <C-c><C-c> :terminal<CR>
 "" tig
 nnoremap <silent> ,gs :!tig status<CR>:redraw!<CR>
 
+" Load etc files
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
 
+" Path
 set runtimepath+=~/.vim/
 runtime! userautoload/*.vim
