@@ -22,6 +22,8 @@ set autowrite                                       "Auto save file If there is 
 "" Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
+nnoremap <silent> <C-j> :<C-u>cnext<CR>
+nnoremap <silent> <C-k> :<C-u>cprevious<CR>
 
 " Tab
 set expandtab                                       "Convert tabs to spaces.
