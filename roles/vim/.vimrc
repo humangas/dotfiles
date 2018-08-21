@@ -244,10 +244,22 @@ let g:go_highlight_build_constraints = 1                                    "Hig
 let g:go_fmt_command = "goimports"                                          "Do goimports when saving.
 autocmd FileType go :highlight goErr cterm=bold ctermfg=197                 "Highlight err
 autocmd FileType go :match goErr /\<err\>/                                  "Highlight err
-au FileType go nmap <LocalLeader>c <Plug>(go-referrers)
-au FileType go nmap <LocalLeader>d <Plug>(go-doc)
-au FileType go nmap <LocalLeader>db <Plug>(go-doc-browser)
-au FileType go nmap <LocalLeader>r <Plug>(go-rename)
+autocmd FileType go nmap <LocalLeader>c <Plug>(go-referrers)
+autocmd FileType go nmap <LocalLeader>d <Plug>(go-doc)
+autocmd FileType go nmap <LocalLeader>db <Plug>(go-doc-browser)
+autocmd FileType go nmap <LocalLeader>n <Plug>(go-rename)
+autocmd FileType go nmap <LocalLeader>r <Plug>(go-run)
+autocmd FileType go nmap <LocalLeader>t <Plug>(go-test)
+"" Run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+autocmd FileType go nmap <LocalLeader>b :<C-u>call <SID>build_go_files()<CR>
 
 " Plugin scrooloose/syntastic
 let g:syntastic_go_checkers = ['golint', 'gotype', 'govet', 'go']           "Go Checkers
