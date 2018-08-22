@@ -2,6 +2,8 @@
 " ~/.vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Base
+set encoding=utf8                                   "Encoding
+set fileencoding=utf-8                              "File Encoding
 set nobackup                                        "No create backup file.
 set noswapfile                                      "No create swap file.
 set autoread                                        "Rereading Automatic When the file being edited is changed.
@@ -17,6 +19,7 @@ set history=100                                     "The number of command histo
 set completeopt=menuone,longest                     "Completion Style (* non preview)
 set switchbuf=useopen                               "If already in the buffer, open that file.
 set autowrite                                       "Auto save file If there is a change when file move or make command is executed.
+set ambiwidth=double                                "Display double-byte characters normally
 
 " Key
 "" Replace j,k to gj, gk
@@ -66,6 +69,7 @@ call plug#begin('~/.vim/plugged')
 "" Appearance
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
 
 "" Window
 Plug 'simeji/winresizer'
@@ -96,7 +100,7 @@ Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
 
 "" Lint
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 
 "" Python
 Plug 'davidhalter/jedi-vim'
@@ -163,8 +167,18 @@ endfunction
 " Plugin altercation/vim-colors-solarized
 let g:solarized_termtrans=1                                                 "Terminal at the time of the transparent background, to enable transparent background of Solarized.
 
-" Plugin vim-syntastic/syntastic
-let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy'                      "HTML5 syntastic check (required: brew install tidy-html5)
+" Plugin w0rp/ale
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_enter = 0
+let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 0
+"" Golang
+"" gometalinter see also: https://github.com/alecthomas/gometalinter#installing
+let g:ale_linters = {'go': ['gometalinter']}
+let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 
 " Plugin kannokanno/previm 
 let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
@@ -263,9 +277,6 @@ function! s:build_go_files()
   endif
 endfunction
 autocmd FileType go nmap <LocalLeader>b :<C-u>call <SID>build_go_files()<CR>
-
-" Plugin scrooloose/syntastic
-let g:syntastic_go_checkers = ['golint', 'gotype', 'govet', 'go']           "Go Checkers
 
 " Plugin Shougo/neocomplete
 let g:neocomplete#enable_at_startup = 1                                     "Enable at startup
