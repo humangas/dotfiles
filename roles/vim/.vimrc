@@ -100,7 +100,7 @@ Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
 
 "" Lint
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 
 "" Python
 Plug 'davidhalter/jedi-vim'
@@ -167,8 +167,7 @@ endfunction
 " Plugin altercation/vim-colors-solarized
 let g:solarized_termtrans=1                                                 "Terminal at the time of the transparent background, to enable transparent background of Solarized.
 
-" Plugin vim-syntastic/syntastic
-let g:syntastic_html_tidy_exec = '/usr/local/bin/tidy'                      "HTML5 syntastic check (required: brew install tidy-html5)
+" Plugin w0rp/ale
 
 " Plugin kannokanno/previm 
 let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
@@ -267,9 +266,6 @@ function! s:build_go_files()
   endif
 endfunction
 autocmd FileType go nmap <LocalLeader>b :<C-u>call <SID>build_go_files()<CR>
-
-" Plugin scrooloose/syntastic
-let g:syntastic_go_checkers = ['golint', 'gotype', 'govet', 'go']           "Go Checkers
 
 " Plugin Shougo/neocomplete
 let g:neocomplete#enable_at_startup = 1                                     "Enable at startup
