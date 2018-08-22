@@ -2,6 +2,8 @@
 " ~/.vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Base
+set encoding=utf8                                   "Encoding
+set fileencoding=utf-8                              "File Encoding
 set nobackup                                        "No create backup file.
 set noswapfile                                      "No create swap file.
 set autoread                                        "Rereading Automatic When the file being edited is changed.
