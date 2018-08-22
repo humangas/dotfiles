@@ -16,12 +16,14 @@ set backspace=indent,eol,start                      "Backspace key so as to oper
 set history=100                                     "The number of command history
 set completeopt=menuone,longest                     "Completion Style (* non preview)
 set switchbuf=useopen                               "If already in the buffer, open that file.
+set autowrite                                       "Auto save file If there is a change when file move or make command is executed.
 
 " Key
-"Replace j,k to gj, gk
+"" Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
-nnoremap <C-c><C-c> :terminal<CR>
+nnoremap <silent> <C-j> :<C-u>cnext<CR>
+nnoremap <silent> <C-k> :<C-u>cprevious<CR>
 
 " Tab
 set expandtab                                       "Convert tabs to spaces.
@@ -49,6 +51,14 @@ set cursorline                                      "Currently highlight the lin
 set cursorcolumn                                    "Currently highlight the line (column).
 set showmatch                                       "Input parentheses, to highlight the corresponding brackets.
 set laststatus=2                                    "Display the status line in the second row from the end.
+
+" Exchange tab, space
+autocmd BufEnter *.txt,*.py  setlocal expandtab
+autocmd FileType make  setlocal noexpandtab
+
+" Leader
+let mapleader = "\<Space>"
+let maplocalleader = ','
 
 " Plugin see also: https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
@@ -163,8 +173,8 @@ let g:previm_open_cmd = 'open -a Safari'                                    "Ope
 let g:vimfiler_as_default_explorer = 1                                      "Replace vim explorer to vimfiler
 let g:vimfiler_enable_auto_cd = 1                                           "vimfiler change Vim current directory
 let g:vimfiler_ignore_pattern = '^\%(.DS_Store\)$'                          "ignore pattern, default display dotfiles
-nnoremap <silent> <Space>e :<C-u>VimFilerBufferDir<CR>
-nnoremap <silent> <Space>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
+nnoremap <silent> <Leader>e :<C-u>VimFilerBufferDir<CR>
+nnoremap <silent> <Leader>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
 "" vimfiler my settings
 autocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
@@ -177,10 +187,10 @@ endfunction
 let g:tagbar_autofocus = 1                                                  "Focus when open tagbar (= 1)
 let g:tagbar_left = 1                                                       "tagbar open left side
 let g:tagbar_autoshowtag = 1                                                "Show tag auto
-nnoremap <silent> <Space>t :<C-u>TagbarToggle<CR>
+nnoremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : $HOME . '/.cache/dein/repos/github.com/jszakmeister/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsbin' : $HOME . '/.vim/plugged/markdown2ctags/markdown2ctags.py',
     \ 'ctagsargs' : '-f - --sort=yes',
     \ 'kinds' : [
         \ 's:sections',
@@ -203,17 +213,17 @@ endfunction
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_layout = { 'up': '~35%' }
-nnoremap <silent> <Space>g :<C-u>FzfBLines<CR>
-nnoremap <silent> <Space>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
-nnoremap <silent> <Space>c :<C-u>FzfBCommits<CR>
-nnoremap <silent> <Space>h :<C-u>FzfHistory<CR>
+nnoremap <silent> <Leader>g :<C-u>FzfBLines<CR>
+nnoremap <silent> <Leader>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
+nnoremap <silent> <Leader>h :<C-u>FzfHistory<CR>
+nnoremap <silent> <LocalLeader>gc :<C-u>FzfBCommits<CR>
 nnoremap <C-T> :FZF<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
-let g:jedi#usages_command = "<leader>c"                                     "List callers
-let g:jedi#documentation_command = "<leader>d"                              "Open document
-let g:jedi#rename_command = "<leader>r"                                     "Rename all references of selection section
+let g:jedi#usages_command = "<LocalLeader>c"                                "List callers
+let g:jedi#documentation_command = "<LocalLeader>d"                         "Open document
+let g:jedi#rename_command = "<LocalLeader>r"                                "Rename all references of selection section
 
 " Plugin lambdalisue/vim-pyenv > see also: https://github.com/lambdalisue/vim-pyenv#using-vim-pyenv-with-jedi-vim
 if jedi#init_python()
@@ -234,12 +244,25 @@ let g:go_highlight_structs = 1                                              "Hig
 let g:go_highlight_operators = 1                                            "Highlight operators
 let g:go_highlight_build_constraints = 1                                    "Highlight build constraints
 let g:go_fmt_command = "goimports"                                          "Do goimports when saving.
+let g:go_list_type = "quickfix"                                             "All quickfix window
 autocmd FileType go :highlight goErr cterm=bold ctermfg=197                 "Highlight err
 autocmd FileType go :match goErr /\<err\>/                                  "Highlight err
-au FileType go nmap <Leader>c <Plug>(go-referrers)
-au FileType go nmap <Leader>d <Plug>(go-doc)
-au FileType go nmap <Leader>db <Plug>(go-doc-browser)
-au FileType go nmap <Leader>r <Plug>(go-rename)
+autocmd FileType go nmap <LocalLeader>c <Plug>(go-referrers)
+autocmd FileType go nmap <LocalLeader>d <Plug>(go-doc)
+autocmd FileType go nmap <LocalLeader>db <Plug>(go-doc-browser)
+autocmd FileType go nmap <LocalLeader>rn <Plug>(go-rename)
+autocmd FileType go nmap <LocalLeader>r <Plug>(go-run)
+autocmd FileType go nmap <LocalLeader>t <Plug>(go-test)
+"" Run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+autocmd FileType go nmap <LocalLeader>b :<C-u>call <SID>build_go_files()<CR>
 
 " Plugin scrooloose/syntastic
 let g:syntastic_go_checkers = ['golint', 'gotype', 'govet', 'go']           "Go Checkers
@@ -248,14 +271,13 @@ let g:syntastic_go_checkers = ['golint', 'gotype', 'govet', 'go']           "Go 
 let g:neocomplete#enable_at_startup = 1                                     "Enable at startup
 
 " Plugin Shougo/neosnippet
-" Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " Plugin airblade/vim-gitgutter
-nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+nnoremap <silent> <LocalLeader>gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> <LocalLeader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
 " Plugin glidenote/memolist.vim
 let g:memolist_path = "$HOME/memo"
@@ -272,11 +294,11 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 let g:yankround_max_history = 50
-nnoremap <silent> <Space>r :<C-u>Unite<Space>yankround<CR>
+nnoremap <silent> <Leader>r :<C-u>Unite<Space>yankround<CR>
 
 " Plugin 'lambdalisue/gina.vim'
-nnoremap <silent> ,gb :<C-u>Gina<Space>blame<CR>
-nnoremap <silent> ,gl :<C-u>Gina<Space>log<CR>
+nnoremap <silent> <LocalLeader>gb :<C-u>Gina<Space>blame<CR>
+nnoremap <silent> <LocalLeader>gl :<C-u>Gina<Space>log<CR>
 "" gina my settings
 autocmd FileType gina-blame call s:gina_my_settings()
 autocmd FileType gina-log call s:gina_my_settings()
@@ -287,9 +309,9 @@ function! s:gina_my_settings()
 endfunction
 
 " Plugin Shougo/unite.vim
-nnoremap <silent> <Space>o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> <Space>T :<C-u>Unite<Space>tab:no-current<CR>
-nnoremap <silent> ,h :<C-u>Unite<Space>menu:myshortcut<CR>
+nnoremap <silent> <Leader>o :<C-u>Unite<Space>outline<CR>
+nnoremap <silent> <Leader>T :<C-u>Unite<Space>tab:no-current<CR>
+nnoremap <silent> <LocalLeader><LocalLeader>h :<C-u>Unite<Space>menu:myshortcut<CR>
 "" unite my settings
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
@@ -345,13 +367,16 @@ command! JsonFormat :execute '%!python -m json.tool'
   \ | :%s/ \+$//ge
   \ | :set ft=javascript
   \ | :1
-
+"" Terminal
+nnoremap <LocalLeader><LocalLeader>t :terminal<CR>
 "" tig
-nnoremap <silent> ,gs :!tig status<CR>:redraw!<CR>
+nnoremap <silent> <LocalLeader>gs :!tig status<CR>:redraw!<CR>
 
+" Load etc files
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
 
+" Path
 set runtimepath+=~/.vim/
 runtime! userautoload/*.vim
