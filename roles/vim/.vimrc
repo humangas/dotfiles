@@ -69,6 +69,7 @@ call plug#begin('~/.vim/plugged')
 "" Appearance
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
 
 "" Window
 Plug 'simeji/winresizer'
