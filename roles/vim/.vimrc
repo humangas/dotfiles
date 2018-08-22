@@ -19,6 +19,7 @@ set history=100                                     "The number of command histo
 set completeopt=menuone,longest                     "Completion Style (* non preview)
 set switchbuf=useopen                               "If already in the buffer, open that file.
 set autowrite                                       "Auto save file If there is a change when file move or make command is executed.
+set ambiwidth=double                                "Display double-byte characters normally
 
 " Key
 "" Replace j,k to gj, gk
