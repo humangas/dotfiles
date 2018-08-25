@@ -70,6 +70,7 @@ Plug 'itchyny/lightline.vim'
 
 "" Window
 Plug 'simeji/winresizer'
+Plug 'Valloric/ListToggle'
 
 "" File Operation
 Plug 'Shougo/neosnippet.vim'
@@ -202,6 +203,11 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Mes
 let g:ale_linters = {'go': ['gometalinter']}
 "" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
+
+" Plugin Valloric/ListToggle
+let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
+let g:lt_quickfix_list_toggle_map = '<Leader>q'                             "Toggle QuickFix window
+let g:lt_height = 15                                                        "Location list/QuickFix window height
 
 " Plugin kannokanno/previm 
 let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
