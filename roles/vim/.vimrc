@@ -100,6 +100,7 @@ Plug 'majutsushi/tagbar'
 "" Lint
 Plug 'w0rp/ale'
 Plug 'maximbaz/lightline-ale'
+Plug 'mtscout6/syntastic-local-eslint.vim'
 
 "" Python
 Plug 'davidhalter/jedi-vim'
@@ -200,7 +201,10 @@ let g:ale_lint_on_enter = 0                                                 "Lin
 let g:ale_echo_msg_error_str = 'Error'                                      "Message serverity Error string
 let g:ale_echo_msg_warning_str = 'Warning'                                  "Message serverity Warning string
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Message format
-let g:ale_linters = {'go': ['gometalinter']}
+let g:ale_linters = {
+    \ 'go': ['gometalinter'],
+    \ 'javascript': ['eslint'],
+\ }
 "" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 
