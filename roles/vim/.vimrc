@@ -145,6 +145,7 @@ set background=dark
 colorscheme solarized
 
 " Plugin itchyny/lightline.vim 
+" Plugin maximbaz/lightline-ale
 let g:lightline = {
     \ 'colorscheme': 'solarized',
     \ 'active': {
@@ -183,6 +184,9 @@ function! LightlineFilename()
         \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
         \ expand('%:t') !=# '' ? name : '[No Name]'
 endfunction
+let g:lightline#ale#indicator_warnings = '⚠ '                               "The indicator to use when there are warnings. Default is W:.
+let g:lightline#ale#indicator_errors = '✗ '                                 "The indicator to use when there are errors. Default is E:.
+let g:lightline#ale#indicator_ok = '✓'                                      "The indicator to use when there are no warnings or errors. Default is OK.
 
 " Plugin altercation/vim-colors-solarized
 let g:solarized_termtrans=1                                                 "Terminal at the time of the transparent background, to enable transparent background of Solarized.
