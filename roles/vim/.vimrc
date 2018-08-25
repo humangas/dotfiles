@@ -25,8 +25,6 @@ set ambiwidth=double                                "Display double-byte charact
 "" Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
-nnoremap <silent> <C-j> :<C-u>cnext<CR>
-nnoremap <silent> <C-k> :<C-u>cprevious<CR>
 
 " Tab
 set expandtab                                       "Convert tabs to spaces.
@@ -197,6 +195,8 @@ let g:ale_open_list = 1
 let g:ale_keep_list_window_open = 0
 "" Golang
 "" gometalinter see also: https://github.com/alecthomas/gometalinter#installing
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 let g:ale_linters = {'go': ['gometalinter']}
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 
