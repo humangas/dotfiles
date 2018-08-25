@@ -100,6 +100,7 @@ Plug 'majutsushi/tagbar'
 
 "" Lint
 Plug 'w0rp/ale'
+Plug 'maximbaz/lightline-ale'
 
 "" Python
 Plug 'davidhalter/jedi-vim'
@@ -147,12 +148,32 @@ colorscheme solarized
 let g:lightline = {
     \ 'colorscheme': 'solarized',
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'gitbranch', 'filename', 'modified' ] ]
+    \   'left': [
+    \       [ 'mode', 'paste' ],
+    \       [ 'readonly', 'gitbranch', 'filename', 'modified' ],
+    \   ],
+    \   'right': [
+    \       [ 'lineinfo' ],
+    \       [ 'percent' ],
+    \       [ 'fileformat', 'fileencoding', 'filetype' ],
+    \       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+    \   ],
     \ },
     \ 'component_function': {
     \   'gitbranch': 'gina#component#repo#branch',
     \   'filename': 'LightlineFilename',
+    \ },
+    \ 'component_expand': {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+    \ },
+    \ 'component_type': {
+      \  'linter_checking': 'left',
+      \  'linter_warnings': 'warning',
+      \  'linter_errors': 'error',
+      \  'linter_ok': 'left',
     \ },
 \ }
 function! LightlineFilename()
