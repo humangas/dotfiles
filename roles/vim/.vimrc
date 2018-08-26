@@ -274,7 +274,7 @@ nnoremap <C-T> :FZF<CR>
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
 let g:jedi#usages_command = "<LocalLeader>c"                                "List callers
 let g:jedi#documentation_command = "<LocalLeader>d"                         "Open document
-let g:jedi#rename_command = "<LocalLeader>r"                                "Rename all references of selection section
+let g:jedi#rename_command = "<LocalLeader>rn"                               "Rename all references of selection section
 
 " Plugin lambdalisue/vim-pyenv > see also: https://github.com/lambdalisue/vim-pyenv#using-vim-pyenv-with-jedi-vim
 if jedi#init_python()
