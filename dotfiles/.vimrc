@@ -25,8 +25,6 @@ set ambiwidth=double                                "Display double-byte charact
 "" Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
-nnoremap <silent> <C-j> :<C-u>cnext<CR>
-nnoremap <silent> <C-k> :<C-u>cprevious<CR>
 
 " Tab
 set expandtab                                       "Convert tabs to spaces.
@@ -69,10 +67,10 @@ call plug#begin('~/.vim/plugged')
 "" Appearance
 Plug 'altercation/vim-colors-solarized'
 Plug 'itchyny/lightline.vim'
-Plug 'ryanoasis/vim-devicons'
 
 "" Window
 Plug 'simeji/winresizer'
+Plug 'Valloric/ListToggle'
 
 "" File Operation
 Plug 'Shougo/neosnippet.vim'
@@ -101,6 +99,8 @@ Plug 'majutsushi/tagbar'
 
 "" Lint
 Plug 'w0rp/ale'
+Plug 'maximbaz/lightline-ale'
+Plug 'mtscout6/syntastic-local-eslint.vim'
 
 "" Python
 Plug 'davidhalter/jedi-vim'
@@ -145,15 +145,36 @@ set background=dark
 colorscheme solarized
 
 " Plugin itchyny/lightline.vim 
+" Plugin maximbaz/lightline-ale
 let g:lightline = {
     \ 'colorscheme': 'solarized',
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'gitbranch', 'filename', 'modified' ] ]
+    \   'left': [
+    \       [ 'mode', 'paste' ],
+    \       [ 'readonly', 'gitbranch', 'filename', 'modified' ],
+    \   ],
+    \   'right': [
+    \       [ 'lineinfo' ],
+    \       [ 'percent' ],
+    \       [ 'fileformat', 'fileencoding', 'filetype' ],
+    \       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+    \   ],
     \ },
     \ 'component_function': {
     \   'gitbranch': 'gina#component#repo#branch',
     \   'filename': 'LightlineFilename',
+    \ },
+    \ 'component_expand': {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+    \ },
+    \ 'component_type': {
+      \  'linter_checking': 'left',
+      \  'linter_warnings': 'warning',
+      \  'linter_errors': 'error',
+      \  'linter_ok': 'left',
     \ },
 \ }
 function! LightlineFilename()
@@ -163,22 +184,38 @@ function! LightlineFilename()
         \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
         \ expand('%:t') !=# '' ? name : '[No Name]'
 endfunction
+let g:lightline#ale#indicator_warnings = 'W:'                               "The indicator to use when there are warnings. Default is W:.
+let g:lightline#ale#indicator_errors = 'E:'                                 "The indicator to use when there are errors. Default is E:.
+let g:lightline#ale#indicator_ok = 'OK'                                     "The indicator to use when there are no warnings or errors. Default is OK.
 
 " Plugin altercation/vim-colors-solarized
 let g:solarized_termtrans=1                                                 "Terminal at the time of the transparent background, to enable transparent background of Solarized.
 
 " Plugin w0rp/ale
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_enter = 0
-let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 0
-"" Golang
-"" gometalinter see also: https://github.com/alecthomas/gometalinter#installing
-let g:ale_linters = {'go': ['gometalinter']}
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+let g:ale_set_loclist = 0                                                   "Location list off (= 0)
+let g:ale_set_quickfix = 1                                                  "QuickFix on (= 1)
+let g:ale_open_list = 1                                                     "Keep error/warning window open
+let g:ale_sign_column_always = 1                                            "Keep symbol column open
+let g:ale_keep_list_window_open = 0                                         "Close the window when there are no more errors/warnings
+let g:ale_lint_on_save = 1                                                  "Lint when file save on (= 1)
+let g:ale_lint_on_text_changed = 0                                          "Lint when text change off (= 0)
+let g:ale_lint_on_enter = 0                                                 "Lint when file open off (= 0)
+let g:ale_echo_msg_error_str = 'Error'                                      "Message serverity Error string
+let g:ale_echo_msg_warning_str = 'Warning'                                  "Message serverity Warning string
+let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Message format
+let g:ale_linters = {
+    \ 'go': ['gometalinter'],
+    \ 'javascript': ['eslint'],
+\ }
+"" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
+
+" Plugin Valloric/ListToggle
+let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
+let g:lt_quickfix_list_toggle_map = '<Leader>q'                             "Toggle QuickFix window
+let g:lt_height = 15                                                        "Location list/QuickFix window height
 
 " Plugin kannokanno/previm 
 let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
@@ -237,7 +274,7 @@ nnoremap <C-T> :FZF<CR>
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
 let g:jedi#usages_command = "<LocalLeader>c"                                "List callers
 let g:jedi#documentation_command = "<LocalLeader>d"                         "Open document
-let g:jedi#rename_command = "<LocalLeader>r"                                "Rename all references of selection section
+let g:jedi#rename_command = "<LocalLeader>rn"                               "Rename all references of selection section
 
 " Plugin lambdalisue/vim-pyenv > see also: https://github.com/lambdalisue/vim-pyenv#using-vim-pyenv-with-jedi-vim
 if jedi#init_python()
@@ -337,25 +374,42 @@ let g:unite_enable_smart_case = 1
 let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.myshortcut = {'description': 'my shortcut list'}
 let g:unite_source_menu_menus.myshortcut.command_candidates = {
-      \ '- [space] VimFilerBufferDir current      <Space>e   ': 'VimFilerBufferDir',
-      \ '- [space] VimFilerBufferDir rightbelow   <Space>E   ': 'VimFilerBufferDir -explorer -direction=rightbelow',
-      \ '- [space] Unite outline                  <Space>o   ': 'Unite outline',
-      \ '- [space] Unite yankround                <Space>r   ': 'Unite yankround',
-      \ '- [space] Unite tab:no-current           <Space>T   ': 'Unite tab:no-current',
-      \ '- [space] Unite file_mru                 <Space>h   ': 'Unite file_mru',
-      \ '- [space] TagbarToggle                   <Space>t   ': 'TagbarToggle',
-      \ '- [space] FzfBLines                      <Space>g   ': 'FzfBLines',
-      \ '- [space] FzfAg                          <Space>gg  ': 'exe "cd %:p:h | FzfAg"',
-      \ '- [,] GitGutterToggle                    ,gg        ': 'GitGutterToggle',
-      \ '- [,] GitGutterLineHighlightsToggle      ,gh        ': 'GitGutterLineHighlightsToggle',
-      \ '- [python] jedi#goto_command             gd         ': '',
-      \ '- [python] jedi#usages_command           <Leader>c  ': '',
-      \ '- [python] jedi#documentation_command    <Leader>d  ': '',
-      \ '- [python] jedi#rename_command           <Leader>r  ': '',
-      \ '- [go] go#go-referrers                   <Leader>c  ': '',
-      \ '- [go] go#go-doc                         <Leader>d  ': '',
-      \ '- [go] go#go-doc-browser                 <Leader>db ': '',
-      \ '- [go] go#go-doc-rename                  <Leader>r  ': '',
+      \ '- [Leader]                                                     <Space>                       ': '',
+      \ '- [LocalLeader]                                                ,                             ': '',
+      \ '- [flie]          Next error/warning                           <C-j>                         ': '',
+      \ '- [file]          Previous error/warning                       <C-k>                         ': '',
+      \ '- [file]          Toggle Location list                         <Leader>l                     ': '',
+      \ '- [file]          Toggle QuickFix list                         <Leader>q                     ': '',
+      \ '- [file]          Open filer current window                    <Leader>e                     ': '',
+      \ '- [file]          Open filer right window                      <Leader>E                     ': '',
+      \ '- [unite]         Open tagbar left window                      <Leader>t                     ': '',
+      \ '- [file]          Fzf current file                             <Leader>g                     ': '',
+      \ '- [file]          Fzf files under the current dirs             <Leader>gg                    ': '',
+      \ '- [file]          Fzf file history                             <Leader>h                     ': '',
+      \ '- [git]           Fzf git commit log of the current file       <LocalLeader>gc               ': '',
+      \ '- [file]          Fzf filepath under the current dir           <C-T>                         ': '',
+      \ '- [python]        Go to local/global Declaration               gd                            ': '',
+      \ '- [python]        Open referrers in QuickFix                   <LocalLeader>c                ': '',
+      \ '- [python]        Open doc                                     <LocalLeader>d                ': '',
+      \ '- [python]        Rename object                                <LocalLeader>rn               ': '',
+      \ '- [golang]        Go to local/global Declaration               gd                            ': '',
+      \ '- [golang]        Open referrers in QuickFix                   <LocalLeader>c                ': '',
+      \ '- [golang]        Open doc                                     <LocalLeader>d                ': '',
+      \ '- [golang]        Oepn doc in browser                          <LocalLeader>db               ': '',
+      \ '- [golang]        Rename object                                <LocalLeader>rn               ': '',
+      \ '- [golang]        go run                                       <LocalLeader>r                ': '',
+      \ '- [golang]        go test                                      <LocalLeader>t                ': '',
+      \ '- [golang]        go build/test on file type                   <LocalLeader>b                ': '',
+      \ '- [git]           Toggle git diff column                       <LocalLeader>gg               ': '',
+      \ '- [git]           Toggle git diff line highlights              <LocalLeader>gh               ': '',
+      \ '- [unite]         Open yankround window                        <Leader>r                     ': '',
+      \ '- [git]           Open git blame                               <LocalLeader>gb               ': '',
+      \ '- [git]           Open git log                                 <LocalLeader>gl               ': '',
+      \ '- [unite]         Open outline list                            <Leader>o                     ': '',
+      \ '- [unite]         Open tab list                                <Leader>T                     ': '',
+      \ '- [unite]         Open myshortcut list                         <LocalLeader><LocalLeader>h   ': '',
+      \ '- [command]       Open Terminal                                <LocalLeader><LocalLeader>t   ': '',
+      \ '- [git]           Open git status window use tig               <LocalLeader>gs               ': '',
       \ }
 
 " SuperTab like snippets behavior.
