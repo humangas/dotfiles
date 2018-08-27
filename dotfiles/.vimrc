@@ -213,9 +213,16 @@ let g:ale_linters = {
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 
 " Plugin Valloric/ListToggle
-let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
-let g:lt_quickfix_list_toggle_map = '<Leader>q'                             "Toggle QuickFix window
+"let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
+let g:lt_quickfix_list_toggle_map = '<Leader>l'                             "Toggle QuickFix window
 let g:lt_height = 15                                                        "Location list/QuickFix window height
+"" list my settings
+autocmd FileType qf call s:list_my_settings()
+function! s:list_my_settings()
+  "" Press esc twice to exit
+  nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
+  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
+endfunction
 
 " Plugin kannokanno/previm 
 let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
@@ -229,7 +236,7 @@ nnoremap <silent> <Leader>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direc
 "" vimfiler my settings
 autocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
-  "" Press esc twice to exit vimfiler
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
@@ -256,7 +263,7 @@ let g:tagbar_type_markdown = {
 "" tagbar my settings
 autocmd FileType tagbar call s:tagbar_my_settings()
 function! s:tagbar_my_settings()
-  "" Press esc twice to exit tagbar
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
@@ -351,7 +358,7 @@ nnoremap <silent> <LocalLeader>gl :<C-u>Gina<Space>log<CR>
 autocmd FileType gina-blame call s:gina_my_settings()
 autocmd FileType gina-log call s:gina_my_settings()
 function! s:gina_my_settings()
-  "" Press esc twice to exit unite
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
   imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
 endfunction
@@ -363,7 +370,7 @@ nnoremap <silent> <LocalLeader><LocalLeader>h :<C-u>Unite<Space>menu:myshortcut<
 "" unite my settings
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
-  "" Press esc twice to exit unite
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
