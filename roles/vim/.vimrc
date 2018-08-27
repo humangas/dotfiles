@@ -216,6 +216,13 @@ let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimp
 "let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
 let g:lt_quickfix_list_toggle_map = '<Leader>l'                             "Toggle QuickFix window
 let g:lt_height = 15                                                        "Location list/QuickFix window height
+"" list my settings
+autocmd FileType qf call s:list_my_settings()
+function! s:list_my_settings()
+  "" Press esc twice to exit
+  nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
+  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
+endfunction
 
 " Plugin kannokanno/previm 
 let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
