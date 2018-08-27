@@ -236,7 +236,7 @@ nnoremap <silent> <Leader>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direc
 "" vimfiler my settings
 autocmd FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
-  "" Press esc twice to exit vimfiler
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
@@ -263,7 +263,7 @@ let g:tagbar_type_markdown = {
 "" tagbar my settings
 autocmd FileType tagbar call s:tagbar_my_settings()
 function! s:tagbar_my_settings()
-  "" Press esc twice to exit tagbar
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
@@ -358,7 +358,7 @@ nnoremap <silent> <LocalLeader>gl :<C-u>Gina<Space>log<CR>
 autocmd FileType gina-blame call s:gina_my_settings()
 autocmd FileType gina-log call s:gina_my_settings()
 function! s:gina_my_settings()
-  "" Press esc twice to exit unite
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
   imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
 endfunction
@@ -370,7 +370,7 @@ nnoremap <silent> <LocalLeader><LocalLeader>h :<C-u>Unite<Space>menu:myshortcut<
 "" unite my settings
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
-  "" Press esc twice to exit unite
+  "" Press esc twice to exit
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
 endfunction
