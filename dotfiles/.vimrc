@@ -228,9 +228,12 @@ endfunction
 let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
 
 " Plugin Shougo/vimfiler
-let g:vimfiler_as_default_explorer = 1                                      "Replace vim explorer to vimfiler
-let g:vimfiler_enable_auto_cd = 1                                           "vimfiler change Vim current directory
 let g:vimfiler_ignore_pattern = '^\%(.DS_Store\)$'                          "ignore pattern, default display dotfiles
+call vimfiler#custom#profile('default', 'context', {
+    \   'explorer': 1,
+    \   'auto-cd': 1,
+    \   'safe': 0
+\ })
 nnoremap <silent> <Leader>e :<C-u>VimFilerBufferDir<CR>
 nnoremap <silent> <Leader>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
 "" vimfiler my settings
