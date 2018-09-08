@@ -135,6 +135,7 @@ Plug 'rhysd/github-complete.vim'
 Plug 'vim-scripts/dbext.vim'
 
 "" Utility
+Plug 'tyru/open-browser.vim'
 Plug 'haya14busa/vim-open-googletranslate'
 
 "" Vim extension
