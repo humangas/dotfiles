@@ -129,6 +129,7 @@ Plug 'fatih/vim-hclfmt'
 "" Git
 Plug 'lambdalisue/gina.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/github-complete.vim'
 
 "" Database
 Plug 'vim-scripts/dbext.vim'
@@ -434,6 +435,7 @@ let g:unite_source_menu_menus.myshortcut.command_candidates = {
       \ '- [unite]         Open myshortcut list                         <LocalLeader><LocalLeader>h   ': '',
       \ '- [command]       Open Terminal                                <LocalLeader><LocalLeader>t   ': '',
       \ '- [git]           Open git status window use tig               <LocalLeader>gs               ': '',
+      \ '- [git]           Completion for GitHub(username,emoji,etc...)      <C-x><C-o>                    ': '',
       \ }
 
 " SuperTab like snippets behavior.
