@@ -134,7 +134,7 @@ Plug 'rhysd/github-complete.vim'
 "" Database
 Plug 'vim-scripts/dbext.vim'
 
-"" OS Utility
+"" Vim extension
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell', { 'tag': '3787e5' }
 
