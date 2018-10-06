@@ -226,10 +226,10 @@ let g:ale_linters = {
 \ }
 " autopep8: pip install autopep8
 " isort: pip install isort
-" prettier: npm install -g prettier
+" prettier-eslint: yarn add --dev prettier-eslint-cli
 let g:ale_fixers = {
     \ 'python': ['autopep8', 'isort'],
-    \ 'javascript': ['prettier'],
+    \ 'javascript': ['prettier-eslint'],
 \ }
 "" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
