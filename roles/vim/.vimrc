@@ -109,6 +109,9 @@ Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
 "" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 
+"" Vue.js
+Plug 'posva/vim-vue'
+
 "" Frontend
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
