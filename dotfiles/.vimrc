@@ -440,6 +440,7 @@ let g:unite_source_menu_menus.myshortcut.command_candidates = {
       \ '- [command]       Open Terminal                                     <LocalLeader><LocalLeader>t   ': '',
       \ '- [git]           Open git status window use tig                    <LocalLeader>gs               ': '',
       \ '- [git]           Completion for GitHub(username,emoji,etc...)      <C-x><C-o>                    ': '',
+      \ '- [emmet]         Expand html tag with Emmet                        <C-y>,                        ': '',
       \ }
 
 " SuperTab like snippets behavior.
