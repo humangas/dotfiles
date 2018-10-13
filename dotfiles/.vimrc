@@ -30,6 +30,13 @@ nnoremap k gk
 set expandtab                                       "Convert tabs to spaces.
 set shiftwidth=4                                    "Display width of the Tab character at the beginning of a line.
 set tabstop=4                                       "Display width of the Tab character other than the beginning of the line.
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.css  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.js   setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 
 " Search
 set ignorecase                                      "Search not case sensitive.
