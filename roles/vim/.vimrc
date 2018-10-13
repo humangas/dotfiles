@@ -139,7 +139,7 @@ Plug 'fatih/vim-hclfmt'
 "" Git
 Plug 'lambdalisue/gina.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'rhysd/github-complete.vim'
+"Plug 'rhysd/github-complete.vim'
 
 "" Database
 Plug 'vim-scripts/dbext.vim'
