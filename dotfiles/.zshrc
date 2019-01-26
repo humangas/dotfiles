@@ -7,6 +7,9 @@
 # $ man zshparam     :List of special variables and notation of suffix expansion of variables  
 # $ man zshoptions   :List of options that can be set with setopt  
 # $ man zshbuiltins  :List of built-in commands 
+#
+# display colour
+# $ for c in {000..255}; do echo -n "\e[38;5;${c}m $c"; [ $(($c%16)) -eq 15 ] && echo; done
 ################################################################################################
 # Not duplicate registration
 typeset -U path cdpath fpath manpath
@@ -31,7 +34,7 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                                            /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
 # Prompt
-PROMPT="%U%F{blue}%n%f@%F{cyan}%m:%(5~,%-2~/.../%2~,%~)%f%u"
+PROMPT=" %F{black}%K{033}$%k%f "
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true        # Enable %c,%u formatting. If there are uncommitted files in the repository, the string is stored.
@@ -40,7 +43,7 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"        # not git add files
 zstyle ':vcs_info:*' formats "%F{green}%c%u(%b)%f"     # set $vcs_info_msg_0_
 zstyle ':vcs_info:*' actionformats '(%b|%a)'           # This format is displayed at merge conflict.
 precmd () { vcs_info }
-PROMPT=$PROMPT'${vcs_info_msg_0_}$ '
+PROMPT='${vcs_info_msg_0_}'$PROMPT 
 
 # Color
 eval "$(gdircolors ~/.config/colorscheme/Solarized_dircolors.256dark)"
