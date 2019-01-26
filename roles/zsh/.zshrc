@@ -7,6 +7,9 @@
 # $ man zshparam     :List of special variables and notation of suffix expansion of variables  
 # $ man zshoptions   :List of options that can be set with setopt  
 # $ man zshbuiltins  :List of built-in commands 
+#
+# display colour
+# $ for c in {000..255}; do echo -n "\e[38;5;${c}m $c"; [ $(($c%16)) -eq 15 ] && echo; done
 ################################################################################################
 # Not duplicate registration
 typeset -U path cdpath fpath manpath
