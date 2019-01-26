@@ -440,7 +440,7 @@ let g:unite_source_menu_menus.myshortcut.command_candidates = {
       \ '- [git]           Toggle git diff line highlights                   <LocalLeader>gh               ': '',
       \ '- [unite]         Open yankround window                             <Leader>r                     ': '',
       \ '- [git]           Open git blame                                    <LocalLeader>gb               ': '',
-      \ '- [git]           Open git log                                      <LocalLeader>gl               ': '',
+      \ '- [git]           Open git log use tig                              <LocalLeader>gl               ': '',
       \ '- [git]           Open git log of the current file use tig          <LocalLeader>gll              ': '',
       \ '- [unite]         Open outline list                                 <Leader>o                     ': '',
       \ '- [unite]         Open tab list                                     <Leader>T                     ': '',
