@@ -306,7 +306,6 @@ let g:fzf_layout = { 'up': '~35%' }
 nnoremap <silent> <Leader>g :<C-u>FzfBLines<CR>
 nnoremap <silent> <Leader>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
 nnoremap <silent> <Leader>h :<C-u>FzfHistory<CR>
-nnoremap <silent> <LocalLeader>gc :<C-u>FzfBCommits<CR>
 nnoremap <C-T> :FZF<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
@@ -385,7 +384,6 @@ nnoremap <silent> <Leader>r :<C-u>Unite<Space>yankround<CR>
 
 " Plugin 'lambdalisue/gina.vim'
 nnoremap <silent> <LocalLeader>gb :<C-u>Gina<Space>blame<CR>
-nnoremap <silent> <LocalLeader>gl :<C-u>Gina<Space>log<CR>
 "" gina my settings
 autocmd FileType gina-blame call s:gina_my_settings()
 autocmd FileType gina-log call s:gina_my_settings()
@@ -477,7 +475,12 @@ command! JsonFormat :execute '%!python -m json.tool'
 "" Terminal
 nnoremap <LocalLeader><LocalLeader>t :terminal<CR>
 "" tig
+""" git status
 nnoremap <silent> <LocalLeader>gs :!tig status<CR>:redraw!<CR>
+""" git log
+nnoremap <silent> <LocalLeader>gl :!tig<CR>:redraw!<CR>
+""" git log of current file
+nnoremap <silent> <LocalLeader>gll :!tig %<CR>:redraw!<CR>
 
 " Load etc files
 if filereadable(expand('~/.vimrc.local'))
