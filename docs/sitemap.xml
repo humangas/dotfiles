@@ -176,6 +176,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://humangas.github.io/dotfiles/git-secrets/</loc>
+     <lastmod>2019-02-02</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://humangas.github.io/dotfiles/git/</loc>
      <lastmod>2019-02-02</lastmod>
      <changefreq>daily</changefreq>
