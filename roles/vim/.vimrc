@@ -209,15 +209,15 @@ let g:solarized_termtrans=1                                                 "Ter
 " Plugin w0rp/ale
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-let g:ale_set_loclist = 0                                                   "Location list off (= 0)
-let g:ale_set_quickfix = 1                                                  "QuickFix on (= 1)
-let g:ale_open_list = 1                                                     "Keep error/warning window open
-let g:ale_sign_column_always = 1                                            "Keep symbol column open
-let g:ale_keep_list_window_open = 0                                         "Close the window when there are no more errors/warnings
-let g:ale_lint_on_save = 1                                                  "Lint when file save on (= 1)
-let g:ale_lint_on_text_changed = 0                                          "Lint when text change off (= 0)
-let g:ale_lint_on_enter = 1                                                 "Lint when file open on (= 1)
-let g:ale_fix_on_save = 1                                                   "Fixers when file save on (= 1)
+let g:ale_set_loclist = 1                                                   "Location list: on
+let g:ale_set_quickfix = 0                                                  "QuickFix: off
+let g:ale_open_list = 0                                                     "Keep error/warning window open: off
+let g:ale_keep_list_window_open = 0                                         "Keep the window when there are no more errors/warnings: off
+let g:ale_sign_column_always = 1                                            "Keep symbol column open: on
+let g:ale_lint_on_save = 1                                                  "Lint when file save: on
+let g:ale_lint_on_text_changed = 0                                          "Lint when text change: off
+let g:ale_lint_on_enter = 1                                                 "Lint when file open: on
+let g:ale_fix_on_save = 1                                                   "Fixers when file save: on
 let g:ale_echo_msg_error_str = 'Error'                                      "Message serverity Error string
 let g:ale_echo_msg_warning_str = 'Warning'                                  "Message serverity Warning string
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Message format
