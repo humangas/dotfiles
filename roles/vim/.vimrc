@@ -242,8 +242,8 @@ let g:ale_fixers = {
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 
 " Plugin Valloric/ListToggle
-"let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
-let g:lt_quickfix_list_toggle_map = '<Leader>l'                             "Toggle QuickFix window
+let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
+let g:lt_quickfix_list_toggle_map = '<Leader>q'                             "Toggle QuickFix window
 let g:lt_height = 10                                                        "Location list/QuickFix window height
 "" list my settings
 autocmd FileType qf call s:list_my_settings()
