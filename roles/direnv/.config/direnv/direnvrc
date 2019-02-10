@@ -1,0 +1,12 @@
+# For poetry local setting like pyenv local
+## See also: https://github.com/direnv/direnv/wiki/Python#poetry
+layout_poetry() {
+  if [[ ! -f pyproject.toml ]]; then
+    log_error 'No pyproject.toml found.  Use `poetry new` or `poetry init` to create one first.'
+    exit 2
+  fi
+
+  local VENV=$( poetry show -v|grep "Using virtualenv:"|cut -f 3 -d " " 2>/dev/null)
+  export VIRTUAL_ENV=$VENV
+  PATH_add "$VIRTUAL_ENV/bin"
+}
