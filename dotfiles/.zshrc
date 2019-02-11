@@ -14,6 +14,9 @@
 # Not duplicate registration
 typeset -U path cdpath fpath manpath
 
+# NOTE: set fpath before compinit
+fpath+=~/.zsh.d/completion
+
 # Env /usr/local/bin
 export PATH="/usr/local/bin:/sbin:/usr/sbin/:$PATH"
 
@@ -74,10 +77,17 @@ setopt hist_no_store                             # Do not register the history c
 export LESS='-iMR'
 
 # Extensions
+## Build .{env,alias,function} files form under the .zsh.d directory
 build_extensions() {
-    # echo "Build .{env,alias,function} files form under the .zsh.d directory"
     [[ ! -e $HOME/.zsh.d ]] && return
+    if `ls -t ~/.{env,alias,function} >/dev/null 2>&1`; then
+        latest_under_zshd=$(ls -t ~/.zsh.d/*.sh | head -1)
+        latest_source_file=$(ls -t ~/.{env,alias,function} | head -1)
+        [[ $latest_under_zshd -ot $latest_source_file ]] && return
+    fi
+
     rm -rf $HOME/.{env,alias,function}
+
     local sh type
     for sh in $(find $HOME/.zsh.d -type f -name "*sh"); do
         type=$(printf $(basename $sh) | cut -d. -f2)
@@ -92,14 +102,15 @@ build_extensions() {
                 ;;
         esac
     done
+
     if [[ -e $HOME/.function ]]; then
         sed -i -e "s@^#\!.*@@g" $HOME/.function
         sed -i -e '1s@^@#\!/user/bin/env zsh\n@' $HOME/.function
     fi
 }
 
+## Source .{env,alias,function} files
 source_extensions() {
-    # echo "Source .{env,alias,function} files"
     setopt nonomatch
     for f in ~/.{env,alias,function}; do
         [[ -r $f ]] && source "$f"
@@ -108,14 +119,23 @@ source_extensions() {
 }
 
 ssh_add_keys() {
-    setopt nonomatch
-    if `ls ~/.ssh/*.pem >/dev/null 2>&1`; then
-        ssh-add ~/.ssh/*.pem >/dev/null 2>&1
+    local execute=${1:-0}
+    if [[ $execute -eq 1 || -z $TMUX ]]; then
+        setopt nonomatch
+        if `ls ~/.ssh/*.pem >/dev/null 2>&1`; then
+            ssh-add ~/.ssh/*.pem >/dev/null 2>&1
+        fi
+        setopt nomatch
     fi
-    setopt nomatch
 }
 
-alias soz='source ~/.zshrc'
+reload_zsh_files() {
+    rm -rf $HOME/.{env,alias,function}
+    build_extensions && source_extensions
+    ssh_add_keys 1
+}
+
+#alias soz='source ~/.zshrc'
 build_extensions && source_extensions
 ssh_add_keys
 
