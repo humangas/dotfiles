@@ -119,11 +119,14 @@ source_extensions() {
 }
 
 ssh_add_keys() {
-    setopt nonomatch
-    if `ls ~/.ssh/*.pem >/dev/null 2>&1`; then
-        ssh-add ~/.ssh/*.pem >/dev/null 2>&1
+    local execute=${1:-0}
+    if [[ $execute -eq 1 || -z $TMUX ]]; then
+        setopt nonomatch
+        if `ls ~/.ssh/*.pem >/dev/null 2>&1`; then
+            ssh-add ~/.ssh/*.pem >/dev/null 2>&1
+        fi
+        setopt nomatch
     fi
-    setopt nomatch
 }
 
 alias soz='source ~/.zshrc'
