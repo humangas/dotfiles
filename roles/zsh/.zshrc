@@ -129,7 +129,13 @@ ssh_add_keys() {
     fi
 }
 
-alias soz='source ~/.zshrc'
+reload_zsh_files() {
+    rm -rf $HOME/.{env,alias,function}
+    build_extensions && source_extensions
+    ssh_add_keys 1
+}
+
+#alias soz='source ~/.zshrc'
 build_extensions && source_extensions
 ssh_add_keys
 
