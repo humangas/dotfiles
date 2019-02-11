@@ -109,8 +109,8 @@ build_extensions() {
     fi
 }
 
+## Source .{env,alias,function} files
 source_extensions() {
-    # echo "Source .{env,alias,function} files"
     setopt nonomatch
     for f in ~/.{env,alias,function}; do
         [[ -r $f ]] && source "$f"
