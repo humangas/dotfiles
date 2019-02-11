@@ -14,6 +14,9 @@
 # Not duplicate registration
 typeset -U path cdpath fpath manpath
 
+# NOTE: set fpath before compinit
+fpath+=~/.zsh.d/completion
+
 # Env /usr/local/bin
 export PATH="/usr/local/bin:/sbin:/usr/sbin/:$PATH"
 
