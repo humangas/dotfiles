@@ -77,10 +77,17 @@ setopt hist_no_store                             # Do not register the history c
 export LESS='-iMR'
 
 # Extensions
+## Build .{env,alias,function} files form under the .zsh.d directory
 build_extensions() {
-    # echo "Build .{env,alias,function} files form under the .zsh.d directory"
     [[ ! -e $HOME/.zsh.d ]] && return
+    if `ls -t ~/.{env,alias,function} >/dev/null 2>&1`; then
+        latest_under_zshd=$(ls -t ~/.zsh.d/*.sh | head -1)
+        latest_source_file=$(ls -t ~/.{env,alias,function} | head -1)
+        [[ $latest_under_zshd -ot $latest_source_file ]] && return
+    fi
+
     rm -rf $HOME/.{env,alias,function}
+
     local sh type
     for sh in $(find $HOME/.zsh.d -type f -name "*sh"); do
         type=$(printf $(basename $sh) | cut -d. -f2)
@@ -95,6 +102,7 @@ build_extensions() {
                 ;;
         esac
     done
+
     if [[ -e $HOME/.function ]]; then
         sed -i -e "s@^#\!.*@@g" $HOME/.function
         sed -i -e '1s@^@#\!/user/bin/env zsh\n@' $HOME/.function
