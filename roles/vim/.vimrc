@@ -112,6 +112,10 @@ Plug 'mtscout6/syntastic-local-eslint.vim'
 "" Python
 Plug 'davidhalter/jedi-vim'
 Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
+"" vim-repl for python
+Plug 'sillybun/vim-repl', { 'do': './install.sh' }
+Plug 'sillybun/vim-async', { 'do': './install.sh' }
+Plug 'sillybun/zytutil'
 
 "" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
