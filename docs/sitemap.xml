@@ -2,587 +2,592 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://humangas.github.io/dotfiles/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/ag/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/alfred/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/ansible/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/awscli/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/bash/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/bats-core/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/betterzip/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/binutils/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/brew/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/buttercup/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/caffeine/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/calibre/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/cheat/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/clipy/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/coreutils/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/ctags/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/curl/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/dep/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/diffutils/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/direnv/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/docker/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/dropbox/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/ed/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/embulk/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/fasd/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/fgopen/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/figlet/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/findutils/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/flake8/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/fzf/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gawk/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/ghq/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gibo/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gist/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/git-secrets/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/git/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/glide/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gnu-getopt/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gnu-indent/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gnu-sed/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gnu-tar/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gnu-which/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/go-pry/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/go/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gocloc/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/goenv/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/google-chrome/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/google-japanese-ime/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gpg/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/graphviz/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/grep/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/gzip/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/hammerspoon/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/htop/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/httpie/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/hub/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/java/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/java8/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/jenv/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/jupyter/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/licecap/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/lua/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/macos-dock/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/macos-sharing/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/macos-terminal/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/macvim/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/maczip4win/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/mailcatcher/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/marp/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/memo/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/nmap/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/nodenv/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/note/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/npm/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://humangas.github.io/dotfiles/nvm/</loc>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/openssl/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/osquery/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/poetry/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/pulumi/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/pyenv/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/python/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/python3/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/qlcolorcode/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/qlimagesize/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/qlmarkdown/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/qlprettypatch/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/qlstephen/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/qlvideo/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/quicklook-csv/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/quicklook-json/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/quicklookase/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/rbenv/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/ruby/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/sass/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/skitch/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/sqlite/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/suspicious-package/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/table-tool/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/terraform/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/the-unarchiver/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/tig/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/tmux/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/travis/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/tree/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/typora/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/vagrant/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/vault/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/vim/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/vimgolf/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/virtualbox/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/watch/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/wdiff/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/webpquicklook/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/wget/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/xz/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/yank/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://humangas.github.io/dotfiles/zsh/</loc>
-     <lastmod>2019-03-22</lastmod>
+     <lastmod>2019-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
