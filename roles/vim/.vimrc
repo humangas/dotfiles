@@ -228,7 +228,7 @@ let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Mes
 " gometalinter: go get -u gopkg.in/alecthomas/gometalinter.v2
 " flake8: pip install flake8
 " yamllint: pip install yamllint
-" eslint: npm install -g eslint
+" eslint: npm install --save-dev eslint
 let g:ale_linters = {
     \ 'go': ['gometalinter'],
     \ 'python': ['flake8'],
@@ -237,13 +237,15 @@ let g:ale_linters = {
 \ }
 " autopep8: pip install autopep8
 " isort: pip install isort
-" prettier-eslint: yarn add --dev prettier-eslint-cli
+" prettier-eslint: npm install --save-dev prettier-eslint-cli
 let g:ale_fixers = {
     \ 'python': ['autopep8', 'isort'],
     \ 'javascript': ['prettier-eslint'],
 \ }
 "" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
+"" Use Prettier config files (.prettierrc)
+let g:ale_javascript_prettier_use_local_config = 1
 
 " Plugin Valloric/ListToggle
 let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
