@@ -123,6 +123,10 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 "" Vue.js
 Plug 'posva/vim-vue'
 
+"" TypeScript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+
 "" Frontend
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
@@ -225,25 +229,29 @@ let g:ale_fix_on_save = 1                                                   "Fix
 let g:ale_echo_msg_error_str = 'Error'                                      "Message serverity Error string
 let g:ale_echo_msg_warning_str = 'Warning'                                  "Message serverity Warning string
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Message format
-" gometalinter: go get -u gopkg.in/alecthomas/gometalinter.v2
-" flake8: pip install flake8
-" yamllint: pip install yamllint
-" eslint: npm install -g eslint
+" go: go get -u gopkg.in/alecthomas/gometalinter.v2
+" python: pipenv install --dev flake8
+" yaml: pipenv install --dev yamllint
+" javascript: npm install --save-dev eslint
+" typescript: npm install --save-dev tslint
 let g:ale_linters = {
     \ 'go': ['gometalinter'],
     \ 'python': ['flake8'],
     \ 'yaml': ['yamllint'],
     \ 'javascript': ['eslint'],
+    \ 'typescript': ['tslint'],
 \ }
-" autopep8: pip install autopep8
-" isort: pip install isort
-" prettier-eslint: yarn add --dev prettier-eslint-cli
+" python: pipenv install --dev autopep8 isort
+" javascript: npm install --save-dev prettier-eslint prettier-eslint-cli
 let g:ale_fixers = {
     \ 'python': ['autopep8', 'isort'],
     \ 'javascript': ['prettier-eslint'],
+    \ 'typescript': ['prettier-eslint'],
 \ }
 "" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
+"" Use Prettier config files (.prettierrc)
+let g:ale_javascript_prettier_use_local_config = 1
 
 " Plugin Valloric/ListToggle
 let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
@@ -329,6 +337,10 @@ if jedi#init_python()
     autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
   augroup END
 endif
+
+" Plugin Quramy/tsuquyomi
+autocmd FileType TypeScript nmap gd <Plug>(TsuquyomiDefinition)
+autocmd FileType TypeScript nmap <LocalLeader>c <Plug>(TsuquyomiReferences)
 
 " Plugin fatih/vim-go -> see also: https://github.com/fatih/vim-go#example-mappings
 let g:go_highlight_functions = 1                                            "Highlight functions
