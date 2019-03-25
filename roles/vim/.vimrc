@@ -225,19 +225,19 @@ let g:ale_fix_on_save = 1                                                   "Fix
 let g:ale_echo_msg_error_str = 'Error'                                      "Message serverity Error string
 let g:ale_echo_msg_warning_str = 'Warning'                                  "Message serverity Warning string
 let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Message format
-" gometalinter: go get -u gopkg.in/alecthomas/gometalinter.v2
-" flake8: pip install flake8
-" yamllint: pip install yamllint
-" eslint: npm install --save-dev eslint
+" go: go get -u gopkg.in/alecthomas/gometalinter.v2
+" python: pipenv install --dev flake8
+" yaml: pipenv install --dev yamllint
+" javascript: npm install --save-dev eslint
+" typescript: npm install --save-dev tslint
 let g:ale_linters = {
     \ 'go': ['gometalinter'],
     \ 'python': ['flake8'],
     \ 'yaml': ['yamllint'],
     \ 'javascript': ['eslint'],
 \ }
-" autopep8: pip install autopep8
-" isort: pip install isort
-" prettier-eslint: npm install --save-dev prettier-eslint-cli
+" python: pipenv install --dev autopep8 isort
+" javascript: npm install --save-dev prettier-eslint prettier-eslint-cli
 let g:ale_fixers = {
     \ 'python': ['autopep8', 'isort'],
     \ 'javascript': ['prettier-eslint'],
