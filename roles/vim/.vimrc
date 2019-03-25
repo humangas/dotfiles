@@ -123,6 +123,10 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
 "" Vue.js
 Plug 'posva/vim-vue'
 
+"" TypeScript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+
 "" Frontend
 Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim'
@@ -235,12 +239,14 @@ let g:ale_linters = {
     \ 'python': ['flake8'],
     \ 'yaml': ['yamllint'],
     \ 'javascript': ['eslint'],
+    \ 'typescript': ['tslint'],
 \ }
 " python: pipenv install --dev autopep8 isort
 " javascript: npm install --save-dev prettier-eslint prettier-eslint-cli
 let g:ale_fixers = {
     \ 'python': ['autopep8', 'isort'],
     \ 'javascript': ['prettier-eslint'],
+    \ 'typescript': ['prettier-eslint'],
 \ }
 "" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
 let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
@@ -331,6 +337,10 @@ if jedi#init_python()
     autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
   augroup END
 endif
+
+" Plugin Quramy/tsuquyomi
+autocmd FileType TypeScript nmap gd <Plug>(TsuquyomiDefinition)
+autocmd FileType TypeScript nmap <LocalLeader>c <Plug>(TsuquyomiReferences)
 
 " Plugin fatih/vim-go -> see also: https://github.com/fatih/vim-go#example-mappings
 let g:go_highlight_functions = 1                                            "Highlight functions
