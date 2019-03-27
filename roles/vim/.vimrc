@@ -502,7 +502,7 @@ nnoremap <silent> <LocalLeader>gs :!tig status<CR>:redraw!<CR>
 """ git log
 nnoremap <silent> <LocalLeader>gl :!tig<CR>:redraw!<CR>
 """ git log of current file
-nnoremap <silent> <LocalLeader>gll :!tig %<CR>:redraw!<CR>
+nnoremap <silent> <LocalLeader>gc :!tig %<CR>:redraw!<CR>
 
 " Load etc files
 if filereadable(expand('~/.vimrc.local'))
