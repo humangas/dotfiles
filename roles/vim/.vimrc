@@ -417,8 +417,6 @@ function! s:gina_my_settings()
   imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
 endfunction
 
-
-
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Leader>o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> <Leader>T :<C-u>Unite<Space>tab:no-current<CR>
