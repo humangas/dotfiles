@@ -339,6 +339,7 @@ if jedi#init_python()
 endif
 
 " Plugin Quramy/tsuquyomi
+let g:tsuquyomi_completion_detail = 1
 autocmd FileType TypeScript nmap gd <Plug>(TsuquyomiDefinition)
 autocmd FileType TypeScript nmap <LocalLeader>c <Plug>(TsuquyomiReferences)
 
@@ -371,6 +372,11 @@ autocmd FileType go nmap <LocalLeader>b :<C-u>call <SID>build_go_files()<CR>
 
 " Plugin Shougo/neocomplete
 let g:neocomplete#enable_at_startup = 1                                     "Enable at startup
+"" See also: https://github.com/Shougo/neocomplete.vim/issues/418
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
 " Plugin Shougo/neosnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
