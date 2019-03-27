@@ -25,6 +25,7 @@ set ambiwidth=double                                "Display double-byte charact
 "" Replace j,k to gj, gk
 nnoremap j gj
 nnoremap k gk
+inoremap <silent> jj <ESC>
 
 " Tab
 set expandtab                                       "Convert tabs to spaces.
@@ -315,10 +316,11 @@ endfunction
 " Plugin junegunn/fzf.vim 
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_layout = { 'up': '~35%' }
-nnoremap <silent> <Leader>g :<C-u>FzfBLines<CR>
-nnoremap <silent> <Leader>gg :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
-nnoremap <silent> <Leader>h :<C-u>FzfHistory<CR>
-nnoremap <C-T> :FZF<CR>
+nnoremap <silent> <LocalLeader>l :<C-u>FzfBLines<CR>
+nnoremap <silent> <LocalLeader>a :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
+nnoremap <silent> <LocalLeader>h :<C-u>FzfHistory<CR>
+nnoremap <silent> <LocalLeader>f :<C-u>FzfFiles<CR>
+nnoremap <silent> <LocalLeader>b :<C-u>FzfBuffers<CR>
 
 " Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
 let g:jedi#goto_command = "gd"                                              "Jump to definition 
@@ -415,6 +417,8 @@ function! s:gina_my_settings()
   imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
 endfunction
 
+
+
 " Plugin Shougo/unite.vim
 nnoremap <silent> <Leader>o :<C-u>Unite<Space>outline<CR>
 nnoremap <silent> <Leader>T :<C-u>Unite<Space>tab:no-current<CR>
@@ -502,7 +506,7 @@ nnoremap <silent> <LocalLeader>gs :!tig status<CR>:redraw!<CR>
 """ git log
 nnoremap <silent> <LocalLeader>gl :!tig<CR>:redraw!<CR>
 """ git log of current file
-nnoremap <silent> <LocalLeader>gll :!tig %<CR>:redraw!<CR>
+nnoremap <silent> <LocalLeader>gc :!tig %<CR>:redraw!<CR>
 
 " Load etc files
 if filereadable(expand('~/.vimrc.local'))
