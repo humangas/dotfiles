@@ -110,6 +110,9 @@ Plug 'w0rp/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'mtscout6/syntastic-local-eslint.vim'
 
+"" Bash
+Plug 'vim-scripts/bats.vim'
+
 "" Python
 Plug 'davidhalter/jedi-vim'
 Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
