@@ -28,10 +28,6 @@
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://humangas.github.io/dotfiles/betterzip/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://humangas.github.io/dotfiles/binutils/</loc>
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
@@ -264,10 +260,6 @@
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://humangas.github.io/dotfiles/marp/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://humangas.github.io/dotfiles/memo/</loc>
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
@@ -296,14 +288,6 @@
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://humangas.github.io/dotfiles/poetry/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/pulumi/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://humangas.github.io/dotfiles/pyenv/</loc>
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
@@ -313,42 +297,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://humangas.github.io/dotfiles/python3/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/qlcolorcode/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/qlimagesize/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/qlmarkdown/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/qlprettypatch/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/qlstephen/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/qlvideo/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/quicklook-csv/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/quicklook-json/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/quicklookase/</loc>
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -369,10 +317,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://humangas.github.io/dotfiles/sqlite/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/suspicious-package/</loc>
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
@@ -404,10 +348,6 @@
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>https://humangas.github.io/dotfiles/typora/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
      <loc>https://humangas.github.io/dotfiles/vagrant/</loc>
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
@@ -429,10 +369,6 @@
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://humangas.github.io/dotfiles/wdiff/</loc>
-     <lastmod>2020-04-22</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://humangas.github.io/dotfiles/webpquicklook/</loc>
      <lastmod>2020-04-22</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
