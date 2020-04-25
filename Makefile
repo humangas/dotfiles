@@ -20,7 +20,6 @@ help:
 	@echo " - install:    \"setup\" command becomes available"
 	@echo " - update:     Update dotfiles repository"
 	@echo " - dotfiles:   Place the files in \"dotfiles.lst\" in the \"dotfiles\" directory"
-	@echo " - docs:       Generate docs"
 	@echo ""
 
 install:
@@ -43,5 +42,3 @@ dotfiles:
 		fi \
 	done
 
-docs:
-	@bash scripts/docs.sh
