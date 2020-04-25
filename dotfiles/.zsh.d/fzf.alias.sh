@@ -1,1 +1,0 @@
-alias fzf='fzf-tmux'
