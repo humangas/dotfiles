@@ -1,1 +1,0 @@
-alias tmr='tmuxResizePane'

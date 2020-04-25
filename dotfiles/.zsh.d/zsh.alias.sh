@@ -1,6 +1,0 @@
-alias soz='reload_zsh_files'
-alias ls='ls --color=auto'
-alias ll='ls -la'
-alias mkdir='mkdirex'
-alias cd='cdex'
-alias mdf='openMdfindFilterFzf'
