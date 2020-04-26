@@ -6,7 +6,6 @@ Usage: $(basename $0) <command> [option] [<args>]...
 
 Command:
     list      [role]...         List [role]... 
-    tags      [role]...         List tags and the roles associated with them
     versions  [role]...         List version of [role]...
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
@@ -351,56 +350,6 @@ toggle_ed() {
     done
 }
 
-tags() {
-    # Print header
-    printf "tag roles\n"
-    _tags "$@"
-}
-
-_tags() {
-    declare -a roles=()
-    local tag role
-    # find all
-    if [[ $# -eq 0 && ${#SETUP_TAGS[@]} -eq 0 ]]; then
-        roles=$(find $SETUP_ROLES_PATH/ -type f -name "$SETUP_TAGS_PREFIX*")
-    fi
-    # find --tags
-    for tag in ${SETUP_TAGS[@]}; do
-        roles=(${roles[@]} $(find $SETUP_ROLES_PATH/ -type f -iname "$SETUP_TAGS_PREFIX$tag"))
-    done
-    # find role...
-    for role in $@; do
-        [[ -d $SETUP_ROLES_PATH/$role ]] || continue
-        roles=(${roles[@]} $(find $SETUP_ROLES_PATH/$role/ -type f -name "$SETUP_TAGS_PREFIX*"))
-    done
-
-    declare -a tags_keys=()
-    declare -a tags_dict=()
-    for role in ${roles[@]}; do
-        tag=$(echo ${role##*/} | sed s/$SETUP_TAGS_PREFIX//)
-        role=$(basename ${role%/*})
-        if ! in_elements "$tag:$role" "${tags_dict[@]}"; then
-            tags_dict=("${tags_dict[@]}" "$tag:$role")
-        fi
-        if ! in_elements "$tag" "${tags_keys[@]}"; then
-            tags_keys=(${tags_keys[@]} $tag)
-        fi
-    done
-
-    local k v _roles
-    for tag in ${tags_keys[@]}; do
-        for dict in ${tags_dict[@]}; do
-            k="${dict%%:*}"
-            v="${dict#*:}"
-            if [[ "$tag" == "$k" ]]; then
-                _roles="$_roles,$v"
-            fi
-        done
-        printf "$tag $(echo $_roles | cut -c 2-)\n"
-        unset _roles
-    done
-}
-
 tag_add_del() {
     local tag="$SETUP_TAGS_PREFIX$1"
     local cmd
@@ -502,7 +451,6 @@ _options() {
         edit)       SETUP_FUNC_NAME="edit"     ; shift; _parse "$@" ;;
         versions)   SETUP_FUNC_NAME="version"  ; shift; _parse "$@"; _update_setup_roles ;;
         list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@"; _update_setup_roles ;;
-        tags)       SETUP_FUNC_NAME="tags"     ; shift; _parse "$@" ;;
         enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@"; _update_setup_roles ;;
         disable)    SETUP_FUNC_NAME="disable"  ; shift; _parse "$@"; _update_setup_roles ;;
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@"; _update_setup_roles ;;
@@ -527,8 +475,6 @@ main() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
     _options "$@"
     case "$SETUP_FUNC_NAME" in
-        tags)
-            tags ${SETUP_ROLES[@]} | column -t ;;
         create)
             create ${SETUP_ROLES[@]} ;;
         edit)

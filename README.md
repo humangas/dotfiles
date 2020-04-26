@@ -19,8 +19,8 @@ You can set the your computer name by setting environment variables as follows.
 $ export SETUP_COMPUTER_NAME="<your computer name>"
 ```
 
-### Specify roles/tags to install 
-With the settings below you can specify the roles and tags to install (# is a comment).
+### Specify roles to install 
+With the settings below you can specify the roles to install (# is a comment).
 
 #### Roles
 ```
@@ -32,14 +32,6 @@ vim
 tmux
 ```
 
-#### Tags
-```
-$ export SETUP_TAGS_LIST=tags.lst
-$ cat tags.lst
-GNU_commands
-Git
-Python
-```
 
 ### NOTE
 ### sudo password
