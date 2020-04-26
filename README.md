@@ -78,7 +78,6 @@ Usage: setup <command> [option] [<args>]...
 
 Command:
     list      [role]...         List [role]... 
-    tags      [role]...         List tags and the roles associated with them
     versions  [role]...         List version of [role]...
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
@@ -87,21 +86,14 @@ Command:
     disable   [role]...         Disable [role]...
     create    <role>...         Create <role>...
     edit      [role]            Edit "setup.sh" of <role> with $EDITOR (Default: roles/setup.sh)
-    tag-add   <tag> [role]...   Add <tag> to [role]... (Default: to all roles)
-    tag-del   <tag> [role]...   Delete <tag> to [role]... (Default: to all roles)
-    tag-ren   <old> <new>       Rename <old-tag> to <new-tag>
 
 Option:
-    --tags    <tag>...          Only process roles containing "$SETUP_TAGS_PREFIX<tag>"
-                                Multiple tags can be specified by separating them with a comma(,).
-                                Only "[list|tags|versions|install|upgrade|config|enable|disable]" command option
     --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
                                 Default: "$SETUP_TYPE_DEFAULT"
                                 Only "create" command option
 
 Settings:
     export EDITOR="vim"
-    export SETUP_TAGS_PREFIX="tag."
     export SETUP_TYPE_DEFAULT="setup.sh.brew"
     export SETUP_LIST_FILES_DEPTH=3
 
@@ -110,12 +102,10 @@ Examples:
     setup install brew go direnv
     setup create --type brewcask vagrant clipy skitch
     setup edit ansible
-    setup disable --tags GNU_commands,Quicklook
-    setup tags --tags GNU_commands,Quicklook ag
-    setup tag-add GNU_commands grep coreutils
 
 Convenient usage:
     # List only roles that contain files
     $ setup list | awk '$10!="-"{print $1" "$10}' | column -t
 
 ```
+
