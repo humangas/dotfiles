@@ -14,8 +14,6 @@ Command:
     disable   [role]...         Disable [role]...
     create    <role>...         Create <role>...
     edit      [role]            Edit "setup.sh" of <role> with \$EDITOR (Default: roles/setup.sh)
-    tag-add   <tag> [role]...   Add <tag> to [role]... (Default: to all roles)
-    tag-del   <tag> [role]...   Delete <tag> to [role]... (Default: to all roles)
     tag-ren   <old> <new>       Rename <old-tag> to <new-tag>
 
 Option:
@@ -39,7 +37,6 @@ Examples:
     $(basename $0) edit ansible
     $(basename $0) disable --tags GNU_commands,Quicklook
     $(basename $0) tags --tags GNU_commands,Quicklook ag
-    $(basename $0) tag-add GNU_commands grep coreutils
 
 Convenient usage:
     # List only roles that contain files
@@ -350,36 +347,6 @@ toggle_ed() {
     done
 }
 
-tag_add_del() {
-    local tag="$SETUP_TAGS_PREFIX$1"
-    local cmd
-    case "$SETUP_FUNC_NAME" in
-        tag_add) cmd="touch $tag" ;;
-        tag_del) cmd="rm -f $tag" ;;
-        *) log "ERROR" "Fatal: \"$SETUP_FUNC_NAME\" is an undefined function"; exit 1 ;;
-    esac
-
-    declare -a roles=()
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if [[ -z ${SETUP_ROLES[@]} ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" ${SETUP_ROLES[@]}; then
-            log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME [TAG]:$tag..."
-            (cd $SETUP_CURRENT_ROLE_DIR_PATH && eval "${cmd}")
-        fi
-    done
-
-    # Check role name specified by the parameter
-    for t in ${SETUP_ROLES[@]}; do 
-        if ! in_elements "$t" "${roles[@]}"; then
-            # Not installed
-            log "INFO" "==> $SETUP_FUNC_NAME $t..."
-            log "ERROR" "Error: \"$t\" role is not found"
-        fi
-    done
-}
-
 tag_ren() {
     local old_tag="$SETUP_TAGS_PREFIX$1"
     local new_tag="$SETUP_TAGS_PREFIX$2"
@@ -456,8 +423,6 @@ _options() {
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@"; _update_setup_roles ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@"; _update_setup_roles ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@"; _update_setup_roles ;;
-        tag-add)    SETUP_FUNC_NAME="tag_add"  ; shift; _parse_tag_add_del "$@" ;;
-        tag-del)    SETUP_FUNC_NAME="tag_del"  ; shift; _parse_tag_add_del "$@" ;;
         tag-ren)    SETUP_FUNC_NAME="tag_ren"  ; shift; _parse_tag_ren "$@" ;;
         *)          usage ;;
     esac
@@ -485,8 +450,6 @@ main() {
             list ${SETUP_ROLES[@]} | column -ts, | sed "s/|/,/g" ;;
         enable|disable)
             toggle_ed ${SETUP_ROLES[@]} ;;
-        tag_add|tag_del)
-            tag_add_del "$SETUP_TAG" ${SETUP_ROLES[@]} ;;
         tag_ren)
             tag_ren "$SETUP_OLD_TAG" "$SETUP_NEW_TAG" ;;
         *) # [install|upgrade|config]
