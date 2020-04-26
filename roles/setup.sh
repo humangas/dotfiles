@@ -14,7 +14,6 @@ Command:
     disable   [role]...         Disable [role]...
     create    <role>...         Create <role>...
     edit      [role]            Edit "setup.sh" of <role> with \$EDITOR (Default: roles/setup.sh)
-    tag-ren   <old> <new>       Rename <old-tag> to <new-tag>
 
 Option:
     --tags    <tag>...          Only process roles containing "\$SETUP_TAGS_PREFIX<tag>"
@@ -346,20 +345,6 @@ toggle_ed() {
     done
 }
 
-tag_ren() {
-    local old_tag="$SETUP_TAGS_PREFIX$1"
-    local new_tag="$SETUP_TAGS_PREFIX$2"
-
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        if [[ -z ${SETUP_ROLES[@]} ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" ${SETUP_ROLES[@]}; then
-            log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME [TAG]:$old_tag to $new_tag..."
-            (cd $SETUP_CURRENT_ROLE_DIR_PATH && mv -f "$old_tag" "$new_tag" > /dev/null 2>&1)
-        fi
-    done
-}
-
 _options() {
     _parse() {
         local is_parsed=0
@@ -399,12 +384,6 @@ _options() {
         SETUP_ROLES="$@"
     }
 
-    _parse_tag_ren() {
-        [[ $# -lt 2 ]] && usage
-        SETUP_OLD_TAG="$1"
-        SETUP_NEW_TAG="$2"
-    }
-
     _update_setup_roles() {
         [[ ${#SETUP_TAGS[@]} -eq 0 ]] && return
         local tags_roles="$(_tags | cut -d' ' -f2 | tr ',' '\n')"
@@ -422,7 +401,6 @@ _options() {
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@"; _update_setup_roles ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@"; _update_setup_roles ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@"; _update_setup_roles ;;
-        tag-ren)    SETUP_FUNC_NAME="tag_ren"  ; shift; _parse_tag_ren "$@" ;;
         *)          usage ;;
     esac
 }
@@ -449,8 +427,6 @@ main() {
             list ${SETUP_ROLES[@]} | column -ts, | sed "s/|/,/g" ;;
         enable|disable)
             toggle_ed ${SETUP_ROLES[@]} ;;
-        tag_ren)
-            tag_ren "$SETUP_OLD_TAG" "$SETUP_NEW_TAG" ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
             _check ${SETUP_ROLES[@]}
