@@ -36,7 +36,6 @@ Examples:
     $(basename $0) create --type brewcask vagrant clipy skitch
     $(basename $0) edit ansible
     $(basename $0) disable --tags GNU_commands,Quicklook
-    $(basename $0) tags --tags GNU_commands,Quicklook ag
 
 Convenient usage:
     # List only roles that contain files
