@@ -16,16 +16,12 @@ Command:
     edit      [role]            Edit "setup.sh" of <role> with \$EDITOR (Default: roles/setup.sh)
 
 Option:
-    --tags    <tag>...          Only process roles containing "\$SETUP_TAGS_PREFIX<tag>"
-                                Multiple tags can be specified by separating them with a comma(,).
-                                Only "[list|tags|versions|install|upgrade|config|enable|disable]" command option
     --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
                                 Default: "\$SETUP_TYPE_DEFAULT"
                                 Only "create" command option
 
 Settings:
     export EDITOR="vim"
-    export SETUP_TAGS_PREFIX="tag."
     export SETUP_TYPE_DEFAULT="setup.sh.brew"
     export SETUP_LIST_FILES_DEPTH=3
 
@@ -34,7 +30,6 @@ Examples:
     $(basename $0) install brew go direnv
     $(basename $0) create --type brewcask vagrant clipy skitch
     $(basename $0) edit ansible
-    $(basename $0) disable --tags GNU_commands,Quicklook
 
 Convenient usage:
     # List only roles that contain files
@@ -45,7 +40,6 @@ exit 1
 }
 
 # Settings
-SETUP_TAGS_PREFIX="${SETUP_TAGS_PREFIX:-tag.}"
 SETUP_TYPE_DEFAULT="${SETUP_TYPE_DEFAULT:-setup.sh.brew}"
 SETUP_LIST_FILES_DEPTH="${SETUP_LIST_FILES_DEPTH:-3}"
 SETUP_TRUE_MARK="✓"
@@ -211,9 +205,9 @@ versions() {
 
 list() {
     # Print header
-    printf "role,status,README,is_installed,config,version,install,upgrade,tags,files\n"
+    printf "role,status,README,is_installed,config,version,install,upgrade,files\n"
 
-    local role _is_installed _config _version _install _upgrade _status _tags
+    local role _is_installed _config _version _install _upgrade _status
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
@@ -230,17 +224,13 @@ list() {
         [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
         _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
         _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
-        _tags=$(find $SETUP_CURRENT_ROLE_DIR_PATH -type f -name "$SETUP_TAGS_PREFIX*" \
-                    | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/$SETUP_TAGS_PREFIX@@" \
-                    | paste -s -d '|' -)
-        _tags=${_tags:-"-"}
         _files=$(find $SETUP_CURRENT_ROLE_DIR_PATH -maxdepth $SETUP_LIST_FILES_DEPTH -type f \
-                    | /usr/bin/egrep -v "_template|disable|setup\.sh|README\.md|tag\..*" \
+                    | /usr/bin/egrep -v "_template|disable|setup\.sh|README\.md\..*" \
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/@@" \
                     | paste -s -d '|' -)
         _files=${_files:-"-"}
 
-        printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_readme,$_is_installed,$_config,$_version,$_install,$_upgrade,$_tags,$_files\n"
+        printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_readme,$_is_installed,$_config,$_version,$_install,$_upgrade,$_files\n"
 
         unset -f is_installed
         unset -f config
@@ -357,11 +347,6 @@ _options() {
                         shift $((OPTIND -1))
                         SETUP_CREATE_TYPE="setup.sh.$1"
                         ;;
-                    tags)
-                        is_parsed=1
-                        shift $((OPTIND -1))
-                        SETUP_TAGS=($(echo "$1" | tr -s ',', ' '))
-                        ;;
                     *)  usage ;;
                 esac
                 ;;
@@ -377,30 +362,17 @@ _options() {
         [[ -z "$SETUP_ROLES" ]] && usage
     }
 
-    _parse_tag_add_del() {
-        [[ $# -lt 1 ]] && usage
-        SETUP_TAG="$1"
-        shift
-        SETUP_ROLES="$@"
-    }
-
-    _update_setup_roles() {
-        [[ ${#SETUP_TAGS[@]} -eq 0 ]] && return
-        local tags_roles="$(_tags | cut -d' ' -f2 | tr ',' '\n')"
-        SETUP_ROLES=($(echo $tags_roles ${SETUP_ROLES[@]} | tr ' ' '\n' | sort | uniq))
-    }
-
     [[ $# -eq 0 ]] && usage
     case "$1" in
         create)     SETUP_FUNC_NAME="create"   ; shift; _parse_create "$@" ;;
         edit)       SETUP_FUNC_NAME="edit"     ; shift; _parse "$@" ;;
-        versions)   SETUP_FUNC_NAME="version"  ; shift; _parse "$@"; _update_setup_roles ;;
-        list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@"; _update_setup_roles ;;
-        enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@"; _update_setup_roles ;;
-        disable)    SETUP_FUNC_NAME="disable"  ; shift; _parse "$@"; _update_setup_roles ;;
-        install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@"; _update_setup_roles ;;
-        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@"; _update_setup_roles ;;
-        config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@"; _update_setup_roles ;;
+        versions)   SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
+        list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
+        enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@" ;;
+        disable)    SETUP_FUNC_NAME="disable"  ; shift; _parse "$@" ;;
+        install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
+        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
+        config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
         *)          usage ;;
     esac
 }
