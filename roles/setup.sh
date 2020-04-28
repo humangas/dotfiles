@@ -10,8 +10,6 @@ Command:
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
-    enable    [role]...         Enable [role]...
-    disable   [role]...         Disable [role]...
     create    <role>...         Create <role>...
     edit      [role]            Edit "setup.sh" of <role> with \$EDITOR (Default: roles/setup.sh)
 
@@ -161,7 +159,6 @@ execute() {
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        [[ -e "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && continue
         roles+=( $SETUP_CURRENT_ROLE_NAME )
         if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
             log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
@@ -205,9 +202,9 @@ versions() {
 
 list() {
     # Print header
-    printf "role,status,README,is_installed,config,version,install,upgrade,files\n"
+    printf "role,README,is_installed,config,version,install,upgrade,files\n"
 
-    local role _is_installed _config _version _install _upgrade _status
+    local role _is_installed _config _version _install _upgrade
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
@@ -223,14 +220,13 @@ list() {
         [[ $(type -t install) == "function" ]] && _install="$SETUP_TRUE_MARK" || _install="$SETUP_FALSE_MARK"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
         _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
-        _status=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && echo "disable" || echo "enable")
         _files=$(find $SETUP_CURRENT_ROLE_DIR_PATH -maxdepth $SETUP_LIST_FILES_DEPTH -type f \
-                    | /usr/bin/egrep -v "_template|disable|setup\.sh|README\.md\..*" \
+                    | /usr/bin/egrep -v "_template|setup\.sh|README\.md\..*" \
                     | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/@@" \
                     | paste -s -d '|' -)
         _files=${_files:-"-"}
 
-        printf "$SETUP_CURRENT_ROLE_NAME,$_status,$_readme,$_is_installed,$_config,$_version,$_install,$_upgrade,$_files\n"
+        printf "$SETUP_CURRENT_ROLE_NAME,$_readme,$_is_installed,$_config,$_version,$_install,$_upgrade,$_files\n"
 
         unset -f is_installed
         unset -f config
@@ -253,7 +249,6 @@ _check() {
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
 
-        [[ -e "$SETUP_CURRENT_ROLE_DIR_PATH/disable" ]] && continue
         if [[ $# -gt 0 ]] && ! in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
             continue
         fi
@@ -306,35 +301,6 @@ edit() {
     fi
 }
 
-toggle_ed() {
-    local cmd
-    case $SETUP_FUNC_NAME in
-        enable)  cmd="rm -f disable" ;;
-        disable) cmd="touch disable" ;;
-        *) log "ERROR" "Fatal: \"$SETUP_FUNC_NAME\" is an undefined function"; exit 1 ;;
-    esac
-
-    declare -a roles=()
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
-            log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
-            (cd $SETUP_CURRENT_ROLE_DIR_PATH && eval "${cmd}")
-        fi
-    done
-
-    # Check role name specified by the parameter
-    for t in "$@"; do 
-        if ! in_elements "$t" "${roles[@]}"; then
-            # Not installed
-            log "INFO" "==> $SETUP_FUNC_NAME $t..."
-            log "ERROR" "Error: \"$t\" role is not found"
-        fi
-    done
-}
-
 _options() {
     _parse() {
         local is_parsed=0
@@ -368,8 +334,6 @@ _options() {
         edit)       SETUP_FUNC_NAME="edit"     ; shift; _parse "$@" ;;
         versions)   SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
         list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
-        enable)     SETUP_FUNC_NAME="enable"   ; shift; _parse "$@" ;;
-        disable)    SETUP_FUNC_NAME="disable"  ; shift; _parse "$@" ;;
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
@@ -397,8 +361,6 @@ main() {
             versions ${SETUP_ROLES[@]} | column -ts, ;;
         list)
             list ${SETUP_ROLES[@]} | column -ts, | sed "s/|/,/g" ;;
-        enable|disable)
-            toggle_ed ${SETUP_ROLES[@]} ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
             _check ${SETUP_ROLES[@]}
