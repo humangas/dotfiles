@@ -11,6 +11,7 @@ Command:
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
     create    <role>...         Create <role>...
+    check     <role>            Check <role>
 
 Option:
     --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
@@ -222,6 +223,33 @@ list() {
     done
 }
 
+check() {
+    local role="$1"
+    local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
+    local _install _upgrade _version _readme
+
+    if [ -e "$script_path" ]; then
+        source "$script_path"
+
+        _readme=$([[ -f "$SETUP_ROLES_PATH/$role/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
+        [[ $(type -t install) == "function" ]] && _install="$SETUP_TRUE_MARK" || _install="$SETUP_FALSE_MARK"
+        [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
+        [[ $(type -t version) == "function" ]] && _version="$SETUP_TRUE_MARK" || _version="$SETUP_FALSE_MARK"
+
+        printf "README:$_readme "
+        printf "install:$_install "
+        printf "upgrade:$_upgrade "
+        printf "version:$_version "
+        printf "\n"
+
+        unset -f install
+        unset -f upgrade
+        unset -f version
+    else
+        printf "$role is not found.\n"
+    fi
+}
+
 _check() {
     # It checks the implementation status of functions of each role, and terminates processing if not implemented.
     local is_err=0
@@ -309,6 +337,7 @@ _options() {
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
+        check)      SETUP_FUNC_NAME="check"    ; shift; _parse "$@" ;;
         *)          usage ;;
     esac
 }
@@ -325,6 +354,8 @@ main() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
     _options "$@"
     case "$SETUP_FUNC_NAME" in
+        check)
+            check ${SETUP_ROLES[@]} ;;
         create)
             create ${SETUP_ROLES[@]} ;;
         version) 
