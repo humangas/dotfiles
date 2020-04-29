@@ -11,7 +11,6 @@ Command:
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
     create    <role>...         Create <role>...
-    edit      [role]            Edit "setup.sh" of <role> with \$EDITOR (Default: roles/setup.sh)
 
 Option:
     --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
@@ -27,7 +26,6 @@ Examples:
     $(basename $0) install
     $(basename $0) install brew go direnv
     $(basename $0) create --type brewcask vagrant clipy skitch
-    $(basename $0) edit ansible
 
 Convenient usage:
     # List only roles that contain files
@@ -288,19 +286,6 @@ create() {
     done
 }
 
-edit() {
-    local editor="${EDITOR:-vim}"
-    local setupsh="$SETUP_ROLES_PATH/$SETUP_ROLES/setup.sh"
-
-    if [[ -f "$setupsh" ]]; then
-        log "INFO" "Edit $setupsh..."
-        "$EDITOR" "$setupsh"
-    else
-        log "ERROR" "Error: \"$setupsh\" is not found"
-        exit 1
-    fi
-}
-
 _options() {
     _parse() {
         local is_parsed=0
@@ -331,7 +316,6 @@ _options() {
     [[ $# -eq 0 ]] && usage
     case "$1" in
         create)     SETUP_FUNC_NAME="create"   ; shift; _parse_create "$@" ;;
-        edit)       SETUP_FUNC_NAME="edit"     ; shift; _parse "$@" ;;
         versions)   SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
         list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
@@ -355,8 +339,6 @@ main() {
     case "$SETUP_FUNC_NAME" in
         create)
             create ${SETUP_ROLES[@]} ;;
-        edit)
-            edit $SETUP_ROLES ;;
         version) 
             versions ${SETUP_ROLES[@]} | column -ts, ;;
         list)
