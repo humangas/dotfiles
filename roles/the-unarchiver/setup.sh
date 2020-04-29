@@ -13,7 +13,7 @@ is_installed() {
 }
 
 version() {
-    ls "/usr/local/Caskroom/$SETUP_CURRENT_ROLE_NAME" 2>/dev/null
+    ls /usr/local/Caskroom/the-unarchiver 2>/dev/null
 }
 
 config() {

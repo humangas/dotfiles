@@ -13,8 +13,7 @@ is_installed() {
 }
 
 version() {
-    # basename "$(readlink $(brew --prefix $SETUP_CURRENT_ROLE_NAME 2>/dev/null))"
-    basename "$(readlink /usr/local/opt/$SETUP_CURRENT_ROLE_NAME)"
+    basename "$(readlink /usr/local/opt/bash)"
 }
 
 config() {

@@ -6,7 +6,7 @@ Usage: $(basename $0) <command> [option] [<args>]...
 
 Command:
     list      [role]...         List [role]... 
-    versions  [role]...         List version of [role]...
+    version   <role>...         Version <role>...
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
@@ -36,6 +36,7 @@ exit 1
 }
 
 # Settings
+DOTF_SETUP_SCRIPT="setup.sh"
 SETUP_TYPE_DEFAULT="${SETUP_TYPE_DEFAULT:-setup.sh.brew}"
 SETUP_LIST_FILES_DEPTH="${SETUP_LIST_FILES_DEPTH:-3}"
 SETUP_TRUE_MARK="✓"
@@ -173,36 +174,25 @@ execute() {
     done
 }
 
-versions() {
-    # Print header
-    printf "role,version\n"
-    declare -a roles=()
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
-            source "$SETUP_CURRENT_ROLE_FILE_PATH"
-            local _version=$(version 2>/dev/null | head -n1 | sed -e s/,/_/g)
-            printf "$SETUP_CURRENT_ROLE_NAME,$_version\n"
-            unset -f version
-        fi
-    done
+version() {
+    local role="$1"
+    local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
 
-    # Check role name specified by the parameter
-    for t in "$@"; do 
-        if ! in_elements "$t" "${roles[@]}"; then
-            # Not installed
-            printf "$t,Error,Error\n"
-        fi
-    done
+    if [ -e "$script_path" ]; then
+        source "$script_path"
+        local _version=$(version 2>/dev/null | head -n1 | sed -e s/,/_/g)
+        printf "$_version\n"
+        unset -f version
+    else
+        printf "$role is not found.\n"
+    fi
 }
 
 list() {
     # Print header
-    printf "role,README,is_installed,config,version,install,upgrade,files\n"
+    printf "role,README,is_installed,config,install,upgrade,files\n"
 
-    local role _is_installed _config _version _install _upgrade
+    local role _is_installed _config _install _upgrade
     for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
         SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
@@ -214,7 +204,6 @@ list() {
         source "$SETUP_CURRENT_ROLE_FILE_PATH"
         [[ $(type -t is_installed) == "function" ]] && _is_installed="$SETUP_TRUE_MARK" || _is_installed="$SETUP_FALSE_MARK"
         [[ $(type -t config) == "function" ]] && _config="$SETUP_TRUE_MARK" || _config="$SETUP_FALSE_MARK"
-        [[ $(type -t version) == "function" ]] && _version="$SETUP_TRUE_MARK" || _version="$SETUP_FALSE_MARK"
         [[ $(type -t install) == "function" ]] && _install="$SETUP_TRUE_MARK" || _install="$SETUP_FALSE_MARK"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
         _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
@@ -224,11 +213,10 @@ list() {
                     | paste -s -d '|' -)
         _files=${_files:-"-"}
 
-        printf "$SETUP_CURRENT_ROLE_NAME,$_readme,$_is_installed,$_config,$_version,$_install,$_upgrade,$_files\n"
+        printf "$SETUP_CURRENT_ROLE_NAME,$_readme,$_is_installed,$_config,$_install,$_upgrade,$_files\n"
 
         unset -f is_installed
         unset -f config
-        unset -f version
         unset -f install
         unset -f upgrade
     done
@@ -316,7 +304,7 @@ _options() {
     [[ $# -eq 0 ]] && usage
     case "$1" in
         create)     SETUP_FUNC_NAME="create"   ; shift; _parse_create "$@" ;;
-        versions)   SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
+        version)    SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
         list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
@@ -340,7 +328,7 @@ main() {
         create)
             create ${SETUP_ROLES[@]} ;;
         version) 
-            versions ${SETUP_ROLES[@]} | column -ts, ;;
+            version ${SETUP_ROLES[@]} ;;
         list)
             list ${SETUP_ROLES[@]} | column -ts, | sed "s/|/,/g" ;;
         *) # [install|upgrade|config]
