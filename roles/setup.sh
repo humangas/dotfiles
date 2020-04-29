@@ -5,7 +5,7 @@ cat << EOS
 Usage: $(basename $0) <command> [option] [<args>]...
 
 Command:
-    list      [role]...         List [role]... 
+    list                        List roles
     version   <role>...         Version <role>...
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
@@ -190,36 +190,11 @@ version() {
 }
 
 list() {
-    # Print header
-    printf "role,README,is_installed,config,install,upgrade,files\n"
-
-    local role _is_installed _config _install _upgrade
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-
-        if [[ $# -gt 0 ]] && ! in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
-            continue
-        fi
-
-        source "$SETUP_CURRENT_ROLE_FILE_PATH"
-        [[ $(type -t is_installed) == "function" ]] && _is_installed="$SETUP_TRUE_MARK" || _is_installed="$SETUP_FALSE_MARK"
-        [[ $(type -t config) == "function" ]] && _config="$SETUP_TRUE_MARK" || _config="$SETUP_FALSE_MARK"
-        [[ $(type -t install) == "function" ]] && _install="$SETUP_TRUE_MARK" || _install="$SETUP_FALSE_MARK"
-        [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
-        _readme=$([[ -f "$SETUP_CURRENT_ROLE_DIR_PATH/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
-        _files=$(find $SETUP_CURRENT_ROLE_DIR_PATH -maxdepth $SETUP_LIST_FILES_DEPTH -type f \
-                    | /usr/bin/egrep -v "_template|setup\.sh|README\.md\..*" \
-                    | sed "s@$SETUP_CURRENT_ROLE_DIR_PATH/@@" \
-                    | paste -s -d '|' -)
-        _files=${_files:-"-"}
-
-        printf "$SETUP_CURRENT_ROLE_NAME,$_readme,$_is_installed,$_config,$_install,$_upgrade,$_files\n"
-
-        unset -f is_installed
-        unset -f config
-        unset -f install
-        unset -f upgrade
+    local role_file_path role_dir_path role_name
+    for role_file_path in $(find "$SETUP_ROLES_PATH/" -type f -name "$DOTF_SETUP_SCRIPT"); do
+        role_dir_path="${role_file_path%/*}"
+        role_name="${role_dir_path##*/}"
+        printf "$role_name\n"
     done
 }
 
@@ -361,7 +336,7 @@ main() {
         version) 
             version ${SETUP_ROLES[@]} ;;
         list)
-            list ${SETUP_ROLES[@]} | column -ts, | sed "s/|/,/g" ;;
+            list ${SETUP_ROLES[@]} ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
             _check ${SETUP_ROLES[@]}
