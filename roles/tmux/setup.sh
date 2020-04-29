@@ -21,7 +21,7 @@ _is_installed_ansifilter() {
 }
 
 version() {
-    basename "$(readlink /usr/local/opt/$SETUP_CURRENT_ROLE_NAME)"
+    basename "$(readlink /usr/local/opt/tmux)"
 }
 
 config() {

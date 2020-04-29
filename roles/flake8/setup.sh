@@ -20,7 +20,7 @@ is_installed() {
 }
 
 version() {
-    pip show "$SETUP_CURRENT_ROLE_NAME" | grep 'Version' | sed "s/Version: //"
+    pip show flake8 | grep 'Version' | sed "s/Version: //"
 }
 
 config() {

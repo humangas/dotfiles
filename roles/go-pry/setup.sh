@@ -13,7 +13,7 @@ is_installed() {
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
+    go-pry --version
 }
 
 config() {

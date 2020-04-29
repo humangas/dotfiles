@@ -14,7 +14,7 @@ is_installed() {
 }
 
 version() {
-    echo "-"
+    echo "None"
 }
 
 config() {
