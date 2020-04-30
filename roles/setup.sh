@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Settings
+DOTF_SETUP_SCRIPT="setup.sh"
+DOTF_NEW_TYPE_DEFAULT="${DOTF_NEW_TYPE_DEFAULT:-plain}"
+SETUP_LIST_FILES_DEPTH="${SETUP_LIST_FILES_DEPTH:-3}"
+SETUP_TRUE_MARK="✓"
+SETUP_FALSE_MARK="✗"
+
 usage() {
 cat << EOS 
 Usage: $(basename $0) <command> [option] [<args>]...
@@ -10,17 +17,17 @@ Command:
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
-    create    <role>...         Create <role>...
+    new       <role>            Create new [option] <role>
     validate  <role>            Validate <role>
 
 Option:
-    --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
-                                Default: "\$SETUP_TYPE_DEFAULT"
-                                Only "create" command option
+    --type    <type>            "<type>" specifies "$DOTF_SETUP_SCRIPT.<type>" under roles/_templates directory
+                                Default: "\$DOTF_NEW_TYPE_DEFAULT"
+                                Only "new" command option
 
 Settings:
     export EDITOR="vim"
-    export SETUP_TYPE_DEFAULT="setup.sh.brew"
+    export DOTF_NEW_TYPE_DEFAULT="$DOTF_NEW_TYPE_DEFAULT"
     export SETUP_LIST_FILES_DEPTH=3
 
 Examples:
@@ -35,13 +42,6 @@ Convenient usage:
 EOS
 exit 1
 }
-
-# Settings
-DOTF_SETUP_SCRIPT="setup.sh"
-SETUP_TYPE_DEFAULT="${SETUP_TYPE_DEFAULT:-setup.sh.brew}"
-SETUP_LIST_FILES_DEPTH="${SETUP_LIST_FILES_DEPTH:-3}"
-SETUP_TRUE_MARK="✓"
-SETUP_FALSE_MARK="✗"
 
 abs_dirname() {
     local cwd="$(pwd)"
@@ -259,22 +259,26 @@ _check() {
     [[ $is_err -eq 0 ]] || exit 1
 }
 
-create() {
-    if [[ ! -f "$SETUP_ROLES_PATH/_templates/$SETUP_CREATE_TYPE" ]]; then
+new() {
+    local role="$1"
+    local template_dir="$SETUP_ROLES_PATH/_templates"
+    local template_setup_script_path="$template_dir/$SETUP_CREATE_TYPE"
+
+    if [[ ! -f "$template_setup_script_path" ]]; then
         log "ERROR" "Error: \"$SETUP_CREATE_TYPE\" is not found under _templates directory"
-        exit 1
+        return 1
     fi
 
-    for r in $@; do
-        if [[ ! -e "$SETUP_ROLES_PATH/$r" ]]; then
-            mkdir -p "$SETUP_ROLES_PATH/$r"
-            cp "$SETUP_ROLES_PATH/_templates/$SETUP_CREATE_TYPE" "$SETUP_ROLES_PATH/$r/${SETUP_CREATE_TYPE%.*}"
-            echo -e "# $r\nTODO: Please write the contents" > "$SETUP_ROLES_PATH/$r/README.md"
-            log "INFO" "==> Created \"$r\" role"
-        else
-            log "ERROR" "Error: \"$r\" role is already exists"
-        fi
-    done
+    if [[ ! -e "$SETUP_ROLES_PATH/$role" ]]; then
+        mkdir -p "$SETUP_ROLES_PATH/$role"
+        cp "$template_setup_script_path" "$SETUP_ROLES_PATH/$role/${SETUP_CREATE_TYPE%.*}"
+        cp "$template_dir/README.md" "$SETUP_ROLES_PATH/$role"
+        sed -i "s/\${role}/$role/g" "$SETUP_ROLES_PATH/$role/README.md"
+        log "INFO" "==> Created \"$role\" role"
+    else
+        log "ERROR" "Error: \"$role\" role is already exists"
+        return 1
+    fi
 }
 
 _options() {
@@ -287,7 +291,7 @@ _options() {
                     type) 
                         is_parsed=1
                         shift $((OPTIND -1))
-                        SETUP_CREATE_TYPE="setup.sh.$1"
+                        SETUP_CREATE_TYPE="$DOTF_SETUP_SCRIPT.$1"
                         ;;
                     *)  usage ;;
                 esac
@@ -300,18 +304,19 @@ _options() {
 
     _parse_create() {
         _parse "$@"
-        [[ -z "$SETUP_CREATE_TYPE" ]] && SETUP_CREATE_TYPE="$SETUP_TYPE_DEFAULT"
+        [[ -z "$SETUP_CREATE_TYPE" ]] && SETUP_CREATE_TYPE="$DOTF_SETUP_SCRIPT.$DOTF_NEW_TYPE_DEFAULT"
         [[ -z "$SETUP_ROLES" ]] && usage
     }
 
     [[ $# -eq 0 ]] && usage
     case "$1" in
-        create)     SETUP_FUNC_NAME="create"   ; shift; _parse_create "$@" ;;
+        new)        SETUP_FUNC_NAME="new"      ; shift; _parse_create "$@" ;;
         version)    SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
         list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
+        validate)   SETUP_FUNC_NAME="validate" ; shift; _parse "$@" ;;
         validate)   SETUP_FUNC_NAME="validate" ; shift; _parse "$@" ;;
         *)          usage ;;
     esac
@@ -331,8 +336,8 @@ main() {
     case "$SETUP_FUNC_NAME" in
         validate)
             validate ${SETUP_ROLES[@]} ;;
-        create)
-            create ${SETUP_ROLES[@]} ;;
+        new)
+            new ${SETUP_ROLES[@]} ;;
         version) 
             version ${SETUP_ROLES[@]} ;;
         list)
