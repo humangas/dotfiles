@@ -318,7 +318,6 @@ _options() {
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
         validate)   SETUP_FUNC_NAME="validate" ; shift; _parse "$@" ;;
-        validate)   SETUP_FUNC_NAME="validate" ; shift; _parse "$@" ;;
         *)          usage ;;
     esac
 }
