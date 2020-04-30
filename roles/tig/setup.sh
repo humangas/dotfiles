@@ -12,12 +12,12 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/tig)"
-}
-
 config() {
     cp "$SETUP_CURRENT_ROLE_DIR_PATH/.tigrc" "$HOME/"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/tig)"
 }
 
 install() {

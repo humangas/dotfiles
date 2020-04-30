@@ -16,12 +16,12 @@ _is_installed_node-build() {
     type node-build > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/nodenv)"
-}
-
 config() {
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/nodenv)"
 }
 
 install() {

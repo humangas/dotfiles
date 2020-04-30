@@ -13,10 +13,6 @@ _installed() {
     return 0
 }
 
-version() {
-    echo "None"
-}
-
 config() {
     # $ xxd -p <<< humangas
     # 68756d616e6761730a
@@ -27,6 +23,10 @@ config() {
     sudo scutil --set HostName "$SETUP_COMPUTER_NAME"
     sudo scutil --set LocalHostName "$SETUP_COMPUTER_NAME"
     sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$SETUP_COMPUTER_NAME"
+}
+
+version() {
+    echo "None"
 }
 
 install() {

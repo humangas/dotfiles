@@ -12,10 +12,6 @@ _installed() {
     brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    ls /usr/local/Caskroom/hammerspoon 2>/dev/null
-}
-
 config() {
     mkdir -p ~/.hammerspoon/Spoons
     defaults write -app Terminal AppleLanguages "(en, ja)"
@@ -24,6 +20,10 @@ config() {
     curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Calendar.spoon.zip -# | /usr/bin/tar xz -C ~/.hammerspoon/Spoons/
     log "INFO" "Install Hammerspoon plugin: Caffeine..."
     curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Caffeine.spoon.zip -# | /usr/bin/tar xz -C ~/.hammerspoon/Spoons/
+}
+
+version() {
+    ls /usr/local/Caskroom/hammerspoon 2>/dev/null
 }
 
 install() {

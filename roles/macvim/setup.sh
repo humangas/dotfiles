@@ -12,12 +12,12 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    ls /usr/local/Cellar/macvim 2>/dev/null
-}
-
 config() {
     depend "config" "vim"
+}
+
+version() {
+    ls /usr/local/Cellar/macvim 2>/dev/null
 }
 
 install() {

@@ -12,13 +12,13 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/git-secrets)"
-}
-
 config() {
     git secrets --install ~/.git-templates/git-secrets
     git config --global init.templateDir ~/.git-templates/git-secrets
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/git-secrets)"
 }
 
 install() {

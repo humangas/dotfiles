@@ -12,14 +12,14 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/direnv)"
-}
-
 config() {
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
     # TODO: poetry setting
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.config" "$HOME/"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/direnv)"
 }
 
 install() {

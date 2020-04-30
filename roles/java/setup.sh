@@ -12,12 +12,12 @@ _installed() {
     brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    ls "/usr/local/Caskroom/java" 2>/dev/null
-}
-
 config() {
     return
+}
+
+version() {
+    ls "/usr/local/Caskroom/java" 2>/dev/null
 }
 
 install() {

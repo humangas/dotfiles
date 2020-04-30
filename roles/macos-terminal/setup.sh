@@ -13,10 +13,6 @@ _installed() {
     return 0
 }
 
-version() { 
-    echo "None"
-}
-
 config() {
     _colorscheme() {(
         cd "$SETUP_CURRENT_ROLE_DIR_PATH"
@@ -46,6 +42,10 @@ config() {
     defaults write com.apple.terminal StringEncodings -array 4
     # Terminal > Profiles > Shell > When the shell exits: Close the window
     defaults write com.apple.terminal shellExitAction -int 0
+}
+
+version() { 
+    echo "None"
 }
 
 install() {

@@ -12,12 +12,12 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/gibo)"
-}
-
 config() {
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.gitignore-boilerplates" "$HOME/"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/gibo)"
 }
 
 install() {

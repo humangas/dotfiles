@@ -12,13 +12,13 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/openssl)"
-}
-
 config() {
     depend "config" "zsh"
     cp "$SETUP_CURRENT_ROLE_DIR_PATH/openssl.env.sh" ~/.zsh.d/
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/openssl)"
 }
 
 install() {

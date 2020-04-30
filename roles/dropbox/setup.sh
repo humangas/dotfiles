@@ -12,16 +12,16 @@ _installed() {
     brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    ls /usr/local/Caskroom/dropbox 2>/dev/null
-}
-
 config() {
     # TODO: Comment out after "note" setting
     # depend "config" "note"
     # mkdir -p "$HOME/Dropbox
     # ln -sfnv "$HOME/note" "$HOME/Dropbox/note"
     return
+}
+
+version() {
+    ls /usr/local/Caskroom/dropbox 2>/dev/null
 }
 
 install() {

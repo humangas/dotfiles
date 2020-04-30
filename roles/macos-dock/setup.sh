@@ -13,10 +13,6 @@ _installed() {
     return 0
 }
 
-version() {
-    echo "None"
-}
-
 config() {
     # Dock position To bottom
     defaults write com.apple.dock orientation -string "bottom"
@@ -28,6 +24,10 @@ config() {
     defaults write com.apple.dock largesize -float 70
     # Dock icon size
     defaults write com.apple.dock tilesize -float 16
+}
+
+version() {
+    echo "None"
 }
 
 install() {

@@ -12,13 +12,13 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/zsh)"
-}
-
 config() {
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
     cp -f "$SETUP_CURRENT_ROLE_DIR_PATH/.zshrc" "$HOME/"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/zsh)"
 }
 
 install() {

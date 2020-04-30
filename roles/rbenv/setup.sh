@@ -16,12 +16,12 @@ _is_installed_ruby-build() {
     type ruby-build > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/rbenv)"
-}
-
 config() {
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/rbenv)"
 }
 
 install() {

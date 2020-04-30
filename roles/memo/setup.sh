@@ -12,12 +12,12 @@ _installed() {
     type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    memo --version | awk '{print $3}'
-}
-
 config() {
     cp -r "$SETUP_CURRENT_ROLE_DIR_PATH/.config" "$HOME/"
+}
+
+version() {
+    memo --version | awk '{print $3}'
 }
 
 install() {

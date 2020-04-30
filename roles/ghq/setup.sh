@@ -12,13 +12,13 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/ghq)"
-}
-
 config() {
     depend "config" "git"
     git config --global ghq.root "~/src"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/ghq)"
 }
 
 install() {

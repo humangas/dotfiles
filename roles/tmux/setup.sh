@@ -20,13 +20,13 @@ _is_installed_ansifilter() {
     type ansifilter > /dev/null 2>&1; return $?
 }
 
-version() {
-    basename "$(readlink /usr/local/opt/tmux)"
-}
-
 config() {
     cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
     cp "$SETUP_CURRENT_ROLE_DIR_PATH/.tmux.conf" "$HOME/"
+}
+
+version() {
+    basename "$(readlink /usr/local/opt/tmux)"
 }
 
 install() {
