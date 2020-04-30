@@ -11,7 +11,7 @@ Command:
     upgrade   [role]...         Upgrade [role]...
     config    [role]...         Configure [role]...
     create    <role>...         Create <role>...
-    check     <role>            Check <role>
+    validate  <role>            Validate <role>
 
 Option:
     --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
@@ -198,7 +198,7 @@ list() {
     done
 }
 
-check() {
+validate() {
     local role="$1"
     local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
     local _install _upgrade _version _readme
@@ -312,7 +312,7 @@ _options() {
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
         config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
-        check)      SETUP_FUNC_NAME="check"    ; shift; _parse "$@" ;;
+        validate)   SETUP_FUNC_NAME="validate" ; shift; _parse "$@" ;;
         *)          usage ;;
     esac
 }
@@ -329,8 +329,8 @@ main() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
     _options "$@"
     case "$SETUP_FUNC_NAME" in
-        check)
-            check ${SETUP_ROLES[@]} ;;
+        validate)
+            validate ${SETUP_ROLES[@]} ;;
         create)
             create ${SETUP_ROLES[@]} ;;
         version) 
