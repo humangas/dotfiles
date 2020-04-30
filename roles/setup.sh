@@ -174,24 +174,27 @@ execute() {
     }
 
     # [install|upgrade|config]
-    declare -a roles=()
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
-            log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
-            _execute "$SETUP_CURRENT_ROLE_FILE_PATH" "$SETUP_FUNC_NAME"
-        fi
-    done
+    # declare -a roles=()
+    # for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
+    #     SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
+    #     SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
+    #     roles+=( $SETUP_CURRENT_ROLE_NAME )
+    #     if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
+    #         log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
+    #         _execute "$SETUP_CURRENT_ROLE_FILE_PATH" "$SETUP_FUNC_NAME"
+    #     fi
+    # done
 
-    # Check role name specified by the parameter
-    for t in "$@"; do 
-        if ! in_elements "$t" "${roles[@]}"; then
-            log "INFO" "==> $SETUP_FUNC_NAME $t..."
-            log "ERROR" "Error: \"$t\" role is not found"
-        fi
-    done
+    local role="$1"
+    local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
+
+    validate "$role" | grep "$SETUP_FUNC_NAME:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+        log "ERROR" "Error: Not implemented"
+        return 1
+    }
+
+    log "INFO" "==> $SETUP_FUNC_NAME $role..."
+    _execute "$script_path" "$SETUP_FUNC_NAME"
 }
 
 version() {
