@@ -32,8 +32,9 @@ Settings:
 
 Examples:
     $(basename $0) install
-    $(basename $0) install brew go direnv
-    $(basename $0) create --type brewcask vagrant clipy skitch
+    $(basename $0) install go
+    $(basename $0) create python
+    $(basename $0) create --type brewcask java
 
 Convenient usage:
     # List only roles that contain files
