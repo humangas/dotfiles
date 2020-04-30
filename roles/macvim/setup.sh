@@ -12,7 +12,7 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
+_config() {
     depend "config" "vim"
 }
 
@@ -25,7 +25,7 @@ install() {
     depend "install" "vim"
     depend "install" "python3"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {

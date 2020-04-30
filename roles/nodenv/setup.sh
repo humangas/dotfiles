@@ -16,8 +16,8 @@ _is_installed_node-build() {
     type node-build > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
+_config() {
+    cp -fr .zsh.d "$HOME/"
 }
 
 version() {
@@ -28,7 +28,7 @@ install() {
     depend "install" "brew"
     _is_installed_node-build || brew install node-build
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {

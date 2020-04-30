@@ -12,8 +12,8 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.gitignore-boilerplates" "$HOME/"
+_config() {
+    cp -fr .gitignore-boilerplates "$HOME/"
 }
 
 version() {
@@ -25,7 +25,7 @@ install() {
     depend "install" "git"
     brew install "$SETUP_CURRENT_ROLE_NAME"
     "$SETUP_CURRENT_ROLE_NAME" --list
-    config
+    _config
 }
 
 upgrade() {

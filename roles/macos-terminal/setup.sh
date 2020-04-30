@@ -13,7 +13,7 @@ _installed() {
     return 0
 }
 
-config() {
+_config() {
     _colorscheme() {(
         cd "$SETUP_CURRENT_ROLE_DIR_PATH"
 
@@ -49,9 +49,9 @@ version() {
 }
 
 install() {
-    config
+    _config
 }
 
 upgrade() {
-    config
+    _config
 }

@@ -12,9 +12,9 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-    cp -f "$SETUP_CURRENT_ROLE_DIR_PATH/.zshrc" "$HOME/"
+_config() {
+    cp -fr .zsh.d "$HOME/"
+    cp -f .zshrc "$HOME/"
 }
 
 version() {
@@ -41,7 +41,7 @@ install() {
     sudo dscl . -create /Users/$USER UserShell "$login_shell"
 
     _colorscheme
-    config
+    _config
 }
 
 upgrade() {

@@ -16,14 +16,9 @@ version() {
     ls /usr/local/Caskroom/alfred 2>/dev/null
 }
 
-config() {
-    return
-}
-
 install() {
     depend "install" "brew"
     brew cask install "$SETUP_CURRENT_ROLE_NAME"
-    config
 }
 
 upgrade() {

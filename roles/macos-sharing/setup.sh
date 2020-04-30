@@ -13,7 +13,7 @@ _installed() {
     return 0
 }
 
-config() {
+_config() {
     # $ xxd -p <<< humangas
     # 68756d616e6761730a
     # $ xxd -r -p <<< 68756d616e6761730a
@@ -30,9 +30,9 @@ version() {
 }
 
 install() {
-    config
+    _config
 }
 
 upgrade() {
-    config
+    _config
 }

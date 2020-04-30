@@ -12,8 +12,9 @@ _installed() {
     type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp -r "$SETUP_CURRENT_ROLE_DIR_PATH/.config" "$HOME/"
+_config() {
+    cp -r .config "$HOME/"
+    ln -sfnv "$HOME/memo" "$HOME/Dropbox/note"
 }
 
 version() {
@@ -33,7 +34,8 @@ install() {
     cd $GOPATH/src/github.com/humangas/memo-plugin-move
     make install
     )
-    config
+    depend install dropbox
+    _config
 }
 
 upgrade() {

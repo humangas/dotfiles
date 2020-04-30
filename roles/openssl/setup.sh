@@ -12,9 +12,9 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
+_config() {
     depend "config" "zsh"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/openssl.env.sh" ~/.zsh.d/
+    cp openssl.env.sh ~/.zsh.d/
 }
 
 version() {
@@ -24,7 +24,7 @@ version() {
 install() {
     depend "install" "brew"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {

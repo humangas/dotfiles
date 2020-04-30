@@ -12,10 +12,6 @@ _installed() {
     brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    return
-}
-
 version() {
     ls "/usr/local/Caskroom/java" 2>/dev/null
 }
@@ -23,7 +19,6 @@ version() {
 install() {
     depend "install" "brew"
     brew cask install "$SETUP_CURRENT_ROLE_NAME"
-    config
 }
 
 upgrade() {

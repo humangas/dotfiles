@@ -20,9 +20,9 @@ _is_installed_ansifilter() {
     type ansifilter > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/.tmux.conf" "$HOME/"
+_config() {
+    cp -fr .zsh.d "$HOME/"
+    cp .tmux.conf "$HOME/"
 }
 
 version() {
@@ -37,7 +37,7 @@ install() {
     _is_installed_ansifilter || brew install ansifilter
     depend "install" "git" 
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    config
+    _config
 }
 
 upgrade() {

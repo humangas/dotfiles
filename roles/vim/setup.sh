@@ -12,8 +12,8 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/.vimrc" "$HOME/"
+_config() {
+    cp .vimrc "$HOME/"
 }
 
 version() {
@@ -37,7 +37,7 @@ install() {
     go get -u github.com/fatih/hclfmt
     go get -u gopkg.in/alecthomas/gometalinter.v2
     gometalinter --install --update
-    config
+    _config
 }
 
 upgrade() {

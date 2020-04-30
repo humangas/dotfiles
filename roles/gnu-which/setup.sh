@@ -12,10 +12,6 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    return
-}
-
 version() {
     basename "$(readlink /usr/local/opt/gnu-which)"
 }
@@ -23,7 +19,6 @@ version() {
 install() {
     depend "install" "brew"
     brew install "$SETUP_CURRENT_ROLE_NAME" --with-default-names
-    config
 }
 
 upgrade() {

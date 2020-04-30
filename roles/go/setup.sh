@@ -12,11 +12,11 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
+_config() {
     mkdir -p $HOME/src
     mkdir -p $HOME/bin
     mkdir -p $HOME/pkg
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
+    cp -fr .zsh.d "$HOME/"
 }
 
 version() {
@@ -26,7 +26,7 @@ version() {
 install() {
     depend "install" "brew"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {

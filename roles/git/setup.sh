@@ -12,7 +12,7 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
+_config() {
     git config --global user.name "humangas"
     git config --global user.email "humangas.net@gmail.com"
     curl -sL https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore > ~/.gitignore_global
@@ -26,7 +26,7 @@ version() {
 install() {
     depend "install" "brew"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {

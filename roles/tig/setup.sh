@@ -12,8 +12,8 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/.tigrc" "$HOME/"
+_config() {
+    cp .tigrc "$HOME/"
 }
 
 version() {
@@ -24,7 +24,7 @@ install() {
     depend "install" "brew"
     depend "install" "git"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {

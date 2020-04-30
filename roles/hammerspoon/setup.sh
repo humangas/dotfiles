@@ -12,10 +12,10 @@ _installed() {
     brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
+_config() {
     mkdir -p ~/.hammerspoon/Spoons
     defaults write -app Terminal AppleLanguages "(en, ja)"
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.hammerspoon" "$HOME/"
+    cp -fr .hammerspoon "$HOME/"
     log "INFO" "Install Hammerspoon plugin: Calendar..."
     curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Calendar.spoon.zip -# | /usr/bin/tar xz -C ~/.hammerspoon/Spoons/
     log "INFO" "Install Hammerspoon plugin: Caffeine..."
@@ -29,7 +29,7 @@ version() {
 install() {
     depend "install" "brew"
     brew cask install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
     caveats "WARN" "- $SETUP_CURRENT_ROLE_NAME: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
 }
 

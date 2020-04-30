@@ -12,10 +12,9 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-    # TODO: poetry setting
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.config" "$HOME/"
+_config() {
+    cp -fr .zsh.d "$HOME/"
+    cp -fr .config "$HOME/"
 }
 
 version() {
@@ -26,7 +25,7 @@ install() {
     depend "install" "brew"
     depend "install" "zsh"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {

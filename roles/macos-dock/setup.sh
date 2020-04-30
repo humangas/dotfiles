@@ -13,7 +13,7 @@ _installed() {
     return 0
 }
 
-config() {
+_config() {
     # Dock position To bottom
     defaults write com.apple.dock orientation -string "bottom"
     # Automatically hide Dock 
@@ -31,9 +31,9 @@ version() {
 }
 
 install() {
-    config
+    _config
 }
 
 upgrade() {
-    config
+    _config
 }

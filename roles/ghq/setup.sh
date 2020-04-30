@@ -12,7 +12,7 @@ _installed() {
     brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
 }
 
-config() {
+_config() {
     depend "config" "git"
     git config --global ghq.root "~/src"
 }
@@ -26,7 +26,7 @@ install() {
     depend "install" "git"
     depend "install" "go"
     brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _config
 }
 
 upgrade() {
