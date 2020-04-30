@@ -8,22 +8,19 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew cask list clipy > /dev/null 2>&1; return $?
 }
 
 version() {
     ls /usr/local/Caskroom/clipy 2>/dev/null
 }
 
-config() {
-    return
-}
-
 install() {
-    depend "install" "brew"
-    brew cask install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        brew cask install clipy
+    }
 }
 
 upgrade() {
