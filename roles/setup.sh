@@ -114,33 +114,49 @@ execute() {
     _execute() {
         local role_setup_path="${1:?Error \"role_setup_path\" is required}"
         local func="${2:?Error \"func\" is required}"
-        local is_depend="${3:-0}"
+        # local is_depend="${3:-0}"
 
+        [ -e "$role_setup_path" ] || {
+            log "ERROR" "Error: \"$role_setup_path\" is not found"
+            exit 1
+        }
         source "$role_setup_path"
 
-        if ! is_installed; then
-            [[ $is_depend -eq 1 ]] && log "INFO" "====> install dependency: $SETUP_CURRENT_ROLE_NAME..."
-            install
-            [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"install\"" && exit 1
-        fi
+        # if ! is_installed; then
+        #     [[ $is_depend -eq 1 ]] && log "INFO" "====> install dependency: $SETUP_CURRENT_ROLE_NAME..."
+        #     install
+        #     [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"install\"" && exit 1
+        # fi
 
-        case "$func" in
-            install) # do nothing
-                ;;
-            *)  # [upgrade|config]
-                "$func" 
-                [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\"" && exit 1
-                ;;
-        esac
+        # [[ $is_depend -eq 1 ]] && {
+        #     log "INFO" "====> Install Dependencies $SETUP_CURRENT_ROLE_NAME..."
+        # }
+        # (cd "$SETUP_CURRENT_ROLE_DIR_PATH"; install)
+        # [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"install\"" && exit 1
 
-        unset -f is_installed
-        unset -f install
+        (cd "$SETUP_CURRENT_ROLE_DIR_PATH"; "$func")
+        [[ $? -ne 0 ]] && {
+            log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\""
+            exit 1
+        }
+
+        # case "$func" in
+        #     install) # do nothing
+        #         ;;
+        #     *)  # [upgrade|config]
+        #         "$func" 
+        #         [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\"" && exit 1
+        #         ;;
+        # esac
+
+        # unset -f is_installed
+        # unset -f install
         unset -f "$func"
     }
 
     depend() {
         # This function is called inside setup.sh of each role.
-        # Examples: depend "install" "brew"
+        # Examples: depend install brew
         local func="${1:?Error \"func\" is required}"
         local role="${2:?Error \"role\" is required}"
         # local caller="$SETUP_CURRENT_ROLE_FILE_PATH"
@@ -148,7 +164,9 @@ execute() {
 
         SETUP_CURRENT_ROLE_NAME="$role"
         SETUP_CURRENT_ROLE_DIR_PATH="$SETUP_ROLES_PATH/$role"
-        _execute "$SETUP_CURRENT_ROLE_DIR_PATH/setup.sh" "$func" "1"
+        log "INFO" "====> $func dependencies $SETUP_CURRENT_ROLE_NAME..."
+        # _execute "$SETUP_CURRENT_ROLE_DIR_PATH/$DOTF_SETUP_SCRIPT" "$func" "1"
+        _execute "$SETUP_CURRENT_ROLE_DIR_PATH/$DOTF_SETUP_SCRIPT" "$func"
 
         SETUP_CURRENT_ROLE_DIR_PATH="${caller%/*}"
         SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
@@ -344,7 +362,8 @@ main() {
             list ${SETUP_ROLES[@]} ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
-            _check ${SETUP_ROLES[@]}
+            # TODO: ↓を validate に置き換えて、それぞれの関数に移動する。そこで判定する。install であれば、それだけチェックみたいに。
+            # _check ${SETUP_ROLES[@]}
 #            sudov
             execute ${SETUP_ROLES[@]}
             _print_caveats
