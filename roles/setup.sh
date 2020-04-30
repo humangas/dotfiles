@@ -213,40 +213,6 @@ validate() {
     fi
 }
 
-_check() {
-    # It checks the implementation status of functions of each role, and terminates processing if not implemented.
-    local is_err=0
-
-    _errmsg() {
-        log "ERROR" "Error: \"$1\" function is not implemented in \"$2\" role"
-        is_err=1
-    }
-
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-
-        if [[ $# -gt 0 ]] && ! in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
-            continue
-        fi
-
-        source "$SETUP_CURRENT_ROLE_FILE_PATH"
-        [[ $(type -t is_installed) == "function" ]] || _errmsg "is_installed" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t config) == "function" ]]  || _errmsg "config" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t version) == "function" ]]  || _errmsg "version" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t install) == "function" ]] || _errmsg "install" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t upgrade) == "function" ]] || _errmsg "upgrade" "$SETUP_CURRENT_ROLE_NAME"
-
-        unset -f is_installed
-        unset -f config
-        unset -f version
-        unset -f install
-        unset -f upgrade
-    done
-    
-    [[ $is_err -eq 0 ]] || exit 1
-}
-
 new() {
     local role="$1"
     local template_dir="$SETUP_ROLES_PATH/_templates"
@@ -331,8 +297,6 @@ main() {
             list ${SETUP_ROLES[@]} ;;
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
-            # TODO: ↓を validate に置き換えて、それぞれの関数に移動する。そこで判定する。install であれば、それだけチェックみたいに。
-            # _check ${SETUP_ROLES[@]}
 #            sudov
             execute ${SETUP_ROLES[@]}
             _print_caveats
