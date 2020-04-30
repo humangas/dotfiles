@@ -198,6 +198,11 @@ version() {
     local role="$1"
     local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
 
+    validate "$role" | grep "version:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+        log "ERROR" "Error: Not implemented"
+        return 1
+    }
+
     if [ -e "$script_path" ]; then
         source "$script_path"
         local _version=$(version 2>/dev/null | head -n1 | sed -e s/,/_/g)
