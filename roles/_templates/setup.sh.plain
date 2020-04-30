@@ -1,0 +1,25 @@
+#!/bin/bash -u
+##############################################################################################
+# Implementation of the following functions is required.
+# - version, install, upgrade, uninstall
+# The following functions can be used.
+# - log, depend
+# The following environment variables can be used.
+# - DOTF_ROLE_NAME, DOTF_ROLE_PATH
+##############################################################################################
+version() {
+    echo "TODO: Implement this function"
+}
+
+install() {
+    echo "TODO: Implement this function"
+}
+
+upgrade() {
+    echo "TODO: Implement this function"
+}
+
+uninstall() {
+    echo "TODO: Implement this function"
+}
+
