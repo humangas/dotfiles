@@ -9,11 +9,7 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 _installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
-}
-
-_config() {
-    depend "config" "vim"
+    brew list macvim > /dev/null 2>&1; return $?
 }
 
 version() {
@@ -21,11 +17,12 @@ version() {
 }
 
 install() {
-    depend "install" "brew"
-    depend "install" "vim"
-    depend "install" "python3"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    _config
+    _installed || {
+        depend install brew
+        depend install vim
+        depend install python
+        brew install macvim
+    }
 }
 
 upgrade() {

@@ -9,7 +9,7 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 _installed() {
-    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew cask list the-unarchiver > /dev/null 2>&1; return $?
 }
 
 version() {
@@ -17,8 +17,10 @@ version() {
 }
 
 install() {
-    depend "install" "brew"
-    brew cask install "$SETUP_CURRENT_ROLE_NAME"
+    _installed || {
+        depend install brew
+        brew cask install the-unarchiver
+    }
 }
 
 upgrade() {

@@ -9,7 +9,7 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 _installed() {
-    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew cask list hammerspoon > /dev/null 2>&1; return $?
 }
 
 _config() {
@@ -27,10 +27,12 @@ version() {
 }
 
 install() {
-    depend "install" "brew"
-    brew cask install "$SETUP_CURRENT_ROLE_NAME"
+    _installed || {
+        depend install brew
+        brew cask install hammerspoon 
+    }
     _config
-    caveats "WARN" "- $SETUP_CURRENT_ROLE_NAME: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
+    caveats "WARN" "- hammerspoon: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
 }
 
 upgrade() {

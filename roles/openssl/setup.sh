@@ -9,12 +9,11 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 _installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew list openssl > /dev/null 2>&1; return $?
 }
 
 _config() {
-    depend "config" "zsh"
-    cp openssl.env.sh ~/.zsh.d/
+    cp -fr .zsh.d "$HOME/"
 }
 
 version() {
@@ -22,8 +21,10 @@ version() {
 }
 
 install() {
-    depend "install" "brew"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
+    _installed || {
+        depend install brew
+        brew install openssl
+    }
     _config
 }
 

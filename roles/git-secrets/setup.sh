@@ -9,7 +9,7 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 _installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew list git-secrets > /dev/null 2>&1; return $?
 }
 
 _config() {
@@ -22,9 +22,11 @@ version() {
 }
 
 install() {
-    depend "install" "brew"
-    depend "install" "git"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
+    _installed || {
+        depend install brew
+        depend install git
+        brew install git-secrets
+    }
     _config
 }
 

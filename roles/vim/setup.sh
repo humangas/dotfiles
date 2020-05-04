@@ -9,7 +9,7 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 _installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew list vim > /dev/null 2>&1; return $?
 }
 
 _config() {
@@ -26,17 +26,19 @@ install() {
             https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	}
 
-    depend "install" "brew"
-    depend "install" "python3"
-    depend "install" "ctags" # For Plugin: szw/vim-tags
-    depend "install" "sass"  # For plugin: AtsushiM/sass-compile.vim
-    depend "install" "lua"   # For plugin: Shougo/neocomplete.vim
-    brew install "$SETUP_CURRENT_ROLE_NAME" --with-python3 --with-lua --with-override-system-vi
-    _install_vimplug
-    depend "install" "go"    # For vim plugin, see below
-    go get -u github.com/fatih/hclfmt
-    go get -u gopkg.in/alecthomas/gometalinter.v2
-    gometalinter --install --update
+    _installed || {
+        depend install brew
+        depend install python
+        depend install ctags # For Plugin: szw/vim-tags
+        depend install sass  # For plugin: AtsushiM/sass-compile.vim
+        depend install lua   # For plugin: Shougo/neocomplete.vim
+        brew install vim --with-python3 --with-lua --with-override-system-vi
+        _install_vimplug
+        depend install go    # For vim plugin, see below
+        go get -u github.com/fatih/hclfmt
+        go get -u gopkg.in/alecthomas/gometalinter.v2
+        gometalinter --install --update
+    }
     _config
 }
 

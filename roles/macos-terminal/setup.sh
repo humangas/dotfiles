@@ -8,12 +8,11 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-_installed() { 
-    [[ "$SETUP_FUNC_NAME" == "install" ]] && return 1
-    return 0
+version() { 
+    echo "None"
 }
 
-_config() {
+install() {
     _colorscheme() {(
         cd "$SETUP_CURRENT_ROLE_DIR_PATH"
 
@@ -44,14 +43,6 @@ _config() {
     defaults write com.apple.terminal shellExitAction -int 0
 }
 
-version() { 
-    echo "None"
-}
-
-install() {
-    _config
-}
-
 upgrade() {
-    _config
+    install
 }

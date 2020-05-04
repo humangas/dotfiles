@@ -9,7 +9,7 @@
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
 _installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+    brew list zsh > /dev/null 2>&1; return $?
 }
 
 _config() {
@@ -34,11 +34,13 @@ install() {
         mv "$filename" "$colorscheme_path/$filename"
     }
 
-    depend "install" "brew"
-    # --without-etcdir: Disable the reading of Zsh rc files in /etc
-    brew install "$SETUP_CURRENT_ROLE_NAME" --without-etcdir
-    local login_shell='/usr/local/bin/zsh'
-    sudo dscl . -create /Users/$USER UserShell "$login_shell"
+    _installed || {
+        depend install brew
+        # --without-etcdir: Disable the reading of Zsh rc files in /etc
+        brew install zsh --without-etcdir
+        local login_shell='/usr/local/bin/zsh'
+        sudo dscl . -create /Users/$USER UserShell "$login_shell"
+    }
 
     _colorscheme
     _config
