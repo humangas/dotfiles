@@ -32,5 +32,7 @@ install() {
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated git || {
+        brew upgrade git
+    }
 }

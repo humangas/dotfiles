@@ -30,6 +30,8 @@ install() {
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    "$SETUP_CURRENT_ROLE_NAME" --upgrade
+    brew outdated gibo || {
+        brew upgrade gibo
+    }
+    gibo update
 }

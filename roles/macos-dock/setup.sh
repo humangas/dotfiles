@@ -26,5 +26,5 @@ install() {
 }
 
 upgrade() {
-    _config
+    install
 }

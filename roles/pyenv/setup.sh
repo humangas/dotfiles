@@ -30,6 +30,10 @@ install() {
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    brew outdated "$SETUP_CURRENT_ROLE_NAME-virtualenv" || brew upgrade "$SETUP_CURRENT_ROLE_NAME-virtualenv"
+    brew outdated pyenv || {
+        brew upgrade pyenv
+    }
+    brew outdated pyenv-virtualenv || {
+        brew upgrade pyenv-virtualenv
+    }
 }

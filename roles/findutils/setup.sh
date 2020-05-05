@@ -29,5 +29,7 @@ install() {
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated findutils || {
+        brew upgrade findutils
+    }
 }

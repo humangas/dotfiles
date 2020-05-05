@@ -34,6 +34,10 @@ install() {
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    _is_installed_ruby-build && (brew outdated ruby-build || brew upgrade ruby-build)
+    brew outdated rbenv || {
+        brew upgrade rbenv
+    }
+    _is_installed_ruby-build && {
+        (brew outdated ruby-build || brew upgrade ruby-build)
+    }
 }

@@ -34,6 +34,10 @@ install() {
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    _is_installed_node-build && (brew outdated node-build || brew upgrade node-build)
+    brew outdated nodenv || {
+        brew upgrade nodenv
+    }
+    _is_installed_node-build && {
+        (brew outdated node-build || brew upgrade node-build)
+    }
 }

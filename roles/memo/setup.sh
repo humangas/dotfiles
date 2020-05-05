@@ -41,5 +41,6 @@ install() {
 }
 
 upgrade() {
-    install
+    # TODO: upgrade 処理
+    echo "TODO: Implement this function"
 }

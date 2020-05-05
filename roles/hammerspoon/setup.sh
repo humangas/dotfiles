@@ -36,5 +36,7 @@ install() {
 }
 
 upgrade() {
-    [[ -z $(brew cask outdated "$SETUP_CURRENT_ROLE_NAME") ]] || brew cask reinstall "$SETUP_CURRENT_ROLE_NAME"
+    [[ -z $(brew cask outdated hammerspoon) ]] || {
+        brew cask upgrade hammerspoon
+    }
 }

@@ -23,5 +23,5 @@ install() {
 }
 
 upgrade() {
-    "$SETUP_CURRENT_ROLE_NAME" update
+    brew update
 }

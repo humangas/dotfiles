@@ -90,9 +90,9 @@ caveats() {
     local caveats
 
     case "$type" in
-        INFO)   caveats="\e[34m$msg\e[m\n" ;;
-        WARN)   caveats="\e[35m$msg\e[m\n" ;;
-        ERROR)  caveats="\e[31m$msg\e[m\n" ;;
+        INFO)   echo "info"; caveats="\e[34m$msg\e[m\n" ;;
+        WARN)   echo "warn"; caveats="\e[35m$msg\e[m\n" ;;
+        ERROR)  echo "error"; caveats="\e[31m$msg\e[m\n" ;;
         *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
                 exit 1
                 ;;
@@ -156,6 +156,20 @@ install() {
 
     log "INFO" "==> install $role..."
     execute "$script_path" install
+}
+
+upgrade() {
+    local role="$1"
+    local role_dir="$SETUP_ROLES_PATH/$role"
+    local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
+
+    validate "$role" | grep "upgrade:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+        log "ERROR" "Error: Not implemented"
+        return 1
+    }
+
+    log "INFO" "==> upgrade $role..."
+    execute "$script_path" upgrade
 }
 
 version() {
@@ -297,6 +311,11 @@ main() {
         list)
             list ${SETUP_ROLES[@]} ;;
         install) install ${SETUP_ROLES[@]} ;;
+        upgrade) 
+            declare -a SETUP_CAVEATS_MSGS=()
+            upgrade ${SETUP_ROLES[@]} 
+            _print_caveats
+            ;;
 
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()

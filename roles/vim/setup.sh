@@ -43,7 +43,9 @@ install() {
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated vim || {
+        brew upgrade vim
+    }
     go get -u github.com/fatih/hclfmt              # For plugin: fatih/vim-hclfmt
     go get -u gopkg.in/alecthomas/gometalinter.v2  # For plugin: w0rp/ale, go linter
     gometalinter --install --update
