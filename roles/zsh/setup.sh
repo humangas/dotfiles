@@ -8,17 +8,17 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list zsh > /dev/null 2>&1; return $?
+}
+
+_config() {
+    cp -fr .zsh.d "$HOME/"
+    cp -f .zshrc "$HOME/"
 }
 
 version() {
     basename "$(readlink /usr/local/opt/zsh)"
-}
-
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-    cp -f "$SETUP_CURRENT_ROLE_DIR_PATH/.zshrc" "$HOME/"
 }
 
 install() {
@@ -34,16 +34,20 @@ install() {
         mv "$filename" "$colorscheme_path/$filename"
     }
 
-    depend "install" "brew"
-    # --without-etcdir: Disable the reading of Zsh rc files in /etc
-    brew install "$SETUP_CURRENT_ROLE_NAME" --without-etcdir
-    local login_shell='/usr/local/bin/zsh'
-    sudo dscl . -create /Users/$USER UserShell "$login_shell"
+    _installed || {
+        depend install brew
+        # --without-etcdir: Disable the reading of Zsh rc files in /etc
+        brew install zsh --without-etcdir
+        local login_shell='/usr/local/bin/zsh'
+        sudo dscl . -create /Users/$USER UserShell "$login_shell"
+    }
 
     _colorscheme
-    config
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated zsh || {
+        brew upgrade zsh
+    }
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash -eu
 
 # Settings
 DOTF_SETUP_SCRIPT="setup.sh"
@@ -90,9 +90,9 @@ caveats() {
     local caveats
 
     case "$type" in
-        INFO)   caveats="\e[34m$msg\e[m\n" ;;
-        WARN)   caveats="\e[35m$msg\e[m\n" ;;
-        ERROR)  caveats="\e[31m$msg\e[m\n" ;;
+        INFO)   echo "info"; caveats="\e[34m$msg\e[m\n" ;;
+        WARN)   echo "warn"; caveats="\e[35m$msg\e[m\n" ;;
+        ERROR)  echo "error"; caveats="\e[31m$msg\e[m\n" ;;
         *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
                 exit 1
                 ;;
@@ -108,77 +108,78 @@ _print_caveats() {
     }
 }
 
+depend() {
+    # This function is called inside main.sh of each role (e.g. depend install brew).
+    local func="${1:?Error \"func\" is required}"
+    local role="${2:?Error \"role\" is required}"
+    local caller="${BASH_SOURCE[1]}"
+
+    # SETUP_CURRENT_ROLE_DIR_PATH="$SETUP_ROLES_PATH/$role"
+    log "INFO" "==> $func dependencies $role..."
+    # execute "$SETUP_CURRENT_ROLE_DIR_PATH/$DOTF_SETUP_SCRIPT" "$func"
+    execute "$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT" "$func"
+
+    # SETUP_CURRENT_ROLE_DIR_PATH="${caller%/*}"
+    # SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
+    source "$caller"
+}
+
 execute() {
-    SETUP_SHELL_NAME="${SHELL##*/}"
+    local role_setup_path="${1:?Error \"role_setup_path\" is required}"
+    local func="${2:?Error \"func\" is required}"
 
-    _execute() {
-        local role_setup_path="${1:?Error \"role_setup_path\" is required}"
-        local func="${2:?Error \"func\" is required}"
-        local is_depend="${3:-0}"
-
-        source "$role_setup_path"
-
-        if ! is_installed; then
-            [[ $is_depend -eq 1 ]] && log "INFO" "====> install dependency: $SETUP_CURRENT_ROLE_NAME..."
-            install
-            [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"install\"" && exit 1
-        fi
-
-        case "$func" in
-            install) # do nothing
-                ;;
-            *)  # [upgrade|config]
-                "$func" 
-                [[ $? -ne 0 ]] && log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\"" && exit 1
-                ;;
-        esac
-
-        unset -f is_installed
-        unset -f install
-        unset -f "$func"
+    [ -e "$role_setup_path" ] || {
+        log "ERROR" "Error: \"$role_setup_path\" is not found"
+        exit 1
     }
 
-    depend() {
-        # This function is called inside setup.sh of each role.
-        # Examples: depend "install" "brew"
-        local func="${1:?Error \"func\" is required}"
-        local role="${2:?Error \"role\" is required}"
-        # local caller="$SETUP_CURRENT_ROLE_FILE_PATH"
-        local caller="${BASH_SOURCE[1]}"
+    source "$role_setup_path"
+    (cd `dirname "$role_setup_path"`; "$func")
 
-        SETUP_CURRENT_ROLE_NAME="$role"
-        SETUP_CURRENT_ROLE_DIR_PATH="$SETUP_ROLES_PATH/$role"
-        _execute "$SETUP_CURRENT_ROLE_DIR_PATH/setup.sh" "$func" "1"
-
-        SETUP_CURRENT_ROLE_DIR_PATH="${caller%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        source "$caller"
+    [[ $? -ne 0 ]] && {
+        log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\""
+        exit 1
     }
 
-    # [install|upgrade|config]
-    declare -a roles=()
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-        roles+=( $SETUP_CURRENT_ROLE_NAME )
-        if [[ $# -eq 0 ]] || in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
-            log "INFO" "==> $SETUP_FUNC_NAME $SETUP_CURRENT_ROLE_NAME..."
-            _execute "$SETUP_CURRENT_ROLE_FILE_PATH" "$SETUP_FUNC_NAME"
-        fi
-    done
+    unset -f "$func"
+}
 
-    # Check role name specified by the parameter
-    for t in "$@"; do 
-        if ! in_elements "$t" "${roles[@]}"; then
-            log "INFO" "==> $SETUP_FUNC_NAME $t..."
-            log "ERROR" "Error: \"$t\" role is not found"
-        fi
-    done
+install() {
+    local role="$1"
+    local role_dir="$SETUP_ROLES_PATH/$role"
+    local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
+
+    validate "$role" | grep "install:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+        log "ERROR" "Error: Not implemented"
+        return 1
+    }
+
+    log "INFO" "==> install $role..."
+    execute "$script_path" install
+}
+
+upgrade() {
+    local role="$1"
+    local role_dir="$SETUP_ROLES_PATH/$role"
+    local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
+
+    validate "$role" | grep "upgrade:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+        log "ERROR" "Error: Not implemented"
+        return 1
+    }
+
+    log "INFO" "==> upgrade $role..."
+    execute "$script_path" upgrade
 }
 
 version() {
     local role="$1"
     local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
+
+    validate "$role" | grep "version:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+        log "ERROR" "Error: Not implemented"
+        return 1
+    }
 
     if [ -e "$script_path" ]; then
         source "$script_path"
@@ -192,6 +193,7 @@ version() {
 
 list() {
     local role_file_path role_dir_path role_name
+
     for role_file_path in $(find "$SETUP_ROLES_PATH/" -type f -name "$DOTF_SETUP_SCRIPT"); do
         role_dir_path="${role_file_path%/*}"
         role_name="${role_dir_path##*/}"
@@ -224,40 +226,6 @@ validate() {
     else
         printf "$role is not found.\n"
     fi
-}
-
-_check() {
-    # It checks the implementation status of functions of each role, and terminates processing if not implemented.
-    local is_err=0
-
-    _errmsg() {
-        log "ERROR" "Error: \"$1\" function is not implemented in \"$2\" role"
-        is_err=1
-    }
-
-    for SETUP_CURRENT_ROLE_FILE_PATH in $(find "$SETUP_ROLES_PATH"/*/* -type f -name "setup.sh"); do
-        SETUP_CURRENT_ROLE_DIR_PATH="${SETUP_CURRENT_ROLE_FILE_PATH%/*}"
-        SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
-
-        if [[ $# -gt 0 ]] && ! in_elements "$SETUP_CURRENT_ROLE_NAME" "$@"; then
-            continue
-        fi
-
-        source "$SETUP_CURRENT_ROLE_FILE_PATH"
-        [[ $(type -t is_installed) == "function" ]] || _errmsg "is_installed" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t config) == "function" ]]  || _errmsg "config" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t version) == "function" ]]  || _errmsg "version" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t install) == "function" ]] || _errmsg "install" "$SETUP_CURRENT_ROLE_NAME"
-        [[ $(type -t upgrade) == "function" ]] || _errmsg "upgrade" "$SETUP_CURRENT_ROLE_NAME"
-
-        unset -f is_installed
-        unset -f config
-        unset -f version
-        unset -f install
-        unset -f upgrade
-    done
-    
-    [[ $is_err -eq 0 ]] || exit 1
 }
 
 new() {
@@ -342,9 +310,15 @@ main() {
             version ${SETUP_ROLES[@]} ;;
         list)
             list ${SETUP_ROLES[@]} ;;
+        install) install ${SETUP_ROLES[@]} ;;
+        upgrade) 
+            declare -a SETUP_CAVEATS_MSGS=()
+            upgrade ${SETUP_ROLES[@]} 
+            _print_caveats
+            ;;
+
         *) # [install|upgrade|config]
             declare -a SETUP_CAVEATS_MSGS=()
-            _check ${SETUP_ROLES[@]}
 #            sudov
             execute ${SETUP_ROLES[@]}
             _print_caveats

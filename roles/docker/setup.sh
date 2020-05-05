@@ -8,24 +8,23 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew cask list docker > /dev/null 2>&1; return $?
 }
 
 version() {
     ls /usr/local/Caskroom/docker 2>/dev/null
 }
 
-config() {
-    return
-}
-
 install() {
-    depend "install" "brew"
-    brew cask install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        brew cask install docker
+    }
 }
 
 upgrade() {
-    [[ -z $(brew cask outdated "$SETUP_CURRENT_ROLE_NAME") ]] || brew cask reinstall "$SETUP_CURRENT_ROLE_NAME"
+    [[ -z $(brew cask outdated docker) ]] || {
+        brew cask reinstall docker
+    }
 }

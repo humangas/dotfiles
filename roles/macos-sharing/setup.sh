@@ -8,16 +8,11 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    [[ "$SETUP_FUNC_NAME" == "install" ]] && return 1
-    return 0
-}
-
 version() {
     echo "None"
 }
 
-config() {
+install() {
     # $ xxd -p <<< humangas
     # 68756d616e6761730a
     # $ xxd -r -p <<< 68756d616e6761730a
@@ -29,10 +24,6 @@ config() {
     sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$SETUP_COMPUTER_NAME"
 }
 
-install() {
-    config
-}
-
 upgrade() {
-    config
+    install
 }

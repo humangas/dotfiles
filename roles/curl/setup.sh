@@ -8,24 +8,28 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list curl > /dev/null 2>&1; return $?
+}
+
+_config() {
+    cp -fr .zsh.d "$HOME/"
 }
 
 version() {
     basename "$(readlink /usr/local/opt/curl)"
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-}
-
 install() {
-    depend "install" "brew"
-    brew install "$SETUP_CURRENT_ROLE_NAME" --with-openssl
-    config
+    _installed || {
+        depend install brew
+        brew install curl --with-openssl
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated curl || {
+        brew upgrade curl
+    }
 }

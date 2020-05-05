@@ -8,27 +8,30 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list gibo > /dev/null 2>&1; return $?
+}
+
+_config() {
+    cp -fr .gitignore-boilerplates "$HOME/"
 }
 
 version() {
     basename "$(readlink /usr/local/opt/gibo)"
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.gitignore-boilerplates" "$HOME/"
-}
-
 install() {
-    depend "install" "brew"
-    depend "install" "git"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    "$SETUP_CURRENT_ROLE_NAME" --list
-    config
+    _installed || {
+        depend install brew
+        depend install git
+        brew install gibo
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    "$SETUP_CURRENT_ROLE_NAME" --upgrade
+    brew outdated gibo || {
+        brew upgrade gibo
+    }
+    gibo update
 }

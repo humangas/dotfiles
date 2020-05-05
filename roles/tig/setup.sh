@@ -8,25 +8,29 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list tig > /dev/null 2>&1; return $?
+}
+
+_config() {
+    cp .tigrc "$HOME/"
 }
 
 version() {
     basename "$(readlink /usr/local/opt/tig)"
 }
 
-config() {
-    cp "$SETUP_CURRENT_ROLE_DIR_PATH/.tigrc" "$HOME/"
-}
-
 install() {
-    depend "install" "brew"
-    depend "install" "git"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        depend install git
+        brew install tig
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated tig || {
+        brew upgrade tig
+    }
 }

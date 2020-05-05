@@ -8,30 +8,36 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list nodenv > /dev/null 2>&1; return $?
 }
 
 _is_installed_node-build() {
     type node-build > /dev/null 2>&1; return $?
 }
 
+_config() {
+    cp -fr .zsh.d "$HOME/"
+}
+
 version() {
     basename "$(readlink /usr/local/opt/nodenv)"
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-}
-
 install() {
-    depend "install" "brew"
-    _is_installed_node-build || brew install node-build
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        _is_installed_node-build || brew install node-build
+        brew install nodenv
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    _is_installed_node-build && (brew outdated node-build || brew upgrade node-build)
+    brew outdated nodenv || {
+        brew upgrade nodenv
+    }
+    _is_installed_node-build && {
+        (brew outdated node-build || brew upgrade node-build)
+    }
 }

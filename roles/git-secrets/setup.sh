@@ -8,26 +8,30 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list git-secrets > /dev/null 2>&1; return $?
+}
+
+_config() {
+    git secrets --install ~/.git-templates/git-secrets
+    git config --global init.templateDir ~/.git-templates/git-secrets
 }
 
 version() {
     basename "$(readlink /usr/local/opt/git-secrets)"
 }
 
-config() {
-    git secrets --install ~/.git-templates/git-secrets
-    git config --global init.templateDir ~/.git-templates/git-secrets
-}
-
 install() {
-    depend "install" "brew"
-    depend "install" "git"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        depend install git
+        brew install git-secrets
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated git-secrets || {
+        brew upgrade git-secrets
+    }
 }

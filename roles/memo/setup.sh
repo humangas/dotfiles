@@ -8,34 +8,39 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    type memo > /dev/null 2>&1; return $?
+}
+
+_config() {
+    cp -r .config "$HOME/"
+    ln -sfnv "$HOME/memo" "$HOME/Dropbox/note"
 }
 
 version() {
     memo --version | awk '{print $3}'
 }
 
-config() {
-    cp -r "$SETUP_CURRENT_ROLE_DIR_PATH/.config" "$HOME/"
-}
-
 install() {
-    depend "install" "go"
-    go get -u github.com/mattn/$SETUP_CURRENT_ROLE_NAME
-    (
-    go get -u -d github.com/humangas/memo-plugin-editg
-    cd $GOPATH/src/github.com/humangas/memo-plugin-editg
-    make install
-    )
-    (
-    go get -u -d github.com/humangas/memo-plugin-move
-    cd $GOPATH/src/github.com/humangas/memo-plugin-move
-    make install
-    )
-    config
+    _installed || {
+        depend install go
+        go get -u github.com/mattn/memo
+        (
+            go get -u -d github.com/humangas/memo-plugin-editg
+            cd $GOPATH/src/github.com/humangas/memo-plugin-editg
+            make install
+        )
+        (
+            go get -u -d github.com/humangas/memo-plugin-move
+            cd $GOPATH/src/github.com/humangas/memo-plugin-move
+            make install
+        )
+        depend install dropbox
+    }
+    _config
 }
 
 upgrade() {
-    install
+    # TODO: upgrade 処理
+    echo "TODO: Implement this function"
 }

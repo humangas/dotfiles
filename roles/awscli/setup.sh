@@ -8,25 +8,24 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list awscli > /dev/null 2>&1; return $?
 }
 
 version() {
     basename "$(readlink /usr/local/opt/awscli)"
 }
 
-config() {
-    return
-}
-
 install() {
-    depend "install" "brew"
-    depend "install" "python3"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        depend install python
+        brew install awscli
+    }
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated awscli || {
+        brew upgrade awscli
+    }
 }

@@ -8,30 +8,36 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list rbenv > /dev/null 2>&1; return $?
 }
 
 _is_installed_ruby-build() {
     type ruby-build > /dev/null 2>&1; return $?
 }
 
+_config() {
+    cp -fr .zsh.d "$HOME/"
+}
+
 version() {
     basename "$(readlink /usr/local/opt/rbenv)"
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-}
-
 install() {
-    depend "install" "brew"
-    _is_installed_ruby-build || brew install ruby-build
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        _is_installed_ruby-build || brew install ruby-build
+        brew install rbenv
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    _is_installed_ruby-build && (brew outdated ruby-build || brew upgrade ruby-build)
+    brew outdated rbenv || {
+        brew upgrade rbenv
+    }
+    _is_installed_ruby-build && {
+        (brew outdated ruby-build || brew upgrade ruby-build)
+    }
 }

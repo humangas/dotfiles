@@ -8,26 +8,32 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list pyenv > /dev/null 2>&1; return $?
+}
+
+_config() {
+    cp -fr .zsh.d "$HOME/"
 }
 
 version() {
     basename "$(readlink /usr/local/opt/pyenv)"
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-}
-
 install() {
-    depend "install" "brew"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    brew install "$SETUP_CURRENT_ROLE_NAME-virtualenv"
-    config
+    _installed || {
+        depend install brew
+        brew install pyenv
+        brew install pyenv-virtualenv
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
-    brew outdated "$SETUP_CURRENT_ROLE_NAME-virtualenv" || brew upgrade "$SETUP_CURRENT_ROLE_NAME-virtualenv"
+    brew outdated pyenv || {
+        brew upgrade pyenv
+    }
+    brew outdated pyenv-virtualenv || {
+        brew upgrade pyenv-virtualenv
+    }
 }

@@ -8,31 +8,35 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew cask list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew cask list hammerspoon > /dev/null 2>&1; return $?
 }
 
-version() {
-    ls /usr/local/Caskroom/hammerspoon 2>/dev/null
-}
-
-config() {
+_config() {
     mkdir -p ~/.hammerspoon/Spoons
     defaults write -app Terminal AppleLanguages "(en, ja)"
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.hammerspoon" "$HOME/"
+    cp -fr .hammerspoon "$HOME/"
     log "INFO" "Install Hammerspoon plugin: Calendar..."
     curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Calendar.spoon.zip -# | /usr/bin/tar xz -C ~/.hammerspoon/Spoons/
     log "INFO" "Install Hammerspoon plugin: Caffeine..."
     curl -sL https://github.com/Hammerspoon/Spoons/raw/master/Spoons/Caffeine.spoon.zip -# | /usr/bin/tar xz -C ~/.hammerspoon/Spoons/
 }
 
+version() {
+    ls /usr/local/Caskroom/hammerspoon 2>/dev/null
+}
+
 install() {
-    depend "install" "brew"
-    brew cask install "$SETUP_CURRENT_ROLE_NAME"
-    config
-    caveats "WARN" "- $SETUP_CURRENT_ROLE_NAME: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
+    _installed || {
+        depend install brew
+        brew cask install hammerspoon 
+    }
+    _config
+    caveats "WARN" "- hammerspoon: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
 }
 
 upgrade() {
-    [[ -z $(brew cask outdated "$SETUP_CURRENT_ROLE_NAME") ]] || brew cask reinstall "$SETUP_CURRENT_ROLE_NAME"
+    [[ -z $(brew cask outdated hammerspoon) ]] || {
+        brew cask upgrade hammerspoon
+    }
 }

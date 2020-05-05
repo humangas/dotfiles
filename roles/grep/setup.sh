@@ -8,24 +8,23 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list grep > /dev/null 2>&1; return $?
 }
 
 version() {
     basename "$(readlink /usr/local/opt/grep)"
 }
 
-config() {
-    return
-}
-
 install() {
-    depend "install" "brew"
-    brew install "$SETUP_CURRENT_ROLE_NAME" --with-default-names
-    config
+    _installed || {
+        depend install brew
+        brew install grep --with-default-names
+    }
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated grep || {
+        brew upgrade grep
+    }
 }

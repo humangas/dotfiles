@@ -8,27 +8,30 @@
 # The following environment variables can be used.
 # - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
 ##############################################################################################
-is_installed() {
-    brew list "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+_installed() {
+    brew list direnv > /dev/null 2>&1; return $?
+}
+
+_config() {
+    cp -fr .zsh.d "$HOME/"
+    cp -fr .config "$HOME/"
 }
 
 version() {
     basename "$(readlink /usr/local/opt/direnv)"
 }
 
-config() {
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.zsh.d" "$HOME/"
-    # TODO: poetry setting
-    cp -fr "$SETUP_CURRENT_ROLE_DIR_PATH/.config" "$HOME/"
-}
-
 install() {
-    depend "install" "brew"
-    depend "install" "zsh"
-    brew install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install brew
+        depend install zsh
+        brew install direnv
+    }
+    _config
 }
 
 upgrade() {
-    brew outdated "$SETUP_CURRENT_ROLE_NAME" || brew upgrade "$SETUP_CURRENT_ROLE_NAME"
+    brew outdated direnv || {
+        brew upgrade direnv
+    }
 }
