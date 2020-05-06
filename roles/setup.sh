@@ -58,13 +58,6 @@ abs_dirname() {
     cd "$cwd"
 }
 
-in_elements () {
-    local e match="$1"
-    shift
-    for e; do [[ "$e" == "$match" ]] && return 0; done
-    return 1
-}
-
 log() {
     # Examples: log "INFO" "info message"
     local type="${1:?Error: type is required}"
