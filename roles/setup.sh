@@ -3,7 +3,6 @@
 # Settings
 DOTF_SETUP_SCRIPT="setup.sh"
 DOTF_NEW_TYPE_DEFAULT="${DOTF_NEW_TYPE_DEFAULT:-plain}"
-SETUP_LIST_FILES_DEPTH="${SETUP_LIST_FILES_DEPTH:-3}"
 SETUP_TRUE_MARK="✓"
 SETUP_FALSE_MARK="✗"
 
@@ -28,7 +27,6 @@ Option:
 Settings:
     export EDITOR="vim"
     export DOTF_NEW_TYPE_DEFAULT="$DOTF_NEW_TYPE_DEFAULT"
-    export SETUP_LIST_FILES_DEPTH=3
 
 Examples:
     $(basename $0) install
