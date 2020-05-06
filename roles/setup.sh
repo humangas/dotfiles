@@ -188,7 +188,7 @@ _validate() {
     fi
 }
 
-new() {
+_new() {
     local role="$DOTF_ROLE"
     local template_dir="$DOTF_BASE_PATH/_templates"
     local template_setup_script_path="$template_dir/$DOTF_NEW_TEMPLATE"
@@ -238,7 +238,7 @@ main() {
     shift
 
     case "$func" in
-        new)       _parse_new "$@"; new ;;
+        new)       _parse_new "$@"; _new ;;
         list)      _list "$@" ;;
         install)   _install "$@" ;;
         upgrade)   _upgrade "$@" ;;
