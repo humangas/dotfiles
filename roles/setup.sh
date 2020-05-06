@@ -7,7 +7,7 @@ DOTF_NEW_TEMPLATE="$DOTF_SETUP_SCRIPT.$DOTF_NEW_TYPE_DEFAULT"
 DOTF_TRUE_MARK="✓"
 DOTF_FALSE_MARK="✗"
 
-usage() {
+_usage() {
 cat << EOS 
 Usage: $(basename $0) <command> [option] [<role>]
 
@@ -221,10 +221,10 @@ _parse_new() {
                     shift $((OPTIND -1))
                     DOTF_NEW_TEMPLATE="$DOTF_SETUP_SCRIPT.$1"
                     ;;
-                *)  usage ;;
+                *)  _usage ;;
             esac
             ;;
-            *)  usage ;;
+            *)  _usage ;;
         esac
     done
     [ $is_parsed -eq 0 ] && DOTF_ROLE="$1" || shift; DOTF_ROLE="$1"
@@ -233,7 +233,7 @@ _parse_new() {
 main() {
     DOTF_BASE_PATH=$(abs_dirname $0)
 
-    [ $# -eq 0 ] && usage
+    [ $# -eq 0 ] && _usage
     local func="$1"
     shift
 
@@ -244,7 +244,7 @@ main() {
         upgrade)   upgrade "$@" ;;
         version)   _version "$@" ;;
         validate)  _validate "$@" ;;
-        *)         usage ;;
+        *)         _usage ;;
     esac
 }
 
