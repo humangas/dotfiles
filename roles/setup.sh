@@ -3,8 +3,8 @@
 # Settings
 DOTF_SETUP_SCRIPT="setup.sh"
 DOTF_NEW_TYPE_DEFAULT="${DOTF_NEW_TYPE_DEFAULT:-plain}"
-SETUP_TRUE_MARK="✓"
-SETUP_FALSE_MARK="✗"
+DOTF_TRUE_MARK="✓"
+DOTF_FALSE_MARK="✗"
 
 usage() {
 cat << EOS 
@@ -111,7 +111,7 @@ install() {
     local role_dir="$DOTF_BASE_PATH/$role"
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
-    validate "$role" | grep "install:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+    validate "$role" | grep "install:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
         log "ERROR" "Error: Not implemented"
         return 1
     }
@@ -125,7 +125,7 @@ upgrade() {
     local role_dir="$DOTF_BASE_PATH/$role"
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
-    validate "$role" | grep "upgrade:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+    validate "$role" | grep "upgrade:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
         log "ERROR" "Error: Not implemented"
         return 1
     }
@@ -138,7 +138,7 @@ version() {
     local role="$1"
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
 
-    validate "$role" | grep "version:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
+    validate "$role" | grep "version:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
         log "ERROR" "Error: Not implemented"
         return 1
     }
@@ -171,10 +171,10 @@ validate() {
     if [ -e "$script_path" ]; then
         source "$script_path"
 
-        _readme=$([[ -f "$DOTF_BASE_PATH/$role/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
-        [[ $(type -t install) == "function" ]] && _install="$SETUP_TRUE_MARK" || _install="$SETUP_FALSE_MARK"
-        [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
-        [[ $(type -t version) == "function" ]] && _version="$SETUP_TRUE_MARK" || _version="$SETUP_FALSE_MARK"
+        _readme=$([[ -f "$DOTF_BASE_PATH/$role/README.md" ]] && echo "$DOTF_TRUE_MARK" || echo "$DOTF_FALSE_MARK")
+        [[ $(type -t install) == "function" ]] && _install="$DOTF_TRUE_MARK" || _install="$DOTF_FALSE_MARK"
+        [[ $(type -t upgrade) == "function" ]] && _upgrade="$DOTF_TRUE_MARK" || _upgrade="$DOTF_FALSE_MARK"
+        [[ $(type -t version) == "function" ]] && _version="$DOTF_TRUE_MARK" || _version="$DOTF_FALSE_MARK"
 
         printf "README:$_readme "
         printf "install:$_install "
