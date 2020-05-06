@@ -104,7 +104,7 @@ execute() {
     unset -f "$func"
 }
 
-install() {
+_install() {
     local role="$1"
     local role_dir="$DOTF_BASE_PATH/$role"
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
@@ -164,18 +164,18 @@ _list() {
 _validate() {
     local role="$1"
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
-    local _install _upgrade __version _readme
+    local __install _upgrade __version _readme
 
     if [ -e "$script_path" ]; then
         source "$script_path"
 
         _readme=$([[ -f "$DOTF_BASE_PATH/$role/README.md" ]] && echo "$DOTF_TRUE_MARK" || echo "$DOTF_FALSE_MARK")
-        [[ $(type -t install) == "function" ]] && _install="$DOTF_TRUE_MARK" || _install="$DOTF_FALSE_MARK"
+        [[ $(type -t install) == "function" ]] && __install="$DOTF_TRUE_MARK" || __install="$DOTF_FALSE_MARK"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="$DOTF_TRUE_MARK" || _upgrade="$DOTF_FALSE_MARK"
         [[ $(type -t version) == "function" ]] && __version="$DOTF_TRUE_MARK" || __version="$DOTF_FALSE_MARK"
 
         printf "README:$_readme "
-        printf "install:$_install "
+        printf "install:$__install "
         printf "upgrade:$_upgrade "
         printf "version:$__version "
         printf "\n"
@@ -240,7 +240,7 @@ main() {
     case "$func" in
         new)       _parse_new "$@"; new ;;
         list)      _list "$@" ;;
-        install)   install "$@" ;;
+        install)   _install "$@" ;;
         upgrade)   upgrade "$@" ;;
         version)   _version "$@" ;;
         validate)  _validate "$@" ;;
