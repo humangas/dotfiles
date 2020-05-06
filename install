@@ -50,15 +50,21 @@ download_repository() {
 execute() {
     log "INFO" "Install dotfiles and some apps..."
 
-    local roles=()
+    local roles role
     if [[ -f $DOTF_ROLES_LIST ]]; then
-        while read r; do
-            [[ $r =~ ^# ]] && continue
-            roles+=("$r")
+        while read role; do
+            [[ $role =~ ^# ]] && continue
+            roles="$roles $role"
         done < <(cat $DOTF_ROLES_LIST) 
+        roles=$(echo "${roles}" | tr ' ' '\n' | sed '/^$/d' | sort | uniq)
+    else
+        roles=$(bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" list)
     fi
 
-    bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" install "${roles[@]}" 2>&1 | tee "$PWD/install.log"
+    rm -f install.log
+    echo "$roles" | while read role; do
+        bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" install $role 2>&1 | tee --append install.log
+    done
 }
 
 finally() {
