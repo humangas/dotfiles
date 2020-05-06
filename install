@@ -51,25 +51,15 @@ download_repository() {
 init() {
     log "INFO" "Install dotfiles and some apps..."
 
-    local roles tags tags_option
-    roles=()
-    if [[ -f $SETUP_ROLES_LIST ]]; then
+    local roles=()
+    if [[ -f $DOTF_ROLES_LIST ]]; then
         while read r; do
             [[ $r =~ ^# ]] && continue
             roles+=("$r")
-        done < <(cat $SETUP_ROLES_LIST) 
+        done < <(cat $DOTF_ROLES_LIST) 
     fi
 
-    if [[ -f $SETUP_TAGS_LIST ]]; then
-        tags=()
-        while read t; do
-            [[ $t =~ ^# ]] && continue
-            tags+=("$t")
-        done < <(cat $SETUP_TAGS_LIST) 
-        tags_option="--tags $(echo ${tags[@]} | tr ' ' ',')"
-    fi
-
-    bash "$SETUP_WORKTMPDIR/roles/setup.sh" install $tags_option "${roles[@]}" 2>&1 | tee "$PWD/install.log"
+    bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" install "${roles[@]}" 2>&1 | tee "$PWD/install.log"
 }
 
 finally() {
