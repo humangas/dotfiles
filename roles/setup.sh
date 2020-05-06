@@ -86,13 +86,9 @@ depend() {
     local role="${2:?Error \"role\" is required}"
     local caller="${BASH_SOURCE[1]}"
 
-    # SETUP_CURRENT_ROLE_DIR_PATH="$SETUP_ROLES_PATH/$role"
     log "INFO" "==> $func dependencies $role..."
-    # execute "$SETUP_CURRENT_ROLE_DIR_PATH/$DOTF_SETUP_SCRIPT" "$func"
     execute "$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT" "$func"
 
-    # SETUP_CURRENT_ROLE_DIR_PATH="${caller%/*}"
-    # SETUP_CURRENT_ROLE_NAME="${SETUP_CURRENT_ROLE_DIR_PATH##*/}"
     source "$caller"
 }
 
