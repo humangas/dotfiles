@@ -109,7 +109,7 @@ install() {
     local role_dir="$DOTF_BASE_PATH/$role"
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
-    validate "$role" | grep "install:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
+    _validate "$role" | grep "install:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
         log "ERROR" "Error: Not implemented"
         return 1
     }
@@ -123,7 +123,7 @@ upgrade() {
     local role_dir="$DOTF_BASE_PATH/$role"
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
-    validate "$role" | grep "upgrade:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
+    _validate "$role" | grep "upgrade:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
         log "ERROR" "Error: Not implemented"
         return 1
     }
@@ -136,7 +136,7 @@ version() {
     local role="$1"
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
 
-    validate "$role" | grep "version:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
+    _validate "$role" | grep "version:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
         log "ERROR" "Error: Not implemented"
         return 1
     }
@@ -161,7 +161,7 @@ _list() {
     done
 }
 
-validate() {
+_validate() {
     local role="$1"
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
     local _install _upgrade _version _readme
@@ -243,7 +243,7 @@ main() {
         install)   install "$@" ;;
         upgrade)   upgrade "$@" ;;
         version)   version "$@" ;;
-        validate)  validate "$@" ;;
+        validate)  _validate "$@" ;;
         *)         usage ;;
     esac
 }
