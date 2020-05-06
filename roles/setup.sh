@@ -262,14 +262,6 @@ _options() {
     esac
 }
 
-sudov() {
-    # NOTE: Even the following will ask you for the password, so i decided to respond with sudoers.
-    # See also: https://github.com/humangas/dotfiles/blob/master/README.md#note
-    # See also: https://github.com/caskroom/homebrew-cask/issues/19180
-    [[ -z "$SETUP_SUDO_PASSWORD" ]] && sudo -v || sudo -S -v <<< "$SETUP_SUDO_PASSWORD" 2>/dev/null
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-}
-
 main() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
     _options "$@"
@@ -285,11 +277,6 @@ main() {
         install) install ${SETUP_ROLES[@]} ;;
         upgrade) 
             upgrade ${SETUP_ROLES[@]} 
-            ;;
-
-        *) # [install|upgrade|config]
-#            sudov
-            execute ${SETUP_ROLES[@]}
             ;;
     esac
 }
