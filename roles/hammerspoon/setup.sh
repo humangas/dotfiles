@@ -32,7 +32,7 @@ install() {
         brew cask install hammerspoon 
     }
     _config
-    caveats "WARN" "- hammerspoon: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
+    log "WARN" "- hammerspoon: Manual Operation -> Launch Hammerspoon > Enable Accessibility"
 }
 
 upgrade() {
