@@ -15,9 +15,8 @@ Command:
     version   <role>...         Version <role>...
     install   [role]...         Install [role]...
     upgrade   [role]...         Upgrade [role]...
-    config    [role]...         Configure [role]...
-    new       <role>            Create new [option] <role>
     validate  <role>            Validate <role>
+    new       <role>            Create new [option] <role>
 
 Option:
     --type    <type>            "<type>" specifies "$DOTF_SETUP_SCRIPT.<type>" under roles/_templates directory
@@ -29,10 +28,12 @@ Settings:
     export DOTF_NEW_TYPE_DEFAULT="$DOTF_NEW_TYPE_DEFAULT"
 
 Examples:
-    $(basename $0) install
+    $(basename $0) list
+    $(basename $0) version go
     $(basename $0) install go
-    $(basename $0) create python
-    $(basename $0) create --type brewcask java
+    $(basename $0) validate go
+    $(basename $0) new python
+    $(basename $0) new --type brewcask alfred
 
 Convenient usage:
     # List only roles that contain files
