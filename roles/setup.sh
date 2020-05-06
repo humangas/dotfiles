@@ -81,7 +81,7 @@ depend() {
     local caller="${BASH_SOURCE[1]}"
 
     log "INFO" "==> $func dependencies $role..."
-    execute "$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT" "$func"
+    execute "$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT" "$func"
 
     source "$caller"
 }
@@ -108,7 +108,7 @@ execute() {
 
 install() {
     local role="$1"
-    local role_dir="$SETUP_ROLES_PATH/$role"
+    local role_dir="$DOTF_BASE_PATH/$role"
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
     validate "$role" | grep "install:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
@@ -122,7 +122,7 @@ install() {
 
 upgrade() {
     local role="$1"
-    local role_dir="$SETUP_ROLES_PATH/$role"
+    local role_dir="$DOTF_BASE_PATH/$role"
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
     validate "$role" | grep "upgrade:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
@@ -136,7 +136,7 @@ upgrade() {
 
 version() {
     local role="$1"
-    local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
+    local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
 
     validate "$role" | grep "version:$SETUP_TRUE_MARK" > /dev/null 2>&1 || {
         log "ERROR" "Error: Not implemented"
@@ -156,7 +156,7 @@ version() {
 list() {
     local role_file_path role_dir_path role_name
 
-    for role_file_path in $(find "$SETUP_ROLES_PATH/" -type f -name "$DOTF_SETUP_SCRIPT"); do
+    for role_file_path in $(find "$DOTF_BASE_PATH/" -type f -name "$DOTF_SETUP_SCRIPT"); do
         role_dir_path="${role_file_path%/*}"
         role_name="${role_dir_path##*/}"
         printf "$role_name\n"
@@ -165,13 +165,13 @@ list() {
 
 validate() {
     local role="$1"
-    local script_path="$SETUP_ROLES_PATH/$role/$DOTF_SETUP_SCRIPT"
+    local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
     local _install _upgrade _version _readme
 
     if [ -e "$script_path" ]; then
         source "$script_path"
 
-        _readme=$([[ -f "$SETUP_ROLES_PATH/$role/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
+        _readme=$([[ -f "$DOTF_BASE_PATH/$role/README.md" ]] && echo "$SETUP_TRUE_MARK" || echo "$SETUP_FALSE_MARK")
         [[ $(type -t install) == "function" ]] && _install="$SETUP_TRUE_MARK" || _install="$SETUP_FALSE_MARK"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="$SETUP_TRUE_MARK" || _upgrade="$SETUP_FALSE_MARK"
         [[ $(type -t version) == "function" ]] && _version="$SETUP_TRUE_MARK" || _version="$SETUP_FALSE_MARK"
@@ -192,7 +192,7 @@ validate() {
 
 new() {
     local role="$1"
-    local template_dir="$SETUP_ROLES_PATH/_templates"
+    local template_dir="$DOTF_BASE_PATH/_templates"
     local template_setup_script_path="$template_dir/$SETUP_CREATE_TYPE"
 
     if [[ ! -f "$template_setup_script_path" ]]; then
@@ -200,11 +200,11 @@ new() {
         return 1
     fi
 
-    if [[ ! -e "$SETUP_ROLES_PATH/$role" ]]; then
-        mkdir -p "$SETUP_ROLES_PATH/$role"
-        cp "$template_setup_script_path" "$SETUP_ROLES_PATH/$role/${SETUP_CREATE_TYPE%.*}"
-        cp "$template_dir/README.md" "$SETUP_ROLES_PATH/$role"
-        sed -i "s/\${role}/$role/g" "$SETUP_ROLES_PATH/$role/README.md"
+    if [[ ! -e "$DOTF_BASE_PATH/$role" ]]; then
+        mkdir -p "$DOTF_BASE_PATH/$role"
+        cp "$template_setup_script_path" "$DOTF_BASE_PATH/$role/${SETUP_CREATE_TYPE%.*}"
+        cp "$template_dir/README.md" "$DOTF_BASE_PATH/$role"
+        sed -i "s/\${role}/$role/g" "$DOTF_BASE_PATH/$role/README.md"
         log "INFO" "==> Created \"$role\" role"
     else
         log "ERROR" "Error: \"$role\" role is already exists"
@@ -252,7 +252,7 @@ _options() {
 }
 
 main() {
-    SETUP_ROLES_PATH=$(abs_dirname $0)
+    DOTF_BASE_PATH=$(abs_dirname $0)
     _options "$@"
     case "$SETUP_FUNC_NAME" in
         new)      new ${SETUP_ROLES[@]} ;;
