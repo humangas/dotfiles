@@ -8,20 +8,20 @@ DOTF_FALSE_MARK="✗"
 
 usage() {
 cat << EOS 
-Usage: $(basename $0) <command> [option] [<args>]...
+Usage: $(basename $0) <command> [option] [<role>]
 
 Command:
-    list                        List roles
-    version   <role>...         Version <role>...
-    install   [role]...         Install [role]...
-    upgrade   [role]...         Upgrade [role]...
-    validate  <role>            Validate <role>
-    new       <role>            Create new [option] <role>
+    list                    List roles
+    version   <role>        Version <role>
+    install   <role>        Install <role>
+    upgrade   <role>        Upgrade <role>
+    validate  <role>        Validate <role>
+    new       <role>        Create new [option] <role>
 
 Option:
-    --type    <type>            "<type>" specifies "$DOTF_SETUP_SCRIPT.<type>" under roles/_templates directory
-                                Default: "\$DOTF_NEW_TYPE_DEFAULT"
-                                Only "new" command option
+    --type    <type>        "<type>" specifies "$DOTF_SETUP_SCRIPT.<type>" under roles/_templates directory
+                            Default: "\$DOTF_NEW_TYPE_DEFAULT"
+                            Only "new" command option
 
 Settings:
     export EDITOR="vim"
@@ -31,13 +31,10 @@ Examples:
     $(basename $0) list
     $(basename $0) version go
     $(basename $0) install go
+    $(basename $0) upgrade go
     $(basename $0) validate go
-    $(basename $0) new python
-    $(basename $0) new --type brewcask alfred
-
-Convenient usage:
-    # List only roles that contain files
-    $ setup list | awk '\$10!="-"{print \$1" "\$10}' | column -t
+    $(basename $0) new go
+    $(basename $0) new --type brew go
 
 EOS
 exit 1
