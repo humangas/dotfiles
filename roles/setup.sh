@@ -245,7 +245,6 @@ _options() {
         list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
         install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
         upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
-        config)     SETUP_FUNC_NAME="config"   ; shift; _parse "$@" ;;
         validate)   SETUP_FUNC_NAME="validate" ; shift; _parse "$@" ;;
         *)          usage ;;
     esac
@@ -255,18 +254,12 @@ main() {
     SETUP_ROLES_PATH=$(abs_dirname $0)
     _options "$@"
     case "$SETUP_FUNC_NAME" in
-        validate)
-            validate ${SETUP_ROLES[@]} ;;
-        new)
-            new ${SETUP_ROLES[@]} ;;
-        version) 
-            version ${SETUP_ROLES[@]} ;;
-        list)
-            list ${SETUP_ROLES[@]} ;;
-        install) install ${SETUP_ROLES[@]} ;;
-        upgrade) 
-            upgrade ${SETUP_ROLES[@]} 
-            ;;
+        new)      new ${SETUP_ROLES[@]} ;;
+        version)  version ${SETUP_ROLES[@]} ;;
+        list)     list ${SETUP_ROLES[@]} ;;
+        install)  install ${SETUP_ROLES[@]} ;;
+        upgrade)  upgrade ${SETUP_ROLES[@]} ;;
+        validate) validate ${SETUP_ROLES[@]} ;;
     esac
 }
 
