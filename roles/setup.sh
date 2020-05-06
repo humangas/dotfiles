@@ -82,32 +82,6 @@ log() {
     esac
 }
 
-caveats() {
-    # Examples: caveats "INFO" "info message"
-    # It will be displayed at the end after installation
-    local type="${1:?Error: type is required}"
-    local msg="${2:?Error: msg is required}"
-    local caveats
-
-    case "$type" in
-        INFO)   echo "info"; caveats="\e[34m$msg\e[m\n" ;;
-        WARN)   echo "warn"; caveats="\e[35m$msg\e[m\n" ;;
-        ERROR)  echo "error"; caveats="\e[31m$msg\e[m\n" ;;
-        *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
-                exit 1
-                ;;
-    esac
-
-    SETUP_CAVEATS_MSGS=("${SETUP_CAVEATS_MSGS[@]}" "$caveats")
-}
-
-_print_caveats() {
-    [[ ${#SETUP_CAVEATS_MSGS[@]} -gt 0 ]] && log "WARN" "\nCaveats:"
-    for ((i = 0; i < ${#SETUP_CAVEATS_MSGS[@]}; i++)) {
-        printf "${SETUP_CAVEATS_MSGS[i]}"
-    }
-}
-
 depend() {
     # This function is called inside main.sh of each role (e.g. depend install brew).
     local func="${1:?Error \"func\" is required}"
@@ -312,16 +286,12 @@ main() {
             list ${SETUP_ROLES[@]} ;;
         install) install ${SETUP_ROLES[@]} ;;
         upgrade) 
-            declare -a SETUP_CAVEATS_MSGS=()
             upgrade ${SETUP_ROLES[@]} 
-            _print_caveats
             ;;
 
         *) # [install|upgrade|config]
-            declare -a SETUP_CAVEATS_MSGS=()
 #            sudov
             execute ${SETUP_ROLES[@]}
-            _print_caveats
             ;;
     esac
 }
