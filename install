@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-readonly SETUP_REPOSITORY_NAME='github.com/humangas/dotfiles'
+readonly DOTF_REPOSITORY_NAME='github.com/humangas/dotfiles'
+readonly DOTF_SETUP_SCRIPT_PATH='roles/main.sh'
 
 display_logo() {
     _logo="
@@ -13,15 +14,13 @@ display_logo() {
                                                                    
                                                                    
       humangas's macOS setup tool and dotfiles
-      See also: https://$SETUP_REPOSITORY_NAME
-
-      Copyright (c) 2017 humangas
+      See also: https://$DOTF_REPOSITORY_NAME
     "
     echo "$_logo"
 }
 
-# Examples: log "INFO" "info message"
 log() {
+    # Examples: log "INFO" "info message"
     local type="${1:?Error: type is required}"
     local msg="${2:?Error: msg is required}"
 
@@ -36,19 +35,19 @@ log() {
 }
 
 check_httpstatus() {
-    local httpstatus=`curl -LI https://${SETUP_REPOSITORY_NAME} -o /dev/null -w '%{http_code}\n' -s`
+    local httpstatus=`curl -LI https://${DOTF_REPOSITORY_NAME} -o /dev/null -w '%{http_code}\n' -s`
     if [ "$httpstatus" -ne 200 ]; then
-        log "ERROR" "Error Could not connect: https://${SETUP_REPOSITORY_NAME} HTTP_STATUS: $httpstatus"
+        log "ERROR" "Error Could not connect: https://${DOTF_REPOSITORY_NAME} HTTP_STATUS: $httpstatus"
         exit 1
     fi
 }
 
 download_repository() {
     log "INFO" "Download Setup Repository..."
-    curl -L https://${SETUP_REPOSITORY_NAME}/archive/master.tar.gz -# | tar xz -C ${SETUP_WORKTMPDIR} --strip=1
+    curl -L https://${DOTF_REPOSITORY_NAME}/archive/master.tar.gz -# | tar xz -C ${DOTF_WORKTMPDIR} --strip=1
 }
 
-init() {
+execute() {
     log "INFO" "Install dotfiles and some apps..."
 
     local roles=()
@@ -63,7 +62,7 @@ init() {
 }
 
 finally() {
-    [[ "$SETUP_WORKTMPDIR" ]] && rm -rf "$SETUP_WORKTMPDIR"
+    [[ "$DOTF_WORKTMPDIR" ]] && rm -rf "$DOTF_WORKTMPDIR"
 }
 
 exception() {
@@ -74,18 +73,22 @@ exception() {
 
 main() {
     display_logo
+
     log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Install..."
     check_httpstatus
-    SETUP_WORKTMPDIR=`mktemp -d`
+    DOTF_WORKTMPDIR=`mktemp -d`
     download_repository
-    init
+    execute
+
     local dependlog="$(grep -ni --color=auto 'Installing .* dependency' "$PWD/install.log")"
     local warnlog="$(grep -n --color=auto 'Warning' "$PWD/install.log")"
     local errorlog="$(grep -n --color=auto 'Error' "$PWD/install.log")"
     printf "\n"
+
     [[ ! -z "$dependlog" ]] && (log "INFO" "To define dependencies on your own, please refer to the following:" && echo -e "$dependlog\n")
     [[ ! -z "$warnlog" ]] && (log "WARN" "Following warning occurred. please confirm the contents:" && echo -e "$warnlog\n")
     [[ ! -z "$errorlog" ]] && (log "ERROR" "Following error occurred. please confirm the contents:" && echo -e "$errorlog\n")
+
     if [[ -z "$errorlog" ]]; then
         log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! Please Reboot the OS (Log: ./install.log)"
     else
