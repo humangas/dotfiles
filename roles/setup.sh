@@ -3,6 +3,7 @@
 # Settings
 DOTF_SETUP_SCRIPT="setup.sh"
 DOTF_NEW_TYPE_DEFAULT="${DOTF_NEW_TYPE_DEFAULT:-plain}"
+DOTF_NEW_TEMPLATE="$DOTF_SETUP_SCRIPT.$DOTF_NEW_TYPE_DEFAULT"
 DOTF_TRUE_MARK="✓"
 DOTF_FALSE_MARK="✗"
 
@@ -188,18 +189,18 @@ validate() {
 }
 
 new() {
-    local role="$1"
+    local role="$DOTF_ROLE"
     local template_dir="$DOTF_BASE_PATH/_templates"
-    local template_setup_script_path="$template_dir/$SETUP_CREATE_TYPE"
+    local template_setup_script_path="$template_dir/$DOTF_NEW_TEMPLATE"
 
     if [[ ! -f "$template_setup_script_path" ]]; then
-        log "ERROR" "Error: \"$SETUP_CREATE_TYPE\" is not found under _templates directory"
+        log "ERROR" "Error: \"$DOTF_NEW_TEMPLATE\" is not found under _templates directory"
         return 1
     fi
 
     if [[ ! -e "$DOTF_BASE_PATH/$role" ]]; then
         mkdir -p "$DOTF_BASE_PATH/$role"
-        cp "$template_setup_script_path" "$DOTF_BASE_PATH/$role/${SETUP_CREATE_TYPE%.*}"
+        cp "$template_setup_script_path" "$DOTF_BASE_PATH/$role/${DOTF_NEW_TEMPLATE%.*}"
         cp "$template_dir/README.md" "$DOTF_BASE_PATH/$role"
         sed -i "s/\${role}/$role/g" "$DOTF_BASE_PATH/$role/README.md"
         log "INFO" "==> Created \"$role\" role"
@@ -209,56 +210,43 @@ new() {
     fi
 }
 
-_options() {
-    _parse() {
-        local is_parsed=0
-        while getopts ":-:" opt; do
-            case "$opt" in
-                -)  # long option
-                case "${OPTARG}" in
-                    type) 
-                        is_parsed=1
-                        shift $((OPTIND -1))
-                        SETUP_CREATE_TYPE="$DOTF_SETUP_SCRIPT.$1"
-                        ;;
-                    *)  usage ;;
-                esac
-                ;;
+_parse_new() {
+    local is_parsed=0
+    while getopts ":-:" opt; do
+        case "$opt" in
+            -)  # long option
+            case "${OPTARG}" in
+                type) 
+                    is_parsed=1
+                    shift $((OPTIND -1))
+                    DOTF_NEW_TEMPLATE="$DOTF_SETUP_SCRIPT.$1"
+                    ;;
                 *)  usage ;;
             esac
-        done
-        [[ "$is_parsed" -eq 0 ]] && SETUP_ROLES="$@" || shift; SETUP_ROLES="$@"
-    }
-
-    _parse_create() {
-        _parse "$@"
-        [[ -z "$SETUP_CREATE_TYPE" ]] && SETUP_CREATE_TYPE="$DOTF_SETUP_SCRIPT.$DOTF_NEW_TYPE_DEFAULT"
-        [[ -z "$SETUP_ROLES" ]] && usage
-    }
-
-    [[ $# -eq 0 ]] && usage
-    case "$1" in
-        new)        SETUP_FUNC_NAME="new"      ; shift; _parse_create "$@" ;;
-        version)    SETUP_FUNC_NAME="version"  ; shift; _parse "$@" ;;
-        list)       SETUP_FUNC_NAME="list"     ; shift; _parse "$@" ;;
-        install)    SETUP_FUNC_NAME="install"  ; shift; _parse "$@" ;;
-        upgrade)    SETUP_FUNC_NAME="upgrade"  ; shift; _parse "$@" ;;
-        validate)   SETUP_FUNC_NAME="validate" ; shift; _parse "$@" ;;
-        *)          usage ;;
-    esac
+            ;;
+            *)  usage ;;
+        esac
+    done
+    [ $is_parsed -eq 0 ] && DOTF_ROLE="$1" || shift; DOTF_ROLE="$1"
 }
 
 main() {
     DOTF_BASE_PATH=$(abs_dirname $0)
-    _options "$@"
-    case "$SETUP_FUNC_NAME" in
-        new)      new ${SETUP_ROLES[@]} ;;
-        version)  version ${SETUP_ROLES[@]} ;;
-        list)     list ${SETUP_ROLES[@]} ;;
-        install)  install ${SETUP_ROLES[@]} ;;
-        upgrade)  upgrade ${SETUP_ROLES[@]} ;;
-        validate) validate ${SETUP_ROLES[@]} ;;
+
+    [ $# -eq 0 ] && usage
+    local func="$1"
+    shift
+
+    case "$func" in
+        new)       _parse_new "$@"; new ;;
+        list)      list "$@" ;;
+        install)   install "$@" ;;
+        upgrade)   upgrade "$@" ;;
+        version)   version "$@" ;;
+        validate)  validate "$@" ;;
+        *)         usage ;;
     esac
 }
 
 main "$@"
+
