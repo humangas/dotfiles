@@ -18,9 +18,9 @@ help:
 	@echo ""
 
 install:
-	@chmod u+x $(PWD)/roles/setup.sh
-	@rm -f /usr/local/bin/setup
-	@ln -s $(PWD)/roles/setup.sh /usr/local/bin/setup
+	@chmod u+x $(PWD)/roles/main.sh
+	@rm -f /usr/local/bin/dotf
+	@ln -s $(PWD)/roles/main.sh /usr/local/bin/dotf
 	
 update:
 	@git pull origin master
