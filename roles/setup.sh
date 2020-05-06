@@ -151,7 +151,7 @@ version() {
     fi
 }
 
-list() {
+_list() {
     local role_file_path role_dir_path role_name
 
     for role_file_path in $(find "$DOTF_BASE_PATH/" -type f -name "$DOTF_SETUP_SCRIPT"); do
@@ -239,7 +239,7 @@ main() {
 
     case "$func" in
         new)       _parse_new "$@"; new ;;
-        list)      list "$@" ;;
+        list)      _list "$@" ;;
         install)   install "$@" ;;
         upgrade)   upgrade "$@" ;;
         version)   version "$@" ;;
