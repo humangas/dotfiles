@@ -132,7 +132,7 @@ upgrade() {
     execute "$script_path" upgrade
 }
 
-version() {
+_version() {
     local role="$1"
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
 
@@ -143,8 +143,8 @@ version() {
 
     if [ -e "$script_path" ]; then
         source "$script_path"
-        local _version=$(version 2>/dev/null | head -n1 | sed -e s/,/_/g)
-        printf "$_version\n"
+        local __version=$(version 2>/dev/null | head -n1 | sed -e s/,/_/g)
+        printf "$__version\n"
         unset -f version
     else
         printf "$role is not found.\n"
@@ -164,7 +164,7 @@ _list() {
 _validate() {
     local role="$1"
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
-    local _install _upgrade _version _readme
+    local _install _upgrade __version _readme
 
     if [ -e "$script_path" ]; then
         source "$script_path"
@@ -172,12 +172,12 @@ _validate() {
         _readme=$([[ -f "$DOTF_BASE_PATH/$role/README.md" ]] && echo "$DOTF_TRUE_MARK" || echo "$DOTF_FALSE_MARK")
         [[ $(type -t install) == "function" ]] && _install="$DOTF_TRUE_MARK" || _install="$DOTF_FALSE_MARK"
         [[ $(type -t upgrade) == "function" ]] && _upgrade="$DOTF_TRUE_MARK" || _upgrade="$DOTF_FALSE_MARK"
-        [[ $(type -t version) == "function" ]] && _version="$DOTF_TRUE_MARK" || _version="$DOTF_FALSE_MARK"
+        [[ $(type -t version) == "function" ]] && __version="$DOTF_TRUE_MARK" || __version="$DOTF_FALSE_MARK"
 
         printf "README:$_readme "
         printf "install:$_install "
         printf "upgrade:$_upgrade "
-        printf "version:$_version "
+        printf "version:$__version "
         printf "\n"
 
         unset -f install
@@ -242,7 +242,7 @@ main() {
         list)      _list "$@" ;;
         install)   install "$@" ;;
         upgrade)   upgrade "$@" ;;
-        version)   version "$@" ;;
+        version)   _version "$@" ;;
         validate)  _validate "$@" ;;
         *)         usage ;;
     esac
