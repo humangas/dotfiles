@@ -79,12 +79,12 @@ depend() {
     local caller="${BASH_SOURCE[1]}"
 
     log "INFO" "==> $func dependencies $role..."
-    execute "$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT" "$func"
+    _execute "$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT" "$func"
 
     source "$caller"
 }
 
-execute() {
+_execute() {
     local role_setup_path="${1:?Error \"role_setup_path\" is required}"
     local func="${2:?Error \"func\" is required}"
 
@@ -115,7 +115,7 @@ _install() {
     }
 
     log "INFO" "==> install $role..."
-    execute "$script_path" install
+    _execute "$script_path" install
 }
 
 _upgrade() {
@@ -129,7 +129,7 @@ _upgrade() {
     }
 
     log "INFO" "==> upgrade $role..."
-    execute "$script_path" upgrade
+    _execute "$script_path" upgrade
 }
 
 _version() {
