@@ -164,17 +164,17 @@ _list() {
 _validate() {
     local role="$1"
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
-    local __install __upgrade __version _readme
+    local __install __upgrade __version __readme
 
     if [ -e "$script_path" ]; then
         source "$script_path"
 
-        _readme=$([[ -f "$DOTF_BASE_PATH/$role/README.md" ]] && echo "$DOTF_TRUE_MARK" || echo "$DOTF_FALSE_MARK")
+        __readme=$([[ -f "$DOTF_BASE_PATH/$role/README.md" ]] && echo "$DOTF_TRUE_MARK" || echo "$DOTF_FALSE_MARK")
         [[ $(type -t install) == "function" ]] && __install="$DOTF_TRUE_MARK" || __install="$DOTF_FALSE_MARK"
         [[ $(type -t upgrade) == "function" ]] && __upgrade="$DOTF_TRUE_MARK" || __upgrade="$DOTF_FALSE_MARK"
         [[ $(type -t version) == "function" ]] && __version="$DOTF_TRUE_MARK" || __version="$DOTF_FALSE_MARK"
 
-        printf "README:$_readme "
+        printf "README:$__readme "
         printf "install:$__install "
         printf "upgrade:$__upgrade "
         printf "version:$__version "
