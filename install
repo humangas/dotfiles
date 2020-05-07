@@ -2,6 +2,7 @@
 
 readonly DOTF_REPOSITORY_NAME='github.com/humangas/dotfiles'
 readonly DOTF_SETUP_SCRIPT_PATH='roles/main.sh'
+DOTF_BRANCH_NAME="${DOTF_BRANCH_NAME:-master}"
 
 display_logo() {
     _logo="
@@ -44,7 +45,7 @@ check_httpstatus() {
 
 download_repository() {
     log "INFO" "Download Setup Repository..."
-    curl -L https://${DOTF_REPOSITORY_NAME}/archive/master.tar.gz -# | tar xz -C ${DOTF_WORKTMPDIR} --strip=1
+    curl -L https://${DOTF_REPOSITORY_NAME}/archive/${DOTF_BRANCH_NAME}.tar.gz -# | tar xz -C ${DOTF_WORKTMPDIR} --strip=1
 }
 
 execute() {
