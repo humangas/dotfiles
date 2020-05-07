@@ -13,7 +13,7 @@ _installed() {
 }
 
 _config() {
-    git secrets --install ~/.git-templates/git-secrets
+    git secrets --install --force ~/.git-templates/git-secrets
     git config --global init.templateDir ~/.git-templates/git-secrets
 }
 
