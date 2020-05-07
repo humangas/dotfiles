@@ -59,7 +59,7 @@ execute() {
         done < <(cat $DOTF_ROLES_LIST) 
         roles=$(echo "${roles}" | tr ' ' '\n' | sed '/^$/d' | sort | uniq)
     else
-        roles=$(bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" list)
+        roles=$(bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" list | sort)
     fi
 
     rm -f install.log
