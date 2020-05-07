@@ -110,7 +110,7 @@ _install() {
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
     _validate "$role" | grep "install:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
-        log "ERROR" "Error: Not implemented"
+        log "ERROR" "Error: role:$role does not implemented install function."
         return 1
     }
 
@@ -124,7 +124,7 @@ _upgrade() {
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
     _validate "$role" | grep "upgrade:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
-        log "ERROR" "Error: Not implemented"
+        log "ERROR" "Error: role:$role does not implemented install function."
         return 1
     }
 
@@ -137,7 +137,7 @@ _version() {
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
 
     _validate "$role" | grep "version:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
-        log "ERROR" "Error: Not implemented"
+        log "ERROR" "Error: role:$role does not implemented install function."
         return 1
     }
 
@@ -154,6 +154,7 @@ _version() {
 _list() {
     local role_file_path role_dir_path role_name
 
+    # TODO: /Users/humangas/src/github.com/humangas/dotfiles/roles/main.sh は除くように修正
     for role_file_path in $(find "$DOTF_BASE_PATH/" -type f -name "$DOTF_SETUP_SCRIPT"); do
         role_dir_path="${role_file_path%/*}"
         role_name="${role_dir_path##*/}"
