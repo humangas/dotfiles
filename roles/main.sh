@@ -156,7 +156,7 @@ _list() {
 
     for role_file_path in $(find "$DOTF_BASE_PATH/" -type f -name "$DOTF_SETUP_SCRIPT"); do
         role_dir_path="${role_file_path%/*}"
-        [[ $role_dir_path == $DOTF_BASE_PATH/$DOTF_SETUP_SCRIPT ]] && continue
+        [[ $role_dir_path == $DOTF_BASE_PATH ]] && continue
         role_name="${role_dir_path##*/}"
         printf "$role_name\n"
     done
