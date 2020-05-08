@@ -14,7 +14,7 @@ display_logo() {
       ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
                                                                    
                                                                    
-      humangas's macOS setup tool and dotfiles
+      humangas's macOS setup tool
       See also: https://$DOTF_REPOSITORY_NAME
     "
     echo "$_logo"
