@@ -38,18 +38,18 @@ log() {
 check_httpstatus() {
     local httpstatus=`curl -LI https://${DOTF_REPOSITORY_NAME} -o /dev/null -w '%{http_code}\n' -s`
     if [ "$httpstatus" -ne 200 ]; then
-        log "ERROR" "Error Could not connect: https://${DOTF_REPOSITORY_NAME} HTTP_STATUS: $httpstatus"
+        log ERROR "Error Could not connect: https://${DOTF_REPOSITORY_NAME} HTTP_STATUS: $httpstatus"
         exit 1
     fi
 }
 
 download_repository() {
-    log "INFO" "Download Setup Repository..."
+    log INFO "Download Setup Repository..."
     curl -L https://${DOTF_REPOSITORY_NAME}/archive/${DOTF_BRANCH_NAME}.tar.gz -# | tar xz -C ${DOTF_WORKTMPDIR} --strip=1
 }
 
 execute() {
-    log "INFO" "Install dotfiles and some apps..."
+    log INFO "Install dotfiles and some apps..."
 
     local roles role
     if [[ -f $DOTF_ROLES_LIST ]]; then
@@ -81,7 +81,7 @@ exception() {
 main() {
     display_logo
 
-    log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Install..."
+    log INFO "[$(date +'%Y-%m-%d %H:%M:%S')] Install..."
     check_httpstatus
     DOTF_WORKTMPDIR=`mktemp -d`
     download_repository
@@ -92,14 +92,14 @@ main() {
     local errorlog="$(grep -n --color=auto 'Error' "$PWD/install.log")"
     printf "\n"
 
-    [[ ! -z "$dependlog" ]] && (log "INFO" "To define dependencies on your own, please refer to the following:" && echo -e "$dependlog\n")
-    [[ ! -z "$warnlog" ]] && (log "WARN" "Following warning occurred. please confirm the contents:" && echo -e "$warnlog\n")
-    [[ ! -z "$errorlog" ]] && (log "ERROR" "Following error occurred. please confirm the contents:" && echo -e "$errorlog\n")
+    [[ ! -z "$dependlog" ]] && (log INFO "To define dependencies on your own, please refer to the following:" && echo -e "$dependlog\n")
+    [[ ! -z "$warnlog" ]] && (log WARN "Following warning occurred. please confirm the contents:" && echo -e "$warnlog\n")
+    [[ ! -z "$errorlog" ]] && (log ERROR "Following error occurred. please confirm the contents:" && echo -e "$errorlog\n")
 
     if [[ -z "$errorlog" ]]; then
-        log "INFO" "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! Please Reboot the OS (Log: ./install.log)"
+        log INFO "[$(date +'%Y-%m-%d %H:%M:%S')] Finish!! Please Reboot the OS (Log: ./install.log)"
     else
-        log "ERROR" "[$(date +'%Y-%m-%d %H:%M:%S')] Error!! Processing was interrupted (Log: ./install.log)"
+        log ERROR "[$(date +'%Y-%m-%d %H:%M:%S')] Error!! Processing was interrupted (Log: ./install.log)"
     fi
 }
 
