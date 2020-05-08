@@ -41,6 +41,11 @@ check_httpstatus() {
         log ERROR "Error Could not connect: https://${DOTF_REPOSITORY_NAME} HTTP_STATUS: $httpstatus"
         exit 1
     fi
+
+    curl -sLI https://${DOTF_REPOSITORY_NAME}/archive/${DOTF_BRANCH_NAME}.zip | grep '404 Not Found' > /dev/null && {
+        log ERROR "Error 404 Not Found: https://${DOTF_REPOSITORY_NAME}/archive/${DOTF_BRANCH_NAME}.zip"
+        exit 1
+    }
 }
 
 download_repository() {
