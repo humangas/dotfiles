@@ -2,8 +2,8 @@
 [![OS macOS](https://img.shields.io/badge/OS-macOS-blue.svg)](OS)
 [![Build Status](https://travis-ci.org/humangas/dotfiles.svg?branch=master)](https://travis-ci.org/humangas/dotfiles)  
 
-My macOS setup tool and dotfiles  
-See also: https://humangas.github.io/dotfiles/
+humangas's macOS setup tool
+
 
 
 ## Installation
@@ -12,59 +12,40 @@ $ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/install | 
 ```
 
 
-### Setting computer name
-You can set the your computer name by setting environment variables as follows.
-
-```
-$ export SETUP_COMPUTER_NAME="<your computer name>"
-```
-
 ### Specify roles to install 
 With the settings below you can specify the roles to install (# is a comment).
 
-#### Roles
 ```
-$ export SETUP_ROLES_LIST=roles.lst
-$ cat roles.lst
+# Get roles list
+$ curl -sL https://raw.githubusercontent.com/humangas/dotfiles/master/list | bash > roles.lst
+
+# Update roles list
+$ vim roles.lst
+ag
+# vim
 zsh
-vim
-# curl
-tmux
+
+# Set roles list to DOTF_ROLES_LIST environment
+$ export DOTF_ROLES_LIST=roles.lst
 ```
 
 
-### NOTE
-### sudo password
+### NOTE: sudo password
 If you make the following settings in advance, you will not be asked for sudo password.
+
 ```
 $ sudo sh -c "echo `whoami` ALL=\(ALL\) NOPASSWD:ALL > /private/etc/sudoers.d/`whoami`"
 ```
 
 Delete it if it is not necessary after the installation is completed.
+
 ```
 $ sudo rm -f /private/etc/sudoers.d/$(whoami)
 ```
 
-### GateKeeper
-If you install GateKeeper non-compatible application, execute the following command.
-```
-$ sudo spctl --master-disable
-```
-
-This is a command to put the following state.
-- Security & Privacy > Allow application download from: > Anywhere
-
-Then do the following.
-1. Open Security & Privacy > Click Allow button
-2. Reinstall application
-
-After installing, execute the following command to enable GateKeeper.
-```
-$ sudo spctl --master-enable
-```
 
 
-## For Local
+## For local
 ```
 $ git clone https://github.com/humangas/dotfiles.git
 $ cd dotfiles
@@ -74,38 +55,34 @@ $ make install
 
 ### Usage
 ```
-Usage: setup <command> [option] [<args>]...
+$ dotf --help
+Usage: dotf <command> [option] [<role>]
 
 Command:
-    list      [role]...         List [role]... 
-    versions  [role]...         List version of [role]...
-    install   [role]...         Install [role]...
-    upgrade   [role]...         Upgrade [role]...
-    config    [role]...         Configure [role]...
-    enable    [role]...         Enable [role]...
-    disable   [role]...         Disable [role]...
-    create    <role>...         Create <role>...
-    edit      [role]            Edit "setup.sh" of <role> with $EDITOR (Default: roles/setup.sh)
+    list                    List roles
+    version   <role>        Version <role>
+    install   <role>        Install <role>
+    upgrade   <role>        Upgrade <role>
+    validate  <role>        Validate <role>
+    new       <role>        Create new [option] <role>
 
 Option:
-    --type    <type>            "<type>" specifies "setup.sh.<type>" under _templates directory
-                                Default: "$SETUP_TYPE_DEFAULT"
-                                Only "create" command option
+    --type    <type>        "<type>" specifies "main.sh.<type>" under roles/_templates directory
+                            Default: "$DOTF_NEW_TYPE_DEFAULT"
+                            Only "new" command option
 
 Settings:
     export EDITOR="vim"
-    export SETUP_TYPE_DEFAULT="setup.sh.brew"
-    export SETUP_LIST_FILES_DEPTH=3
+    export DOTF_NEW_TYPE_DEFAULT="plain"
 
 Examples:
-    setup install
-    setup install brew go direnv
-    setup create --type brewcask vagrant clipy skitch
-    setup edit ansible
-
-Convenient usage:
-    # List only roles that contain files
-    $ setup list | awk '$10!="-"{print $1" "$10}' | column -t
+    dotf list
+    dotf version go
+    dotf install go
+    dotf upgrade go
+    dotf validate go
+    dotf new go
+    dotf new --type brew go
 
 ```
 
