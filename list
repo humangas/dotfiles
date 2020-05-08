@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+readonly DOTF_REPOSITORY_NAME='github.com/humangas/dotfiles'
+readonly DOTF_SETUP_SCRIPT_PATH='roles/main.sh'
+DOTF_BRANCH_NAME="${DOTF_BRANCH_NAME:-master}"
+
+log() {
+    # Examples: log "INFO" "info message"
+    local type="${1:?Error: type is required}"
+    local msg="${2:?Error: msg is required}"
+
+    case "$type" in
+        INFO)   printf "\e[34m$msg\e[m\n" ;;
+        WARN)   printf "\e[35m$msg\e[m\n" ;;
+        ERROR)  printf "\e[31m$msg\e[m\n" ;;
+        *)      printf "\e[31mFatal: \"$type\" is an undefined type. Please implement it in the \"log\" function.\e[m\n"
+                exit 1
+                ;;
+    esac
+}
+
+check_httpstatus() {
+    local httpstatus=`curl -LI https://${DOTF_REPOSITORY_NAME} -o /dev/null -w '%{http_code}\n' -s`
+    if [ "$httpstatus" -ne 200 ]; then
+        log ERROR "Error Could not connect: https://${DOTF_REPOSITORY_NAME} HTTP_STATUS: $httpstatus"
+        exit 1
+    fi
+
+    curl -sLI https://${DOTF_REPOSITORY_NAME}/archive/${DOTF_BRANCH_NAME}.zip | grep '404 Not Found' > /dev/null && {
+        log ERROR "Error 404 Not Found: https://${DOTF_REPOSITORY_NAME}/archive/${DOTF_BRANCH_NAME}.zip"
+        exit 1
+    }
+}
+
+download_repository() {
+    log INFO "Download Setup Repository..."
+    curl -L https://${DOTF_REPOSITORY_NAME}/archive/${DOTF_BRANCH_NAME}.tar.gz -# | tar xz -C ${DOTF_WORKTMPDIR} --strip=1
+}
+
+execute() {
+    bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" list | sort
+}
+
+finally() {
+    [[ "$DOTF_WORKTMPDIR" ]] && rm -rf "$DOTF_WORKTMPDIR"
+}
+
+exception() {
+    log ERROR "Error!!"
+    finally
+    exit 1
+}
+
+main() {
+    check_httpstatus
+    DOTF_WORKTMPDIR=`mktemp -d`
+    download_repository > /dev/null 2>&1
+    execute 
+}
+
+trap finally 0
+trap exception 1 2 3 15
+
+main
