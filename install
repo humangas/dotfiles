@@ -69,7 +69,7 @@ execute() {
 
     rm -f install.log
     echo "$roles" | while read role; do
-        bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" install $role 2>&1 | tee --append install.log
+        bash "$DOTF_WORKTMPDIR/$DOTF_SETUP_SCRIPT_PATH" install $role 2>&1 | tee -a install.log
     done
 }
 
