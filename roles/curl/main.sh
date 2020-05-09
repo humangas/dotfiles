@@ -23,7 +23,7 @@ version() {
 install() {
     _installed || {
         depend install brew
-        brew install curl --with-openssl
+        brew install curl
     }
     _config
 }
