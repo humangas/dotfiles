@@ -14,6 +14,9 @@ _installed() {
 
 _config() {
     cp -fr .zsh.d "$HOME/"
+    for gnubin in /usr/local/opt/coreutils/libexec/gnubin/*; do
+        ln -fs $gnubin /usr/local/bin
+    done
 }
 
 version() {
