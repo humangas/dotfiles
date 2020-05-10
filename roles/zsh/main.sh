@@ -36,12 +36,9 @@ install() {
 
     _installed || {
         depend install brew
-        # --without-etcdir: Disable the reading of Zsh rc files in /etc
-        brew install zsh --without-etcdir
-        local login_shell='/usr/local/bin/zsh'
-        sudo dscl . -create /Users/$USER UserShell "$login_shell"
+        brew install zsh
+        log INFO "Caveats: change login shell: $ sudo chsh -s /usr/local/bin/zsh"
     }
-
     _colorscheme
     _config
 }
