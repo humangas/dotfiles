@@ -30,7 +30,6 @@ install() {
         depend install brew
         depend install python
         depend install ctags # For Plugin: szw/vim-tags
-        depend install sass  # For plugin: AtsushiM/sass-compile.vim
         depend install lua   # For plugin: Shougo/neocomplete.vim
         brew install vim --with-python3 --with-lua --with-override-system-vi
         _install_vimplug
