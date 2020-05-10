@@ -1,4 +1,3 @@
 # gnu-sed
-TODO: Please write the contents
+TODO: Write contents
 
-gnu-sed --with-defaults-names
