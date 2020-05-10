@@ -97,7 +97,8 @@ _execute() {
     (cd `dirname "$role_setup_path"`; "$func")
 
     [[ $? -ne 0 ]] && {
-        log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\""
+        local role_name=${role_setup_path%/*};
+        log ERROR "Error: occurred during \"${role_name##*/}\" \"$func\""
         exit 1
     }
 
