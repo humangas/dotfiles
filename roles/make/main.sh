@@ -14,7 +14,9 @@ _installed() {
 
 _config() {
     cp -fr .zsh.d "$HOME/"
-    ln -s /usr/local/opt/make/libexec/gnubin/make /usr/local/bin
+    for gnubin in /usr/local/opt/make/libexec/gnubin/*; do
+        ln -fs $gnubin /usr/local/bin
+    done
 }
 
 version() {
