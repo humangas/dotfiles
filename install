@@ -101,7 +101,7 @@ main() {
 
     [[ ! -z "$dependlog" ]] && (log INFO "To define dependencies on your own, please refer to the following:" && echo -e "$dependlog\n")
     [[ ! -z "$warnlog" ]] && (log WARN "Following warning occurred. please confirm the contents:" && echo -e "$warnlog\n")
-    [[ ! -z "$caveatslog" ]] && (log WARN "Following caveats occurred. please confirm the contents:" && echo -e "$warnlog\n")
+    [[ ! -z "$caveatslog" ]] && (log WARN "Following caveats occurred. please confirm the contents:" && echo -e "$caveatslog\n")
     [[ ! -z "$errorlog" ]] && (log ERROR "Following error occurred. please confirm the contents:" && echo -e "$errorlog\n")
 
     if [[ -z "$errorlog" ]]; then
