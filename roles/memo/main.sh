@@ -14,7 +14,9 @@ _installed() {
 
 _config() {
     cp -r .config "$HOME/"
-    ln -sfnv "$HOME/memo" "$HOME/Dropbox/note"
+    brew cask list dropbox > /dev/null 2>&1 && {
+        ln -sfnv "$HOME/memo" "$HOME/Dropbox/note"
+    }
 }
 
 version() {
@@ -35,7 +37,6 @@ install() {
             cd $GOPATH/src/github.com/humangas/memo-plugin-move
             make install
         )
-        depend install dropbox
     }
     _config
 }
