@@ -12,6 +12,13 @@ _installed() {
     brew list grep > /dev/null 2>&1; return $?
 }
 
+_config() {
+    cp -fr .zsh.d "$HOME/"
+    for gnubin in /usr/local/opt/grep/libexec/gnubin/*; do
+        ln -fs $gnubin /usr/local/bin
+    done
+}
+
 version() {
     basename "$(readlink /usr/local/opt/grep)"
 }
@@ -19,8 +26,9 @@ version() {
 install() {
     _installed || {
         depend install brew
-        brew install grep --with-default-names
+        brew install grep
     }
+    _config
 }
 
 upgrade() {
