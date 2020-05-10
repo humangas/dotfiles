@@ -37,7 +37,7 @@ install() {
     _installed || {
         depend install brew
         brew install zsh
-        log INFO "Caveats: change login shell: $ sudo chsh -s /usr/local/bin/zsh"
+        log WARN "Caveats: change login shell: $ sudo chsh -s /usr/local/bin/zsh"
     }
     _colorscheme
     _config
