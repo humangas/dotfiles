@@ -14,6 +14,9 @@ _installed() {
 
 _config() {
     cp -fr .zsh.d "$HOME/"
+    for gnubin in /usr/local/opt/findutils/libexec/gnubin/*; do
+        ln -fs $gnubin /usr/local/bin
+    done
 }
 
 version() {
@@ -23,7 +26,7 @@ version() {
 install() {
     _installed || {
         depend install brew
-        brew install findutils --with-default-names
+        brew install findutils
     }
     _config
 }
