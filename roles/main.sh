@@ -203,7 +203,7 @@ _new() {
     if [[ ! -e "$DOTF_BASE_PATH/$role" ]]; then
         mkdir -p "$DOTF_BASE_PATH/$role"
         cp "$template_setup_script_path" "$DOTF_BASE_PATH/$role/${DOTF_NEW_TEMPLATE%.*}"
-        cp "$template_dir/README.md" "$DOTF_BASE_PATH/$role"
+        cp "$template_dir/README.md.template" "$DOTF_BASE_PATH/$role/README.md"
         sed -i "s/\${role}/$role/g" "$DOTF_BASE_PATH/$role/README.md"
         log INFO "==> Created \"$role\" role"
     else
