@@ -12,6 +12,13 @@ _installed() {
     brew list gnu-indent > /dev/null 2>&1; return $?
 }
 
+_config() {
+    cp -fr .zsh.d "$HOME/"
+    for gnubin in /usr/local/opt/gnu-indent/libexec/gnubin/*; do
+        ln -fs $gnubin /usr/local/bin
+    done
+}
+
 version() {
     basename "$(readlink /usr/local/opt/gnu-indent)"
 }
@@ -19,8 +26,9 @@ version() {
 install() {
     _installed || {
         depend install brew
-        brew install gnu-indent --with-default-names
+        brew install gnu-indent
     }
+    _config
 }
 
 upgrade() {
