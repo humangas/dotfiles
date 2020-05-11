@@ -2,25 +2,24 @@
 # See: ../_templates/README.md
 
 
-is_installed() {
+ROLE_NAME="FIXME: set role name";
+
+_installed() {
     if type gem > /dev/null 2>&1; then
-        [[ -z $(gem list --local "$SETUP_CURRENT_ROLE_NAME" | tail -n 1) ]] && return 1 || return 0
+        [[ -z $(gem list --local $ROLE_NAME | tail -n 1) ]] && return 1 || return 0
     fi
     return 1
 }
 
 version() {
-    gem list --local "$SETUP_CURRENT_ROLE_NAME" | head -n 1 | sed "s/$SETUP_CURRENT_ROLE_NAME //" | sed -e "s/[()]//g"
-}
-
-config() {
-    return
+    gem list --local $ROLE_NAME | head -n 1 | sed "s/$ROLE_NAME //" | sed -e "s/[()]//g"
 }
 
 install() {
-    depend "install" "ruby"
-    gem install "$SETUP_CURRENT_ROLE_NAME"
-    config
+    _installed || {
+        depend install ruby
+        gem install $ROLE_NAME
+    }
 }
 
 upgrade() {

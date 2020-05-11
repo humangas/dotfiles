@@ -13,8 +13,3 @@ install() {
 upgrade() {
     echo "TODO: Implement this function"
 }
-
-uninstall() {
-    echo "TODO: Implement this function"
-}
-

@@ -2,22 +2,19 @@
 # See: ../_templates/README.md
 
 
-is_installed() {
-    type "$SETUP_CURRENT_ROLE_NAME" > /dev/null 2>&1; return $?
+ROLE_NAME="FIXME: set role name";
+
+_installed() {
+    type $ROLE_NAME > /dev/null 2>&1; return $?
 }
 
 version() {
-    "$SETUP_CURRENT_ROLE_NAME" --version
-}
-
-config() {
-    return
+    $ROLE_NAME --version
 }
 
 install() {
-    depend "install" "go"
-    go get -u github.com/hhatto/$SETUP_CURRENT_ROLE_NAME/cmd/$SETUP_CURRENT_ROLE_NAME
-    config
+    depend install go
+    go get -u github.com/"FIXME: set path"
 }
 
 upgrade() {
