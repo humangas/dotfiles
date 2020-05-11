@@ -10,16 +10,16 @@ _config() {
     cp .vimrc "$HOME/"
 }
 
+_install_vimplug() {
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+}
+
 version() {
     basename "$(readlink /usr/local/opt/vim)"
 }
 
 install() {
-	_install_vimplug() {
-        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	}
-
     _installed || {
         depend install brew
         depend install python
