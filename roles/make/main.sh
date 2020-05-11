@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/usr/bin/env bash -eu
 # See: ../_templates/README.md
 
 
