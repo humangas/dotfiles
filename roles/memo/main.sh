@@ -32,7 +32,7 @@ install() {
             make install
         )
     }
-    _config
+    _config || true
 }
 
 upgrade() {
