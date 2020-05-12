@@ -29,11 +29,11 @@ install() {
         _install_vimplug
         depend install go    # For vim plugin, see below
         # TODO: ほぼ使わないので削除する: vimrc も同時に見直す
-        go get -u github.com/fatih/hclfmt
+        # go get -u github.com/fatih/hclfmt
         # TODO: すでに非推奨なので、推奨を使う。vimrc も同時に整理する
         # => https://github.com/golangci/golangci-lint
-        go get -u gopkg.in/alecthomas/gometalinter.v2
-        gometalinter --install --update
+        # go get -u gopkg.in/alecthomas/gometalinter.v2
+        # gometalinter --install --update
     }
     _config
 }
@@ -43,7 +43,7 @@ upgrade() {
         brew upgrade vim
     }
     # TODO: install 参照（そこと同じ整理をする）
-    go get -u github.com/fatih/hclfmt              # For plugin: fatih/vim-hclfmt
-    go get -u gopkg.in/alecthomas/gometalinter.v2  # For plugin: w0rp/ale, go linter
-    gometalinter --install --update
+    # go get -u github.com/fatih/hclfmt              # For plugin: fatih/vim-hclfmt
+    # go get -u gopkg.in/alecthomas/gometalinter.v2  # For plugin: w0rp/ale, go linter
+    # gometalinter --install --update
 }
