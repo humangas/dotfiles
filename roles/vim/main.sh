@@ -25,7 +25,7 @@ install() {
         depend install python
         depend install ctags # For Plugin: szw/vim-tags
         depend install lua   # For plugin: Shougo/neocomplete.vim
-        brew install vim --with-lua --with-override-system-vi
+        brew install vim
         _install_vimplug
         depend install go    # For vim plugin, see below
         # TODO: ほぼ使わないので削除する: vimrc も同時に見直す
