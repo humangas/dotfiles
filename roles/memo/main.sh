@@ -1,20 +1,16 @@
-#!/bin/bash -u
-##############################################################################################
-# Usage: source from roles/setup.sh
-# Implementation of the following functions is required.
-# - is_installed, version, config, install, upgrade, config
-# The following functions can be used.
-# - log, depend
-# The following environment variables can be used.
-# - SETUP_CURRENT_ROLE_NAME, SETUP_CURRENT_ROLE_DIR_PATH
-##############################################################################################
+#!/usr/bin/env bash -eu
+# See: ../_templates/README.md
+
+
 _installed() {
     type memo > /dev/null 2>&1; return $?
 }
 
 _config() {
     cp -r .config "$HOME/"
-    ln -sfnv "$HOME/memo" "$HOME/Dropbox/note"
+    brew cask list dropbox > /dev/null 2>&1 && {
+        ln -sfnv "$HOME/memo" "$HOME/Dropbox/note"
+    }
 }
 
 version() {
@@ -35,9 +31,8 @@ install() {
             cd $GOPATH/src/github.com/humangas/memo-plugin-move
             make install
         )
-        depend install dropbox
     }
-    _config
+    _config || true
 }
 
 upgrade() {

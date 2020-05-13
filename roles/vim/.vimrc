@@ -137,7 +137,6 @@ Plug 'othree/html5.vim'
 Plug 'hokaccha/vim-html5validator'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'jelera/vim-javascript-syntax'
-Plug 'AtsushiM/sass-compile.vim'
 
 "" Markdown
 Plug 'jszakmeister/markdown2ctags'

@@ -58,7 +58,7 @@ abs_dirname() {
 }
 
 log() {
-    # Examples: log "INFO" "info message"
+    # Examples: log INFO "info message"
     local type="${1:?Error: type is required}"
     local msg="${2:?Error: msg is required}"
 
@@ -78,7 +78,7 @@ depend() {
     local role="${2:?Error \"role\" is required}"
     local caller="${BASH_SOURCE[1]}"
 
-    log "INFO" "==> $func dependencies $role..."
+    log INFO "==> $func dependencies $role..."
     _execute "$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT" "$func"
 
     source "$caller"
@@ -89,7 +89,7 @@ _execute() {
     local func="${2:?Error \"func\" is required}"
 
     [ -e "$role_setup_path" ] || {
-        log "ERROR" "Error: \"$role_setup_path\" is not found"
+        log ERROR "Error: \"$role_setup_path\" is not found"
         exit 1
     }
 
@@ -97,7 +97,8 @@ _execute() {
     (cd `dirname "$role_setup_path"`; "$func")
 
     [[ $? -ne 0 ]] && {
-        log "ERROR" "Error: occurred during \"$SETUP_CURRENT_ROLE_NAME\" \"$func\""
+        local role_name=${role_setup_path%/*};
+        log ERROR "Error: occurred during \"${role_name##*/}\" \"$func\""
         exit 1
     }
 
@@ -110,11 +111,11 @@ _install() {
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
     _validate "$role" | grep "install:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
-        log "ERROR" "Error: role:$role does not implemented install function."
+        log ERROR "Error: role:$role does not implemented install function."
         return 1
     }
 
-    log "INFO" "==> install $role..."
+    log INFO "==> install $role..."
     _execute "$script_path" install
 }
 
@@ -124,11 +125,11 @@ _upgrade() {
     local script_path="$role_dir/$DOTF_SETUP_SCRIPT"
 
     _validate "$role" | grep "upgrade:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
-        log "ERROR" "Error: role:$role does not implemented install function."
+        log ERROR "Error: role:$role does not implemented install function."
         return 1
     }
 
-    log "INFO" "==> upgrade $role..."
+    log INFO "==> upgrade $role..."
     _execute "$script_path" upgrade
 }
 
@@ -137,7 +138,7 @@ _version() {
     local script_path="$DOTF_BASE_PATH/$role/$DOTF_SETUP_SCRIPT"
 
     _validate "$role" | grep "version:$DOTF_TRUE_MARK" > /dev/null 2>&1 || {
-        log "ERROR" "Error: role:$role does not implemented install function."
+        log ERROR "Error: role:$role does not implemented install function."
         return 1
     }
 
@@ -195,18 +196,18 @@ _new() {
     local template_setup_script_path="$template_dir/$DOTF_NEW_TEMPLATE"
 
     if [[ ! -f "$template_setup_script_path" ]]; then
-        log "ERROR" "Error: \"$DOTF_NEW_TEMPLATE\" is not found under _templates directory"
+        log ERROR "Error: \"$DOTF_NEW_TEMPLATE\" is not found under _templates directory"
         return 1
     fi
 
     if [[ ! -e "$DOTF_BASE_PATH/$role" ]]; then
         mkdir -p "$DOTF_BASE_PATH/$role"
         cp "$template_setup_script_path" "$DOTF_BASE_PATH/$role/${DOTF_NEW_TEMPLATE%.*}"
-        cp "$template_dir/README.md" "$DOTF_BASE_PATH/$role"
+        cp "$template_dir/README.md.template" "$DOTF_BASE_PATH/$role/README.md"
         sed -i "s/\${role}/$role/g" "$DOTF_BASE_PATH/$role/README.md"
-        log "INFO" "==> Created \"$role\" role"
+        log INFO "==> Created \"$role\" role"
     else
-        log "ERROR" "Error: \"$role\" role is already exists"
+        log ERROR "Error: \"$role\" role is already exists"
         return 1
     fi
 }
