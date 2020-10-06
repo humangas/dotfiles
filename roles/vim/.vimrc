@@ -1,518 +1,365 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ~/.vimrc
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Base
-set encoding=utf8                                   "Encoding
-set fileencoding=utf-8                              "File Encoding
-set nobackup                                        "No create backup file.
-set noswapfile                                      "No create swap file.
-set autoread                                        "Rereading Automatic When the file being edited is changed.
-set hidden                                          "Buffer is to be opened in the editing.
-set showcmd                                         "To view the command in the input to the status.
-set mouse=a                                         "To enable the mouse operation.
-set confirm                                         "To make sure when there are unsaved files.
-set visualbell t_vb=                                "Disable all the beep.
-set noerrorbells                                    "Not sound the beep at the time of display of error messages.
-set clipboard=unnamed,autoselect                    "To insert the selected text in visual mode to the clipboard. & Share the clipboard.
-set backspace=indent,eol,start                      "Backspace key so as to operate normally.
-set history=100                                     "The number of command history
-set completeopt=menuone,longest                     "Completion Style (* non preview)
-set switchbuf=useopen                               "If already in the buffer, open that file.
-set autowrite                                       "Auto save file If there is a change when file move or make command is executed.
-set ambiwidth=double                                "Display double-byte characters normally
-
-" Key
-"" Replace j,k to gj, gk
-nnoremap j gj
-nnoremap k gk
-inoremap <silent> jj <ESC>
-
-" Tab
-set expandtab                                       "Convert tabs to spaces.
-set shiftwidth=4                                    "Display width of the Tab character at the beginning of a line.
-set tabstop=4                                       "Display width of the Tab character other than the beginning of the line.
-augroup fileTypeIndent
-    autocmd!
-    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.css  setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.js   setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+"Setting/Basic
+set encoding=utf8                                      ""Encoding
+set fileencoding=utf-8                                 ""File Encoding
+set showcmd                                            ""To view the command in the input to the status.
+set noswapfile                                         ""No create swap file.
+set nobackup                                           ""No create backup file.
+set clipboard=unnamed,autoselect                       ""To insert the selected text in visual mode to the clipboard. & Share the clipboard.
+set hidden                                             ""Buffer is to be opened in the editing.
+set autoread                                           ""Rereading Automatic When the file being edited is changed.
+set confirm                                            ""To make sure when there are unsaved files.
+set visualbell t_vb=                                   ""Disable all the beep.
+set noerrorbells                                       ""Not sound the beep at the time of display of error messages.
+set switchbuf=useopen                                  ""If already in the buffer, open that file.
+set autowrite                                          ""Auto save file If there is a change when file move or make command is executed.
+set textwidth=0                                        ""Turn off automatic line breaks.
+set history=100                                        ""The number of command history
+set completeopt=menuone,noinsert                       ""Completion Style
+set ambiwidth=double                                   ""Display double-byte characters normally
+set wildignore=*.o,*.obj,*.pyc,*.so,*.dll,*.class,*~   ""Ignore Pattern when the complement, vimgrep.
+""Don't perform a line feed when pressing the Enter key on the completion display.
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+augroup autochdir-settings
+  autocmd!
+  ""Automatically move to the directory of the file being edited
+  autocmd BufEnter * silent! lcd %:p:h
 augroup END
 
-" Search
-set ignorecase                                      "Search not case sensitive.
-set smartcase                                       "If the search string contains upper-case letters, to search by distinguishing.
-set incsearch                                       "To enable incremental search.
-set wrapscan                                        "Search to the end, go back to the beginning.
-set hlsearch                                        "Search result hilight.
-"To turn off the highlight in the Esc key * 2.
-nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
 
-" Completion
-set wildmenu wildmode=list:longest,full             "At the time of the command mode, to supplement the command with the Tab key.
-set wildignore=*.o,*.obj,*.pyc,*.so,*.dll           "Ignore Pattern when the complement.
-
-" View
-set title                                           "To display the name of the file being edited.
-set number                                          "View number count.
-set ruler                                           "Display ruler.
-set cursorline                                      "Currently highlight the line.
-set cursorcolumn                                    "Currently highlight the line (column).
-set showmatch                                       "Input parentheses, to highlight the corresponding brackets.
-set laststatus=2                                    "Display the status line in the second row from the end.
-
-" Exchange tab, space
-autocmd BufEnter *.txt,*.py  setlocal expandtab
-autocmd FileType make  setlocal noexpandtab
-
-" Leader
+"Setting/Leader
 let mapleader = "\<Space>"
 let maplocalleader = ','
 
-" Plugin see also: https://github.com/junegunn/vim-plug
+
+"Setting/Tab
+set expandtab                                          ""Convert tabs to spaces.
+set shiftwidth=2                                       ""Display width of the Tab character at the beginning of a line.
+set tabstop=2                                          ""Display width of the Tab character other than the beginning of the line.
+
+
+"Setting/View
+set number                                             ""View number count.
+set title                                              ""To display the name of the file being edited.
+set ruler                                              ""Display ruler.
+set cursorline                                         ""Currently highlight the line.
+set showmatch                                          ""Input parentheses, to highlight the corresponding brackets.
+set laststatus=2                                       ""Display the status line in the second row from the end. (for lightline.vim)
+set signcolumn=yes                                     ""Display signcolumn always
+
+
+"Setting/Search
+set ignorecase                                         ""Search not case sensitive.
+set smartcase                                          ""If the search string contains upper-case letters, to search by distinguishing.
+set incsearch                                          ""To enable incremental search.
+set wrapscan                                           ""Search to the end, go back to the beginning.
+set hlsearch                                           ""Search result hilight.
+""To turn off the highlight in the Esc key * 2.
+nnoremap <silent> <ESC><ESC> :nohlsearch<CR>
+
+
+"Setting/Key
+""Replace j,k to gj, gk
+nnoremap j gj
+nnoremap k gk
+""jj insted of ESC
+inoremap <silent> jj <ESC>
+""Display current buffer path on the command line
+cnoremap <c-x> <c-r>=expand('%:p')<cr>
+
+
+"Setting/Plugin
 call plug#begin('~/.vim/plugged')
-
-"" Appearance
-Plug 'altercation/vim-colors-solarized'
-Plug 'itchyny/lightline.vim'
-
-"" Window
-Plug 'simeji/winresizer'
-Plug 'Valloric/ListToggle'
-
-"" File Operation
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-outline'
-Plug 'thinca/vim-unite-history'
-Plug 'LeafCage/yankround.vim'
-
-"" File Selector
+""Color"
+Plug 'arcticicestudio/nord-vim'
+""Selector
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-"" Text Edit
-Plug 'tpope/vim-surround'
+""Window
+Plug 'simeji/winresizer'
+Plug 'itchyny/lightline.vim'
+Plug 'lambdalisue/fern.vim'
+""Edit
 Plug 'tomtom/tcomment_vim'
-Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
-
-"" Tag
-Plug 'szw/vim-tags'
-Plug 'majutsushi/tagbar'
-
-"" Lint
-Plug 'w0rp/ale'
-Plug 'maximbaz/lightline-ale'
-Plug 'mtscout6/syntastic-local-eslint.vim'
-
-"" Bash
-Plug 'vim-scripts/bats.vim'
-
-"" Python
-Plug 'davidhalter/jedi-vim'
-Plug 'lambdalisue/vim-pyenv', { 'for': 'python' }
-"" vim-repl for python
-Plug 'sillybun/vim-repl', { 'do': './install.sh' }
-Plug 'sillybun/vim-async', { 'do': './install.sh' }
-Plug 'sillybun/zytutil'
-
-"" Go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries', 'for': 'go' }
-
-"" Vue.js
-Plug 'posva/vim-vue'
-
-"" TypeScript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-
-"" Frontend
-Plug 'mattn/emmet-vim'
-Plug 'othree/html5.vim'
-Plug 'hokaccha/vim-html5validator'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'jelera/vim-javascript-syntax'
-
-"" Markdown
-Plug 'jszakmeister/markdown2ctags'
-Plug 'kannokanno/previm'
-Plug 'wookayin/vim-typora'
-Plug 'glidenote/memolist.vim'
-
-"" HashiCorp
-Plug 'fatih/vim-hclfmt'
-
-"" Git
-Plug 'lambdalisue/gina.vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'godlygeek/tabular'
+""Git
+Plug 'iberianpig/tig-explorer.vim'
 Plug 'airblade/vim-gitgutter'
-"Plug 'rhysd/github-complete.vim'
-
-"" Database
-Plug 'vim-scripts/dbext.vim'
-
-"" Utility
+Plug 'itchyny/vim-gitbranch'
+""Utility
+Plug 'previm/previm'
+Plug 'glidenote/memolist.vim'
 Plug 'tyru/open-browser.vim'
-Plug 'haya14busa/vim-open-googletranslate'
-
-"" Vim extension
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'Shougo/vimshell', { 'tag': '3787e5' }
-
+""Development
+"""brew install node && npm i -g yarn
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'liuchengxu/vista.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
-" Color scheme
-syntax enable
-set background=dark
-colorscheme solarized
 
-" Plugin itchyny/lightline.vim 
-" Plugin maximbaz/lightline-ale
-let g:lightline = {
-    \ 'colorscheme': 'solarized',
-    \ 'active': {
-    \   'left': [
-    \       [ 'mode', 'paste' ],
-    \       [ 'readonly', 'gitbranch', 'filename', 'modified' ],
-    \   ],
-    \   'right': [
-    \       [ 'lineinfo' ],
-    \       [ 'percent' ],
-    \       [ 'fileformat', 'fileencoding', 'filetype' ],
-    \       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-    \   ],
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'gina#component#repo#branch',
-    \   'filename': 'LightlineFilename',
-    \ },
-    \ 'component_expand': {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-    \ },
-    \ 'component_type': {
-      \  'linter_checking': 'left',
-      \  'linter_warnings': 'warning',
-      \  'linter_errors': 'error',
-      \  'linter_ok': 'left',
-    \ },
-\ }
-function! LightlineFilename()
-    let name = winwidth(0) > 105 ? expand('%:p') : expand('%:t') 
-    return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-        \ &filetype ==# 'unite' ? unite#get_status_string() :
-        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-        \ expand('%:t') !=# '' ? name : '[No Name]'
-endfunction
-let g:lightline#ale#indicator_warnings = 'W:'                               "The indicator to use when there are warnings. Default is W:.
-let g:lightline#ale#indicator_errors = 'E:'                                 "The indicator to use when there are errors. Default is E:.
-let g:lightline#ale#indicator_ok = 'OK'                                     "The indicator to use when there are no warnings or errors. Default is OK.
-
-" Plugin altercation/vim-colors-solarized
-let g:solarized_termtrans=1                                                 "Terminal at the time of the transparent background, to enable transparent background of Solarized.
-
-" Plugin w0rp/ale
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-let g:ale_set_loclist = 1                                                   "Location list: on
-let g:ale_set_quickfix = 0                                                  "QuickFix: off
-let g:ale_open_list = 0                                                     "Keep error/warning window open: off
-let g:ale_keep_list_window_open = 0                                         "Keep the window when there are no more errors/warnings: off
-let g:ale_sign_column_always = 1                                            "Keep symbol column open: on
-let g:ale_lint_on_save = 1                                                  "Lint when file save: on
-let g:ale_lint_on_text_changed = 0                                          "Lint when text change: off
-let g:ale_lint_on_enter = 1                                                 "Lint when file open: on
-let g:ale_fix_on_save = 1                                                   "Fixers when file save: on
-let g:ale_echo_msg_error_str = 'Error'                                      "Message serverity Error string
-let g:ale_echo_msg_warning_str = 'Warning'                                  "Message serverity Warning string
-let g:ale_echo_msg_format = '[%linter%] [%severity%] %s'                    "Message format
-" go: go get -u gopkg.in/alecthomas/gometalinter.v2
-" python: pipenv install --dev flake8
-" yaml: pipenv install --dev yamllint
-" javascript: npm install --save-dev eslint
-" typescript: npm install --save-dev tslint
-let g:ale_linters = {
-    \ 'go': ['gometalinter'],
-    \ 'python': ['flake8'],
-    \ 'yaml': ['yamllint'],
-    \ 'javascript': ['eslint'],
-    \ 'typescript': ['tslint'],
-\ }
-" python: pipenv install --dev autopep8 isort
-" javascript: npm install --save-dev prettier-eslint prettier-eslint-cli
-let g:ale_fixers = {
-    \ 'python': ['autopep8', 'isort'],
-    \ 'javascript': ['prettier-eslint'],
-    \ 'typescript': ['prettier-eslint'],
-\ }
-"" gometalinter for Golang linter see also: https://github.com/alecthomas/gometalinter#installing
-let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
-"" Use Prettier config files (.prettierrc)
-let g:ale_javascript_prettier_use_local_config = 1
-
-" Plugin Valloric/ListToggle
-let g:lt_location_list_toggle_map = '<Leader>l'                             "Toggle Location list window
-let g:lt_quickfix_list_toggle_map = '<Leader>q'                             "Toggle QuickFix window
-let g:lt_height = 10                                                        "Location list/QuickFix window height
-"" list my settings
-autocmd FileType qf call s:list_my_settings()
-function! s:list_my_settings()
-  "" Press esc twice to exit
+"Setting/Tool/junegunn/vim-plug
+autocmd FileType vim-plug call s:vimplug_keymap()
+function! s:vimplug_keymap()
+  ""Press esc twice to close
   nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
   imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
 endfunction
 
-" Plugin kannokanno/previm 
-let g:previm_open_cmd = 'open -a Safari'                                    "Open Safari when PrevimOpen
 
-" Plugin Shougo/vimfiler
-let g:vimfiler_ignore_pattern = '^\%(.DS_Store\)$'                          "ignore pattern, default display dotfiles
-call vimfiler#custom#profile('default', 'context', {
-    \   'explorer': 1,
-    \   'auto-cd': 1,
-    \   'safe': 0
-\ })
-nnoremap <silent> <Leader>e :<C-u>VimFilerBufferDir<CR>
-nnoremap <silent> <Leader>E :<C-u>VimFilerBufferDir<Space>-explorer<Space>-direction=rightbelow<CR>
-"" vimfiler my settings
-autocmd FileType vimfiler call s:vimfiler_my_settings()
-function! s:vimfiler_my_settings()
-  "" Press esc twice to exit
-  nmap <silent><buffer> <ESC><ESC> q
-  imap <silent><buffer> <ESC><ESC> <ESC>q
+"Setting/Tool/arcticicestudio/nord-vim
+""Disable diff backgroud color
+let g:nord_uniform_diff_background = 1
+""Set bold vertical split line
+let g:nord_bold_vertical_split_line = 1
+""Set cursor line number backgroud
+let g:nord_cursor_line_number_background = 1
+""ref. https://github.com/arcticicestudio/nord-vim/issues/26
+""ref. https://www.nordtheme.com/docs/ports/vim/customization
+augroup colorscheme-nord-overrides
+  autocmd!
+  autocmd ColorScheme nord highlight Visual ctermfg=11
+  autocmd ColorScheme nord highlight CursorLine ctermfg=14
+augroup END
+""Set colorscheme (NOTE: Set at the bottom of the color sheme)
+colorscheme nord
+
+
+"Setting/Tool/lambdalisue/fern.vim
+let g:fern#default_hidden = 1
+let g:fern#disable_default_mappings = 1
+nnoremap <silent> <Leader>e :<C-u>Fern .<CR>
+autocmd FileType fern call s:fern_keymap()
+function! s:fern_keymap()
+  ""Press esc twice to close
+  nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
+  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
+  ""Fern Keymaps
+  nmap <silent><buffer><nowait> <C-h> <Plug>(fern-action-leave)
+  nmap <silent><buffer><nowait> h <Plug>(fern-action-collapse)
+  nmap <silent><buffer><nowait> <C-r> <Plug>(fern-action-reload)
+  nmap <silent><buffer><nowait> o <Plug>(fern-action-open)
+  nmap <silent><buffer><nowait> <Return> o
+  nmap <silent><buffer><nowait> <Space> <Plug>(fern-action-mark:toggle)
+  nmap <silent><buffer><nowait> t <Plug>(fern-action-open:tabedit)
+  nmap <silent><buffer><nowait> l <Plug>(fern-action-expand)
+  nmap <silent><buffer><nowait> x <Plug>(fern-action-open:system)
+  nmap <silent><buffer><nowait> N <Plug>(fern-action-new-file)
+  nmap <silent><buffer><nowait> K <Plug>(fern-action-new-dir)
+  nmap <silent><buffer><nowait> c <Plug>(fern-action-copy)
+  nmap <silent><buffer><nowait> m <Plug>(fern-action-move)
+  nmap <silent><buffer><nowait> r <Plug>(fern-action-rename)
+  nmap <silent><buffer><nowait> D <Plug>(fern-action-trash)
+  nmap <silent><buffer><nowait> C <Plug>(fern-action-clipboard-copy)
+  nmap <silent><buffer><nowait> M <Plug>(fern-action-clipboard-move)
+  nmap <silent><buffer><nowait> P <Plug>(fern-action-clipboard-paste)
+  nmap <silent><buffer> yy <Plug>(fern-action-yank:path)
+  ""FZF Keymaps
+  nmap <silent><buffer><nowait> <LocalLeader>a :<C-u>FzfAg<CR>
+  nmap <silent><buffer><nowait> <LocalLeader>b :<C-u>FzfBuffers<CR>
+  nmap <silent><buffer><nowait> <LocalLeader>h :<C-u>FzfHistory<CR>
 endfunction
 
-" Plugin majutsushi/tagbar
-let g:tagbar_autofocus = 1                                                  "Focus when open tagbar (= 1)
-let g:tagbar_left = 1                                                       "tagbar open left side
-let g:tagbar_autoshowtag = 1                                                "Show tag auto
-nnoremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
-let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : $HOME . '/.vim/plugged/markdown2ctags/markdown2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
-"" tagbar my settings
-autocmd FileType tagbar call s:tagbar_my_settings()
-function! s:tagbar_my_settings()
-  "" Press esc twice to exit
-  nmap <silent><buffer> <ESC><ESC> q
-  imap <silent><buffer> <ESC><ESC> <ESC>q
-endfunction
 
-" Plugin junegunn/fzf.vim 
+"Setting/Tool/junegunn/fzf.vim
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_layout = { 'up': '~35%' }
-nnoremap <silent> <LocalLeader>l :<C-u>FzfBLines<CR>
-nnoremap <silent> <LocalLeader>a :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
-nnoremap <silent> <LocalLeader>h :<C-u>FzfHistory<CR>
-nnoremap <silent> <LocalLeader>f :<C-u>FzfFiles<CR>
-nnoremap <silent> <LocalLeader>b :<C-u>FzfBuffers<CR>
+nmap <silent> <Leader><Leader> :<C-u>FzfFiles<CR>
+nnoremap <silent><nowait> <LocalLeader>l :<C-u>FzfBLines<CR>
+nnoremap <silent><nowait> <LocalLeader>b :<C-u>FzfBuffers<CR>
+nnoremap <silent><nowait> <LocalLeader>a :<C-u>cd %:p:h<CR> :<C-u>FzfAg<CR>
+nnoremap <silent><nowait> <LocalLeader>h :<C-u>FzfHistory<CR>
 
-" Plugin davidhalter/jedi-vim -> see also: https://github.com/davidhalter/jedi-vim#settings 
-let g:jedi#goto_command = "gd"                                              "Jump to definition 
-let g:jedi#usages_command = "<LocalLeader>c"                                "List callers
-let g:jedi#documentation_command = "<LocalLeader>d"                         "Open document
-let g:jedi#rename_command = "<LocalLeader>rn"                               "Rename all references of selection section
 
-" Plugin lambdalisue/vim-pyenv > see also: https://github.com/lambdalisue/vim-pyenv#using-vim-pyenv-with-jedi-vim
-if jedi#init_python()
-  function! s:jedi_auto_force_py_version() abort
-    let g:jedi#force_py_version = pyenv#python#get_internal_major_version()
-  endfunction
-  augroup vim-pyenv-custom-augroup
-    autocmd! *
-    autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
-    autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
-  augroup END
-endif
+"Setting/Tool/iberianpig/tig-explorer.vim
+""git status
+nnoremap <silent> <LocalLeader>gs :<C-u>TigStatus<CR>
+""git log
+nnoremap <silent> <LocalLeader>gl :<C-u>Tig<CR>
+""git log of current file
+nnoremap <silent> <LocalLeader>gc :<C-u>TigOpenCurrentFile<CR>
+""git blame
+nnoremap <silent> <LocalLeader>gb :<C-u>TigBlame<CR>
 
-" Plugin Quramy/tsuquyomi
-let g:tsuquyomi_completion_detail = 1
-autocmd FileType TypeScript nmap gd <Plug>(TsuquyomiDefinition)
-autocmd FileType TypeScript nmap <LocalLeader>c <Plug>(TsuquyomiReferences)
 
-" Plugin fatih/vim-go -> see also: https://github.com/fatih/vim-go#example-mappings
-let g:go_highlight_functions = 1                                            "Highlight functions
-let g:go_highlight_methods = 1                                              "Highlight methods
-let g:go_highlight_structs = 1                                              "Highlight structs
-let g:go_highlight_operators = 1                                            "Highlight operators
-let g:go_highlight_build_constraints = 1                                    "Highlight build constraints
-let g:go_fmt_command = "goimports"                                          "Do goimports when saving.
-let g:go_list_type = "quickfix"                                             "All quickfix window
-autocmd FileType go :highlight goErr cterm=bold ctermfg=197                 "Highlight err
-autocmd FileType go :match goErr /\<err\>/                                  "Highlight err
-autocmd FileType go nmap <LocalLeader>c <Plug>(go-referrers)
-autocmd FileType go nmap <LocalLeader>d <Plug>(go-doc)
-autocmd FileType go nmap <LocalLeader>db <Plug>(go-doc-browser)
-autocmd FileType go nmap <LocalLeader>rn <Plug>(go-rename)
-autocmd FileType go nmap <LocalLeader>r <Plug>(go-run)
-autocmd FileType go nmap <LocalLeader>t <Plug>(go-test)
-"" Run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-autocmd FileType go nmap <LocalLeader>b :<C-u>call <SID>build_go_files()<CR>
+"Setting/Tool/ghq
+""cd like ghq
+command! -nargs=0 Repo call fzf#run({
+\   'source': 'ghq list --full-path',
+\   'sink': 'cd'
+\ })
 
-" Plugin Shougo/neocomplete
-let g:neocomplete#enable_at_startup = 1                                     "Enable at startup
-"" See also: https://github.com/Shougo/neocomplete.vim/issues/418
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
-" Plugin Shougo/neosnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"Setting/Tool/previm/previm
+let g:previm_open_cmd = 'open -a Google\ Chrome'
 
-" Plugin airblade/vim-gitgutter
-nnoremap <silent> <LocalLeader>gg :<C-u>GitGutterToggle<CR>
-nnoremap <silent> <LocalLeader>gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
-" Plugin glidenote/memolist.vim
+"Setting/Tool/glidenote/memolist.vim
 let g:memolist_path = "$HOME/memo"
 let g:memolist_memo_suffix = "md"
 let g:memolist_template_dir_path = "~/.config/memo"
 
-" Plugin LeafCage/yankround.vim
-nmap p <Plug>(yankround-p)
-xmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-xmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-let g:yankround_max_history = 50
-nnoremap <silent> <Leader>r :<C-u>Unite<Space>yankround<CR>
 
-" Plugin 'lambdalisue/gina.vim'
-nnoremap <silent> <LocalLeader>gb :<C-u>Gina<Space>blame<CR>
-"" gina my settings
-autocmd FileType gina-blame call s:gina_my_settings()
-autocmd FileType gina-log call s:gina_my_settings()
-function! s:gina_my_settings()
-  "" Press esc twice to exit
-  nmap <silent><buffer> <ESC><ESC> :<C-u>bd<CR>
-  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>bd<CR>
+"Setting/Tool/tyru/open-browser.vim
+nmap <silent> <LocalLeader>op <Plug>(openbrowser-smart-search)
+vmap <silent> <LocalLeader>op <Plug>(openbrowser-smart-search)
+nnoremap <silent> <LocalLeader>tl :<C-u>execute 'OpenBrowserSearch -deepl' expand('<cWORD>')<CR>
+let g:openbrowser_search_engines = {
+\    'deepl': 'https://www.deepl.com/translator#auto/auto/{query}',
+\}
+
+
+"Setting/Tool/neoclide/coc.nvim
+let g:coc_global_extensions = [
+    \ 'coc-lists',
+    \ 'coc-marketplace',
+    \ 'coc-json',
+    \ 'coc-tsserver',
+    \ 'coc-prettier',
+    \ 'coc-eslint',
+    \ 'coc-python',
+    \ 'coc-go',
+\ ]
+""Show all diagnostics (OR CocList diagnostics)
+nnoremap <silent> <Leader>di :<C-u>CocDiagnostics<CR>
+""Navigate diagnostics
+nmap <silent> <C-j> <Plug>(coc-diagnostic-next)
+nmap <silent> <C-k> <Plug>(coc-diagnostic-prev)
+""Hover
+nmap <silent> <Leader>hv :<C-u>call CocAction('doHover')<CR>>
+""Definition
+nmap <silent> <Leader>gd <Plug>(coc-definition)
+""References
+nmap <silent> <Leader>rf <Plug>(coc-references)
+""Rename
+nmap <silent> <Leader>rn <Plug>(coc-rename)
+""Show CocList
+nnoremap <silent><nowait> <Leader>l  :<C-u>CocList<CR>
+""Show commands
+nnoremap <silent><nowait> <Leader>c  :<C-u>CocList commands<CR>
+""Search workspace symbols
+nnoremap <silent><nowait> <Leader>s  :<C-u>CocList -I symbols<CR>
+
+
+"Setting/Tool/liuchengxu/vista.vim
+let g:vista#renderer#enable_icon = 0
+let g:vista_sidebar_position = 'vertical topleft'
+
+autocmd FileType markdown call s:vista_keymap_markdown()
+function! s:vista_keymap_markdown()
+  ""TODO: <Leader>o で、Vista finder fzf:toc がやりたいが、現状できないので操作ミスを考慮して、解決するまで t と同じにしておく。
+  nmap <silent><buffer><nowait> <Leader>o :<C-u>Vista toc<CR>
+  nmap <silent><buffer><nowait> <Leader>t :<C-u>Vista toc<CR>
 endfunction
 
-" Plugin Shougo/unite.vim
-nnoremap <silent> <Leader>o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> <Leader>T :<C-u>Unite<Space>tab:no-current<CR>
-nnoremap <silent> <LocalLeader><LocalLeader>h :<C-u>Unite<Space>menu:myshortcut<CR>
-"" unite my settings
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-  "" Press esc twice to exit
-  nmap <silent><buffer> <ESC><ESC> q
-  imap <silent><buffer> <ESC><ESC> <ESC>q
+autocmd FileType vista_markdown call s:vista_keymap_vista_markdown()
+function! s:vista_keymap_vista_markdown()
+  ""Press esc twice to close
+  nmap <silent><buffer> <ESC><ESC> :<C-u>Vista!<CR>
+  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>Vista!<CR>
 endfunction
-"" Upper case and lower case are not distinguished
-let g:unite_enable_ignore_case = 1  
-let g:unite_enable_smart_case = 1
-"" unite:menu
-let g:unite_source_menu_menus = get(g:,'unite_source_menu_menus',{})
-let g:unite_source_menu_menus.myshortcut = {'description': 'my shortcut list'}
-let g:unite_source_menu_menus.myshortcut.command_candidates = {
-      \ '- [Leader]                                                          <Space>                       ': '',
-      \ '- [LocalLeader]                                                     ,                             ': '',
-      \ '- [flie]          Next error/warning                                <C-j>                         ': '',
-      \ '- [file]          Previous error/warning                            <C-k>                         ': '',
-      \ '- [file]          Toggle Location list                              <Leader>l                     ': '',
-      \ '- [file]          Toggle QuickFix list                              <Leader>q                     ': '',
-      \ '- [file]          Open filer current window                         <Leader>e                     ': '',
-      \ '- [file]          Open filer right window                           <Leader>E                     ': '',
-      \ '- [unite]         Open tagbar left window                           <Leader>t                     ': '',
-      \ '- [file]          Fzf current file                                  <Leader>g                     ': '',
-      \ '- [file]          Fzf files under the current dirs                  <Leader>gg                    ': '',
-      \ '- [file]          Fzf file history                                  <Leader>h                     ': '',
-      \ '- [file]          Fzf filepath under the current dir                <C-T>                         ': '',
-      \ '- [python]        Go to local/global Declaration                    gd                            ': '',
-      \ '- [python]        Open referrers in QuickFix                        <LocalLeader>c                ': '',
-      \ '- [python]        Open doc                                          <LocalLeader>d                ': '',
-      \ '- [python]        Rename object                                     <LocalLeader>rn               ': '',
-      \ '- [golang]        Go to local/global Declaration                    gd                            ': '',
-      \ '- [golang]        Open referrers in QuickFix                        <LocalLeader>c                ': '',
-      \ '- [golang]        Open doc                                          <LocalLeader>d                ': '',
-      \ '- [golang]        Oepn doc in browser                               <LocalLeader>db               ': '',
-      \ '- [golang]        Rename object                                     <LocalLeader>rn               ': '',
-      \ '- [golang]        go run                                            <LocalLeader>r                ': '',
-      \ '- [golang]        go test                                           <LocalLeader>t                ': '',
-      \ '- [golang]        go build/test on file type                        <LocalLeader>b                ': '',
-      \ '- [git]           Toggle git diff column                            <LocalLeader>gg               ': '',
-      \ '- [git]           Toggle git diff line highlights                   <LocalLeader>gh               ': '',
-      \ '- [unite]         Open yankround window                             <Leader>r                     ': '',
-      \ '- [git]           Open git blame                                    <LocalLeader>gb               ': '',
-      \ '- [git]           Open git log use tig                              <LocalLeader>gl               ': '',
-      \ '- [git]           Open git log of the current file use tig          <LocalLeader>gll              ': '',
-      \ '- [unite]         Open outline list                                 <Leader>o                     ': '',
-      \ '- [unite]         Open tab list                                     <Leader>T                     ': '',
-      \ '- [unite]         Open myshortcut list                              <LocalLeader><LocalLeader>h   ': '',
-      \ '- [command]       Open Terminal                                     <LocalLeader><LocalLeader>t   ': '',
-      \ '- [git]           Open git status window use tig                    <LocalLeader>gs               ': '',
-      \ '- [git]           Completion for GitHub(username,emoji,etc...)      <C-x><C-o>                    ': '',
-      \ '- [html]          Expand html tag with Emmet                        <C-y>,                        ': '',
-      \ '- [src]           Surroundings: parentheses,brackets,quotes,tags    Select + <S-s>                ': '',
-      \ }
 
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+autocmd FileType typescript call s:vista_keymap_development()
+autocmd FileType javascript call s:vista_keymap_development()
+autocmd FileType go call s:vista_keymap_development()
+autocmd FileType python call s:vista_keymap_development()
+function! s:vista_keymap_development()
+  nmap <silent><buffer><nowait> <Leader>o :<C-u>Vista finder coc<CR>
+  nmap <silent><buffer><nowait> <Leader>t :<C-u>Vista coc<CR>
+endfunction
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+autocmd FileType vista call s:vista_keymap()
+function! s:vista_keymap()
+  ""Press esc twice to close
+  nmap <silent><buffer> <ESC><ESC> :<C-u>Vista!<CR>
+  imap <silent><buffer> <ESC><ESC> <ESC>:<C-u>Vista!<CR>
+endfunction
 
-" Command
-"" json format 
-command! JsonFormat :execute '%!python -m json.tool'
-  \ | :execute '%!python -c "import re,sys;chr=__builtins__.__dict__.get(\"unichr\", chr);sys.stdout.write(re.sub(r\"\\\\u[0-9a-f]{4}\", lambda x: chr(int(\"0x\" + x.group(0)[2:], 16)).encode(\"utf-8\"), sys.stdin.read()))"'
-  \ | :%s/ \+$//ge
-  \ | :set ft=javascript
-  \ | :1
-"" Terminal
-nnoremap <LocalLeader><LocalLeader>t :terminal<CR>
-"" tig
-""" git status
-nnoremap <silent> <LocalLeader>gs :!tig status<CR>:redraw!<CR>
-""" git log
-nnoremap <silent> <LocalLeader>gl :!tig<CR>:redraw!<CR>
-""" git log of current file
-nnoremap <silent> <LocalLeader>gc :!tig %<CR>:redraw!<CR>
 
-" Load etc files
+"Setting/Tool/itchyny/lightline.vim
+let g:lightline = {
+    \ 'colorscheme': 'nord',
+    \ 'active': {
+    \   'left': [
+    \     [ 'mode', 'paste' ],
+    \     [ 'coc_error', 'coc_warn', 'coc_info' ],
+    \     [ 'readonly', 'gitbranch', 'filename', 'modified' ],
+    \   ],
+    \   'right': [
+    \     [ 'fileformat', 'fileencoding', 'filetype', 'percent', 'lineinfo' ],
+    \   ],
+    \ },
+    \ 'inactive': {
+    \   'left': [
+    \     [ 'inactive_filename' ],
+    \   ],
+    \   'right': [
+    \     [ ],
+    \   ],
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'gitbranch#name',
+    \   'filename': 'LightlineFilename',
+    \ },
+    \ 'component_expand': {
+    \   'coc_error': 'LightlineCocError',
+    \   'coc_warn': 'LightlineCocWarn',
+    \   'coc_info': 'LightlineCocInfo',
+    \   'inactive_filename': 'LightlineFilename',
+    \ },
+    \ 'component_type': {
+    \   'coc_error': 'error',
+    \   'coc_warn': 'warning',
+    \   'coc_info': 'tabsel',
+    \   'inactive_filename': 'middle',
+    \ },
+\ }
+
+""Custom Color Settings
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.right = s:palette.normal.middle
+
+function! LightlineFilename() abort
+    return expand('%:p:h:t') . '/' . expand('%:t')
+endfunction
+
+function! s:lightline_coc_diagnostic(type, sign) abort
+    let info = get(b:, 'coc_diagnostic_info', 0)
+    if empty(info) || get(info, a:type, 0) == 0
+        return ''
+    endif
+    return printf('%s %d', a:sign, info[a:type])
+endfunction
+
+function! LightlineCocError() abort
+    return s:lightline_coc_diagnostic('error', '✘')
+endfunction
+
+function! LightlineCocWarn() abort
+    return s:lightline_coc_diagnostic('warning', '⚠')
+endfunction
+
+function! LightlineCocInfo() abort
+    return s:lightline_coc_diagnostic('information', 'i')
+endfunction
+
+augroup coc-status-settings
+  autocmd!
+  autocmd User CocDiagnosticChange call lightline#update()
+augroup END
+
+
+"Setting/ExternalFile
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
 
-" Path
+
+"Setting/Path
 set runtimepath+=~/.vim/
 runtime! userautoload/*.vim
+
